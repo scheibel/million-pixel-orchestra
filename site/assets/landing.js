@@ -18,7 +18,7 @@ try {
     summary.textContent = demo.summary;
     const meta = document.createElement("span");
     meta.className = "demo-meta";
-    meta.textContent = `${demo.snapshots.length} vorbereitete Stände · Code & Live-Vorschau`;
+    meta.textContent = `${demo.snapshots.length} ${demo.snapshots.length === 1 ? "vorbereiteter Stand" : "vorbereitete Stände"} · Code & Live-Vorschau`;
     content.append(title, summary, meta);
     const arrow = document.createElement("span");
     arrow.className = "demo-arrow";

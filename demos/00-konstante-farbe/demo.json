@@ -4,8 +4,23 @@
   "summary": "Drei Farb-Stände, eine einfache Idee: Jedes Pixel bekommt denselben RGB-Vektor.",
   "math": "Ein RGB-Vektor enthält drei Farbanteile zwischen 0 und 1: Rot, Grün und Blau. Hier ist die Farbe konstant – sie hängt weder von der Pixelposition noch von der Zeit ab. Ändere einen Farbanteil und beobachte das ganze Bild.",
   "snapshots": [
-    { "id": "start", "label": "START · Petrol", "file": "START.glsl", "description": "Ausgangspunkt: Alle Pixel erhalten denselben Petrolton." },
-    { "id": "violett", "label": "Zwischenstand · Violett", "file": "01-violett.glsl", "description": "Ein anderer RGB-Vektor färbt das gesamte Bild violett." },
-    { "id": "ziel", "label": "ZIEL · Koralle", "file": "ZIEL.glsl", "description": "Abgeschlossene Änderung: Mehr Rot und weniger Blau ergeben einen Korallton." }
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "violett",
+      "label": "Zwischenstand · Violett",
+      "file": "01-violett.glsl",
+      "description": "Ein anderer RGB-Vektor färbt das gesamte Bild violett."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL · Koralle",
+      "file": "ZIEL.glsl",
+      "description": "Abgeschlossene Änderung: Mehr Rot und weniger Blau ergeben einen Korallton."
+    }
   ]
 }

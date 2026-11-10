@@ -1,0 +1,20 @@
+{
+  "id": "02-farbverlauf",
+  "title": "Farbverlauf",
+  "summary": "Ein Farbverlauf mischt zwei Farben entlang der horizontalen Position.",
+  "math": "Die Pixelposition fragCoord wird durch die Auflösung iResolution.xy geteilt. uv.x läuft von links nach rechts von 0 bis 1. mix berechnet die lineare Mischung (1 − uv.x) · links + uv.x · rechts. Für diesen Verlauf sind gleich große Abstandseinheiten nicht erforderlich.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL",
+      "file": "ZIEL.glsl",
+      "description": "Ein Farbverlauf mischt zwei Farben entlang der horizontalen Position."
+    }
+  ]
+}

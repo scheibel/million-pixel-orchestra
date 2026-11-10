@@ -43,7 +43,7 @@ test("Vorlage lässt sich ohne Viewer-Änderung einbinden; Build läuft unter Pr
   await writeFile(join(root, "site/catalog.json"), JSON.stringify(catalog));
   const output = join(root, "hosting/workshop");
   const result = await buildSite({ root, output });
-  assert.equal(result.demos, 2);
+  assert.equal(result.demos, catalog.demos.length);
   const server = createStaticServer({ root: join(root, "hosting"), demos: null });
   server.listen(0, "127.0.0.1");
   await new Promise(resolve => server.once("listening", resolve));

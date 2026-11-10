@@ -1,0 +1,20 @@
+{
+  "id": "01-pixelposition-und-normalisierung",
+  "title": "Pixelposition und Normalisierung",
+  "summary": "Rot und Grün zeigen die normierte Pixelposition.",
+  "math": "fragCoord gibt die Pixelposition vom linken unteren Rand aus an; iResolution.xy enthält Breite und Höhe. Durch komponentenweise Division entstehen uv-Koordinaten zwischen 0 und 1. Für geometrische Abstände wäre anschließend eine Seitenverhältniskorrektur nötig.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL",
+      "file": "ZIEL.glsl",
+      "description": "Rot und Grün zeigen die normierte Pixelposition."
+    }
+  ]
+}

@@ -27,7 +27,7 @@ Für Zugriff von einem anderen Gerät im lokalen Netz mit `--host 0.0.0.0` start
 - **Entwürfe:** Änderungen bleiben je Stand innerhalb der geöffneten Seite erhalten. Wechseln setzt die Zeit zurück und erhält den Wiedergabezustand. „Stand wiederherstellen“ verwirft den aktuellen Entwurf und lädt seine vorbereitete Fassung. Neuladen verwirft alle Browserentwürfe; Repository-Dateien werden nicht verändert.
 - **ShaderToy:** Den vollständigen Editorinhalt kopieren und in das Image-Codefeld von ShaderToy einsetzen. Ein hinterlegter ShaderToy-Link je Stand wird verwendet; andernfalls führt der Link zu einem neuen Projekt. Die Website legt keine Projekte automatisch an.
 
-Die einzige mitgelieferte Demo **„Ein Pixel, eine Farbe“** ist ein technischer Smoke-Test mit drei konstanten RGB-Farben, keine fertig ausgearbeitete Unterrichtseinheit.
+Die zehn geplanten Themen sind als Shader von konstanter Farbe bis fBm verfügbar. Jede Demo beginnt vorläufig mit einem weißen START-Shader und besitzt einen ZIEL-Stand; die Farb-Demo hat zusätzlich einen Zwischenstand. Die weitere Unterrichtsausarbeitung steht noch aus.
 
 ## Neue Demo ableiten
 

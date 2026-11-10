@@ -121,4 +121,4 @@ Offen: Den früher eingeplanten 5-Minuten-LLM-Ausblick mit dieser Ablaufskizze a
 
 ### Umgesetzte technische Konvention für Demos
 
-Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo (Lernziel, Mathematik, sichtbarer Unterschied). Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Bisher ist ausschließlich die technische Farb-Demo implementiert; die fachlichen Workshop-Demos bleiben separat auszuarbeiten.
+Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo. Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Für alle zehn Themen sind ZIEL-Stände sowie vorläufige START-Stände mit konstantem Weiß verfügbar. Die Farb-Demo besitzt zusätzlich einen Zwischenstand. Die weitere didaktische Ausarbeitung bleibt offen.

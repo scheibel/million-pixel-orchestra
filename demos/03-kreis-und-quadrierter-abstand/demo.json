@@ -1,0 +1,20 @@
+{
+  "id": "03-kreis-und-quadrierter-abstand",
+  "title": "Kreis und quadrierter Abstand",
+  "summary": "Ein Abstandstest zeichnet einen Kreis mit harter Kante.",
+  "math": "fragCoord ist die Pixelposition, iResolution.xy die Bildgröße. Nach Verschiebung zum Mittelpunkt werden beide Achsen durch die Bildhöhe geteilt: So entsprechen gleiche Koordinatenabstände gleichen Pixelabständen. dot(p, p) ist x² + y²; der Vergleich mit r² vermeidet eine Wurzel.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL",
+      "file": "ZIEL.glsl",
+      "description": "Ein Abstandstest zeichnet einen Kreis mit harter Kante."
+    }
+  ]
+}

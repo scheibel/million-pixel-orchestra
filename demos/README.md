@@ -22,7 +22,7 @@ Keine lokale Hilfsfunktion, eigene `main`-Funktion, `#version`-Zeile oder Unifor
 
 Eine konstante Farbe benötigt nur den RGB-Vektor. Position und Auflösung vor ihrer Verwendung fachlich erklären. Eine spätere Koordinatenumrechnung muss das Seitenverhältnis berücksichtigen: Getrenntes Normieren von x und y auf `[0, 1]` garantiert keine gleich großen Abstandseinheiten. Der Viewer nimmt dem Shader diese Entscheidung nicht ab und verformt das gerenderte Bild nicht nachträglich.
 
-Keine Texturen, Kanäle, Maus-, Tastatur-, Audio- oder zusätzliche Uniform-Eingaben verwenden. Vorbereitete Noise-Basisfunktionen gehören später direkt in die jeweiligen vollständigen Snippets.
+Keine Texturen, Kanäle, Maus-, Tastatur-, Audio- oder zusätzliche Uniform-Eingaben verwenden. Vorbereitete Noise-Basisfunktionen stehen direkt in den jeweiligen vollständigen Snippets.
 
 ## Eine Demo aus der Vorlage erstellen
 
@@ -48,7 +48,7 @@ Beispiel für einen zusätzlichen Stand zwischen `start` und `ziel`:
 
 - Demo- und Stand-IDs bestehen aus Kleinbuchstaben, Zahlen und trennenden Bindestrichen. Demo-IDs sind im Katalog eindeutig, Stand-IDs innerhalb einer Demo.
 - `title`, `summary`, `math`, `label` und `description` sind nicht leere Texte. Die Demo-`README.md` ergänzt Lernziel, Mathematik und sichtbare Änderung.
-- Jede Demo besitzt die Stand-IDs `start` und `ziel`; beliebig viele weitere sind möglich. Anfangs wird `start` geladen.
+- Für eine vollständige Live-Demo sind `start` und `ziel` erforderlich; beliebig viele weitere Stände sind möglich. Solange ein START-Stand noch fehlt, kann ein einzelner ZIEL-Stand registriert werden. Anfangs wird `start` geladen, sofern vorhanden, sonst der erste Stand.
 - `file` ist relativ zu `demo.json` und verweist auf eine vollständige GLSL-Datei. Nur lokale relative Pfade ohne `..`, versteckte Pfadteile oder externe URLs sind erlaubt.
 - Optional besitzt jeder Stand `shadertoyUrl` der Form `https://www.shadertoy.com/view/<ID>`. Nur tatsächlich vorhandene, geprüfte Projekte eintragen. Ohne Link wird auf die Seite für ein neues ShaderToy-Projekt verwiesen. Die Übertragung ist ein eigener Auftrag.
 - Browserentwürfe verändern keine Dateien. Sie bleiben je Stand bis zum Neuladen erhalten; „Stand wiederherstellen“ lädt die vorbereitete Fassung.

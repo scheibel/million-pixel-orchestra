@@ -90,7 +90,7 @@ try {
   }
   const success = () => until(`document.querySelector('#compile-status')?.dataset.state === 'success'`);
   async function pixel(x = ".5", y = ".5") {
-    return evaluate(`(() => { const canvas = document.querySelector('#preview'); const gl = canvas.getContext('webgl2'); gl.drawArrays(gl.TRIANGLES, 0, 3); const data = new Uint8Array(4); gl.readPixels(Math.min(canvas.width-1, Math.floor(canvas.width*${x})), Math.min(canvas.height-1, Math.floor(canvas.height*${y})), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, data); return Array.from(data); })()`);
+    return evaluate(`(async () => { await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))); const canvas = document.querySelector('#preview'); const gl = canvas.getContext('webgl2'); gl.drawArrays(gl.TRIANGLES, 0, 3); const data = new Uint8Array(4); gl.readPixels(Math.min(canvas.width-1, Math.floor(canvas.width*${x})), Math.min(canvas.height-1, Math.floor(canvas.height*${y})), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, data); return Array.from(data); })()`);
   }
   function color(actual, expected) { expected.forEach((channel, index) => assert.ok(Math.abs(actual[index] - channel) <= 2, `${actual} ≠ ${expected}`)); }
   async function screenshot(name) {
@@ -100,13 +100,30 @@ try {
     await writeFile(join(process.env.SCREENSHOT_DIR, `${name}.png`), Buffer.from(data, "base64"));
   }
   await page("Page.navigate", { url: base });
-  await until(`document.querySelectorAll('.demo-card').length === 2`);
+  await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   assert.equal(await evaluate("document.documentElement.lang"), "de");
   assert.equal(await evaluate("document.querySelectorAll('#material-list a').length"), 0);
+  for (const path of catalog.demos.slice(1, -1)) {
+    const manifest = JSON.parse(await readFile(join(root, path), "utf8"));
+    await page("Page.navigate", { url: `${base}editor.html?demo=${manifest.id}` });
+    await success();
+    assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 2);
+    color(await pixel(), [255, 255, 255, 255]);
+    color(await pixel(".1", ".9"), [255, 255, 255, 255]);
+    await click('[data-snapshot="ziel"]');
+    await success();
+    await pixel();
+    const colors = await evaluate(`(() => { const c = document.querySelector('#preview'); const gl = c.getContext('webgl2'); gl.drawArrays(gl.TRIANGLES, 0, 3); const data = new Uint8Array(c.width * c.height * 4); gl.readPixels(0, 0, c.width, c.height, gl.RGBA, gl.UNSIGNED_BYTE, data); const colors = new Set(); for (let i = 0; i < data.length; i += 4) { colors.add(data.slice(i, i + 4).join(',')); if (colors.size > 1) break; } return colors.size; })()`);
+    assert.ok(colors > 1, `${manifest.id}: Bild ist unerwartet einfarbig`);
+    await screenshot(manifest.id);
+  }
+  console.log("✓ Weiße START-Stände und ZIEL-Shader aller neuen Demos");
+  await page("Page.navigate", { url: base });
+  await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   await screenshot("landing-desktop");
   await page("Page.navigate", { url: `${base}editor.html?demo=00-konstante-farbe` });
   await success();
-  color(await pixel(), [20, 115, 122, 255]);
+  color(await pixel(), [255, 255, 255, 255]);
   assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 3);
   await click('[data-snapshot="violett"]');
   await success();
@@ -116,7 +133,7 @@ try {
   color(await pixel(), [242, 82, 51, 255]);
   await click('[data-snapshot="start"]');
   const original = await evaluate("document.querySelector('#source').value");
-  const changed = original.replace("0.08, 0.45, 0.48", "0.20, 0.60, 0.80");
+  const changed = original.replace("vec3(1.0)", "vec3(0.20, 0.60, 0.80)");
   await edit(changed);
   await success();
   color(await pixel(), [51, 153, 204, 255]);
@@ -139,7 +156,7 @@ try {
   await click("#restore");
   await success();
   assert.equal(await evaluate("document.querySelector('#source').value"), original);
-  color(await pixel(), [20, 115, 122, 255]);
+  color(await pixel(), [255, 255, 255, 255]);
   console.log("✓ Stände, Entwürfe, Live-Kompilierung, Fehlerzeilen und letzte gültige Vorschau");
 
   await click("#play");

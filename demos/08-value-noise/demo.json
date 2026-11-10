@@ -1,0 +1,20 @@
+{
+  "id": "08-value-noise",
+  "title": "Value Noise",
+  "summary": "Interpolierte Pseudozufallswerte ergeben ein weiches Muster.",
+  "math": "fragCoord ist die Pixelposition, iResolution.xy die Bildgröße; die Division durch die Bildhöhe sorgt für quadratische Gitterzellen. Eine vorbereitete Hashfunktion erzeugt reproduzierbare Pseudozufallswerte an Gitterpunkten. Das Polynom 3t² − 2t³ glättet die Interpolation zwischen vier Eckwerten.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL",
+      "file": "ZIEL.glsl",
+      "description": "Interpolierte Pseudozufallswerte ergeben ein weiches Muster."
+    }
+  ]
+}

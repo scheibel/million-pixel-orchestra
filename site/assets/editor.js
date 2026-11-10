@@ -134,7 +134,7 @@ try {
     onRestore: compile
   });
   element("workspace").disabled = false;
-  selectSnapshot("start");
+  selectSnapshot(demo.snapshots.some(snapshot => snapshot.id === "start") ? "start" : demo.snapshots[0].id);
   source.addEventListener("input", () => {
     updateDraft();
     errorLines.clear();

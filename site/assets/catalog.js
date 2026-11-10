@@ -31,8 +31,8 @@ export function validateDemo(demo) {
     throw new Error("Eine Demo benötigt eine eindeutige id aus Kleinbuchstaben, Zahlen und Bindestrichen.");
   }
   for (const key of ["title", "summary", "math"]) requireText(demo[key], key);
-  if (!Array.isArray(demo.snapshots) || demo.snapshots.length < 2) {
-    throw new Error(`${demo.id}: Mindestens START und ZIEL werden benötigt.`);
+  if (!Array.isArray(demo.snapshots) || demo.snapshots.length < 1) {
+    throw new Error(`${demo.id}: Mindestens ein Stand wird benötigt.`);
   }
   const ids = new Set();
   for (const snapshot of demo.snapshots) {
@@ -50,7 +50,7 @@ export function validateDemo(demo) {
       throw new Error(`${demo.id}: Ungültiger ShaderToy-Link.`);
     }
   }
-  if (!ids.has("start") || !ids.has("ziel")) throw new Error(`${demo.id}: Die Stand-IDs start und ziel fehlen.`);
+  if (!ids.has("ziel")) throw new Error(`${demo.id}: Die Stand-ID ziel fehlt.`);
   return demo;
 }
 
