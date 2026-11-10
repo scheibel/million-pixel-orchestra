@@ -20,6 +20,7 @@ Die Bildspezifikation ist der unveränderte `mainImage`-Quelltext. Der Adapter i
 - Die Canvasgröße folgt der sichtbaren Fläche und Gerätepixeldichte, begrenzt durch WebGL-Größenlimits. Der Shader berechnet in dieser Auflösung; Koordinatenumrechnung und Seitenverhältniskorrektur bleiben im Snippet sichtbar.
 - `iTime` kommt aus einer unabhängigen Uhr. Pausieren friert sie ein; Fortsetzen zählt ohne Sprung weiter. Kompilieren verändert die Uhr nicht. Standwechsel setzt sie zurück und erhält den Wiedergabezustand.
 - Die Vorschau rendert bei laufender Zeit sowie nach Code- oder Größenänderungen. Auch bei Pause werden erfolgreiche Codeänderungen dargestellt.
+- Die Fullscreen-API vergrößert den Vorschaurahmen und damit das Canvas; der bestehende Größenabgleich passt den Framebuffer auch im pausierten Zustand an. `fullscreenchange` synchronisiert die Schaltfläche, Strg-Klick und Esc verlassen den Modus. Ohne Fullscreen-Unterstützung bleibt die Vorschau regulär bedienbar. Die Steuersymbole sind direkt eingebundene SVGs mit zugänglichen Namen und benötigen keine Icon-Bibliothek.
 
 ## Kompilierung und Fehler
 
@@ -45,4 +46,4 @@ Veröffentlichungsbranch und Push-Ablauf werden bei der separaten Veröffentlich
 
 Node-Tests prüfen Zeitverhalten, Fehlerzuordnung, Ableitung aus der Kopiervorlage sowie Build und HTTP-Zugriff unter einem Repositorypfad. Der Browser-Test startet Chromium und nutzt dessen Debugging-Protokoll ohne Testbibliothek. Er prüft mit Software-WebGL echte Pixelwerte, GLSL-Fehler samt Korrektur, Entwürfe, Animation, Zwischenablage, Pixeldichte, mobile Darstellung und Ausfälle.
 
-Geprüft am 29. Oktober 2026 mit Node.js 24 und Chromium 156. Direkter ShaderToy-Test und Prüfung auf einem echten iPad/Safari bleiben Teil der späteren Integrations- und Unterrichtsvorbereitung.
+Geprüft am 29. Oktober 2026 mit Node.js 24 und Chromium 156. Die lokale Website ist insbesondere für die Vorführung auf einem Laptop vorgesehen; ihre iPad-Unterstützung ist nachrangig. Der direkte ShaderToy-Test und die Prüfung der Nutzung von ShaderToy auf den vorgesehenen Teilnehmergeräten bleiben Teil der Integrations- und Unterrichtsvorbereitung.

@@ -2,7 +2,7 @@
 
 Rahmenwerk für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren – Mit Mathematik zu Millionen Pixeln“**: deutsche Landingpage, lokaler Shader-Editor und vollständig kopierbare ShaderToy-Snippets.
 
-Die Schülerinnen und Schüler programmieren live in ShaderToy. Die lokale Werkstatt bietet zusätzlich Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. F1 ist implementiert; die Ausarbeitung der Workshop-Demos sowie PDF- und Release-Builds folgen separat.
+Die Schülerinnen und Schüler rufen die Demos zum Mitprogrammieren in ShaderToy auf. Die lokale Werkstatt ist insbesondere für die Vorführung auf einem Laptop vorgesehen und bietet Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. F1 ist implementiert; die Ausarbeitung der Workshop-Demos sowie PDF- und Release-Builds folgen separat.
 
 ## Lokal starten
 
@@ -23,7 +23,8 @@ Für Zugriff von einem anderen Gerät im lokalen Netz mit `--host 0.0.0.0` start
 - **Stände:** START, Zwischenstände und ZIEL per Schaltfläche auswählen.
 - **Bearbeiten:** Nach 350 ms Eingabepause wird automatisch kompiliert; sofort mit „Kompilieren“ oder Strg/⌘+Enter. Zeilennummern begleiten die normale Texteingabe. Die Tab-Taste bleibt für die Tastaturnavigation verfügbar.
 - **Fehler:** Fehlerzeilen werden markiert und sind über die Meldung anwählbar. Die letzte erfolgreich kompilierte Vorschau bleibt mit sichtbarer Kennzeichnung erhalten. Ohne vorherigen Erfolg erscheint ein Fehlerzustand.
-- **Animation:** Pause/Abspielen, „Zeit auf 0“ und die Zeitanzeige steuern `iTime`. Bei Pause werden Codeänderungen mit derselben Zeit dargestellt. Kompilieren setzt die Zeit nicht zurück.
+- **Animation:** Die Symbolschaltflächen für Pause/Abspielen und Zeitrücksetzung sowie die Zeitanzeige steuern `iTime`. Bei Pause werden Codeänderungen mit derselben Zeit dargestellt. Kompilieren setzt die Zeit nicht zurück.
+- **Vollbild:** Die Vollbild-Schaltfläche oder Strg-Klick auf das Bild öffnet die bildschirmfüllende Vorschau; Strg-Klick oder Esc schließt sie. Der Browser muss die Fullscreen-API unterstützen.
 - **Entwürfe:** Änderungen bleiben je Stand innerhalb der geöffneten Seite erhalten. Wechseln setzt die Zeit zurück und erhält den Wiedergabezustand. „Stand wiederherstellen“ verwirft den aktuellen Entwurf und lädt seine vorbereitete Fassung. Neuladen verwirft alle Browserentwürfe; Repository-Dateien werden nicht verändert.
 - **ShaderToy:** Den vollständigen Editorinhalt kopieren und in das Image-Codefeld von ShaderToy einsetzen. Ein hinterlegter ShaderToy-Link je Stand wird verwendet; andernfalls führt der Link zu einem neuen Projekt. Die Website legt keine Projekte automatisch an.
 
@@ -63,7 +64,7 @@ npm run test:browser
 
 `npm run test:browser` benötigt zusätzlich einen lokal installierten Chromium-Browser. Standardbefehl ist `chromium`; ein anderer Pfad ist über `CHROME_BIN` möglich. Der Test startet einen isolierten Headless-Browser mit Software-WebGL und temporärem Profil. Er prüft echte Pixelwerte, Entwürfe, GLSL-Fehler und Korrektur, Animation, Zwischenablage samt Fallback, mobile Ansicht, Pixeldichte, Kontextverlust und Ladefehler. Die Testwebsite liegt unter `/million-pixel-orchestra/`; die Quell-Demos werden dabei nicht verändert. Optionale Screenshots: `SCREENSHOT_DIR` setzen.
 
-Die lokale ShaderToy-Kompatibilität wird über unveränderte Snippets im WebGL2-Adapter geprüft. Eine Prüfung direkt auf ShaderToy und auf einem echten Schul-iPad steht noch aus; es wurde nichts veröffentlicht.
+Die lokale ShaderToy-Kompatibilität wird über unveränderte Snippets im WebGL2-Adapter geprüft. Ein direkter Test in ShaderToy sowie die Prüfung von ShaderToy auf den vorgesehenen Teilnehmergeräten stehen noch aus; es wurde nichts veröffentlicht. Die iPad-Unterstützung der lokalen Website ist nachrangig.
 
 ## Repository
 

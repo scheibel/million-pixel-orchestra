@@ -19,6 +19,7 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - **Geräte:** möglichst Schul-iPad oder eigener Laptop; dedizierte Tastatur vorteilhaft. Beamer/Smartboard und Tafel/Whiteboard. Sonderzeichen und Copy/Paste als praktische Hürde berücksichtigen.
 - **Plattform für die abschließenden Demos:** ShaderToy. Die Beispiele sollen zuerst lokal versioniert entwickelt und erst später nach ShaderToy übertragen werden.
 - **Live-Coding der Schülerinnen und Schüler:** in ShaderToy. Parallel bietet das lokale Rahmenwerk einen erweiterten Shader-Editor mit Live-Vorschau; beide Umgebungen verwenden dieselben kopierbaren Shader-Snippets.
+- **Prüfpriorität:** Die Website und ihre lokale Vorschau sind insbesondere für die Vorführung auf einem Laptop vorgesehen; ihre Funktion auf iPads ist nachrangig. Die Teilnehmenden rufen dieselben Demos zum Mitprogrammieren in ShaderToy auf. Ob das auf Schul-iPads funktioniert, hängt von ShaderToy und dessen Nutzung auf diesen Geräten ab und ist in der Unterrichtsvorbereitung dort zu prüfen.
 
 ## Sprache und Materialumfang (festgelegt)
 - Ziel des Projekts sind **deutsche Lehrmaterialien**. Beschreibende Texte auf Webseiten und insbesondere auf Folien sind auf Deutsch zu halten.
@@ -40,6 +41,7 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - Der lokale Editor ergänzt das Live-Coding der Schülerinnen und Schüler in ShaderToy. Er bleibt Teil der statischen Website und benötigt kein Server-Backend.
 - Editor, Vorschau und vorbereitete Quellcode-Stände sind miteinander verbunden. Die Shader bleiben vollständig nach ShaderToy kopierbar; die lokalen Entwicklungshilfen erfordern keine zusätzlichen Lehr-Uniforms.
 - Die zuvor vorgeschlagenen Bedienregeln sind mit dem Implementierungsauftrag vom 29. Oktober 2026 in F1 umgesetzt: automatische Kompilierung nach 350 ms, letzte gültige Vorschau bei Fehlern, Wiedergabe/Pause und Zeitrücksetzung sowie getrennte Entwürfe je Stand bis zum Neuladen. Einzelheiten stehen in `README.md` und F1 der Roadmap.
+- Die Bildvorschau bietet Vollbild über eine Schaltfläche oder Strg-Klick auf das Canvas; Strg-Klick und Esc schließen es wieder. Die Zeitsteuerung verwendet zugänglich beschriftete Symbole. Diese Funktionen gehören ausschließlich zur lokalen Vorschau.
 
 ## Quellcode-Stände je Demo (festgelegt)
 - Jede Demo unterstützt mehrere vorbereitete Quellcode-Stände, zwischen denen auf der Demo-Seite per Schaltflächen gewechselt werden kann. Sie dienen als verlässliche Bezugspunkte bei Fehlern im Live-Coding.

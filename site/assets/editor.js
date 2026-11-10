@@ -158,10 +158,51 @@ try {
   });
   element("play").addEventListener("click", () => {
     preview.toggle();
-    element("play").textContent = preview.clock.playing ? "Pause" : "Abspielen";
-    element("play").setAttribute("aria-label", preview.clock.playing ? "Animation pausieren" : "Animation abspielen");
+    const label = preview.clock.playing ? "Animation pausieren" : "Animation abspielen";
+    element("pause-icon").toggleAttribute("hidden", !preview.clock.playing);
+    element("play-icon").toggleAttribute("hidden", preview.clock.playing);
+    element("play").setAttribute("aria-label", label);
+    element("play").title = label;
   });
   element("reset-time").addEventListener("click", () => preview.resetTime());
+  const frame = element("preview-frame");
+  const fullscreenButton = element("fullscreen");
+  const fullscreenAvailable = document.fullscreenEnabled && typeof frame.requestFullscreen === "function";
+  if (!fullscreenAvailable) {
+    fullscreenButton.disabled = true;
+    fullscreenButton.title = "Vollbild wird von diesem Browser nicht unterstützt";
+  }
+  document.addEventListener("fullscreenchange", () => {
+    const active = document.fullscreenElement === frame;
+    const label = active ? "Vollbild schließen" : "Vollbild öffnen";
+    fullscreenButton.setAttribute("aria-label", label);
+    if (fullscreenAvailable) fullscreenButton.title = label;
+    element("fullscreen-enter-icon").toggleAttribute("hidden", active);
+    element("fullscreen-exit-icon").toggleAttribute("hidden", !active);
+  });
+  async function toggleFullscreen() {
+    const status = element("fullscreen-status");
+    status.hidden = true;
+    try {
+      if (!fullscreenAvailable) throw new Error("Vollbild wird von diesem Browser nicht unterstützt.");
+      if (document.fullscreenElement === frame) await document.exitFullscreen();
+      else if (document.fullscreenElement) throw new Error("Bitte zuerst das andere Vollbild schließen.");
+      else await frame.requestFullscreen();
+    } catch (error) {
+      status.textContent = `Vollbild nicht verfügbar. ${error.message}`;
+      status.hidden = false;
+    }
+  }
+  fullscreenButton.addEventListener("click", toggleFullscreen);
+  element("preview").addEventListener("click", event => {
+    if (event.ctrlKey) { event.preventDefault(); toggleFullscreen(); }
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && document.fullscreenElement === frame) {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
   element("copy").addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(source.value);
