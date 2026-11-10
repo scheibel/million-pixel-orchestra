@@ -1,0 +1,10 @@
+{
+  "id": "meine-demo",
+  "title": "Meine neue Demo",
+  "summary": "Hier den sichtbaren Effekt kurz beschreiben.",
+  "math": "Hier den mathematischen Kerngedanken und den sichtbaren Unterschied erklären.",
+  "snapshots": [
+    { "id": "start", "label": "START", "file": "START.glsl", "description": "Ausgangspunkt der Änderung." },
+    { "id": "ziel", "label": "ZIEL", "file": "ZIEL.glsl", "description": "Ergebnis der Änderung." }
+  ]
+}

@@ -1,45 +1,81 @@
-# Million Pixels Vortrag MCG — Codex Starter
+# Millionen Pixel
 
-Dieses Repository enthält eine kuratierte Übergabe des ChatGPT-Projektkontexts für die versionierte Entwicklung des MCG-Workshops „Grafiken programmieren – Mit Mathematik zu Millionen Pixeln“.
+Rahmenwerk für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren – Mit Mathematik zu Millionen Pixeln“**: deutsche Landingpage, lokaler Shader-Editor und vollständig kopierbare ShaderToy-Snippets.
 
-Geplant sind ShaderToy-kompatible Demos sowie die bearbeitbaren Quellen für LaTeX-Beamer-Folien und Tafelbilder. Die Lehrmaterialien, beschreibenden Webseitentexte und Folien sind auf Deutsch; Quellcode darf auf Englisch sein. Das Quellformat der Tafelbilder ist noch offen.
+Die Schülerinnen und Schüler programmieren live in ShaderToy. Die lokale Werkstatt bietet zusätzlich Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. F1 ist implementiert; die Ausarbeitung der Workshop-Demos sowie PDF- und Release-Builds folgen separat.
 
-Zum geplanten Setup gehören eine deutsche Landingpage und einfaches lokales HTTP-Hosting. Ein vollständiger Release-Build soll Website, Demos sowie aus den Quellen gebaute Folien- und Tafelbild-PDFs bündeln und die PDFs auf der Website zum Download verlinken. Das statische Gesamtergebnis soll auch als GitHub-Pages-Projektseite hostbar sein. Die lokale Demo-Vorschau soll ohne LaTeX-Installation nutzbar bleiben. Diese Infrastruktur ist noch umzusetzen; die Schritte und Abnahmekriterien stehen in `ROADMAP.md`.
+## Lokal starten
 
-Der vollständige Release-Build läuft auf dem Entwicklergerät und setzt dort eine passende LaTeX-Distribution einschließlich benötigter Pakete voraus. Er erzeugt das fertige Website-Bundle in `dist/`. Anschließend wird dieses Bundle separat in die GitHub-Pages-Veröffentlichungsquelle gepusht. GitHub-Actions-Workflows für Build oder Deployment sind nicht vorgesehen; auf GitHub Pages werden keine LaTeX-Distribution oder Projekt-Build-Werkzeuge benötigt.
+Voraussetzungen: **Node.js ab Version 22**, npm und ein aktueller Browser mit **WebGL2**. Es gibt keine npm-Abhängigkeiten; Paketinstallation und LaTeX sind für die Vorschau nicht erforderlich.
 
-## Einstieg
+```sh
+npm run dev
+```
 
-1. Diese Dateien in ein lokales Verzeichnis entpacken.
-2. Mit Git versionieren:
+Anschließend **http://127.0.0.1:8000/** öffnen. Ein anderer Port ist über `npm run dev -- --port 8080` möglich. Mit Strg+C beenden.
 
-   ```sh
-   git init
-   git add .
-   git commit -m "docs: initial workshop context and roadmap"
-   ```
+Die Website über HTTP öffnen; `file://` kann die Shader-Dateien nicht laden. Der Entwicklungsserver liefert `site/` und die Demo-Dateien unter `demos/`. Änderungen an Dateien werden nach Neuladen der Seite übernommen.
 
-3. Codex im Repository starten:
+Für Zugriff von einem anderen Gerät im lokalen Netz mit `--host 0.0.0.0` starten und dort die lokale IP-Adresse des Entwicklergeräts öffnen. Ohne sichere Browser-Zwischenablage markiert „Code kopieren“ den Code zum manuellen Kopieren.
 
-   ```sh
-   codex
-   ```
+## Den Editor verwenden
 
-   Falls die Codex-CLI noch nicht vorhanden ist: `npm install -g @openai/codex@latest` (mit einer unterstützten Node.js-Installation).
+- **Stände:** START, Zwischenstände und ZIEL per Schaltfläche auswählen.
+- **Bearbeiten:** Nach 350 ms Eingabepause wird automatisch kompiliert; sofort mit „Kompilieren“ oder Strg/⌘+Enter. Zeilennummern begleiten die normale Texteingabe. Die Tab-Taste bleibt für die Tastaturnavigation verfügbar.
+- **Fehler:** Fehlerzeilen werden markiert und sind über die Meldung anwählbar. Die letzte erfolgreich kompilierte Vorschau bleibt mit sichtbarer Kennzeichnung erhalten. Ohne vorherigen Erfolg erscheint ein Fehlerzustand.
+- **Animation:** Pause/Abspielen, „Zeit auf 0“ und die Zeitanzeige steuern `iTime`. Bei Pause werden Codeänderungen mit derselben Zeit dargestellt. Kompilieren setzt die Zeit nicht zurück.
+- **Entwürfe:** Änderungen bleiben je Stand innerhalb der geöffneten Seite erhalten. Wechseln setzt die Zeit zurück und erhält den Wiedergabezustand. „Stand wiederherstellen“ verwirft den aktuellen Entwurf und lädt seine vorbereitete Fassung. Neuladen verwirft alle Browserentwürfe; Repository-Dateien werden nicht verändert.
+- **ShaderToy:** Den vollständigen Editorinhalt kopieren und in das Image-Codefeld von ShaderToy einsetzen. Ein hinterlegter ShaderToy-Link je Stand wird verwendet; andernfalls führt der Link zu einem neuen Projekt. Die Website legt keine Projekte automatisch an.
 
-4. Den Prompt aus `CODEX_STARTPROMPT.md` als erste Aufgabe verwenden.
+Die einzige mitgelieferte Demo **„Ein Pixel, eine Farbe“** ist ein technischer Smoke-Test mit drei konstanten RGB-Farben, keine fertig ausgearbeitete Unterrichtseinheit.
 
-Codex liest `AGENTS.md` automatisch als Repository-Anweisung. Der Startprompt verweist zusätzlich ausdrücklich auf `CONTEXT.md` und `ROADMAP.md`.
+## Neue Demo ableiten
 
-## Leitprinzip
+```sh
+cp -R templates/demo demos/10-meine-demo
+```
 
-Die Planung unterscheidet Features des Rahmenwerks, externe Integrationen (ShaderToy und GitHub Pages) und Workshopinhalt. Die hierarchische Ausarbeitung der Inhalte folgt später. Die erste technische Aufgabe im Startprompt ist auf F1 der Roadmap begrenzt.
+In `demo.json` ID, deutsche Texte und Standliste anpassen, die vollständigen GLSL-Dateien bearbeiten und `demos/10-meine-demo/demo.json` in die Liste `demos` in `site/catalog.json` aufnehmen. Der Editor muss nicht verändert werden. Format und Schnittstelle stehen in [demos/README.md](demos/README.md).
 
-Zuerst **lokal entwickeln und per Git versionieren**, danach geprüfte ShaderToy-`START`-/`ZIEL`-Snippets übertragen. Nicht aus einem Chat heraus ad hoc ShaderToy-Demos anlegen, bevor ihre Entwicklungsstände im Repository existieren.
+## Statische Website bauen
 
-## Dateikarte
-- `AGENTS.md`: technische und didaktische Regeln für Codex.
-- `CONTEXT.md`: kuratierter, quellenbewusster Planungsstand.
-- `ROADMAP.md`: getrennte Planung für Rahmenwerk, Integrationen und Inhalte; bisherige Themen- und vorläufige Ablaufskizze.
-- `CODEX_STARTPROMPT.md`: erste konkrete Aufgabe für Codex.
-- `demos/`: Raum für die späteren Demo-Snippets.
+```sh
+npm run build
+npm run preview
+```
+
+`npm run build` validiert Katalog und Quellen und erzeugt **ausschließlich die statische Website** in `dist/`. Der Befehl führt keinen Push aus. `npm run preview` stellt nur das fertige Verzeichnis unter http://127.0.0.1:8000/ bereit. `dist/` wird nicht versioniert.
+
+Das Bundle enthält HTML, CSS, JavaScript, Demo-Metadaten und GLSL-Dateien sowie `.nojekyll`. Relative URLs funktionieren auch unter einem GitHub-Pages-Repositorypfad. Die spätere Veröffentlichung über einen separaten Push der fertigen Dateien ist in F3/I2 vorgesehen; es gibt keine GitHub-Actions-Workflows.
+
+**Dieser Website-Build ist noch kein vollständiger Workshop-Release.** F2 ergänzt die lokale PDF-Erzeugung aus Beamer- und PGF/TikZ-Tafelbildquellen; F3 führt sie mit dem Website-Build zusammen. Lokale LaTeX-Distribution und Engine werden dort festgelegt. Der spätere Gesamtbuild muss bei fehlenden Pflichtmaterialien abbrechen.
+
+Die Einbindung fertiger PDFs ist vorbereitet: Dateien unter `site/downloads/` ablegen und in `site/catalog.json` unter `materials` mit `title` und `file` (z. B. `downloads/folien.pdf`) registrieren. Der Website-Build verlangt für jeden Eintrag eine vorhandene PDF-Datei. Ohne Einträge erscheint ein Hinweis statt nicht funktionierender Downloadlinks. Diese Schnittstelle wird später vom Dokument-Build bedient.
+
+## Prüfen
+
+```sh
+npm test
+npm run test:browser
+```
+
+`npm test` prüft die Zeitsteuerung, Compiler-Zuordnung, Ableitung aus der Vorlage, Build-Fehler und statisches Hosting unter einem Projektpfad. Es startet einen temporären lokalen HTTP-Server.
+
+`npm run test:browser` benötigt zusätzlich einen lokal installierten Chromium-Browser. Standardbefehl ist `chromium`; ein anderer Pfad ist über `CHROME_BIN` möglich. Der Test startet einen isolierten Headless-Browser mit Software-WebGL und temporärem Profil. Er prüft echte Pixelwerte, Entwürfe, GLSL-Fehler und Korrektur, Animation, Zwischenablage samt Fallback, mobile Ansicht, Pixeldichte, Kontextverlust und Ladefehler. Die Testwebsite liegt unter `/million-pixel-orchestra/`; die Quell-Demos werden dabei nicht verändert. Optionale Screenshots: `SCREENSHOT_DIR` setzen.
+
+Die lokale ShaderToy-Kompatibilität wird über unveränderte Snippets im WebGL2-Adapter geprüft. Eine Prüfung direkt auf ShaderToy und auf einem echten Schul-iPad steht noch aus; es wurde nichts veröffentlicht.
+
+## Repository
+
+| Pfad | Aufgabe |
+| --- | --- |
+| `site/` | Website, Editor und Katalog |
+| `demos/` | Shader-Snippets und Metadaten |
+| `templates/demo/` | Kopiervorlage |
+| `scripts/` | HTTP-Server und Website-Build mit Node-Standardbibliothek |
+| `tests/` | Funktions-, Hosting- und Browserprüfungen |
+| `docs/ARCHITECTURE.md` | Architektur und Erweiterungspunkte |
+| `CONTEXT.md`, `ROADMAP.md` | Entscheidungen und getrennte Planung |
+| `AGENTS.md` | Arbeitsanweisungen für Codex |
+
+Rahmenwerk und Unterrichtsinhalte bleiben getrennt. Keine Git-Commits oder Veröffentlichung ohne ausdrücklichen Auftrag.

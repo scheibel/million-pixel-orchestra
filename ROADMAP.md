@@ -2,28 +2,48 @@
 
 Die Planung besteht aus drei getrennten Bereichen: **Features des Rahmenwerks**, **externe Integrationen** und **Workshopinhalt**. Sie haben eigene Aufgaben und Abnahmen. Ihre Reihenfolge im Dokument ist keine gemeinsame Implementierungsfolge und kein Auftrag, alles auf einmal umzusetzen.
 
-Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. Der aktuelle Stand ist Planung; die technische Umsetzung steht noch aus.
+Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1 ist seit 29. Oktober 2026 lokal implementiert und geprüft. F2/F3, Veröffentlichung und die fachliche Ausarbeitung der Workshopmaterialien stehen noch aus.
 
 ## 1. Features des Rahmenwerks
 
 ### F1 — Landingpage, lokales Hosting und Shader-Vorschau
 
+**Stand: umgesetzt und lokal geprüft (29. Oktober 2026).** Einstieg über `npm run dev`, Website-Build über `npm run build`; Details in `README.md` und `docs/ARCHITECTURE.md`. Die folgenden Punkte beschreiben den umgesetzten Umfang.
+
 - Kleine deutsche Landingpage als Einstieg zur Demo-Vorschau erstellen; den Downloadbereich für später gebaute Lehrmaterialien vorsehen. Nur vorhandene Dateien verlinken.
 - Einfachen lokalen HTTP-Server mit dokumentiertem Startbefehl für Website und Vorschau bereitstellen; ohne LaTeX-Abhängigkeit für diese Nutzung.
-- Minimalen lokalen Shader-Viewer erstellen (bevorzugt WebGL2; keine schweren Frameworks).
+- Einen lokalen Shader-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung erstellen (Vorschau bevorzugt WebGL2; keine schweren Rendering-Frameworks). Die Schülerinnen und Schüler programmieren live in ShaderToy; die lokale Umgebung ergänzt diesen Arbeitsablauf.
 - ShaderToy-typische `mainImage(out vec4 fragColor, in vec2 fragCoord)`-Snippets möglichst unverändert darstellen können.
 - `fragCoord` an Pixelposition, `iResolution` an Framebuffergröße und `iTime` an Zeit binden.
 - Die Codeübertragung aus den Demos zu ShaderToy muss einfach sein; das lokale Preview-Gerüst darf die Snippets nicht mit app-spezifischen APIs verunreinigen.
-- Laufzeitfehler und GLSL-Kompilierfehler sichtbar anzeigen. Mit Fenstergrößen-/Seitenverhältniswechseln umgehen.
-- Als technischen Smoke-Test nur einen Shader für konstante Farbe hinzufügen. Dazu eine kurze Startanleitung. Dies nimmt keine Ausarbeitung der Lehr-Demos vorweg.
+- Je Demo mehrere vorbereitete, vollständige GLSL-Stände unterstützen und auf der Demo-Seite per Schaltflächen auswählbar machen. Live-Demos besitzen mindestens `START` und `ZIEL`; beliebig viele zusätzliche Zwischenstände müssen möglich sein. Diese dienen als verlässliche Bezugspunkte bei Fehlern im Live-Coding.
+- Metadaten über `site/catalog.json` und je Demo eine `demo.json` mit geordneter Standliste beschreiben. Der Vertrag in `demos/README.md` legt IDs, Texte, relative GLSL-Pfade und optionale ShaderToy-Links fest. Der lokale Code-Editor setzt die unten beschriebenen Bedienregeln um.
+- Eine wiederverwendbare Kopiervorlage für neue Demos einschließlich ShaderToy-Snippet und benötigter Metadaten bereitstellen. Das interne WebGL-Gerüst bleibt außerhalb der kopierbaren Lehr-Snippets.
+- Laufzeitfehler und GLSL-Kompilierfehler sichtbar anzeigen. Mit Fenstergrößen-/Seitenverhältniswechseln umgehen. Animationssteuerung lokal über die Bereitstellung von `iTime` umsetzen, ohne die Lehr-Snippets zu verändern.
+- Als technischen Smoke-Test nur eine Demo für konstante Farbe hinzufügen; mehrere vorbereitete Farb-Stände prüfen die Auswahl per Schaltflächen. Dazu eine kurze Startanleitung und eine Anleitung zum Ableiten einer neuen Demo aus der Kopiervorlage. Dies nimmt keine Ausarbeitung der Lehr-Demos vorweg.
 - Lokalen statischen Website-Build und eine klare Einbindung der späteren PDF-Builds vorbereiten. `dist/` als gemeinsames Ausgabeverzeichnis für Website, Shader und Downloads verwenden. Werkzeugwahl knapp begründen.
 - Integrationsanforderungen I1 und I2 von Anfang an berücksichtigen.
-- **Abnahme:** Landingpage und Viewer über den lokalen Server erreichbar, ein sichtbarer Vollbildshader, klare Fehlermeldung bei einem absichtlich kaputten Shader, definierte Handhabung der ShaderToy-Uniforms. Statischen Website-Build auch unter einem simulierten Repository-Unterpfad prüfen.
+- **Abnahme:** Landingpage und Editor über den lokalen Server erreichbar, ein sichtbarer Vollbildshader, Änderungen im Editor in der Live-Vorschau sichtbar, mehrere vorbereitete Stände per Schaltflächen auswählbar, klare Fehlermeldung bei einem absichtlich kaputten Shader und erfolgreiche Vorschau nach dessen Korrektur. Animationssteuerung und definierte Handhabung der ShaderToy-Uniforms prüfen. Eine weitere Demo durch Kopieren der Vorlage und Anpassen ihrer Dateien einbinden können, ohne den Editor oder Viewer zu ändern. Statischen Website-Build auch unter einem simulierten Repository-Unterpfad prüfen.
+
+#### Umgesetzte Bedienregeln für F1
+
+- **Editor und Kompilierung:** Quellcode mit Zeilennummern bearbeiten; nach 350 ms Eingabepause automatisch kompilieren. Zusätzlich eine Schaltfläche zum sofortigen Kompilieren und Strg/⌘+Enter anbieten.
+- **Fehler:** GLSL-Meldungen den Zeilen des bearbeiteten Snippets zuordnen. Bei einem Kompilierfehler die letzte erfolgreich kompilierte Vorschau weiter anzeigen und deutlich kennzeichnen, dass sie nicht dem aktuellen Editorinhalt entspricht. Falls noch keine erfolgreiche Vorschau existiert, einen verständlichen Fehlerzustand anzeigen. Eine Korrektur aktualisiert die Vorschau wieder automatisch.
+- **Animation:** Wiedergabe/Pause, Zurücksetzen auf `iTime = 0` und eine Anzeige der aktuellen Animationszeit anbieten. Während einer Pause weiterhin Codeänderungen mit eingefrorener Zeit darstellen; beim Fortsetzen ohne Zeitsprung weiterlaufen. Gewöhnliche Neukompilierung setzt die Zeit nicht zurück.
+- **Vorbereitete Stände und eigene Änderungen:** Zuerst `START` laden. Beim Wechsel Editor und Vorschau auf den gewählten Stand umschalten und die Zeit auf null setzen; Wiedergabe-/Pausenzustand beibehalten. Eigene Änderungen je Stand innerhalb der geöffneten Seite als Entwurf erhalten und bei der Rückkehr wiederherstellen; veränderte Stände kennzeichnen. Ein eigener Rücksetzbefehl stellt die vorbereitete Fassung wieder her. Die versionierten GLSL-Dateien werden durch Browseränderungen nicht überschrieben. Dauerhafte Entwurfsspeicherung über Neuladen hinweg ist für F1 zunächst nicht vorgesehen.
+- **Codeübernahme:** Den vollständigen aktuellen Editorinhalt über eine Kopierschaltfläche nach ShaderToy übernehmen können.
+
+#### Prüfergebnis F1
+
+- `npm test`: Zeitverhalten, Compiler-Zeilen, Einbindung einer kopierten Demo-Vorlage ohne Viewer-Änderung, Build-Validierung, Link-Erreichbarkeit und HTTP-Hosting unter einem simulierten Repositorypfad geprüft.
+- `npm run test:browser`: mit Chromium 156 und Software-WebGL2 unter `/million-pixel-orchestra/` echte Farbwerte, alle Beispielstände, Live-Änderungen, Fehler samt Korrektur, Entwürfe, Pause/Zeitreset, Zwischenablage einschließlich Fallback, Größenwechsel und Gerätepixeldichte geprüft. Mobile Ansicht visuell kontrolliert; Kontextverlust, fehlende Quellen und fehlendes WebGL2 geprüft.
+- `npm run build`: statisches Bundle mit einer konstanten Farb-Demo und drei Ständen erzeugt. Keine PDF-Downloads registriert, daher keine nicht funktionierenden PDF-Links.
+- ShaderToy-Kompatibilität lokal über vollständige unveränderte Image-Snippets geprüft. Direkter Test in ShaderToy und auf einem echten iPad/Safari steht noch aus. Keine externe Veröffentlichung vorgenommen.
 
 ### F2 — Build für Folien und Tafelbilder
 
 - Automatisierten lokalen PDF-Build für LaTeX-Beamer-Quellen bereitstellen. Auf dem Entwicklergerät wird eine passende LaTeX-Distribution einschließlich benötigter Pakete vorausgesetzt; Distribution, Engine und Paketbedarf bei der Umsetzung dokumentieren.
-- Für Tafelbilder vor der Implementierung ein bearbeitbares Quellformat mit automatisierbarem PDF-Export festlegen und den Export integrieren.
+- Tafelbilder aus bearbeitbaren LaTeX-Quellen mit PGF/TikZ automatisiert als druckbare PDFs erzeugen.
 - Build-Werkzeuge, Voraussetzungen und Aufruf dokumentieren. Die reine Website-/Demo-Vorschau bleibt ohne LaTeX nutzbar.
 - **Abnahme:** PDF-Erzeugung mit minimalen technischen Beispielen prüfen; diese sind keine fertigen Lehrmaterialien. Fehlende Werkzeuge und fehlgeschlagene Dokument-Builds verständlich melden.
 
@@ -41,7 +61,7 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 - Kopierbare `mainImage`-Snippets und die festgelegten ShaderToy-Eingaben als Schnittstelle berücksichtigen; keine Abhängigkeit der Lehr-Snippets vom lokalen Viewer.
 - Lokale und ShaderToy-Ausführung sollen dieselbe Pixelberechnung verwenden. Kompatibilität zunächst lokal soweit möglich prüfen.
-- Übertragung geprüfter START-/ZIEL-Stände und Ablage der späteren ShaderToy-Links vorsehen. Vorbereitete Links dienen dem Workshop.
+- Übertragung geprüfter START-/ZIEL-Stände und bei Bedarf zusätzlicher Zwischenstände sowie Ablage der späteren ShaderToy-Links je Stand vorsehen. Vorbereitete Links dienen dem Workshop.
 - Das Anlegen oder Veröffentlichen von ShaderToy-Projekten ist ein eigener, ausdrücklich zu beauftragender Schritt.
 
 ### I2 — GitHub Pages
@@ -99,5 +119,6 @@ Eine eigene hierarchische Inhaltsplanung wird später erarbeitet. Die folgenden 
 
 Offen: Den früher eingeplanten 5-Minuten-LLM-Ausblick mit dieser Ablaufskizze abgleichen. Zeitbudgets sind Summen mehrerer Theorie- und Coding-Teilblöcke und dürfen bei späteren Anpassungen anders aufgeteilt werden.
 
-### Bisher vorgeschlagene Umsetzungskonvention für Demos
-Empfohlenes Schema: `demos/<NN>-<name>/START.glsl` und `demos/<NN>-<name>/ZIEL.glsl` sowie eine knappe `README.md` je Demo (Lernziel, Mathematik, sichtbarer Unterschied). Die konkreten Demo-Dateien sind noch zu implementieren.
+### Umgesetzte technische Konvention für Demos
+
+Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo (Lernziel, Mathematik, sichtbarer Unterschied). Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Bisher ist ausschließlich die technische Farb-Demo implementiert; die fachlichen Workshop-Demos bleiben separat auszuarbeiten.

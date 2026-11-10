@@ -1,4 +1,6 @@
-# Erste Nachricht an Codex
+# Ursprünglicher F1-Arbeitsauftrag
+
+**Stand 29. Oktober 2026:** F1 ist implementiert und lokal geprüft. Dieser Text dokumentiert den ursprünglichen Auftrag; er ist kein neuer Implementierungsauftrag. Den aktuellen Stand und die verbleibenden Arbeitspakete führt `ROADMAP.md`.
 
 Lies zuerst `AGENTS.md`, `CONTEXT.md` und `ROADMAP.md` vollständig.
 
@@ -9,7 +11,8 @@ Die Planung trennt Features des Rahmenwerks, externe Integrationen und Workshopi
 Setze zunächst **ausschließlich F1 (Landingpage, lokales Hosting und Shader-Vorschau) der Roadmap** um und berücksichtige dabei die Integrationsanforderungen I1 (ShaderToy) und I2 (GitHub Pages):
 
 - Erstelle eine kleine deutsche Landingpage und einen einfachen lokalen HTTP-Server für Website und Demo-Vorschau. Dokumentiere den Startbefehl; diese Nutzung soll keine LaTeX-Installation benötigen.
-- Erstelle ein möglichst kleines lokales WebGL2-Preview-Gerüst, das einzelne ShaderToy-kompatible GLSL-Snippets mit `mainImage(out vec4 fragColor, in vec2 fragCoord)` darstellen kann und `fragCoord`, `iResolution`, `iTime` unterstützt. Die Lehr-Snippets sollen ohne Abhängigkeit vom Preview-Gerüst nach ShaderToy kopierbar bleiben. Benutze möglichst wenig Abhängigkeiten, zeige GLSL-Kompilierfehler sinnvoll an und teste die Vorschau mit einer einzigen konstanten Farbe.
+- Erstelle einen lokalen Code-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung auf einem möglichst kleinen WebGL2-Preview-Gerüst. Die Schülerinnen und Schüler programmieren live in ShaderToy; der lokale Editor ergänzt diesen Arbeitsablauf. Unterstütze ShaderToy-kompatible GLSL-Snippets mit `mainImage(out vec4 fragColor, in vec2 fragCoord)` sowie `fragCoord`, `iResolution` und `iTime`. Die Lehr-Snippets sollen ohne Abhängigkeit vom Preview-Gerüst nach ShaderToy kopierbar bleiben. Benutze möglichst wenig Abhängigkeiten und zeige GLSL-Kompilierfehler sinnvoll an. Dokumentiere die bei der Umsetzung gewählten Bedienregeln.
+- Unterstütze mehrere vorbereitete Quellcode-Stände je Demo, auswählbar per Schaltflächen: `START`, nach Bedarf Zwischenstände und `ZIEL`. Stelle eine wiederverwendbare Kopiervorlage mit den benötigten Metadaten und vollständigen Shader-Snippets bereit. Prüfe die Vorschau und die Auswahl mit einer einzigen Demo für konstante Farbe in mehreren Farb-Ständen; prüfe zusätzlich Editor, Fehlerbehandlung und Animationssteuerung technisch, ohne weitere Lehr-Demos auszuarbeiten.
 - Bereite einen lokalen statischen Website-Build nach `dist/` für Website, Demos und spätere PDF-Downloads vor. Das Ergebnis muss auch unter einem GitHub-Pages-Repository-Unterpfad funktionieren und ohne Server-Backend hostbar sein. Prüfe dies lokal.
 - Plane die Einbindung der späteren Dokument-Builds ein: F2 stellt den PDF-Build für LaTeX-Beamer-Folien und Tafelbilder bereit, F3 bündelt Website, Demos und PDFs im vollständigen Release-Build mit Downloadlinks. Diese Arbeitspakete werden separat umgesetzt und können mit technischen Beispielen unabhängig vom fertigen Workshopinhalt geprüft werden. Verlinke bis dahin nur vorhandene Downloads.
 - Berücksichtige den festgelegten Veröffentlichungsweg: Der vollständige Release-Build läuft auf dem Entwicklergerät mit passender lokaler LaTeX-Distribution und erzeugt das fertige `dist/`-Bundle. Dieses wird anschließend separat in die GitHub-Pages-Veröffentlichungsquelle gepusht. Keine GitHub-Actions-Workflows für Build oder Deployment einrichten und keine LaTeX-Distribution oder Projekt-Build-Werkzeuge auf GitHub Pages voraussetzen.

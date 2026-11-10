@@ -8,7 +8,7 @@ Vor relevanten Änderungen die Dateien `CONTEXT.md` und `ROADMAP.md` lesen. Dies
 ## Sprache und Lehrmaterialien
 - Die Lehrmaterialien sind auf Deutsch zu verfassen. Das gilt auch für beschreibende Texte auf Webseiten und insbesondere für Folien.
 - Quellcode darf auf Englisch sein; eingebettete Codebeispiele dürfen englische Bezeichner beibehalten.
-- Neben den Demos gehören auch die bearbeitbaren Quellen für Folien und Tafelbilder ins Repository. Folien werden mit LaTeX Beamer erstellt; das Quellformat der Tafelbilder ist noch offen.
+- Neben den Demos gehören auch die bearbeitbaren Quellen für Folien und Tafelbilder ins Repository. Folien werden mit LaTeX Beamer erstellt; Tafelbilder mit LaTeX und PGF/TikZ und als druckbare PDFs ausgegeben.
 
 ## Technische Leitplanken
 - Workshopinhalt ist die direkte Berechnung der Farbe eines Pixels: `color = f(x, y, t)`.

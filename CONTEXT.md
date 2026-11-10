@@ -4,6 +4,8 @@
 
 *Ergänzt am 29. Oktober 2026 um die verbindlichen Sprachvorgaben, den Umfang der Lehrmaterialien, Website und Release-Build sowie die Trennung der Planungsebenen.*
 
+*Ebenfalls am 29. Oktober 2026 ergänzt: mehrere per Schaltfläche auswählbare Quellcode-Stände je Demo sowie ein lokaler Code-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung. Die Schülerinnen und Schüler programmieren live in ShaderToy.*
+
 ## Planungsebenen (festgelegt)
 1. **Rahmenwerk (Framework):** Features für Landingpage, lokale Vorschau, Hosting, Dokument-Builds und gemeinsamen Release-Build.
 2. **Externe Integrationen:** ShaderToy und GitHub Pages frühzeitig vordenken und ihre Anforderungen im Rahmenwerk berücksichtigen. Tatsächliche Übertragung und Veröffentlichung sind eigene Schritte.
@@ -16,12 +18,13 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - **Format:** 90 Minuten, Oberstufe am Marie-Curie-Gymnasium (MCG), gemeinsam entwickelte Live-Demos.
 - **Geräte:** möglichst Schul-iPad oder eigener Laptop; dedizierte Tastatur vorteilhaft. Beamer/Smartboard und Tafel/Whiteboard. Sonderzeichen und Copy/Paste als praktische Hürde berücksichtigen.
 - **Plattform für die abschließenden Demos:** ShaderToy. Die Beispiele sollen zuerst lokal versioniert entwickelt und erst später nach ShaderToy übertragen werden.
+- **Live-Coding der Schülerinnen und Schüler:** in ShaderToy. Parallel bietet das lokale Rahmenwerk einen erweiterten Shader-Editor mit Live-Vorschau; beide Umgebungen verwenden dieselben kopierbaren Shader-Snippets.
 
 ## Sprache und Materialumfang (festgelegt)
 - Ziel des Projekts sind **deutsche Lehrmaterialien**. Beschreibende Texte auf Webseiten und insbesondere auf Folien sind auf Deutsch zu halten.
 - Quellcode darf auf Englisch sein, auch in eingebetteten Codebeispielen.
 - Das Repository beherbergt neben den Shader-Demos auch die **bearbeitbaren Quellen für Folien und Tafelbilder**.
-- Für die Folien wird **LaTeX Beamer** verwendet. Das Quellformat der Tafelbilder ist noch nicht festgelegt.
+- Für die Folien wird **LaTeX Beamer** verwendet. Tafelbilder werden in **LaTeX mit PGF/TikZ** verwaltet und als druckbare PDFs ausgegeben.
 
 ## Website, lokales Hosting und Release-Build (festgelegt)
 - Eine **deutsche Landingpage** bietet einen zentralen Einstieg zu Demos und Lehrmaterialien.
@@ -30,7 +33,19 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - Das gemeinsame Build-Ergebnis ist **statisch auf GitHub Pages hostbar**, auch unter dem Unterpfad eines Repositorys. Im Hosting ist kein eigenes Backend erforderlich.
 - **Veröffentlichungsweg:** das lokal fertig gebaute `dist/`-Bundle in die GitHub-Pages-Veröffentlichungsquelle pushen. Es werden keine GitHub-Actions-Workflows für Build oder Deployment verwendet. Auf GitHub Pages werden weder eine LaTeX-Distribution noch andere Projekt-Build-Werkzeuge vorausgesetzt; dort werden die fertigen Dateien bereitgestellt.
 - Lokaler Release-Build und anschließender Push zur Veröffentlichung bleiben getrennte Schritte.
-- Die konkrete Build-Werkzeugwahl und das automatisch exportierbare Quellformat der Tafelbilder sind noch offen. GitHub-Pages-Kompatibilität ist kein Auftrag zur Veröffentlichung.
+- Der Website-Build und der lokale HTTP-Server verwenden Node.js ab Version 22 ohne zusätzliche Abhängigkeiten. Die konkreten PDF-Build-Werkzeuge bleiben für F2 offen. GitHub-Pages-Kompatibilität ist kein Auftrag zur Veröffentlichung.
+
+## Lokaler Shader-Editor (festgelegt)
+- Die Demo-Seite enthält einen bearbeitbaren Code-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung als erweiterte lokale Umsetzung der Shader-Coding-Umgebung.
+- Der lokale Editor ergänzt das Live-Coding der Schülerinnen und Schüler in ShaderToy. Er bleibt Teil der statischen Website und benötigt kein Server-Backend.
+- Editor, Vorschau und vorbereitete Quellcode-Stände sind miteinander verbunden. Die Shader bleiben vollständig nach ShaderToy kopierbar; die lokalen Entwicklungshilfen erfordern keine zusätzlichen Lehr-Uniforms.
+- Die zuvor vorgeschlagenen Bedienregeln sind mit dem Implementierungsauftrag vom 29. Oktober 2026 in F1 umgesetzt: automatische Kompilierung nach 350 ms, letzte gültige Vorschau bei Fehlern, Wiedergabe/Pause und Zeitrücksetzung sowie getrennte Entwürfe je Stand bis zum Neuladen. Einzelheiten stehen in `README.md` und F1 der Roadmap.
+
+## Quellcode-Stände je Demo (festgelegt)
+- Jede Demo unterstützt mehrere vorbereitete Quellcode-Stände, zwischen denen auf der Demo-Seite per Schaltflächen gewechselt werden kann. Sie dienen als verlässliche Bezugspunkte bei Fehlern im Live-Coding.
+- Für Live-Demos bleiben `START` und `ZIEL` erhalten; zusätzliche Zwischenstände sollen nach Bedarf ergänzt werden können. Es gibt keine feste Beschränkung auf zwei Stände.
+- Jeder Stand liegt als vollständiges, eigenständig kopierbares ShaderToy-Snippet vor. Die vorhandene Vorgabe separater START-/ZIEL-Dateien bleibt bestehen.
+- Das umgesetzte Metadatenformat ist `demo.json` mit einer geordneten `snapshots`-Liste; `site/catalog.json` registriert die Demos. Anfangs wird `start` geladen. Beim Wechsel folgen Editor und Vorschau dem ausgewählten Stand bzw. dessen erhaltenem Entwurf; die Zeit wird auf null gesetzt, der Wiedergabezustand bleibt erhalten. „Stand wiederherstellen“ lädt die vorbereitete Fassung zurück. Der Vertrag ist in `demos/README.md` dokumentiert.
 
 ## Übergeordnete Lernziele (festgelegt)
 1. Interesse an Informatikstudium und Programmieren wecken.
@@ -45,7 +60,7 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - ShaderToy-Schnittstelle: `fragCoord` (aktuelle Pixelposition), `iResolution` (Bildgröße), `iTime` (Animationszeit). Zuerst technische Minimalvorlage/Boilerplate erklären.
 - Die Leitformel entwickelt sich von einer konstanten Farbe über `color = f(x, y)` zu `color = f(x, y, t)`. **Kein zusätzlicher Interaktionsparameter `p`.**
 - Unmittelbar nacheinander passende mathematische Konzepte und kleine Live-Coding-Ergebnisse; keine Vorab-Mathematikvorlesung.
-- Für jede Live-Demo **zwei vorbereitete ShaderToy-Stände `START` und `ZIEL`**, damit Teilnehmende den START-Stand übernehmen und zum ZIEL mitprogrammieren können.
+- Für jede Live-Demo **mindestens die vorbereiteten ShaderToy-Stände `START` und `ZIEL`**, damit Teilnehmende den START-Stand übernehmen und zum ZIEL mitprogrammieren können. Zusätzliche Zwischenstände unterstützen den Rückgriff bei Fehlern im Live-Coding.
 - Im Workshop vorbereitete ShaderToy-Links zum Abtippen/Übernehmen nutzen; frühere gemeinsame Planung sieht keine Abhängigkeit vom erstmaligen Live-Erstellen von ShaderToy-Projekten vor.
 
 ## Geplante didaktische Progression (inhaltlich abgestimmt)
@@ -79,4 +94,4 @@ Die folgenden ShaderToy-IDs wurden in den Projektgesprächen als Beispiele/Refer
 - Alle Lehrbeispiele auf iPad/Laptop nachvollziehbar; geringe Tipp-Hürde, besonders für Sonderzeichen.
 - Der Code ist kurz genug, um ihn im Unterricht sichtbar zu verändern.
 - Die Mathematik erklärt das sichtbare Bild; Visualisierungen zeigen direkt, was eine Funktionsänderung bewirkt.
-- Die Übungen bleiben als eigenständig veränderbare Snippets mit eindeutigen START-/ZIEL-Ständen erhalten.
+- Die Übungen bleiben als eigenständig veränderbare Snippets mit eindeutigen START-/ZIEL-Ständen und bei Bedarf zusätzlichen Zwischenständen erhalten; die Demo-Seite bietet Schaltflächen zur Auswahl der vorbereiteten Stände.
