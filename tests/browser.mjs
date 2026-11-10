@@ -93,6 +93,10 @@ try {
     return evaluate(`(async () => { await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))); const canvas = document.querySelector('#preview'); const gl = canvas.getContext('webgl2'); gl.drawArrays(gl.TRIANGLES, 0, 3); const data = new Uint8Array(4); gl.readPixels(Math.min(canvas.width-1, Math.floor(canvas.width*${x})), Math.min(canvas.height-1, Math.floor(canvas.height*${y})), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, data); return Array.from(data); })()`);
   }
   function color(actual, expected) { expected.forEach((channel, index) => assert.ok(Math.abs(actual[index] - channel) <= 2, `${actual} ≠ ${expected}`)); }
+  async function frameSignature() {
+    await pixel();
+    return evaluate(`(() => { const c = document.querySelector('#preview'); const gl = c.getContext('webgl2'); gl.drawArrays(gl.TRIANGLES, 0, 3); const data = new Uint8Array(c.width * c.height * 4); gl.readPixels(0, 0, c.width, c.height, gl.RGBA, gl.UNSIGNED_BYTE, data); let signature = ''; for (let y = 0; y < c.height; y += 12) for (let x = 0; x < c.width; x += 12) { const i = 4 * (y * c.width + x); signature += String.fromCharCode(data[i], data[i + 1], data[i + 2]); } return signature; })()`);
+  }
   async function screenshot(name) {
     if (!process.env.SCREENSHOT_DIR) return;
     await mkdir(process.env.SCREENSHOT_DIR, { recursive: true });
@@ -107,14 +111,24 @@ try {
     const manifest = JSON.parse(await readFile(join(root, path), "utf8"));
     await page("Page.navigate", { url: `${base}editor.html?demo=${manifest.id}` });
     await success();
-    assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 2);
+    assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), manifest.snapshots.length);
     color(await pixel(), [255, 255, 255, 255]);
     color(await pixel(".1", ".9"), [255, 255, 255, 255]);
+    for (const snapshot of manifest.snapshots.slice(1, -1)) {
+      await click(`[data-snapshot="${snapshot.id}"]`);
+      await success();
+      await pixel();
+    }
     await click('[data-snapshot="ziel"]');
     await success();
     await pixel();
     const colors = await evaluate(`(() => { const c = document.querySelector('#preview'); const gl = c.getContext('webgl2'); gl.drawArrays(gl.TRIANGLES, 0, 3); const data = new Uint8Array(c.width * c.height * 4); gl.readPixels(0, 0, c.width, c.height, gl.RGBA, gl.UNSIGNED_BYTE, data); const colors = new Set(); for (let i = 0; i < data.length; i += 4) { colors.add(data.slice(i, i + 4).join(',')); if (colors.size > 1) break; } return colors.size; })()`);
     assert.ok(colors > 1, `${manifest.id}: Bild ist unerwartet einfarbig`);
+    if (manifest.id === '03-kreis-und-quadrierter-abstand') {
+      const before = await frameSignature();
+      await until(`parseFloat(document.querySelector('#time').value.replace(',', '.')) > 1.0`);
+      assert.notEqual(await frameSignature(), before, 'Metaballs bewegen sich');
+    }
     await screenshot(manifest.id);
   }
   console.log("✓ Weiße START-Stände und ZIEL-Shader aller neuen Demos");
@@ -124,13 +138,18 @@ try {
   await page("Page.navigate", { url: `${base}editor.html?demo=00-konstante-farbe` });
   await success();
   color(await pixel(), [255, 255, 255, 255]);
-  assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 3);
+  assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 4);
   await click('[data-snapshot="violett"]');
   await success();
   color(await pixel(), [115, 82, 199, 255]);
-  await click('[data-snapshot="ziel"]');
+  await click('[data-snapshot="koralle"]');
   await success();
   color(await pixel(), [242, 82, 51, 255]);
+  await click('[data-snapshot="ziel"]');
+  await success();
+  const beforeColor = await pixel();
+  await until(`parseFloat(document.querySelector('#time').value.replace(',', '.')) > 1.0`);
+  assert.notDeepEqual(await pixel(), beforeColor, 'RGB-Farbe verändert sich mit der Zeit');
   await click('[data-snapshot="start"]');
   const original = await evaluate("document.querySelector('#source').value");
   const changed = original.replace("vec3(1.0)", "vec3(0.20, 0.60, 0.80)");

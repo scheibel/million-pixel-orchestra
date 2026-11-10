@@ -1,7 +1,7 @@
-# Pixelposition und Normalisierung
+# Pixelposition und Farbverlauf
 
-**Zielbild:** Rot und Grün zeigen die normierte Pixelposition.
+**Stände:** START ist vorläufig weiß. Im Zwischenstand werden die normierten Pixelkoordinaten als Rot und Grün sichtbar; ZIEL nutzt die horizontale Position für einen Farbverlauf.
 
-**Mathematik:** fragCoord gibt die Pixelposition vom linken unteren Rand aus an; iResolution.xy enthält Breite und Höhe. Durch komponentenweise Division entstehen uv-Koordinaten zwischen 0 und 1. Für geometrische Abstände wäre anschließend eine Seitenverhältniskorrektur nötig.
+**Mathematik:** `fragCoord` ist die Pixelposition, `iResolution.xy` die Bildgröße. `uv = fragCoord / iResolution.xy` normiert beide Achsen. `mix(links, rechts, uv.x)` mischt die Farben linear. Für geometrische Abstände wird später das Seitenverhältnis berücksichtigt.
 
-`START.glsl` ist vorläufig ein einfacher weißer Ausgangspunkt. `ZIEL.glsl` zeigt das Zielbild. Beide Dateien sind vollständige ShaderToy-Image-Snippets.
+Alle Stände sind vollständige ShaderToy-Image-Snippets.

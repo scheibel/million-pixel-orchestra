@@ -2,9 +2,7 @@
   "demos": [
     "demos/00-konstante-farbe/demo.json",
     "demos/01-pixelposition-und-normalisierung/demo.json",
-    "demos/02-farbverlauf/demo.json",
     "demos/03-kreis-und-quadrierter-abstand/demo.json",
-    "demos/04-metaballs/demo.json",
     "demos/05-polynom-und-weiche-kante/demo.json",
     "demos/06-wellen-und-animation/demo.json",
     "demos/07-taylor-approximation/demo.json",

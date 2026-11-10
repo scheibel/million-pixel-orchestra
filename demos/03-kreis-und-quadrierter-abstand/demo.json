@@ -1,8 +1,8 @@
 {
   "id": "03-kreis-und-quadrierter-abstand",
-  "title": "Kreis und quadrierter Abstand",
-  "summary": "Ein Abstandstest zeichnet einen Kreis mit harter Kante.",
-  "math": "fragCoord ist die Pixelposition, iResolution.xy die Bildgröße. Nach Verschiebung zum Mittelpunkt werden beide Achsen durch die Bildhöhe geteilt: So entsprechen gleiche Koordinatenabstände gleichen Pixelabständen. dot(p, p) ist x² + y²; der Vergleich mit r² vermeidet eine Wurzel.",
+  "title": "Kreis und bewegte Metaballs",
+  "summary": "Vom Abstandstest zum Kreisfeld und zu bewegten Metaballs.",
+  "math": "fragCoord ist die Pixelposition und iResolution.xy die Bildgröße. Die Verschiebung zur Bildmitte und Division durch die Bildhöhe sorgen für gleiche Abstandseinheiten. dot(p, p) berechnet den quadrierten Abstand. Zwei abfallende Abstandsfelder werden addiert und mit einem Schwellenwert verglichen. sin(iTime) bewegt ihre Mittelpunkte aufeinander zu und wieder auseinander.",
   "snapshots": [
     {
       "id": "start",
@@ -11,10 +11,22 @@
       "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
     },
     {
+      "id": "kreis",
+      "label": "Zwischenstand · Kreis",
+      "file": "01-kreis.glsl",
+      "description": "Ein Vergleich des quadrierten Abstands mit dem Radius zeichnet einen Kreis."
+    },
+    {
+      "id": "metaballs",
+      "label": "Zwischenstand · Metaballs",
+      "file": "02-metaballs-statisch.glsl",
+      "description": "Zwei statische Abstandsfelder werden addiert und mit einem Schwellenwert verglichen."
+    },
+    {
       "id": "ziel",
-      "label": "ZIEL",
+      "label": "ZIEL · Bewegung",
       "file": "ZIEL.glsl",
-      "description": "Ein Abstandstest zeichnet einen Kreis mit harter Kante."
+      "description": "Die Mittelpunkte bewegen sich aufeinander zu und wieder auseinander."
     }
   ]
 }

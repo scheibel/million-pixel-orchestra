@@ -79,8 +79,8 @@ Eine eigene hierarchische Inhaltsplanung wird später erarbeitet. Die folgenden 
 
 ### Bisheriger Themen- und Materialbestand der Planung
 
-- **Pixel, Farben und Koordinaten:** `00-konstante-farbe`, `01-pixelposition-und-normalisierung`, `02-farbverlauf`.
-- **Formen und Felder:** `03-kreis-und-quadrierter-abstand` mit `dot`, quadriertem euklidischem Abstand und hartem Kreisrand; `04-metaballs` mit mehreren Kreisfeldern und ihrer Kombination.
+- **Pixel, Farben und Koordinaten:** `00-konstante-farbe` mit konstanten Farben und zeitabhängigem RGB; `01-pixelposition-und-normalisierung` verbindet normierte Position und Farbverlauf als Stände.
+- **Formen und Felder:** `03-kreis-und-quadrierter-abstand` verbindet Kreis, statische und bewegte Metaballs als Stände; `dot` und der quadrierte Abstand bilden die Grundlage.
 - **Glatte Übergänge:** `05-polynom-und-weiche-kante` mit Herleitung von `3t²-2t³` und Anwendung auf weiche Übergänge.
 - **Zeit und Approximation:** `06-wellen-und-animation` mit Sinus/Cosinus, Phase und `iTime`; `07-taylor-approximation` mit sichtbarem Vergleich zur Referenz.
 - **Zufall, Noise, fBm:** `08-value-noise` mit Pseudozufall und vorgegebener Gitter-/Interpolationsbasis; `09-fbm` mit mehreren Noise-Oktaven und Wolken/Marmor als möglichen Ergebnissen.
@@ -94,14 +94,14 @@ Eine eigene hierarchische Inhaltsplanung wird später erarbeitet. Die folgenden 
 | 00–02 | Auftakt/Showcase |
 | 02–04 | HPI-Einordnung |
 | 04–10 | Pixelraster, Fragment-Shader, RGB, Boilerplate |
-| 10–12 | Konstante Farbe |
+| 10–12 | Konstante Farbe und erster zeitabhängiger Farbwechsel |
 | 12–15 | Normalisierung der Koordinaten |
 | 15–18 | Farbverlauf |
 | 18–20 | Übergang/Puffer |
 | 20–24 | Kreis: Abstand, quadrierter Abstand, `dot` |
 | 24–28 | Kreis live entwickeln |
 | 28–32 | Metaballs-Prinzip |
-| 32–35 | Metaballs umsetzen |
+| 32–35 | Metaballs umsetzen und Bewegung zeigen |
 | 35–37 | Übergang/Puffer |
 | 37–43 | Glattes Interpolationspolynom `3t²-2t³` |
 | 43–46 | Weiche Kanten im Shader |
@@ -117,8 +117,8 @@ Eine eigene hierarchische Inhaltsplanung wird später erarbeitet. Die folgenden 
 | 84–86 | Rückblick, Handout, ShaderToy-Links |
 | 86–90 | Puffer/Fragen/Showcase |
 
-Offen: Den früher eingeplanten 5-Minuten-LLM-Ausblick mit dieser Ablaufskizze abgleichen. Zeitbudgets sind Summen mehrerer Theorie- und Coding-Teilblöcke und dürfen bei späteren Anpassungen anders aufgeteilt werden.
+Offen: Den früher eingeplanten 5-Minuten-LLM-Ausblick mit dieser Ablaufskizze abgleichen. Insbesondere die Zeit für die frühe Einführung von `iTime` und Sinus sowie die bewegten Metaballs ist neu zu bewerten. Zeitbudgets sind Summen mehrerer Theorie- und Coding-Teilblöcke und dürfen bei späteren Anpassungen anders aufgeteilt werden.
 
 ### Umgesetzte technische Konvention für Demos
 
-Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo. Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Für alle zehn Themen sind ZIEL-Stände sowie vorläufige START-Stände mit konstantem Weiß verfügbar. Die Farb-Demo besitzt zusätzlich einen Zwischenstand. Die weitere didaktische Ausarbeitung bleibt offen.
+Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo. Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Acht Demos decken die Themen von Farbe bis fBm ab und besitzen vorläufige weiße START-Stände. Die zusammengefassten Demos enthalten Zwischenstände. Die weitere didaktische Ausarbeitung bleibt offen.

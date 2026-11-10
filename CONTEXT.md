@@ -58,17 +58,17 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - Farben/Farbräume (insbesondere RGB), Pixelraster und Pixelposition, Mathematik als unmittelbare Grundlage der Bildberechnung.
 - Fragment-Shader-Denkmodell: Für die aktuelle Pixelposition wird die Farbe berechnet; dieselbe Berechnung wird über viele Pixel ausgeführt.
 - ShaderToy-Schnittstelle: `fragCoord` (aktuelle Pixelposition), `iResolution` (Bildgröße), `iTime` (Animationszeit). Zuerst technische Minimalvorlage/Boilerplate erklären.
-- Die Leitformel entwickelt sich von einer konstanten Farbe über `color = f(x, y)` zu `color = f(x, y, t)`. **Kein zusätzlicher Interaktionsparameter `p`.**
+- Die Leitformel beginnt mit einer konstanten Farbe und umfasst anschließend zeitabhängige Farbe `color = f(t)`, ortsabhängige Farbe `color = f(x, y)` und orts- und zeitabhängige Farbe `color = f(x, y, t)`. **Kein zusätzlicher Interaktionsparameter `p`.**
 - Unmittelbar nacheinander passende mathematische Konzepte und kleine Live-Coding-Ergebnisse; keine Vorab-Mathematikvorlesung.
 - Für jede Live-Demo **mindestens die vorbereiteten ShaderToy-Stände `START` und `ZIEL`**, damit Teilnehmende den START-Stand übernehmen und zum ZIEL mitprogrammieren können. Zusätzliche Zwischenstände unterstützen den Rückgriff bei Fehlern im Live-Coding.
 - Im Workshop vorbereitete ShaderToy-Links zum Abtippen/Übernehmen nutzen; frühere gemeinsame Planung sieht keine Abhängigkeit vom erstmaligen Live-Erstellen von ShaderToy-Projekten vor.
 
 ## Geplante didaktische Progression (inhaltlich abgestimmt)
-1. **Pixel & Farbe:** konstante Farbe; RGB als Farbvektor.
+1. **Pixel & Farbe:** konstante Farbe; RGB als Farbvektor; `iTime` und Sinus für einen Farbwechsel anschaulich einführen.
 2. **Koordinaten:** `fragCoord` und `iResolution`; normierte Position; positionsabhängige Farben und Farbverlauf.
-3. **Kreise:** Abstand und insbesondere quadrierter Abstand, `dot`; einfache Formen und Kombination mehrerer Kreise zu Metaballs.
+3. **Kreise:** Abstand und insbesondere quadrierter Abstand, `dot`; Kreis und Metaballs als Stände derselben Demo, abschließend mit zeitabhängig bewegten Mittelpunkten.
 4. **Weiche Übergänge:** Polynome und Herleitung einer kubischen glatten Interpolation, z. B. `3t² - 2t³`, anschließend Anwendung bei weichen Kanten.
-5. **Wellen & Animation:** Sinus/Cosinus, Phase und `iTime`; anschließend Taylorapproximation von Sinus/Cosinus und Unterschied zwischen exakter Berechnung und Approximation.
+5. **Wellen & Animation:** Sinus/Cosinus, Phase und `iTime` vertiefen; anschließend Taylorapproximation von Sinus/Cosinus und Unterschied zwischen exakter Berechnung und Approximation.
 6. **Noise:** Pseudozufall, Gitterwerte, Interpolation, Value Noise, fBm; Basisfunktionen für Noise werden vorbereitet, statt alles von Grund auf zu tippen. Visuelle Ergebnisse z. B. Wolken/Marmor.
 7. **Inspirationsgalerie, keine Live-Herleitung:** Matrizen/Rotation, Ray Marching/Intersektionstests, stochastische Effekte.
 
