@@ -61,7 +61,7 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 **Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer- und PGF/TikZ-Quellen nach `folien/build/` und `tafelbilder/build/`. Zwei Durchläufe für die Folien, einer für die Tafelbilder. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
 
 - Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
-- **Prüfung:** echte Projektdokumente (17 Folien, zehn Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
+- **Prüfung:** echte Projektdokumente (jetzt 18 Folien, zehn Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
 
@@ -102,7 +102,7 @@ Die Inhaltsplanung und das Rahmenwerk haben getrennte Aufgaben. Lernziele, festg
 
 Das [Vortragsskelett](docs/VORTRAGSSKELETT.md) ordnet die geplanten Folien, Demos, Tafelbilder, ShaderToy-Beispiele und QR-Codes dem Ablauf zu. Es enthält die offenen Aufgaben für persönliche Vorstellung, HPI-Studium, Übersicht, Demo-Folien und Zugangslinks. Reihenfolge und Zeitplanung bleiben Arbeitsstand.
 
-Die erste Vorstellungsfolie „Wer bin ich?“ enthält das gewünschte Porträt vom Februar 2016 als lokale Bilddatei. Der Witz zum Alter des Fotos bleibt mündlich; die Timeline behält ihre Schriftgröße und horizontale Jahresskala.
+Vor den zwei Zeitstrahlfolien steht die neue persönliche Vorstellungsfolie „Wer bin ich?“ mit Name, M.Sc. IT-Systems-Engineering, Website, Position als wissenschaftlicher Mitarbeiter und der Affiliation am Fachgebiet Computergrafische Systeme, Hasso-Plattner-Institut, Digital Engineering Fakultät, Universität Potsdam. Das Porträt vom Februar 2016 ist von der Zeitleiste auf diese Folie verschoben. Unten stehen mittelgroß das vom Nutzer verlinkte HPI-Vollogo und das Logo der Universität Potsdam. Quelle und lokale SVG-/PDF-Fassung sind unter `folien/logos/` dokumentiert. Die erste Zeitleistenfolie heißt „Vom Hobby zum Studium“; ihre Schriftgröße und horizontale Jahresskala bleiben erhalten. Der Witz zum Alter des Fotos bleibt mündlich. Eine zusätzliche mittelgroße Google-Maps-Abbildung unter dem Porträt zeigt Potsdam mit Innenstadt, Havel und Babelsberg sowie das markierte HPI am Griebnitzsee. Sie ist lokal gespeichert und anklickbar mit Google Maps verlinkt; Logo und Kartendatenhinweise bleiben sichtbar. Die beiden Institutslogos stehen unten links. Quelle und Einbettung sind in `folien/bilder/karten/` dokumentiert.
 
 Die Inspirationsgalerie ist mit den sechs am 11. November 2026 ausgewählten ShaderToy-Demos `4df3Rn`, `XdlSDs`, `WtfGDX`, `mtyGWy`, `fstyD4` und `3sySRK` umgesetzt: zwei Zeilen, drei Spalten, je ein lokales Originalvorschaubild, ein QR-Code und ein anklickbarer Link. Bildquellen und ausstehende Prüfung der Originalseiten bzw. Live-Ausführung sind unter `folien/bilder/galerie/README.md` dokumentiert. Es wurden keine ShaderToy-Projekte angelegt oder veröffentlicht.
 

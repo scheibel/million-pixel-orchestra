@@ -27,6 +27,14 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - Das Repository beherbergt neben den Shader-Demos auch die **bearbeitbaren Quellen für Folien und Tafelbilder**.
 - Für die Folien wird **LaTeX Beamer** verwendet. Tafelbilder werden in **LaTeX mit PGF/TikZ** verwaltet und als druckbare PDFs ausgegeben.
 
+## Persönliche Vorstellungsfolie (festgelegt am 11. November 2026)
+- Vor den beiden Zeitleistenfolien steht eine zusätzliche Folie „Wer bin ich?“: Willy Scheibel, M.Sc. IT-Systems-Engineering, Website `www.willyscheibel.de`, Position als wissenschaftlicher Mitarbeiter am Fachgebiet Computergrafische Systeme.
+- Affiliation: Hasso-Plattner-Institut, Digital Engineering Fakultät, Universität Potsdam.
+- Das vorhandene Porträt vom Februar 2016 wandert von der Zeitleiste auf diese neue Folie. Der Hinweis auf das Alter des Fotos bleibt mündlich.
+- Unten stehen mittelgroß das HPI-Vollogo aus `https://de.wikipedia.org/wiki/Datei:Hasso-Plattner-Institut_logo.svg` und das vorhandene Logo der Universität Potsdam. SVG und daraus konvertierte PDF werden lokal versioniert; der Folien-Build benötigt keinen Download oder SVG-Konverter.
+- Die Vorstellungsfolie enthält zusätzlich eine mittelgroße Google-Maps-Karte mit HPI-Markierung am Griebnitzsee. Potsdam mit Innenstadt, Havel und Babelsberg prägt den Ausschnitt. Eine lokale, unveränderte Bildschirmaufnahme mit sichtbarem Google-Logo und Kartendatenhinweisen steht rechts unter dem Porträt und verlinkt Google Maps. Die Logos stehen unten links. Der PDF-Build und der Vortrag bleiben offline nutzbar; die Quellen und die ursprüngliche Einbettung liegen unter `folien/bilder/karten/`.
+- Die erste Zeitleistenfolie heißt jetzt „Vom Hobby zum Studium“. Schriftgrößen und horizontale Jahresskala bleiben erhalten.
+
 ## Website, lokales Hosting und Release-Build (festgelegt)
 - Eine **deutsche Landingpage** bietet einen zentralen Einstieg zu Demos und Lehrmaterialien.
 - Als Website-Adresse ist seit 11. November 2026 **`https://www.willyscheibel.de/million-pixel-orchestra/`** festgelegt. Die Übersichts- und Abschlussfolie verwenden diese Adresse als anklickbaren Link und QR-Code. Die Festlegung der Adresse ist kein Auftrag zur Veröffentlichung.
