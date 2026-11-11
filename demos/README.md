@@ -53,4 +53,6 @@ Beispiel für einen zusätzlichen Stand zwischen `start` und `ziel`:
 - Optional besitzt jeder Stand `shadertoyUrl` der Form `https://www.shadertoy.com/view/<ID>`. Nur tatsächlich vorhandene, geprüfte Projekte eintragen. Die Landingpage zeigt alle hinterlegten Stand-Links unter der jeweiligen Demo. Im Editor wird der veröffentlichte Link für den gewählten Stand angezeigt; ohne URL erscheint ein Hinweis und ein Link zu einem neuen Projekt. Die Übertragung ist ein eigener Auftrag.
 - Browserentwürfe verändern keine Dateien. Sie bleiben je Stand bis zum Neuladen erhalten; „Stand wiederherstellen“ lädt die vorbereitete Fassung.
 
+Bei aufeinanderfolgenden Ständen den bestehenden Rahmen erhalten: pro Schritt möglichst nur die fachliche Änderung, keine unabhängigen Änderungen an Farben oder Namen. Vorbereitete Basisblöcke ergänzen; einheitliche Wertebereiche ermöglichen den Austausch eines Funktionsaufrufs.
+
 Der Build prüft Metadaten, vorhandene Dateien und die grundlegende Snippet-Struktur. Die tatsächliche GLSL-Kompilierung und das Bild werden im Browser geprüft. Neue Demos erfordern keine Änderung am Editor oder Renderer.

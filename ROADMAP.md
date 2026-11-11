@@ -8,10 +8,10 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 - [ ] Stil der Website iterieren: Gestaltung der Landingpage und Demo-Seite abstimmen und überarbeiten.
 - [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
-- [ ] Live-Coding-Schritte je Demo festlegen und daraus geeignete START- und fehlende Zwischenstände erstellen; bei Noise die vorbereiteten Basisfunktionen einbinden.
+- [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
 - [ ] Vorhandene Folien und Tafelbilder an diese Schritte anpassen; Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
-- [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung, LLM-Ausblick und Meerbild entscheiden. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
+- [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung und LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
 - [ ] Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen, echte `shadertoyUrl`-Werte eintragen und die QR-Platzhalter der Demo-Folien ersetzen.
 - [ ] ShaderToy auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads.
 - [ ] Nach gesondertem Veröffentlichungsauftrag das geprüfte Bundle mit dem vorhandenen Publish-Befehl pushen, Pages einmalig auf `gh-pages` / (root) einstellen und Website sowie QR-Zugänge prüfen.
@@ -61,7 +61,7 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 **Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer- und PGF/TikZ-Quellen nach `folien/build/` und `tafelbilder/build/`. Zwei Durchläufe für die Folien, einer für die Tafelbilder. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
 
 - Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
-- **Prüfung:** echte Projektdokumente (jetzt 18 Folien, zehn Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
+- **Prüfung:** echte Projektdokumente (aktuell 16 Folien, acht Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
 
@@ -108,36 +108,38 @@ Die Inspirationsgalerie ist mit den sechs am 11. November 2026 ausgewählten Sha
 
 ### Konzeptablauf pro Demo — Arbeitsstand
 
-Für die ersten vier Demos ist der übergeordnete Ablauf jetzt festgelegt: **Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung der Objekte und Verknüpfung mit Farbe**. Dies bildet den roten Faden der Übersicht in den Folien. Die nachfolgenden Details beschreiben die einzelnen Lernschritte; die Fortsetzung ab Demo 5 bleibt Planungsstand.
+Für die ersten vier Demos ist der übergeordnete Ablauf jetzt festgelegt: **Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung der Objekte und Verknüpfung mit Farbe**. Dies bildet den roten Faden der Übersicht in den Folien. Die nachfolgenden Details beschreiben die einzelnen Lernschritte; die Fortsetzung ist als Noise → fBm/Wolken/Animation festgelegt; die bisherigen Wellen- und Taylor-Demos entfallen.
 
-Die ersten drei Abläufe folgen dem Vorschlag des Nutzers. Demo 4 wurde am 11. November 2026 anhand der neuen Vorgaben konkretisiert und mit fünf Ständen umgesetzt. Die Abläufe ab Demo 5 sind Vorschläge zur gemeinsamen weiteren Planung. Vor Demo 1 stehen Pixelraster, Fragment-Shader, ShaderToy-Boilerplate und RGB.
+Die ersten drei Abläufe folgen dem Vorschlag des Nutzers. Demo 4 wurde am 11. November 2026 anhand der neuen Vorgaben konkretisiert und mit fünf Ständen umgesetzt. Demo 5 und 6 sind nach der neuen Vorgabe mit je vier Ständen umgesetzt. Vor Demo 1 stehen Pixelraster, Fragment-Shader, ShaderToy-Boilerplate und RGB.
 
 1. **Farbe und Zeit:** Farbe → Farbe 1 → Farbe 2 → Farbe in Abhängigkeit von der Zeit. `iTime` und die Schwingung der Farbkomponenten werden hier erstmals anschaulich eingeführt.
 2. **Pixelposition und Farbverlauf:** Pixelposition und Auflösung → normierte Position → Farbe in Abhängigkeit der Pixelposition → Mischung zweier Referenzfarben anhand der x-Position.
-3. **Kreis und Metaballs:** Vordergrund und Hintergrund unterscheiden → Vordergrund anhand des Abstands vom Zentrum → quadrierter Abstand → mehrere Kreise → Kreise als Energiefelder → überlagerte Felder auswerten → Positionen zeitabhängig verändern. Die Zentrierung und das Seitenverhältnis werden bei der Abstandsmessung erklärt.
+3. **Kreis und Metaballs:** Vordergrund und Hintergrund unterscheiden → Vordergrund anhand des Abstands vom Zentrum → quadrierter Abstand → Kreis als einzelnes Abstandsfeld → zwei Felder addieren und auswerten → Positionen zeitabhängig verändern. Die Zentrierung und das Seitenverhältnis werden bei der Abstandsmessung erklärt.
 
-4. **Polynome für Bewegung und Farbe:** fünf Stände in der Reihenfolge **1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep (ZIEL)**. Punkte auf einer Raute mit Ecken N/O/S/W; im Halt mit derselben Kurve wie für den Weg Schwarz → Eckfarbe → Schwarz, erst dann weiterfahren. Lokale Zuordnung: N rot, O grün, S blau, W gelb. Schritt 1 → 2 führt die Schleife mit den Stimmen 1 und 3 des Kanons ein (Indizes 0 und 2, Verzögerungen 0/3 Sekunden); Schritt 2 → 3 ändert nur die Rückgabe von `verlauf`; Schritt 3 → 4 ändert die Schleifenschrittweite von 2 auf 1 und ergänzt die Stimmen 2 und 4; Schritt 4 → ZIEL ändert nur das Polynom. Der Einsatzabstand von 1,5 Sekunden weicht von der Abschnittsdauer von 1,8 Sekunden ab. Aktuelle Zeitwahl: 1,2 Sekunden Fahrt und 0,6 Sekunden Halt. Folie und Tafelbild 6 begleiten die fünf Schritte.
+4. **Polynome für Bewegung und Farbe:** fünf Stände in der Reihenfolge **1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep (ZIEL)**. Punkte auf einer Raute mit Ecken N/O/S/W; im Halt mit derselben Kurve wie für den Weg Schwarz → Eckfarbe → Schwarz, erst dann weiterfahren. Lokale Zuordnung: N rot, O grün, S blau, W gelb. Schritt 1 → 2 erhöht nur die bereits vorbereitete Schleifengrenze von 1 auf 4 und zeigt die Stimmen 1 und 3 des Kanons (Indizes 0 und 2, Verzögerungen 0/3 Sekunden); Schritt 2 → 3 ändert nur die Rückgabe von `verlauf`; Schritt 3 → 4 ändert die Schleifenschrittweite von 2 auf 1 und ergänzt die Stimmen 2 und 4; Schritt 4 → ZIEL ändert nur das Polynom. Der Einsatzabstand von 1,5 Sekunden weicht von der Abschnittsdauer von 1,8 Sekunden ab. Aktuelle Zeitwahl: 1,2 Sekunden Fahrt und 0,6 Sekunden Halt. Folie und Tafelbild 6 begleiten die fünf Schritte.
 
-Vorschlag für die Fortsetzung:
+Festgelegte Fortsetzung (11. November 2026):
 
-5. **Wellen und Animation:** Funktionsgraph als Pixelbild → Sinuskurve → Amplitude und Frequenz → Phase → Bewegung mit `iTime`.
-6. **Taylorapproximation:** bekannte Sinuskurve → Polynom als lokale Näherung → Näherung und Referenz gemeinsam darstellen → Abweichung mit wachsendem Abstand vom Entwicklungspunkt beobachten.
-7. **Value Noise:** reproduzierbare Pseudozufallswerte → Werte auf einem Gitter → lineare Interpolation → glatte Interpolation → Interpolation in zwei Dimensionen. Noise-Basisfunktionen werden vorbereitet.
-8. **fBm:** vorhandenes Value Noise → größere und kleinere Strukturen durch Skalierung → gewichtete Überlagerung mehrerer Oktaven → Normalisierung → Wolkenbild.
+5. **Vom Zufall zu Noise:** START UV-Bild → Phase 1 Zufall pro Pixel → Phase 2 Value Noise → ZIEL Simplex Noise. Value Noise interpoliert reproduzierbare Zufallswerte am quadratischen Gitter mit dem Smoothstep-Polynom aus Demo 4. Simplex Noise ist ein vorbereitetes alternatives Verfahren mit Gradienten auf einem Dreiecksgitter; die Basis wird eingeordnet und nicht live hergeleitet.
+6. **Wolken aus Noise:** START Simplex Noise → Phase 1 fBm → Phase 2 Wolkengestaltung → Phase 3 Animation (ZIEL). START entspricht exakt dem ZIEL aus Demo 5. Vier gewichtete Oktaven ergänzen Details, Smoothstep und Farbmischung gestalten Wolken, eine zeitabhängige Verschiebung lässt das Muster wandern.
 
-Die konzeptionellen Schritte sind nicht sämtlich als eigene Shader-Stände vorhanden. Die weißen START-Stände außerhalb von Demo 4 sind vorläufig; dort bleiben konkrete START-/Zwischenstände und die Zeitplanung auszuarbeiten. Demo 4 besitzt bereits einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START.
+Die bisherigen Demos 5 (Wellen/Animation) und 6 (Taylor) sind entfernt. Die bisherigen Demos 7/8 heißen im Vortrag jetzt 5/6; technische IDs und Pfade `08-value-noise` und `09-fbm` bleiben für vorhandene Links erhalten. Beide haben vier eigenständige ShaderToy-Snippets mit vorbereiteter Noise-Basis und vollständigen Lizenzhinweisen.
+
+**Lokale Prüfung:** Gesamtbuild mit sechs Demos, 16 Folien und acht Tafelseiten; die automatisierten Tests prüfen zusätzlich die unveränderten Rahmen in Demo 4 und die einzelnen Noise-Aufrufwechsel. Die Browserprüfung kompiliert sämtliche Stände in WebGL2 unter einem Repository-Unterpfad und prüft UV-Farben, unveränderte statische Zufalls-/Noise-Bilder, räumlichen Zusammenhang, den identischen Anschluss Demo 5 → 6, Wolkenfarben und den erst im ZIEL animierten Drift. Direkte Ausführung in ShaderToy und Erprobung im Unterricht stehen noch aus.
+
+Die konzeptionellen Schritte der ersten drei Demos sind noch nicht sämtlich als eigene Shader-Stände vorhanden; ihre weißen START-Stände sind vorläufig. Demo 4 hat einen vorbereiteten Bewegungsrahmen, Demo 5 startet mit dem UV-Bild und Demo 6 mit Simplex Noise. Die minutengenaue Planung bleibt offen.
 
 ### Bisheriger Themen- und Materialbestand der Planung
 
 - **Pixel, Farben und Koordinaten:** `00-konstante-farbe` mit konstanten Farben und zeitabhängigem RGB; `01-pixelposition-und-normalisierung` verbindet normierte Position und Farbverlauf als Stände.
 - **Formen und Felder:** `03-kreis-und-quadrierter-abstand` verbindet Kreis, statische und bewegte Metaballs als Stände; `dot` und der quadrierte Abstand bilden die Grundlage.
 - **Glatte Übergänge:** `05-polynom-und-weiche-kante` mit fünf vollständigen Ständen: 1 Punkt LERP, 2 Punkte LERP, 2 Punkte Smoothstep, 4 Punkte Smoothstep und 4 Punkte Smootherstep. Weg und Farbwechsel im Halt verwenden dieselbe Kurve; ab dem zweiten Stand laufen die Punkte im Kanon.
-- **Zeit und Approximation:** `06-wellen-und-animation` mit Sinus/Cosinus, Phase und `iTime`; `07-taylor-approximation` mit sichtbarem Vergleich zur Referenz.
-- **Zufall, Noise, fBm:** `08-value-noise` mit Pseudozufall und vorgegebener Gitter-/Interpolationsbasis; `09-fbm` mit mehreren Noise-Oktaven und Wolken/Marmor als möglichen Ergebnissen.
-- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Erste Entwürfe liegen unter `folien/` und `tafelbilder/`. Die persönliche Timeline ist nach den neuesten Angaben vom 11. November 2026 korrigiert: Programmieren als Hobby 2001–2007, Computerlehrgänge 2004–2006; die Kategorien Softwaresystemingenieur seit 2007, Computergrafiker seit 2009 und Forscher in der Computergrafik seit 2013 stehen direkt zwischen den zugehörigen Stationen. Die Consulting-Firma gehört zum Bereich Computergrafiker. Kleinere Beschriftungen und dünne graue Jahreslinien ersetzen die bisherige Darstellung mit Legende; Details in `folien/README.md`. Weitere persönliche Inhalte, funktionierende QR-Codes und die weitere Abstimmung stehen aus. Das Wellenmotiv bleibt offen; Demo-4-Folie und Tafelbild 6 zeigen jetzt die Raute sowie Bewegung und Farbwechsel mit denselben Polynomen.
+- **Zufall und Noise (Demo 5):** `08-value-noise` mit UV-Bild, Zufall pro Pixel, Value Noise und vorbereitetem Simplex Noise.
+- **fBm, Wolken und Animation (Demo 6):** `09-fbm` übernimmt das Simplex-Ziel, überlagert vier Oktaven, gestaltet Wolken und animiert sie zuletzt.
+- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Erste Entwürfe liegen unter `folien/` und `tafelbilder/`. Die persönliche Timeline ist nach den neuesten Angaben vom 11. November 2026 korrigiert: Programmieren als Hobby 2001–2007, Computerlehrgänge 2004–2006; die Kategorien Softwaresystemingenieur seit 2007, Computergrafiker seit 2009 und Forscher in der Computergrafik seit 2013 stehen direkt zwischen den zugehörigen Stationen. Die Consulting-Firma gehört zum Bereich Computergrafiker. Kleinere Beschriftungen und dünne graue Jahreslinien ersetzen die bisherige Darstellung mit Legende; Details in `folien/README.md`. Weitere persönliche Inhalte, funktionierende QR-Codes und die weitere Abstimmung stehen aus. Die Wellen- und Taylor-Folien/-Tafelbilder sind entfernt; Demo 5 und 6 begleiten die neue Noise-Abfolge. Demo-4-Folie und Tafelbild 6 zeigen jetzt die Raute sowie Bewegung und Farbwechsel mit denselben Polynomen.
 - **Unterrichtsvorbereitung:** separate START-/ZIEL-Stände lokal prüfen, Links und Handout-Referenzen ordnen, Tastatureingaben/Sonderzeichen minimieren; Galerie-Beispiele auswählen und externe Werke mit Quellen zuordnen.
 
-### Provisorische Ablaufskizze (aus letztem Planungsstand, noch nicht final beschlossen)
+### Provisorische Ablaufskizze (nach Kürzung auf sechs Demos neu abzustimmen)
 
 | Minute | Aktivität |
 |---|---|
@@ -155,20 +157,14 @@ Die konzeptionellen Schritte sind nicht sämtlich als eigene Shader-Stände vorh
 | 35–37 | Übergang/Puffer |
 | 37–43 | Glattes Interpolationspolynom `3t²-2t³` |
 | 43–46 | Smoothstep und Smootherstep für Fahrt, Halt und Farbwechsel |
-| 46–50 | Sinus, Phase, Zeit |
-| 50–55 | Animierte Wellen |
-| 55–60 | Taylorapproximation erklären |
-| 60–64 | Approximation visualisieren |
-| 64–66 | Übergang/Puffer |
-| 66–70 | Pseudozufall, Gitterwerte, Interpolation und fBm |
-| 70–76 | Value Noise → fBm → Wolken/Marmor |
+| 46–76 | Demo 5: UV → Pixelzufall → Value Noise → Simplex; Demo 6: Simplex → fBm → Wolken → Animation. Aufteilung nach Probelauf neu festlegen. |
 | 76–81 | Galerie: Matrizen/Rotation, Ray Marching, stochastische Effekte |
 | 81–84 | HPI/Studium |
 | 84–86 | Rückblick, Handout, ShaderToy-Links |
 | 86–90 | Puffer/Fragen/Showcase |
 
-Offen: Den früher eingeplanten 5-Minuten-LLM-Ausblick mit dieser Ablaufskizze abgleichen. Insbesondere die Zeit für die frühe Einführung von `iTime` und Sinus sowie die bewegten Metaballs ist neu zu bewerten. Zeitbudgets sind Summen mehrerer Theorie- und Coding-Teilblöcke und dürfen bei späteren Anpassungen anders aufgeteilt werden.
+Offen: Den früher eingeplanten 5-Minuten-LLM-Ausblick mit dieser Ablaufskizze abgleichen. Die frei gewordene Zeit aus Wellen/Taylor ist auf die ersten vier Demos, die beiden Noise-Demos und eigenständige Änderungen zu verteilen; der zusammengefasste 46–76-Minuten-Block ist kein endgültiges Budget. Auch die frühe Einführung von `iTime` und Sinus sowie die bewegten Metaballs brauchen einen Probelauf. Zeitbudgets sind Summen mehrerer Theorie- und Coding-Teilblöcke und dürfen bei späteren Anpassungen anders aufgeteilt werden.
 
 ### Umgesetzte technische Konvention für Demos
 
-Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo. Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Acht Demos decken die Themen von Farbe bis fBm ab. Demo 4 besitzt einen ausgearbeiteten START mit linearer Bewegung und Farbwechsel; die übrigen START-Stände sind vorläufig weiß. Die ersten vier Demos enthalten Zwischenstände. Die weitere didaktische Ausarbeitung bleibt offen.
+Schema: `demos/<NN>-<name>/demo.json`, `START.glsl`, optional weitere selbsterklärend benannte Zwischenstandsdateien, `ZIEL.glsl` und eine knappe `README.md` je Demo. Die `snapshots`-Liste beschreibt Reihenfolge, Beschriftungen und Quellen; `site/catalog.json` registriert die Demos. `templates/demo/` bietet eine Kopiervorlage. Sechs Demos decken die Themen von Farbe bis animierten Wolken ab. Demo 4 besitzt einen ausgearbeiteten START mit linearer Bewegung und Farbwechsel, Demo 5 ein UV-Bild und Demo 6 Simplex Noise. Nur die START-Stände der ersten drei Demos sind noch vorläufig weiß. Alle sechs Demos enthalten Zwischenstände. Zwischen den Ständen bleibt der Rahmen stabil: Demo 1 ändert die drei RGB-Zuweisungen, Demo 3 ergänzt ein einzelnes Abstandsfeld vor der Überlagerung und behält Farben bei, Demo 4 ändert pro Übergang genau eine Codezeile. In Demo 5 wechseln Pixelzufall, Value Noise und `simplexNoise01` über einzelne Aufrufe; neue Basisfunktionen werden nur ergänzt. Demo 6 übernimmt die Basis unverändert, verwendet normierte Noise-Werte für die Oktavsumme und ergänzt die Animation mit einer Zeile. Die weitere didaktische Ausarbeitung bleibt offen.

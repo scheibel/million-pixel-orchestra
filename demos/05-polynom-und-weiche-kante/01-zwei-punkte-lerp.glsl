@@ -1,7 +1,7 @@
 // Dieselbe Kurve steuert den Weg und den Farbwechsel in der Haltephase.
 float verlauf(float t)
 {
-    return t; // Lerp: linearer Verlauf.
+    return t;
 }
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
@@ -18,8 +18,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     if (abs(abs(p.x) + abs(p.y) - 0.30) < 0.003) {
         color = vec3(0.55, 0.60, 0.65);
     }
-    // Stimmen 1 und 3 des Kanons: Verzögerungen 0 und 3 Sekunden.
-    // Die ausgewaehlten Stimmen haben 3 Sekunden Abstand bei 7,2 Sekunden Rundenzeit.
+    // Grenze 1: nur Stimme 1; Grenze 4 und Schrittweite 2: Stimmen 1 und 3.
+    // Mit Schrittweite 1 kommen die Stimmen 2 und 4 hinzu.
     for (int index = 0; index < 4; index += 2) {
         float punktzeit = mod(iTime - float(index) * 1.5, 4.0 * abschnittsdauer);
         float abschnitt = floor(punktzeit / abschnittsdauer);

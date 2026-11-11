@@ -1,7 +1,7 @@
 // Dieselbe Kurve steuert den Weg und den Farbwechsel in der Haltephase.
 float verlauf(float t)
 {
-    return t * t * t * (t * (6.0 * t - 15.0) + 10.0); // Smootherstep.
+    return t * t * t * (t * (6.0 * t - 15.0) + 10.0);
 }
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
@@ -18,9 +18,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     if (abs(abs(p.x) + abs(p.y) - 0.30) < 0.003) {
         color = vec3(0.55, 0.60, 0.65);
     }
-    // Vier Stimmen derselben Bewegung, jeweils um 1,5 Sekunden verzoegert.
-    // Der Versatz ist kuerzer als ein Abschnitt: Die Punkte halten zeitversetzt.
-    for (int index = 0; index < 4; index++) {
+    // Grenze 1: nur Stimme 1; Grenze 4 und Schrittweite 2: Stimmen 1 und 3.
+    // Mit Schrittweite 1 kommen die Stimmen 2 und 4 hinzu.
+    for (int index = 0; index < 4; index += 1) {
         float punktzeit = mod(iTime - float(index) * 1.5, 4.0 * abschnittsdauer);
         float abschnitt = floor(punktzeit / abschnittsdauer);
         int kante = int(mod(abschnitt, 4.0));

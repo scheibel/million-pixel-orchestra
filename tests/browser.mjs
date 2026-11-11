@@ -107,6 +107,30 @@ try {
     const { data } = await page("Page.captureScreenshot", { captureBeyondViewport: true });
     await writeFile(join(process.env.SCREENSHOT_DIR, `${name}.png`), Buffer.from(data, "base64"));
   }
+  // Compare noise at fixed times, independently of browser scheduling.
+  async function noiseFrame(time) {
+    await pixel();
+    return evaluate(`(() => {
+      const c = document.querySelector('#preview'), gl = c.getContext('webgl2');
+      gl.uniform1f(gl.getUniformLocation(gl.getParameter(gl.CURRENT_PROGRAM), 'iTime'), ${time});
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      const data = new Uint8Array(c.width * c.height * 4);
+      gl.readPixels(0, 0, c.width, c.height, gl.RGBA, gl.UNSIGNED_BYTE, data);
+      let hash = 2166136261, min = 255, max = 0, differences = 0, pairs = 0;
+      let grayscale = true, skyColors = true, opaque = true;
+      for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) {
+        const i = 4 * (y * c.width + x), r = data[i], g = data[i+1], b = data[i+2];
+        min = Math.min(min, r); max = Math.max(max, r);
+        grayscale &&= r === g && g === b;
+        skyColors &&= r <= g && g <= b;
+        opaque &&= data[i+3] === 255;
+        if (x > 0) { differences += Math.abs(r - data[i-4]); pairs++; }
+        for (let k = 0; k < 4; k++) hash = Math.imul(hash ^ data[i+k], 16777619) >>> 0;
+      }
+      return {hash, min, max, grayscale, skyColors, opaque, roughness: differences / pairs / 255};
+    })()`);
+  }
+  let simplexGoal;
   await page("Page.navigate", { url: base });
   await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   assert.equal(await evaluate("document.documentElement.lang"), "de");
@@ -117,7 +141,7 @@ try {
     await page("Page.navigate", { url: `${base}editor.html?demo=${manifest.id}` });
     await success();
     assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), manifest.snapshots.length);
-    if (manifest.id !== '05-polynom-und-weiche-kante') {
+    if (['01-pixelposition-und-normalisierung', '03-kreis-und-quadrierter-abstand'].includes(manifest.id)) {
       color(await pixel(), [255, 255, 255, 255]);
       color(await pixel(".1", ".9"), [255, 255, 255, 255]);
     }
@@ -242,6 +266,43 @@ try {
       }
       console.log('✓ Fünf Demo-4-Stände: Punktzahlen 1–2–2–4–4, Stimmen 1/3 in Phase 2/3, Farbimpuls und Kanon');
     }
+    if (['08-value-noise', '09-fbm'].includes(manifest.id)) {
+      await click('#play');
+      const frames = {};
+      for (const snapshot of manifest.snapshots) {
+        await click(`[data-snapshot="${snapshot.id}"]`);
+        await success();
+        const frame = frames[snapshot.id] = await noiseFrame(0);
+        assert.ok(frame.opaque && frame.max - frame.min > 30, `${manifest.id}/${snapshot.id}: sichtbare Struktur`);
+        if (manifest.id === '09-fbm' && snapshot.id === 'ziel') {
+          assert.notEqual((await noiseFrame(2)).hash, frame.hash, 'Wolken wandern mit der Zeit');
+          assert.equal((await noiseFrame(0)).hash, frame.hash, 'Zeit null stellt das Wolkenbild wieder her');
+        } else {
+          assert.equal((await noiseFrame(2)).hash, frame.hash, `${manifest.id}/${snapshot.id}: statisches Muster ohne Flimmern`);
+        }
+        if (manifest.id === '08-value-noise' && snapshot.id === 'start') {
+          color(await pixel('.1', '.9'), [26, 230, 0, 255]);
+        } else if (snapshot.id === 'wolken' || manifest.id === '09-fbm' && snapshot.id === 'ziel') {
+          assert.ok(frame.skyColors && !frame.grayscale, 'Wolken zwischen Blau und Weiß');
+        } else {
+          assert.ok(frame.grayscale, `${manifest.id}/${snapshot.id}: Graustufen`);
+        }
+        await noiseFrame(0);
+        await screenshot(`${manifest.id}-${snapshot.id}`);
+      }
+      if (manifest.id === '08-value-noise') {
+        assert.ok(frames['zufall-pro-pixel'].roughness > .12, 'Unabhängige benachbarte Pixelwerte');
+        for (const id of ['value-noise', 'ziel']) {
+          assert.ok(frames[id].roughness < .06, `${id}: räumlich zusammenhängendes Muster`);
+        }
+        simplexGoal = frames.ziel.hash;
+      } else {
+        assert.equal(frames.start.hash, simplexGoal, 'Demo 6 schließt visuell unverändert an Demo 5 an');
+        assert.notEqual(frames.fbm.hash, frames.start.hash, 'Oktaven verändern die räumliche Struktur');
+        assert.equal(frames.wolken.hash, frames.ziel.hash, 'Animation ergänzt bei Zeit null keine Bildänderung');
+      }
+      console.log(`✓ ${manifest.id}: Anschluss, räumliche Struktur, Farben und Zeitverhalten`);
+    }
     await screenshot(manifest.id);
   }
   console.log("✓ START-, Zwischen- und ZIEL-Stände aller Demos");
@@ -284,7 +345,10 @@ try {
   assert.notDeepEqual(await pixel(), beforeColor, 'RGB-Farbe verändert sich mit der Zeit');
   await click('[data-snapshot="start"]');
   const original = await evaluate("document.querySelector('#source').value");
-  const changed = original.replace("vec3(1.0)", "vec3(0.20, 0.60, 0.80)");
+  const changed = original.replace('float rot = 1.0;', 'float rot = 0.20;')
+    .replace('float gruen = 1.0;', 'float gruen = 0.60;')
+    .replace('float blau = 1.0;', 'float blau = 0.80;');
+  assert.notEqual(changed, original, 'Die benannten RGB-Komponenten lassen sich bearbeiten');
   await edit(changed);
   await success();
   color(await pixel(), [51, 153, 204, 255]);
@@ -292,7 +356,7 @@ try {
   await click('[data-snapshot="start"]');
   assert.equal(await evaluate("document.querySelector('#source').value"), changed);
   assert.match(await evaluate("document.querySelector('[data-snapshot=start]').textContent"), /geändert/);
-  const invalid = changed.replace("vec3(0.20, 0.60, 0.80)", "vec3(notDefined)");
+  const invalid = changed.replace('float rot = 0.20;', 'float rot = notDefined;');
   await edit(invalid);
   assert.equal(await evaluate("document.querySelector('#compile-status').dataset.state"), "error");
   assert.equal(await evaluate("document.querySelector('.error-line').textContent"), "3");

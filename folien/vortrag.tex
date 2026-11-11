@@ -353,71 +353,51 @@ void mainImage(out vec4 fragColor,
 \end{columns}
 \end{frame}
 
-\begin{frame}{Wie bewegt sich eine Welle?}
-\demoheader{5 · Sinus und Animation}
-\begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Der Sinus ordnet jeder x-Position eine Höhe zu.\item Amplitude und Frequenz verändern die Form.\item Die Zeit verschiebt die Phase.\end{itemize}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.48\textwidth}
-\begin{tikzpicture}\bildrahmen
-\draw[-{Stealth},muted] (.4,1.8)--(5,1.8);\draw[-{Stealth},muted] (.8,.3)--(.8,3.25);
-\draw[sea,very thick,domain=0:4.1,samples=80] plot ({.8+\x},{1.8+.9*sin(\x*135)});
-\draw[accent,dashed,thick,domain=0:4.1,samples=80] plot ({.8+\x},{1.8+.9*sin(\x*135-55)});
-\end{tikzpicture}\par\hinweis{Tafelbild 7 · Das spätere Bildmotiv ist noch offen.}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}{Wie genau ist eine Näherung?}
-\demoheader{6 · Taylorapproximation}
-\begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Sinus und ein Polynom vergleichen.\item Nahe $x=0$ liegen die Kurven zusammen.\item Weiter entfernt wird der Unterschied sichtbar.\end{itemize}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.48\textwidth}
-\begin{tikzpicture}\bildrahmen
-\draw[-{Stealth},muted] (.3,1.8)--(5,1.8);\draw[-{Stealth},muted] (2.7,.3)--(2.7,3.2);
-\draw[sea,very thick,domain=-3.2:3.2,samples=80] plot ({2.7+.67*\x},{1.8+sin(\x r)});
-\draw[accent,dashed,thick,domain=-3.2:3.2,samples=80] plot ({2.7+.67*\x},{1.8+\x-\x*\x*\x/6+\x*\x*\x*\x*\x/120});
-\node[font=\small] at (2.7,.45) {$x-\frac{x^3}{6}+\frac{x^5}{120}$};
-\end{tikzpicture}\par\hinweis{Tafelbild 8 · Näherung um $x=0$}
-\end{column}
-\end{columns}
-\end{frame}
-
 \begin{frame}{Wie wird Zufall zu einem Muster?}
-\demoheader{7 · Value Noise}
+\demoheader{5 · Vom Zufall zu Noise}
 \begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Pseudozufallswerte an Gitterpunkten.\item Zwischen benachbarten Werten mischen.\item Das bekannte Polynom glättet Übergänge.\end{itemize}
+\begin{column}{.52\textwidth}
+\begin{enumerate}
+\item START: UV-Bild aus Demo 2.
+\item Zufallswert pro Pixel.
+\item Value Noise: Gitterwerte interpolieren.
+\item ZIEL: vorbereitetes Simplex Noise.
+\end{enumerate}
 \qrplatz{ShaderToy-START}
 \end{column}
-\begin{column}{.48\textwidth}
+\begin{column}{.44\textwidth}
 \begin{tikzpicture}\bildrahmen
-\fill[sea!20] (2,1) rectangle (3,2);\draw[step=1,muted] (1,.5) grid (4,3.5);
+\fill[sea!20] (2,1) rectangle (3,2);
+\draw[step=1,muted] (1,.5) grid (4,3.5);
 \foreach \x in {1,2,3,4} \foreach \y in {1,2,3} \fill[sea] (\x,\y) circle (2.6pt);
 \fill[accent] (2.5,1.45) circle (3pt);\node[font=\small,anchor=west] at (2.6,1.45) {Pixel};
-\end{tikzpicture}\par\hinweis{Tafelbild 9 · Gitter und Interpolation}
+\end{tikzpicture}\par
+\hinweis{Tafelbild 7 · Value Noise: Werte am Gitter, dazwischen glatt mischen.}\par\smallskip
+\hinweis{Simplex: Gradienten auf einem Dreiecksgitter; die Basis ist vorbereitet.}
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Wie entstehen feine Wolkenstrukturen?}
-\demoheader{8 · fBm}
+\begin{frame}{Wie wird Noise zu bewegten Wolken?}
+\demoheader{6 · Wolken aus Noise}
 \begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Noise in verschiedenen Größen verwenden.\item Große und kleine Strukturen gewichten.\item Mehrere Oktaven überlagern.\end{itemize}
+\begin{column}{.52\textwidth}
+\begin{enumerate}
+\item START: Simplex-Ziel aus Demo 5.
+\item fBm: gewichtete Oktaven addieren.
+\item Als Wolken gestalten: Dichte und Farbe.
+\item ZIEL: Abfrageposition mit der Zeit verschieben.
+\end{enumerate}
 \qrplatz{ShaderToy-START}
 \end{column}
-\begin{column}{.48\textwidth}
+\begin{column}{.44\textwidth}
 \begin{tikzpicture}\bildrahmen
 \draw[sea,step=.6] (.4,1) grid (1.6,2.2);\draw[sea,step=.3] (2.1,1) grid (3.3,2.2);\draw[sea,step=.15] (3.8,1) grid (5,2.2);
 \node at (1.85,1.6) {$+$};\node at (3.55,1.6) {$+$};
 \node[font=\small] at (2.7,.5) {grob \qquad\quad fein};
-\end{tikzpicture}\par\hinweis{Tafelbild 10 · Frequenz und Gewicht}
+\end{tikzpicture}\par
+\hinweis{Tafelbild 8 · Maßstab, Gewicht, Wolkendichte und Bewegung}\par\smallskip
+\hinweis{Das Muster wandert; es wird nicht pro Bild neu gewürfelt.}
 \end{column}
 \end{columns}
 \end{frame}

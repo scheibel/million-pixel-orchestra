@@ -60,6 +60,12 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - Jeder Stand liegt als vollständiges, eigenständig kopierbares ShaderToy-Snippet vor. Die vorhandene Vorgabe separater START-/ZIEL-Dateien bleibt bestehen.
 - Das umgesetzte Metadatenformat ist `demo.json` mit einer geordneten `snapshots`-Liste; `site/catalog.json` registriert die Demos. Anfangs wird `start` geladen, sofern vorhanden; bei vorläufig nur einem ZIEL-Stand wird dieser geladen. Für fertige Live-Demos bleibt START erforderlich. Beim Wechsel folgen Editor und Vorschau dem ausgewählten Stand bzw. dessen erhaltenem Entwurf; die Zeit wird auf null gesetzt, der Wiedergabezustand bleibt erhalten. „Stand wiederherstellen“ lädt die vorbereitete Fassung zurück. Der Vertrag ist in `demos/README.md` dokumentiert.
 
+## Kleine Änderungen zwischen Demo-Ständen (festgelegt)
+- Jeder Schritt ändert möglichst nur das fachlich Neue; Koordinatenrahmen, Bezeichner, Farben und bestehender Code bleiben erhalten, sofern sie nicht selbst Lerngegenstand sind.
+- Vorbereitete Basisfunktionen werden als vollständiger Block ergänzt. Bestehende Funktionen dürfen enthalten bleiben, damit im Live-Coding kein Umbau nötig ist.
+- In Demo 4 sind Schleife und lokale Zeit schon im START vorbereitet: Grenze 1 → 4 ergänzt Stimme 3, Schrittweite 2 → 1 ergänzt später die übrigen Stimmen.
+- In Demo 5 teilen Value Noise und `simplexNoise01` den Wertebereich 0…1; ihre Integration unterscheidet sich nur im Funktionsnamen. Demo 6 übernimmt diese Basis und verwendet dieselbe normierte Schnittstelle für alle Oktaven.
+
 ## Übergeordnete Lernziele (festgelegt)
 1. Interesse an Informatikstudium und Programmieren wecken.
 2. Computergrafik als Teilgebiet der Computer Science sichtbar machen.
@@ -83,16 +89,18 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 3. **Objekte und Abstände:** sichtbare Formen im Bild durch Abstandstests und überlagerte Felder erzeugen.
 4. **Objekte gezielt steuern und Farbe verknüpfen:** den zeitlichen Verlauf der Bewegung mit Interpolation und Polynomen gestalten und dieselben Verläufe für Farbänderungen verwenden.
 
-Zeitabhängigkeit wird bereits in Demo 1 eingeführt. Demo 4 vertieft die bewusste Gestaltung zeitlicher Verläufe und ihre gemeinsame Anwendung auf Bewegung und Farbe. „Objekte“ bezeichnet die sichtbaren Formen, die weiterhin durch die Farbberechnung pro Pixel entstehen. Die Themen ab Demo 5 bleiben der bisherige Planungsstand; diese Zusammenfassung legt den ersten Block fest.
+Zeitabhängigkeit wird bereits in Demo 1 eingeführt. Demo 4 vertieft die bewusste Gestaltung zeitlicher Verläufe und ihre gemeinsame Anwendung auf Bewegung und Farbe. „Objekte“ bezeichnet die sichtbaren Formen, die weiterhin durch die Farbberechnung pro Pixel entstehen. Die Fortsetzung mit Demo 5 und 6 ist ebenfalls festgelegt: Noise vom UV-Bild bis Simplex, anschließend fBm, Wolkengestaltung und Animation. Die bisherigen separaten Wellen- und Taylor-Demos entfallen.
 
 ## Geplante didaktische Progression (inhaltlich abgestimmt)
 1. **Pixel & Farbe:** konstante Farbe; RGB als Farbvektor; `iTime` und Sinus für einen Farbwechsel anschaulich einführen.
 2. **Koordinaten:** `fragCoord` und `iResolution`; normierte Position; positionsabhängige Farben und Farbverlauf.
-3. **Kreise:** Abstand und insbesondere quadrierter Abstand, `dot`; Kreis und Metaballs als Stände derselben Demo, abschließend mit zeitabhängig bewegten Mittelpunkten.
+3. **Kreise:** Abstand und insbesondere quadrierter Abstand, `dot`; Kreis → ein Abstandsfeld → zwei statische Metaballs → zeitabhängig bewegte Mittelpunkte. Die Form-Stände behalten dieselben Farben.
 4. **Polynome für Bewegung und Farbe (am 11. November 2026 konkretisiert):** Fünf Stände: **1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep (ZIEL)**. Die Punkte bewegen sich auf einem um 45° gedrehten Quadrat mit Ecken auf N, O, S und W. An den Ecken halten sie kurz. Während dieses Halts wechseln sie mit derselben Kurve wie für die Bewegung von Schwarz zur Eckfarbe und zurück zu Schwarz, bevor sie weiterfahren. Die lokale Umsetzung ordnet N/O/S/W Rot/Grün/Blau/Gelb zu und verwendet zunächst 1,2 Sekunden Fahrt und 0,6 Sekunden Halt je Kante. Eine vorbereitete Funktion berechnet die Kurve für Weg und Farbmischung; die Polynome stehen sichtbar im Code. LERP ist linear; Smoothstep (`3t² − 2t³`) glättet die erste und Smootherstep (`6t⁵ − 15t⁴ + 10t³`) zusätzlich die zweite Ableitung an den Enden. Der Bewegungs- und Zeichenrahmen wird vorbereitet und erklärt. Phase 2 und 3 verwenden die Stimmen 1 und 3 des bisherigen Kanons (Indizes 0 und 2): Verzögerungen 0/3 Sekunden. Ab Phase 4 kommen die Stimmen 2 und 4 hinzu; bei vier Punkten bleiben die Verzögerungen 0/1,5/3/4,5 Sekunden und die Rundenzeit 7,2 Sekunden. Die Schleife wechselt dafür von Schrittweite 2 zu Schrittweite 1.
-5. **Wellen & Animation:** Sinus/Cosinus, Phase und `iTime` vertiefen; anschließend Taylorapproximation von Sinus/Cosinus und Unterschied zwischen exakter Berechnung und Approximation.
-6. **Noise:** Pseudozufall, Gitterwerte, Interpolation, Value Noise, fBm; Basisfunktionen für Noise werden vorbereitet, statt alles von Grund auf zu tippen. Visuelle Ergebnisse z. B. Wolken/Marmor.
+5. **Vom Zufall zu Noise (festgelegt am 11. November 2026):** START UV-Bild → Phase 1 reproduzierbarer Zufallswert pro Pixel → Phase 2 Value Noise mit am groben Gitter verankerten Zufallswerten und dazwischen interpolierten Werten → ZIEL Simplex Noise. Value Noise nutzt das bekannte Smoothstep-Polynom. Simplex Noise wird als vorbereitetes alternatives Verfahren mit Gradienten auf einem Dreiecksgitter eingeordnet, nicht als bloß weiter geglättetes Value Noise; keine Live-Herleitung der Basis.
+6. **Wolken aus Noise (festgelegt am 11. November 2026):** START Simplex Noise, unverändert aus Demo 5 → Phase 1 fBm aus mehreren gewichteten Simplex-Noise-Oktaven → Phase 2 Gestaltung als Wolken → Phase 3 Animation. Erst die letzte Phase ergänzt die Zeitabhängigkeit durch Verschieben der Abfrageposition.
 7. **Inspirationsgalerie, keine Live-Herleitung:** Matrizen/Rotation, Ray Marching/Intersektionstests, stochastische Effekte.
+
+Die bisherigen Demos 5 „Wellen und Animation“ und 6 „Taylorapproximation“ entfallen. Die bisherigen Demos 7 und 8 werden im Vortrag zu 5 und 6; ihre technischen IDs `08-value-noise` und `09-fbm` bleiben für bestehende Links erhalten. Der Workshop umfasst sechs Live-Demos. Die zwei Noise-Demos besitzen je vier vollständige Stände; die Simplex-Basis einschließlich MIT-Lizenz ist in jedem benötigten Snippet enthalten.
 
 ## Bewusst außerhalb des Workshopumfangs (festgelegt)
 - Keine selbstständige Einheit zu Maus, Tastatur, externen Steuerparametern oder UI-Interaktion.

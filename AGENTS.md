@@ -29,7 +29,7 @@ Vor relevanten Änderungen die Dateien `CONTEXT.md` und `ROADMAP.md` lesen. Dies
 - Ein anfänglicher Boilerplate-Block erklärt Raster, `fragCoord`, `iResolution`, Fragment-Shader-Ausführung und RGB.
 - Bei jeder live entwickelten Demo einen `START`- und einen `ZIEL`-Stand als separate Shader-Snippets vorsehen. Der START-Stand ist zum Abtippen geeignet, der ZIEL-Stand zeigt die abgeschlossene Änderung.
 - Konzepte und Mathematik unmittelbar dort erklären, wo sie verwendet werden, statt sie in einem isolierten Theorieblock vorwegzunehmen.
-- Progression: konstante Farbe → Positionsabhängigkeit → geometrische Formen/Kombinationen → weiche Übergänge/Polynome → zeitabhängige Grafik/Sinus/Taylor → Pseudozufall/Noise/fBm.
+- Progression: konstante Farbe → Positionsabhängigkeit → geometrische Formen/Kombinationen → weiche Übergänge/Polynome → Pseudozufall am Gitter/Value Noise/Simplex Noise → fBm/Wolken/Animation. Sinus wird bereits bei zeitabhängiger Farbe anschaulich eingeführt; separate Wellen- und Taylor-Demos entfallen.
 - Keine separate Einheit zu Nutzerinteraktion oder Parametrisierung. Eigenschaften werden allenfalls direkt im Shadercode geändert.
 - Die anspruchsvolleren Themen Matrizen/Rotation, Ray Marching/Intersektionstests und Stochastik gehören **nur** zur Inspirationsgalerie, nicht zum Live-Coding.
 - Keine Live-Demos zu Gras oder Voronoi.

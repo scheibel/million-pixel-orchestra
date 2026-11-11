@@ -147,7 +147,7 @@ Die Felder addieren sich:
 \[E(P)>\text{Schwelle}\quad\Rightarrow\quad\text{Vordergrund}\]
 Zwischen den Zentren kann die Summe die Schwelle überschreiten: Die Formen verbinden sich. $\varepsilon$ verhindert Division durch null.
 \end{minipage}
-\folge{Zwei Kreise → abfallende Felder → Werte an einem Punkt addieren → Schwelle → Bewegung.}
+\folge{Kreis → ein abfallendes Feld und Schwelle → zweites Feld addieren → Bewegung.}
 \newpage
 
 \kopf{6 · Sanft bremsen und anfahren}{Demo 4 · Polynome}
@@ -198,92 +198,66 @@ Phase 2/3: $j=0,2$ (Stimmen 1 und 3).\\
 Ab Phase 4: $j=0,1,2,3$ (alle vier Stimmen).
 }
 \end{minipage}
-\folge{Ein Punkt mit LERP und Farbwechsel → Stimme 3 zeitversetzt ergänzen → Smoothstep herleiten und einsetzen → Stimmen 2 und 4 ergänzen → Smootherstep einsetzen und vergleichen.}
+\folge{Ein Punkt mit LERP und Farbwechsel → Schleifengrenze 1 auf 4: Stimme 3 ergänzen → Smoothstep herleiten und einsetzen → Stimmen 2 und 4 ergänzen → Smootherstep einsetzen und vergleichen.}
 \newpage
 
-\kopf{7 · Sinus: Form und Bewegung}{Wellen}
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-\begin{tikzpicture}[x=.9cm,y=1cm]
- \draw[axis] (-.2,0) -- (7.2,0) node[right] {$x$};
- \draw[axis] (0,-1.7) -- (0,1.8) node[above] {Höhe};
- \draw[petrol,very thick,domain=0:6.8,samples=100] plot (\x,{1.1*sin(\x*90)});
- \draw[blue,dashed,thick,domain=0:6.8,samples=100] plot (\x,{1.1*sin(\x*90-60)});
- \draw[<->,orange,thick] (.7,0) -- (.7,1.1) node[midway,right] {$A$};
- \node[smalllab] at (3.4,-2.15) {durchgezogen: früher; gestrichelt: später};
-\end{tikzpicture}
-\end{minipage}\hfill
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-\[h(x,t)=A\sin(kx-\omega t)\]
-\begin{tabular}{ll}
-$A$ & Amplitude: wie hoch? \\
-$k$ & räumliche Frequenz: wie eng? \\
-$\omega t$ & Phase: wie verschoben?
-\end{tabular}
-\par\medskip
-Ein mögliches Motiv: Wasser unter der Linie, Himmel darüber. Die Kurve dient hier zur Erklärung.
-\end{minipage}
-\folge{Wiederholung der Farbschwingung → Höhe über x → Amplitude und Frequenz → Zeit verschiebt die Phase.}
-\newpage
-
-\kopf{8 · Sinus durch ein Polynom annähern}{Taylor}
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-\begin{tikzpicture}[x=.72cm,y=1.45cm]
- \draw[axis] (-4.1,0) -- (4.2,0) node[right] {$x$};
- \draw[axis] (0,-1.35) -- (0,1.45);
- \draw[petrol,very thick,domain=-3.7:3.7,samples=120] plot (\x,{sin(\x r)});
- \draw[orange,dashed,thick,domain=-3:3,samples=120] plot (\x,{\x-\x*\x*\x/6+\x*\x*\x*\x*\x/120});
- \node[petrol,anchor=west] at (2.1,1.15) {$\sin(x)$};
- \node[orange,anchor=west] at (2.1,.85) {Polynom};
-\end{tikzpicture}
-\end{minipage}\hfill
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-\[\sin(x)\approx x-\frac{x^3}{6}+\frac{x^5}{120}\]
-\textbf{Entwicklungspunkt:} $x=0$.
-\par\medskip
-In der Nähe von 0 stimmen die Kurven gut überein. Weiter entfernt wächst die Abweichung.
-\par\medskip
-Die Approximation ist ein Polynom, der Sinus eine periodische Funktion.
-\end{minipage}
-\folge{Sinus als Referenz zeichnen → Polynomnäherung ergänzen → Nähe bei 0 und Abweichung besprechen.}
-\newpage
-
-\kopf{9 · Value Noise: Zufall wird weich}{Noise}
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-\begin{tikzpicture}[scale=1.25]
+\kopf{7 · Vom Zufall zu Noise}{Demo 5}
+\begin{minipage}[t]{.46\textwidth}\vspace{0pt}
+\begin{tikzpicture}[scale=1.75]
  \draw[gray] (0,0) grid (3,3);
  \fill[petrol!15] (1,1) rectangle (2,2);
  \foreach \x/\y/\s in {1/1/a,2/1/b,1/2/c,2/2/d}{\fill[petrol] (\x,\y) circle (2pt); \node[above right,font=\small] at (\x,\y) {$\s$};}
  \fill[orange] (1.55,1.35) circle (2.2pt) node[below right] {$P$};
- \draw[orange,->] (1.55,1.35) -- (2.5,.45);
- \node[smalllab,anchor=west] at (2.5,.4) {Position in der Zelle};
 \end{tikzpicture}
+\par\smallskip
+{\small Vier feste Zufallswerte $a,b,c,d$ umgeben das Pixel $P$.}
+\[
+\begin{aligned}
+u &= \operatorname{mix}(a,b,s(t_x))\\
+v &= \operatorname{mix}(c,d,s(t_x))\\
+N &= \operatorname{mix}(u,v,s(t_y))
+\end{aligned}
+\]
 \end{minipage}\hfill
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-\begin{enumerate}\setlength{\itemsep}{5pt}
- \item Jedem Gitterpunkt einen reproduzierbaren Pseudozufallswert zuordnen.
- \item Innerhalb der Zelle zwischen den vier Eckwerten mischen.
- \item Den Mischfaktor mit $s(t)=3t^2-2t^3$ glätten.
+\begin{minipage}[t]{.50\textwidth}\vspace{0pt}
+\begin{enumerate}\setlength{\itemsep}{4pt}
+ \item \textbf{UV-Bild:} normierte Positionen als Rot und Grün.
+ \item \textbf{Pixelzufall:} ein fester Grauwert je Pixel; keine Zeitabhängigkeit.
+ \item \textbf{Value Noise:} Zufallswerte am gröberen Gitter verankern und dazwischen mischen.
+ \item \textbf{Simplex Noise:} vorbereitete Alternative; gewichtete Gradientenbeiträge auf einem Dreiecksgitter.
 \end{enumerate}
-Ergebnis: ein zusammenhängendes, weich veränderliches Muster.
+{\small
+Bei Value Noise: $\operatorname{floor}(p)$ wählt die Zelle; $\operatorname{fract}(p)$ liefert $(t_x,t_y)$ darin.\\
+Das bekannte Polynom $s(t)=3t^2-2t^3$ glättet die Mischung.\\[2mm]
+Simplex interpoliert keine skalaren Eckwerte. Die Basis wird übernommen; \texttt{simplexNoise01} rechnet intern auf $[0,1]$ um. Im Gestaltungs-Code wechselt nur der Funktionsname.}
 \end{minipage}
-\folge{Gitter und Eckwerte → Punkt in einer Zelle → erst horizontal, dann vertikal mischen → glätten.}
+\folge{UV wiedererkennen → unabhängige Pixelwerte → Gitter und vier Eckwerte → mit bekanntem Polynom mischen → Simplex als alternative Basis einordnen.}
 \newpage
 
-\kopf{10 · fBm: Grob und fein überlagern}{fBm}
+\kopf{8 · Aus Noise werden bewegte Wolken}{Demo 6}
 \begin{center}
-\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{tikzpicture}[x=.9cm,y=.8cm]
  \foreach \x/\step/\label in {0/1/Grob,5/.5/Mittel,10/.25/Fein}{
-   \draw[step=\step,gray] (\x,0) grid +(3,3);
-   \draw[very thick] (\x,0) rectangle +(3,3);
+   \draw[step=\step,gray] (\x,0) grid +(3,2);
+   \draw[very thick] (\x,0) rectangle +(3,2);
    \node[lab] at (\x+1.5,-.45) {\label};
  }
- \node[font=\Huge] at (4,1.5) {$+$};
- \node[font=\Huge] at (9,1.5) {$+$};
- \draw[->,thick] (13.4,1.5) -- (14.4,1.5);
- \node[lab,align=left,anchor=west] at (14.5,1.5) {Wolken-\\struktur};
+ \node[font=\Huge] at (4,1) {$+$};
+ \node[font=\Huge] at (9,1) {$+$};
+ \draw[->,thick] (13.4,1) -- (14.4,1);
+ \node[lab,align=left,anchor=west] at (14.5,1) {Wolken-\\struktur};
 \end{tikzpicture}
 \end{center}
-\[F(p)=\frac{0{,}5\,N(p)+0{,}25\,N(2p)+0{,}125\,N(4p)+0{,}0625\,N(8p)}{0{,}9375}\]
-\begin{center}$N$: Value Noise. Das Bild zeigt drei Maßstäbe; die Formel verwendet vier Oktaven. Jede verdoppelt die Frequenz und halbiert das Gewicht.\end{center}
-\folge{Ein Noise-Muster → kleinere Strukturen → schwächer gewichtet addieren → Gewichtssumme erklären.}
+{\small
+\[
+F(p)=\frac{0{,}5N(p)+0{,}25N(2p)+0{,}125N(4p)+0{,}0625N(8p)}{0{,}9375}
+\]
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item \textbf{START:} $N$ ist das vorbereitete \texttt{simplexNoise01} aus Demo 5, mit Werten in $[0,1]$.
+\item \textbf{fBm:} vier Oktaven; Frequenz verdoppeln, Gewicht halbieren. Das Bild zeigt drei Maßstäbe.
+\item \textbf{Wolken:} $d=\operatorname{smoothstep}(0{,}4;\,0{,}65;\,F(p))$; Farbe $=\operatorname{mix}(\text{Blau},\text{Weiß},d)$.
+\item \textbf{Animation:} $p\leftarrow p-(0{,}18;\,0{,}06)\,t$. Das vorhandene Muster wandert.
+\end{enumerate}
+}
+\folge{Simplex-Ziel übernehmen → gewichtete Oktaven ergänzen → Dichte und Farbe gestalten → mit der Zeit Abfrageposition verschieben.}
 \end{document}

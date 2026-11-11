@@ -1,6 +1,6 @@
 # Vortragsskelett – Grafiken programmieren
 
-Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren – Mit Mathematik zu Millionen Pixeln“**. Die Reihenfolge ist ein Vorschlag für die weitere Ausarbeitung; die minutengenaue Planung und der Umfang einzelner Demos sind noch offen. Die [Roadmap](../ROADMAP.md) enthält die konzeptionellen Teilschritte und eine vorläufige Zeitplanung.
+Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren – Mit Mathematik zu Millionen Pixeln“**. Die Reihenfolge der sechs Demos ist festgelegt; die minutengenaue Planung und der Umfang einzelner Demos sind noch offen. Die [Roadmap](../ROADMAP.md) enthält die konzeptionellen Teilschritte und eine vorläufige Zeitplanung.
 
 ## Vorgeschlagener Ablauf
 
@@ -10,7 +10,7 @@ Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren 
 | Wer bin ich? | Name, M.Sc. IT-Systems-Engineering, Website, Position und Affiliation; Porträt rechts oben, darunter Google-Maps-Karte von Potsdam mit HPI-Markierung am Griebnitzsee; HPI-Vollogo und Uni-Potsdam-Logo unten links. | Neue persönliche Vorstellungsfolie vor der Zeitleiste umgesetzt. |
 | Werdegang | Zwei Zeitstrahlfolien von Hobbyprogrammierung und Ausbildung bis zu Computergrafik, Forschung und Lehre. | Persönliche Schwerpunkte für den Vortrag abstimmen; erste Folie heißt „Vom Hobby zum Studium“. |
 | Studium am HPI | Bachelor, Master und Promotion sowie mögliche Berufswege; Studienverlaufsplan, Link und QR-Code zu hpi.de. | Platzierung im Ablauf abstimmen; eine Vertiefung am Ende ist ebenfalls möglich. |
-| Übersicht | Erster Workshopblock: Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung von Bewegung und Farbe. Hinweis auf Mitprogrammieren in ShaderToy. | Die vier Leitideen sind festgelegt und auf der Übersichtsfolie abgebildet. Fortsetzung ab Demo 5 bleibt Planungsstand. |
+| Übersicht | Erster Workshopblock: Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung von Bewegung und Farbe. Hinweis auf Mitprogrammieren in ShaderToy. | Die vier Leitideen sind festgelegt und auf der Übersichtsfolie abgebildet. Fortsetzung festgelegt: Noise → fBm/Wolken/Animation. |
 | Einstieg in die Pixelberechnung | Pixelraster, RGB und das Modell „eine Farbe pro Pixel“; `fragCoord`, `iResolution`, später `iTime` direkt am Boilerplate einführen. Tafelbild 1 als Zeichnung oder fertige Seite. | Einführung und Codevorlage für den Vortrag ausarbeiten. |
 | Demo-Blöcke | Pro Block: Frage oder Zielbild → nötiges Konzept am Tafelbild oder auf der Folie → gemeinsames Live-Coding in ShaderToy → Ergebnis und kurzer Rückblick. | Siehe Zuordnung unten; je Demo START, ZIEL und sinnvolle Zwischenstände abstimmen. |
 | Inspirationsgalerie | Sechs ausgewählte ShaderToy-Demos als Raster mit zwei Zeilen und drei Spalten, jeweils mit Originalvorschaubild, QR-Code und Link. | In den Folien umgesetzt; [Quellen und ausstehende Prüfung](../folien/bilder/galerie/README.md). Keine Live-Herleitung. |
@@ -29,22 +29,22 @@ Der rote Faden der ersten vier Demos ist festgelegt:
 | 3 | Objekte im Bild über Abstände und Felder sichtbar machen. |
 | 4 | Objekte gezielt steuern und ihre Bewegung mit Farbe verknüpfen. |
 
-Animation ist schon ab Demo 1 sichtbar; Demo 4 gestaltet ihren zeitlichen Verlauf bewusst mit Interpolation und Polynomen. Die folgenden Demos bilden die bisher geplante Fortsetzung.
+Animation ist schon ab Demo 1 sichtbar; Demo 4 gestaltet ihren zeitlichen Verlauf bewusst mit Interpolation und Polynomen. Demo 5 führt vom UV-Bild über Pixelzufall und Value Noise zu Simplex Noise; Demo 6 entwickelt daraus fBm, Wolkengestaltung und Animation. Die bisherigen Wellen- und Taylor-Demos entfallen.
 
-Die Reihenfolge folgt dem aktuellen Katalog; die Nummern bezeichnen hier die Vortragsfolge. Die zehn [Tafelbildentwürfe](../tafelbilder/README.md) können live entwickelt oder fertig gezeigt werden. Ein erster [Beamer-Foliensatz](../folien/README.md) enthält Demo-Folien, echte QR-Codes für Website und Inspirationsgalerie sowie vorläufige QR-Platzhalter für die noch offenen ShaderToy-START-Links.
+Die Reihenfolge folgt dem aktuellen Katalog; die Nummern bezeichnen hier die Vortragsfolge. Die acht [Tafelbildentwürfe](../tafelbilder/README.md) können live entwickelt oder fertig gezeigt werden. Ein erster [Beamer-Foliensatz](../folien/README.md) enthält Demo-Folien, echte QR-Codes für Website und Inspirationsgalerie sowie vorläufige QR-Platzhalter für die noch offenen ShaderToy-START-Links.
 
 | Nr. | Demo und Konzept | Tafelbildseiten | Folie und ShaderToy |
 | --- | --- | --- | --- |
 | 1 | [Farbe und Zeit](../demos/00-konstante-farbe/README.md): RGB, konstante Farben, zeitabhängiger Farbwechsel | 2 | Zielbild, RGB und Einstieg zu `iTime`; QR-Code zum vorbereiteten START. |
 | 2 | [Pixelposition und Farbverlauf](../demos/01-pixelposition-und-normalisierung/README.md): Position, Auflösung, Normalisierung und Mischung | 3 | Koordinaten und zwei Referenzfarben; QR-Code zum START. |
-| 3 | [Kreis und bewegte Metaballs](../demos/03-kreis-und-quadrierter-abstand/README.md): Abstand, Felder, Überlagerung und Bewegung | 4–5 | Kreis → Felder → Metaballs; QR-Code zum START. |
+| 3 | [Kreis und bewegte Metaballs](../demos/03-kreis-und-quadrierter-abstand/README.md): Abstand, Felder, Überlagerung und Bewegung | 4–5 | Kreis → ein Abstandsfeld → zwei Felder → bewegte Metaballs; QR-Code zum START. |
 | 4 | [Polynome für Bewegung und Farbe](../demos/05-polynom-und-weiche-kante/README.md): Lerp → Smoothstep → Smootherstep | 6 | Punkt auf einer Raute N/O/S/W; abbremsen, halten, beschleunigen. Im Halt mit derselben Kurve Schwarz → Rot/Grün/Blau/Gelb → Schwarz. Fünf Stände: 1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep. Phase 2/3 zeigen die Stimmen 1 und 3 (0/3 Sekunden Verzögerung); ab Phase 4 kommen Stimmen 2 und 4 hinzu (0/1,5/3/4,5 Sekunden); QR-Code zum ShaderToy-START bleibt offen. |
-| 5 | [Wellen und Animation](../demos/06-wellen-und-animation/README.md): Sinus, Phase und Zeit | 7 | Sinus als Bildbaustein; QR-Code zum START. Ein Meerbild wurde vorgeschlagen und ist noch nicht umgesetzt oder beschlossen. |
-| 6 | [Taylorapproximation](../demos/07-taylor-approximation/README.md): Referenz und lokale Näherung vergleichen | 8 | Vergleich und Entwicklungsstelle; QR-Code zum START. |
-| 7 | [Value Noise](../demos/08-value-noise/README.md): Gitterwerte und Interpolation | 9 | Gitter und glatte Mischung; QR-Code zum START. Noise-Basisfunktionen werden für das Live-Coding vorbereitet. |
-| 8 | [fBm](../demos/09-fbm/README.md): mehrere gewichtete Noise-Oktaven und Wolken | 10 | Grobe und feine Strukturen; QR-Code zum START. |
+| 5 | [Vom Zufall zu Noise](../demos/08-value-noise/README.md): UV-Bild → Zufall pro Pixel → Value Noise → Simplex Noise | 7 | Gitterwerte und bekannte Interpolation; Simplex als vorbereitete Alternative mit Gradienten auf einem Dreiecksgitter. Vier vollständige Stände; QR-Code zum START bleibt offen. |
+| 6 | [Wolken aus Noise](../demos/09-fbm/README.md): Simplex Noise → fBm → Wolkengestaltung → Animation | 8 | Gewichtete Oktaven, Dichte und Farbe, zuletzt Zeitverschiebung. Vier vollständige Stände; QR-Code zum START bleibt offen. |
 
-Demo 4 besitzt einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START; im Live-Coding wird zunächst auf zwei Punkte erweitert, dann Smoothstep eingeführt, danach auf vier Punkte erweitert und zuletzt Smootherstep eingesetzt. Die weißen START-Shader der übrigen Demos sind vorläufige Platzhalter. Deren konkrete Live-Coding-Progression und zusätzliche Stände müssen noch ausgearbeitet werden. Die Folien begleiten die Konzepte jeweils unmittelbar bei ihrer Anwendung; sie sind kein separater Theorieblock.
+Die technischen IDs `08-value-noise` und `09-fbm` bleiben erhalten; sie sind keine Vortragsnummern.
+
+Demo 4 besitzt einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START; die Schleife ist bereits vorbereitet; im Live-Coding wird zunächst nur ihre Grenze für zwei Punkte erhöht, dann Smoothstep eingeführt, danach auf vier Punkte erweitert und zuletzt Smootherstep eingesetzt. Die weißen START-Shader der ersten drei Demos sind vorläufige Platzhalter. Deren konkrete Live-Coding-Progression und zusätzliche Stände müssen noch ausgearbeitet werden. Demo 5 und 6 besitzen die festgelegten vier Stände mit vorbereiteter Noise-Basis; das ZIEL von Demo 5 entspricht exakt dem START von Demo 6. Jeder Stand behält möglichst denselben Rahmen. In Demo 5 wechselt der Gestaltungs-Code von Value zu Simplex ausschließlich über den Funktionsnamen `valueNoise` → `simplexNoise01`; neue Basisblöcke werden nur ergänzt. Die Folien begleiten die Konzepte jeweils unmittelbar bei ihrer Anwendung; sie sind kein separater Theorieblock.
 
 ## Folienbestand – To-dos
 
