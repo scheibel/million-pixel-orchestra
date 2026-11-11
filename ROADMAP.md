@@ -133,6 +133,12 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 
 ## 3. Workshopinhalt
 
+**Demo-Übersicht aktualisiert (11. November 2026):** Folie 5 umfasst alle sechs aktuellen Demos in zwei Reihen mit je drei ZIEL-Vorschaubildern, einschließlich Simplex Noise und animierter fBm-Wolken. Die Bilder werden mit dem optionalen Werkzeug `scripts/render-demo-previews.py` aus den unveränderten Ziel-Snippets bei festen Zeiten gerendert und unter `folien/bilder/demo-ziele/` versioniert. Quellprüfsummen und Renderdaten sind dort dokumentiert; der PDF-Build bleibt unabhängig vom Renderwerkzeug. Website-Adresse, QR-Code und Hinweis zum Mitprogrammieren bleiben auf der Übersicht erhalten.
+
+**Präzisierung zu Demo 1:** Auf der Übersicht ersetzt eine RGB-Füllanzeige die einfarbige Vorschau. Drei Balken zeigen die Farbkomponenten des ZIEL-Shaders bei `iTime = 0`; Pfeile deuten steigende bzw. fallende Anteile an. Die Grafik ist als bearbeitbares TikZ direkt in der Folienquelle angelegt.
+
+**Teaser auf der Übersicht:** Demo 5 heißt „Mit Rauschen gestalten“ mit „Chaos, aber unter Kontrolle“; Demo 6 heißt „Wolken aus Rauschen“ mit „Natürliche Strukturen mit Rauschen modellieren“. Fachbegriffe wie Noise, Simplex Noise und fBm werden dort noch nicht vorweggenommen.
+
 **3D-Ausblick ergänzt (11. November 2026):** Direkt nach „Was ist noch möglich?“ steht „Von Pixeln zu 3D-Welten“ mit den beiden bereitgestellten Screenshots und anklickbaren Links zu `https://webgl-operate.org` und `https://hpicgs.github.io/cg1-playground`. Der Ausblick motiviert zum Weiterexperimentieren; der Live-Coding-Umfang bleibt bei sechs Fragment-Shader-Demos. Die Bilder sind lokal unter `folien/bilder/3d-ausblick/` gespeichert; Quellen und der per LaTeX gewählte Playground-Ausschnitt sind dort dokumentiert. Der Vortrag umfasst damit 17 Folien.
 
 **Prüfung des 3D-Ausblicks:** `npm run build:pdf` erfolgreich; neue Folie 15 gerendert und visuell ohne Überstände geprüft. Beide Bildlinks und beide ausgeschriebenen Adressen in der erzeugten PDF auf die vorgegebenen Ziele geprüft.

@@ -16,17 +16,44 @@
 \newcommand{\frag}[1]{\texttt{#1}}
 \newcommand{\qrplatz}[1]{\begin{tikzpicture}\node[draw=muted!60,rounded corners=2pt,minimum width=3.0cm,minimum height=1.1cm,align=center,text=muted,font=\scriptsize] {QR-Code: #1\\Adresse folgt};\end{tikzpicture}}
 \newcommand{\workshopurl}{https://www.willyscheibel.de/million-pixel-orchestra/}
-\newcommand{\websitezugang}{%
+\newcommand{\websitezugang}[1][7.5]{%
   \begingroup\centering
   \setlength{\fboxsep}{2mm}% Weiße Ruhezone für den QR-Code.
   \href{\workshopurl}{\colorbox{white}{\color{black}\qrcode[height=2cm,level=M]{\workshopurl}}}\par\smallskip
-  {\fontsize{7.5}{9}\selectfont\color{sea}
+  {\fontsize{#1}{9}\selectfont\color{sea}
     \href{\workshopurl}{\texttt{www.willyscheibel.de/}\\\texttt{million-pixel-orchestra/}}\par}
   \endgroup
 }
 \newcommand{\demoheader}[1]{\tagline{Demo #1}\par\smallskip}
 \newcommand{\hinweis}[1]{{\small\color{muted}#1}}
 \newcommand{\bildrahmen}{\path[fill=soft,rounded corners=3pt] (0,0) rectangle (5.4,3.6);}
+% Demo 1 zeigt die RGB-Komponenten; die weiteren Bilder stammen aus den ZIEL-Shadern.
+\newcommand{\demozielbild}[1]{\includegraphics[width=\linewidth]{folien/bilder/demo-ziele/#1.png}}
+\newcommand{\rgbfuellanzeige}{%
+  \resizebox{\linewidth}{!}{%
+  \begin{tikzpicture}
+  \definecolor{rgbblau}{rgb}{0,0,1}% Der Stilalias „blue“ bezeichnet das HPI-Blau.
+  \path[fill=soft] (0,0) rectangle (5.4,3.0375);
+  % Werte und Änderungsrichtungen des ZIEL-Shaders bei iTime = 0.
+  \foreach \y/\name/\col/\anteil/\richtung in {2.3/Rot/red/.5/1,1.45/Grün/green/.95465/-1,.6/Blau/rgbblau/.12160/-1}{%
+    \node[anchor=east,font=\small] at (1.15,\y) {\name};
+    \fill[white] (1.35,\y-.15) rectangle (4.95,\y+.15);
+    \fill[\col] (1.35,\y-.15) rectangle ({1.35+3.6*\anteil},\y+.15);
+    \draw[-{Stealth[length=2mm]},ink,thick]
+      ({1.35+3.6*\anteil},\y+.28) -- ++({\richtung*.35},0);
+  }
+  \end{tikzpicture}}%
+}
+\newcommand{\demovorschau}[3]{%
+  \begin{minipage}[t]{.32\linewidth}
+  \setlength{\parskip}{0pt}
+  {\fontsize{7.5}{9}\selectfont\bfseries\strut #1\par}
+  \vspace{1mm}
+  #3\par
+  \vspace{1mm}
+  {\fontsize{7}{8.5}\selectfont\raggedright #2\par}
+  \end{minipage}%
+}
 % Ein gemeinsames Linkziel für Vorschaubild, QR-Code und lesbare Adresse.
 \newcommand{\galeriekachel}[2]{%
   \begin{minipage}[t]{.32\textwidth}
@@ -177,24 +204,22 @@ Universität Potsdam\par}
 \end{frame}
 
 \section{Einstieg}
-\begin{frame}{Die ersten vier Demos}
-\tagline{Von Farbe zu gezielter Bewegung}\par\vspace{3mm}
+\begin{frame}{Die sechs Demos im Überblick}
+\tagline{Von Farbe zu bewegten Wolken}\par\vspace{3mm}
 \begin{columns}[c,onlytextwidth]
-\begin{column}{.68\textwidth}
-\begin{enumerate}
-\item \textbf{Farbe und Zeit}\\
-Eine Farbe festlegen und mit der Zeit verändern.
-\item \textbf{Farbe und Position}\\
-Pixelraster, Positionen und Farbverläufe.
-\item \textbf{Objekte und Abstände}\\
-Formen durch Abstände und Felder erzeugen.
-\item \textbf{Bewegung und Farbe gezielt gestalten}\\
-Objekte steuern und Bewegung mit Farbe verknüpfen.
-\end{enumerate}
+\begin{column}{.76\textwidth}
+\noindent
+\demovorschau{1 · Farbe und Zeit}{RGB mit der Zeit verändern.}{\rgbfuellanzeige}\hfill
+\demovorschau{2 · Position und Farbverlauf}{Zwei Farben im Bild mischen.}{\demozielbild{01-pixelposition-und-normalisierung}}\hfill
+\demovorschau{3 · Kreis und Metaballs}{Formen durch Abstandsfelder.}{\demozielbild{03-kreis-und-quadrierter-abstand}}\par\vspace{4mm}
+\noindent
+\demovorschau{4 · Bewegung und Farbe}{Mit Polynomen sanft steuern.}{\demozielbild{05-polynom-und-weiche-kante}}\hfill
+\demovorschau{5 · Mit Rauschen gestalten}{Chaos, aber unter Kontrolle.}{\demozielbild{08-value-noise}}\hfill
+\demovorschau{6 · Wolken aus Rauschen}{Natürliche Strukturen mit Rauschen gestalten.}{\demozielbild{09-fbm}}
 \end{column}
-\begin{column}{.27\textwidth}
-\websitezugang\par%\medskip
-%\centering\hinweis{Gemeinsam programmieren in ShaderToy.}\par\smallskip
+\begin{column}{.21\textwidth}
+\websitezugang[6]\par%\medskip
+{\centering\scriptsize Zum ausprobieren und mitprogrammieren.\par}
 %\hinweis{Jede Demo beginnt mit einem vorbereiteten Stand.}
 \end{column}
 \end{columns}

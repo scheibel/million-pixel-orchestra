@@ -4,6 +4,8 @@
 
 Die beiden Zeitstrahlfolien heißen „Vom Hobby zum Studium“ und „Forschung, Praxis und Lehre“. Sie verwenden jeweils nur die reguläre Folienüberschrift; die bisherigen roten Untertitel entfallen.
 
+Folie 5 „Die sechs Demos im Überblick“ zeigt die vollständige aktuelle Abfolge: Farbe und Zeit → Position und Farbverlauf → Kreis und Metaballs → Bewegung und Farbe → Vom Zufall zu Noise → Wolken aus Noise. Zwei Reihen mit je drei Vorschauen zeigen die ZIEL-Stände: Demo 1 als RGB-Füllanzeige mit Pfeilen für die zeitliche Änderung, die weiteren fünf als gerenderte Bilder. Der Website-Link mit QR-Code steht daneben. [Bildquellen, feste Animationszeitpunkte und Neuerzeugung](bilder/demo-ziele/README.md) sind dokumentiert. Die Bilder sind lokal gespeichert und benötigen beim PDF-Build keinen Renderer.
+
 Direkt nach „Was ist noch möglich?“ ergänzt „Von Pixeln zu 3D-Welten“ den Ausblick: zwei Beispielbilder zu webgl-operate und cg1-playground, jeweils mit anklickbarem Bild und ausgeschriebener Adresse. Die bereitgestellten Screenshots liegen lokal; [Quellen und Bildausschnitt](bilder/3d-ausblick/README.md) sind dokumentiert. Der Foliensatz umfasst damit 17 Folien.
 
 `vortrag.tex` enthält einen ersten deutschen LaTeX-Beamer-Foliensatz im 16:9-Format. Die 17 Folien folgen dem [Vortragsskelett](../docs/VORTRAGSSKELETT.md): Vorstellung, Überblick, Pixel und Boilerplate, eine Einstiegsfolie pro Demo, Galerie, 3D-Ausblick, Rückblick und abschließend Studium am HPI. Die Demo-Folien verweisen auf passende [Tafelbilder](../tafelbilder/README.md).

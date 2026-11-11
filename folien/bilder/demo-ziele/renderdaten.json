@@ -1,0 +1,43 @@
+{
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "width": 640,
+  "height": 360,
+  "previews": [
+    {
+      "file": "00-konstante-farbe.png",
+      "source": "demos/00-konstante-farbe/ZIEL.glsl",
+      "sha256": "a074b095af0a6390b9e41c7444e649f771c7eb82944c9282fd08cd38e0569206",
+      "iTime": 1.0
+    },
+    {
+      "file": "01-pixelposition-und-normalisierung.png",
+      "source": "demos/01-pixelposition-und-normalisierung/ZIEL.glsl",
+      "sha256": "876661baaa051ce898515798f56107b87232642baf4c1c358fd8a1160d9c7858",
+      "iTime": 0.0
+    },
+    {
+      "file": "03-kreis-und-quadrierter-abstand.png",
+      "source": "demos/03-kreis-und-quadrierter-abstand/ZIEL.glsl",
+      "sha256": "0627e9abebc2213bc413c964477673a8a948405c6b4e2613f699941820831575",
+      "iTime": 3.6
+    },
+    {
+      "file": "05-polynom-und-weiche-kante.png",
+      "source": "demos/05-polynom-und-weiche-kante/ZIEL.glsl",
+      "sha256": "4f099696db09d0d48e237acc0d842751c1820fe5879012ed113be5b12e459789",
+      "iTime": 4.5
+    },
+    {
+      "file": "08-value-noise.png",
+      "source": "demos/08-value-noise/ZIEL.glsl",
+      "sha256": "b12d0cc25f9636ae26aaf20ae89d18d35d0c6de977985d431327eade109b921e",
+      "iTime": 0.0
+    },
+    {
+      "file": "09-fbm.png",
+      "source": "demos/09-fbm/ZIEL.glsl",
+      "sha256": "2f2e5b7e9c4a368fc036d860dce7756eb821a340f92e2970d6fc38ec8ed311b2",
+      "iTime": 8.0
+    }
+  ]
+}
