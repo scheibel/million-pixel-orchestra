@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Grafiken programmieren – Mit Mathematik zu Millionen Pixeln. Shader-Demos und Materialien für einen 90-Minuten-Workshop in der Oberstufe.">
+  <title>Millionen Pixel · Grafiken programmieren</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script type="module" src="./assets/landing.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt</a>
+  <header class="site-header shell">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">▦</span> Millionen Pixel<span class="brand-note">Mathematik wird sichtbar.</span></a>
+    <nav aria-label="Hauptnavigation"><a href="#demos">Demos</a><a href="#materialien">Materialien</a></nav>
+  </header>
+  <main id="inhalt" class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">90 Minuten · Oberstufe · Fragment-Shader</p>
+        <h1 id="hero-title">Millionen Pixel.<br>Eine Berechnung.</h1>
+        <p class="hero-copy">Grafiken programmieren – mit Mathematik zu Millionen Pixeln. Wir berechnen die Farbe jedes Pixels und machen aus kleinen Formeln sichtbare Bilder.</p>
+        <a class="button primary" href="#demos">Demos entdecken <span aria-hidden="true">↗</span></a>
+        <p class="hero-caption">Live programmieren in ShaderToy. Hier ausprobieren und vorbereitete Schritte wiederfinden.</p>
+      </div>
+      <div class="hero-art" aria-label="Eine Formel bestimmt die Farbe eines ganzen Pixelrasters" role="img">
+        <div class="pixel-field" aria-hidden="true"></div>
+        <div class="formula-card"><span class="eyebrow">Für jedes Pixel</span><span class="formula">color = f(x, y, t)</span><span class="formula-note">Position + Zeit → Farbe</span></div>
+        <span class="art-caption">Viele Pixel. Dieselbe Vorschrift.</span>
+      </div>
+    </section>
+    <section id="demos" class="section" aria-labelledby="demos-title">
+      <div class="section-heading"><div><p class="eyebrow">Der Baukasten</p><h2 id="demos-title">Vom Code zum Bild</h2></div><p>Öffnen, verändern, verstehen.</p></div>
+      <div id="demo-list" class="demo-list" aria-live="polite"><p>Lade Demos …</p></div>
+      <p id="catalog-error" class="notice error" role="alert" hidden></p>
+      <noscript><p class="notice">Bitte JavaScript aktivieren, um die Demos und die Shader-Vorschau zu nutzen.</p></noscript>
+    </section>
+    <section class="workshop-note" aria-labelledby="workflow-title">
+      <span class="note-index" aria-hidden="true">f(x, y, t)</span><div><h2 id="workflow-title">Ein Shader. Zwei Arbeitsorte.</h2><p>Hier findest du eine Vorschau, den bearbeitbaren Code und vorbereitete Zwischenstände. Kopiere den Code nach ShaderToy, um im Workshop mitzuentwickeln. START ist der Ausgangspunkt, ZIEL die fertige Änderung.</p></div>
+    </section>
+    <section id="materialien" class="section" aria-labelledby="materials-title">
+      <div class="section-heading"><div><p class="eyebrow">Zum Mitnehmen</p><h2 id="materials-title">Folien &amp; Tafelbilder</h2></div></div>
+      <div id="material-list"><p class="muted">Folien und Tafelbilder sind in Vorbereitung. Der Download auf dieser Website folgt später.</p></div>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>Grafiken programmieren – Mit Mathematik zu Millionen Pixeln</span><span>Ein Pixel nach dem anderen.</span></footer>
+</body>
+</html>

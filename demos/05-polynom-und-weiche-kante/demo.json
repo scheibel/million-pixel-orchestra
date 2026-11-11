@@ -1,0 +1,20 @@
+{
+  "id": "05-polynom-und-weiche-kante",
+  "title": "Polynom und weiche Kante",
+  "summary": "Ein kubisches Polynom macht den Rand eines Kreises weich.",
+  "math": "fragCoord und iResolution.xy bestimmen die Position relativ zur Bildmitte; die Division durch die Bildhöhe hält den Kreis rund. Der Abstand wird über ein schmales Randintervall auf t zwischen 0 und 1 abgebildet. 3t² − 2t³ verläuft an beiden Enden flach und mischt Innen- und Außenfarbe weich.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL",
+      "file": "ZIEL.glsl",
+      "description": "Ein kubisches Polynom macht den Rand eines Kreises weich."
+    }
+  ]
+}

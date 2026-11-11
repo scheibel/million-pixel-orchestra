@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shader bearbeiten, vorbereitete Stände auswählen und das Ergebnis direkt sehen.">
+  <title>Shader-Werkstatt · Millionen Pixel</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script type="module" src="./assets/editor.js"></script>
+</head>
+<body class="editor-page">
+  <a class="skip-link" href="#source">Zum Code-Editor</a>
+  <header class="site-header shell wide"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">▦</span> Millionen Pixel</a><a class="back-link" href="./#demos">← Alle Demos</a></header>
+  <main class="shell wide">
+    <div class="editor-heading"><div><p class="eyebrow">Die Shader-Werkstatt</p><h1 id="demo-title">Demo wird geladen …</h1><p id="demo-summary" class="muted"></p></div><span class="chip">ShaderToy-kompatibel</span></div>
+    <p id="load-error" class="notice error" role="alert" hidden></p>
+    <noscript><p class="notice">Der Editor benötigt JavaScript und WebGL2.</p></noscript>
+    <fieldset id="workspace" class="workspace" disabled>
+      <legend class="sr-only">Shader bearbeiten und Vorschau steuern</legend>
+      <div class="snapshot-bar"><span class="eyebrow">Vorbereitete Stände</span><div id="snapshots" class="snapshot-buttons" role="group" aria-label="Quellcode-Stand wählen"></div><p id="snapshot-description"></p></div>
+      <div class="workbench">
+        <section class="code-pane" aria-labelledby="code-title">
+          <div class="pane-heading"><h2 id="code-title">Quellcode <span class="language-label">GLSL</span></h2><span id="draft-status" class="small">Vorbereitete Fassung</span></div>
+          <div class="code-editor"><div id="line-numbers" class="line-numbers" aria-hidden="true"></div><textarea id="source" aria-label="GLSL-Quellcode" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea></div>
+          <div class="code-actions"><button id="compile" type="button" class="button primary">Kompilieren</button><button id="copy" type="button" class="button">Für ShaderToy kopieren</button><button id="restore" type="button" class="text-button" disabled>Stand wiederherstellen</button></div>
+          <div class="editor-help"><span>Live-Vorschau nach kurzer Eingabepause.</span><span>Strg / ⌘ + Enter: kompilieren</span></div>
+          <p id="copy-status" class="small" role="status"></p>
+          <div class="shadertoy-export" aria-labelledby="export-title">
+            <h3 id="export-title">In ShaderToy weiterprogrammieren</h3>
+            <ol>
+              <li>Gewünschten Stand auswählen und „Für ShaderToy kopieren“ drücken.</li>
+              <li><a id="shadertoy-link" href="https://www.shadertoy.com/new" target="_blank" rel="noopener noreferrer">Neues ShaderToy-Projekt öffnen ↗</a></li>
+              <li>Den Inhalt des Image-Codefelds vollständig durch den kopierten Code ersetzen (Strg / ⌘ + V) und ausführen.</li>
+            </ol>
+            <p id="shadertoy-status" class="small">Für diesen Stand ist noch kein veröffentlichter ShaderToy-Link hinterlegt.</p>
+          </div>
+        </section>
+        <section class="preview-pane" aria-labelledby="preview-title">
+          <div class="pane-heading"><h2 id="preview-title">Das berechnete Bild</h2><span id="resolution" class="small"></span></div>
+          <div id="preview-frame" class="preview-frame"><canvas id="preview" aria-label="Live-Vorschau des Fragment-Shaders">Dein Browser unterstützt kein Canvas.</canvas><span id="stale-label" class="preview-badge" hidden>Zuletzt gültiger Code</span></div>
+          <div class="animation-controls">
+            <button id="play" type="button" class="button icon-button" aria-label="Animation pausieren" title="Animation pausieren">
+              <svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>
+              <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M7 4v16l13-8z"/></svg>
+            </button>
+            <button id="reset-time" type="button" class="button icon-button" aria-label="Zeit auf 0 zurücksetzen" title="Zeit auf 0 zurücksetzen">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.6 10.5l1.9-.6A6 6 0 1 0 7 8H10v2H3V3h2v4.2A8 8 0 0 1 12 4zm-1 3h2v5l3 2-1.1 1.7-3.9-2.6z"/></svg>
+            </button>
+            <output id="time" aria-label="Animationszeit">0,00 s</output>
+            <button id="fullscreen" type="button" class="button icon-button" aria-label="Vollbild öffnen" title="Vollbild öffnen">
+              <svg id="fullscreen-enter-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+              <svg id="fullscreen-exit-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M8 4h2v6H4V8h4zm6 0h2v4h4v2h-6zM4 14h6v6H8v-4H4zm10 0h6v2h-4v4h-2z"/></svg>
+            </button>
+          </div>
+          <p id="fullscreen-status" class="small" role="status" hidden></p>
+          <p id="compile-status" class="compile-status" role="status">Vorschau wird vorbereitet …</p>
+          <div id="errors" class="error-panel" role="alert" hidden><h3>Der Shader konnte nicht kompiliert werden.</h3><ul id="error-list"></ul><details><summary>Vollständige Compiler-Meldung</summary><pre id="error-log"></pre></details></div>
+        </section>
+      </div>
+    </fieldset>
+    <section class="math-note"><p class="eyebrow">Die Mathematik dahinter</p><p id="demo-math"></p></section>
+    <div class="editor-footnote"><p>Eigene Änderungen bleiben je Stand in dieser geöffneten Seite erhalten. Beim Neuladen werden die vorbereiteten Fassungen geladen.</p></div>
+  </main>
+  <footer class="site-footer shell wide"><span>color = f(x, y, t)</span><span>Position + Zeit → Farbe</span></footer>
+</body>
+</html>

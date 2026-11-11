@@ -1,0 +1,32 @@
+{
+  "id": "00-konstante-farbe",
+  "title": "Farbe und Zeit",
+  "summary": "RGB-Farben verändern und anschließend mit der Zeit animieren.",
+  "math": "Ein RGB-Vektor enthält Rot, Grün und Blau zwischen 0 und 1. iTime gibt die Zeit in Sekunden an. sin schwankt zwischen −1 und 1; 0,5 + 0,5 · sin(iTime) verschiebt den Bereich auf 0 bis 1. Verschiedene Phasen verschieben den Farbwechsel der einzelnen Komponenten.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "violett",
+      "label": "Zwischenstand · Violett",
+      "file": "01-violett.glsl",
+      "description": "Ein anderer RGB-Vektor färbt das gesamte Bild violett."
+    },
+    {
+      "id": "koralle",
+      "label": "Zwischenstand · Koralle",
+      "file": "02-koralle.glsl",
+      "description": "Ein weiterer konstanter RGB-Vektor färbt alle Pixel korallfarben."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL · Farbwechsel",
+      "file": "ZIEL.glsl",
+      "description": "Drei zeitversetzte Sinuswerte verändern Rot, Grün und Blau."
+    }
+  ]
+}

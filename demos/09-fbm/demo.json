@@ -1,0 +1,20 @@
+{
+  "id": "09-fbm",
+  "title": "fBm: Wolken aus Noise",
+  "summary": "Mehrere unterschiedlich große Noise-Muster ergeben eine Wolkentextur.",
+  "math": "fragCoord und iResolution.y ergeben Koordinaten mit gleich großen Einheiten auf beiden Achsen. Die vorbereitete Value-Noise-Funktion interpoliert Pseudozufallswerte im Gitter. Vier Oktaven mit jeweils doppelter Frequenz und halbem Gewicht überlagern grobe und feine Strukturen. Die Gewichtssumme 0,9375 normalisiert das Ergebnis.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL",
+      "file": "ZIEL.glsl",
+      "description": "Mehrere unterschiedlich große Noise-Muster ergeben eine Wolkentextur."
+    }
+  ]
+}

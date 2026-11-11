@@ -1,0 +1,26 @@
+{
+  "id": "01-pixelposition-und-normalisierung",
+  "title": "Pixelposition und Farbverlauf",
+  "summary": "Normierte Pixelpositionen anzeigen und zwei Farben damit mischen.",
+  "math": "fragCoord ist die Pixelposition vom linken unteren Rand, iResolution.xy die Bildbreite und -höhe. Die komponentenweise Division ergibt uv-Werte zwischen 0 und 1. Im Zwischenstand zeigen Rot und Grün diese Koordinaten; im Ziel mischt mix die beiden Farben mit uv.x. Für geometrische Abstände ist eine Seitenverhältniskorrektur erforderlich.",
+  "snapshots": [
+    {
+      "id": "start",
+      "label": "START · Weiß",
+      "file": "START.glsl",
+      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+    },
+    {
+      "id": "normalisierung",
+      "label": "Zwischenstand · Position",
+      "file": "01-normalisierung.glsl",
+      "description": "Rot und Grün zeigen die normierte Pixelposition."
+    },
+    {
+      "id": "ziel",
+      "label": "ZIEL · Farbverlauf",
+      "file": "ZIEL.glsl",
+      "description": "Die horizontale Position mischt zwei Farben."
+    }
+  ]
+}
