@@ -68,6 +68,7 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 ### I2 — GitHub Pages
 
+- Festgelegte Website-Adresse: `https://scheibel.github.io/million-pixel-orchestra`. Link und QR-Code sind auf Übersichts- und Abschlussfolie eingebunden; die Veröffentlichung bleibt ein eigener Schritt.
 - Statisches Gesamtergebnis ohne erforderliches Server-Backend vorsehen; keine fest kodierte Domain.
 - Relative oder passend konfigurierte Pfade müssen auch unter einem Repository-Unterverzeichnis funktionieren, einschließlich Shader-Dateien und PDF-Downloads.
 - Festgelegter Veröffentlichungsweg: Website samt PDFs vollständig auf dem Entwicklergerät nach `dist/` bauen, lokal prüfen und anschließend das fertige Bundle in die GitHub-Pages-Veröffentlichungsquelle pushen. Veröffentlichungsbranch und konkreten Push-Ablauf bei der Umsetzung dokumentieren.
@@ -80,6 +81,10 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 Die Inhaltsplanung und das Rahmenwerk haben getrennte Aufgaben. Lernziele, festgelegte Einschränkungen und die abgestimmte didaktische Progression aus `CONTEXT.md` bleiben Grundlage.
 
 Das [Vortragsskelett](docs/VORTRAGSSKELETT.md) ordnet die geplanten Folien, Demos, Tafelbilder, ShaderToy-Beispiele und QR-Codes dem Ablauf zu. Es enthält die offenen Aufgaben für persönliche Vorstellung, HPI-Studium, Übersicht, Demo-Folien und Zugangslinks. Reihenfolge und Zeitplanung bleiben Arbeitsstand.
+
+Die erste Vorstellungsfolie „Wer bin ich?“ enthält das gewünschte Porträt vom Februar 2016 als lokale Bilddatei. Der Witz zum Alter des Fotos bleibt mündlich; die Timeline behält ihre Schriftgröße und horizontale Jahresskala.
+
+Die Inspirationsgalerie ist mit den sechs am 11. November 2026 ausgewählten ShaderToy-Demos `4df3Rn`, `XdlSDs`, `WtfGDX`, `mtyGWy`, `fstyD4` und `3sySRK` umgesetzt: zwei Zeilen, drei Spalten, je ein lokales Originalvorschaubild, ein QR-Code und ein anklickbarer Link. Bildquellen und ausstehende Prüfung der Originalseiten bzw. Live-Ausführung sind unter `folien/bilder/galerie/README.md` dokumentiert. Es wurden keine ShaderToy-Projekte angelegt oder veröffentlicht.
 
 ### Konzeptablauf pro Demo — Arbeitsstand
 
@@ -106,7 +111,7 @@ Die konzeptionellen Schritte sind nicht sämtlich als eigene Shader-Stände vorh
 - **Glatte Übergänge:** `05-polynom-und-weiche-kante` mit Herleitung von `3t²-2t³` und Anwendung auf weiche Übergänge.
 - **Zeit und Approximation:** `06-wellen-und-animation` mit Sinus/Cosinus, Phase und `iTime`; `07-taylor-approximation` mit sichtbarem Vergleich zur Referenz.
 - **Zufall, Noise, fBm:** `08-value-noise` mit Pseudozufall und vorgegebener Gitter-/Interpolationsbasis; `09-fbm` mit mehreren Noise-Oktaven und Wolken/Marmor als möglichen Ergebnissen.
-- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Erste Entwürfe liegen unter `folien/` und `tafelbilder/`; persönliche Inhalte, funktionierende QR-Codes und die weitere Abstimmung stehen aus. Eine Umgestaltung von Wellenmotiv und weicher Kante bleibt Gegenstand der Inhaltsabstimmung.
+- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Erste Entwürfe liegen unter `folien/` und `tafelbilder/`. Die persönliche Timeline ist nach den neuesten Angaben vom 11. November 2026 korrigiert: Programmieren als Hobby 2001–2007, Computerlehrgänge 2004–2006; die Kategorien Softwaresystemingenieur seit 2007, Computergrafiker seit 2009 und Forscher in der Computergrafik seit 2013 stehen direkt zwischen den zugehörigen Stationen. Die Consulting-Firma gehört zum Bereich Computergrafiker. Kleinere Beschriftungen und dünne graue Jahreslinien ersetzen die bisherige Darstellung mit Legende; Details in `folien/README.md`. Weitere persönliche Inhalte, funktionierende QR-Codes und die weitere Abstimmung stehen aus. Eine Umgestaltung von Wellenmotiv und weicher Kante bleibt Gegenstand der Inhaltsabstimmung.
 - **Unterrichtsvorbereitung:** separate START-/ZIEL-Stände lokal prüfen, Links und Handout-Referenzen ordnen, Tastatureingaben/Sonderzeichen minimieren; Galerie-Beispiele auswählen und externe Werke mit Quellen zuordnen.
 
 ### Provisorische Ablaufskizze (aus letztem Planungsstand, noch nicht final beschlossen)

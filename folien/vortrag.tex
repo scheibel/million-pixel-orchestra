@@ -7,49 +7,90 @@
 \usepackage{qrcode}
 \usetikzlibrary{arrows.meta,calc}
 \input{folien/stil.tex}
-\title[Grafiken programmieren]{Grafiken programmieren}
-\subtitle{Mit Mathematik zu Millionen Pixeln}
+\title[Grafiken programmieren – Mit Mathematik zu Millionen Pixeln]{Grafiken programmieren –\\Mit Mathematik zu Millionen Pixeln}
 \author{Willy Scheibel}
-\institute{Marie-Curie-Gymnasium · Oberstufenworkshop}
+\institute{Marie-Curie-Gymnasium · 12.11.2026 · Marie-Curie-Tag}
 \date{}
 \setlength{\parskip}{3pt}
 \newcommand{\tagline}[1]{{\color{accent}\footnotesize\bfseries\MakeUppercase{#1}}}
 \newcommand{\frag}[1]{\texttt{#1}}
 \newcommand{\qrplatz}[1]{\begin{tikzpicture}\node[draw=muted!60,rounded corners=2pt,minimum width=3.0cm,minimum height=1.1cm,align=center,text=muted,font=\scriptsize] {QR-Code: #1\\Adresse folgt};\end{tikzpicture}}
+\newcommand{\workshopurl}{https://scheibel.github.io/million-pixel-orchestra}
+\newcommand{\websitezugang}{%
+  \begingroup\centering
+  \setlength{\fboxsep}{2mm}% Weiße Ruhezone für den QR-Code.
+  \href{\workshopurl}{\colorbox{white}{\color{black}\qrcode[height=2cm,level=M]{\workshopurl}}}\par\smallskip
+  {\fontsize{7.5}{9}\selectfont\color{sea}
+    \href{\workshopurl}{\texttt{scheibel.github.io/}\\\texttt{million-pixel-orchestra}}\par}
+  \endgroup
+}
 \newcommand{\demoheader}[1]{\tagline{Demo #1}\par\smallskip}
 \newcommand{\hinweis}[1]{{\small\color{muted}#1}}
 \newcommand{\bildrahmen}{\path[fill=soft,rounded corners=3pt] (0,0) rectangle (5.4,3.6);}
-% Beide Folien verwenden dieselbe Skala: 0,275 cm pro Jahr ab 2000.
-\newcommand{\zeitachse}{%
-  \useasboundingbox (-6.2,-3.9) rectangle (7.6,.7);
-  \draw[muted,thick] (0,0) -- (7.425,0);
-  \foreach \jahr in {2000,2005,2010,2015,2020,2027} {
-    \draw[muted] ({(\jahr-2000)*.275},0.07) -- +(0,-0.14);
-    \node[font=\scriptsize,text=muted,above] at ({(\jahr-2000)*.275},.1) {\jahr};
-  }
+% Ein gemeinsames Linkziel für Vorschaubild, QR-Code und lesbare Adresse.
+\newcommand{\galeriekachel}[2]{%
+  \begin{minipage}[t]{.32\textwidth}
+  \setlength{\parskip}{0pt}
+  {\fontsize{8}{9}\selectfont\bfseries\strut #2\par}
+  \vspace{1mm}
+  \noindent\begin{minipage}[c]{.66\linewidth}
+    \href{https://www.shadertoy.com/view/#1}{%
+      \includegraphics[width=\linewidth]{folien/bilder/galerie/#1.jpg}}%
+  \end{minipage}\hfill
+  \begin{minipage}[c]{.30\linewidth}
+    \centering
+    \setlength{\fboxsep}{1.5mm}% Ruhezone um den QR-Code.
+    \href{https://www.shadertoy.com/view/#1}{%
+      \colorbox{white}{\color{black}\qrcode[height=1.05cm,level=M]{https://www.shadertoy.com/view/#1}}}%
+  \end{minipage}\par\vspace{1mm}
+  {\fontsize{6.5}{7.5}\selectfont
+    \href{https://www.shadertoy.com/view/#1}{\textcolor{sea}{\texttt{shadertoy.com/view/#1}}}\par}
+  \end{minipage}%
 }
-\newcommand{\zeitlabel}[2]{\node[overlay,anchor=east,align=right,font=\fontsize{7.3}{8}\selectfont,text=ink] at (-.25,#1) {#2};}
+% Beide Folien verwenden dieselbe Skala: 0,275 cm pro Jahr ab 2000.
+\newcommand{\zeitachse}[1][4.9]{%
+  \useasboundingbox (-6.2,{-#1-.05}) rectangle (7.6,.45);
+  \foreach \jahr in {2000,...,2027} {
+    \draw[muted!20,line width=.15pt] ({(\jahr-2000)*.275},0) -- +(0,-#1);
+  }
+  \foreach \jahr in {2000,2005,2010,2015,2020,2027} {
+    \draw[muted!45,line width=.25pt] ({(\jahr-2000)*.275},0) -- +(0,-#1);
+    \draw[muted] ({(\jahr-2000)*.275},0.07) -- +(0,-0.14);
+    \node[font=\fontsize{6.5}{7.5}\selectfont,text=muted,above] at ({(\jahr-2000)*.275},.1) {\jahr};
+  }
+  \draw[muted,thick] (0,0) -- (7.425,0);
+}
+\newcommand{\zeitlabel}[2]{\node[overlay,anchor=east,align=right,font=\fontsize{6.3}{7.2}\selectfont,text=ink] at (-.25,#1) {#2};}
 \newcommand{\zeitraum}[4]{%
   \zeitlabel{#1}{#2}
-  \draw[sea,line width=3pt,line cap=round] ({(#3-2000)*.275},#1) -- ({(#4-2000)*.275},#1);
+  \draw[sea,line width=2.5pt,line cap=round] ({(#3-2000)*.275},#1) -- ({(#4-2000)*.275},#1);
 }
 \newcommand{\zeitoffen}[3]{%
   \zeitlabel{#1}{#2}
-  \draw[sea,line width=2pt,-{Stealth[length=2.5mm]}] ({(#3-2000)*.275},#1) -- (7.425,#1);
+  \draw[sea,line width=1.7pt,-{Stealth[length=2.3mm]}] ({(#3-2000)*.275},#1) -- (7.425,#1);
 }
 \newcommand{\zeitpunkt}[3]{%
   \zeitlabel{#1}{#2}
-  \fill[accent] ({(#3-2000)*.275},#1) circle (2.3pt);
+  \fill[accent] ({(#3-2000)*.275},#1) circle (2pt);
+}
+% Kategorien stehen direkt vor ihren Stationen; der Hintergrund bündelt sie.
+\newcommand{\zeitgruppe}[2]{%
+  \fill[accent!4] (-6.2,#1) rectangle (7.425,#2);
+  \draw[accent!50,line width=.5pt] (-6.2,#1) -- (-6.2,#2);
+}
+\newcommand{\berufsphase}[3]{%
+  \zeitlabel{#1}{\textbf{seit #3 · #2}}
+  \draw[accent,line width=3pt,-{Stealth[length=2.5mm]}] ({(#3-2000)*.275},#1) -- (7.425,#1);
 }
 
 \begin{document}
 \begin{frame}[plain]
 \begin{beamercolorbox}[left,leftskip=0pt,ht=6mm,dp=1mm,wd=\textwidth]{frametitle}
-  \hbox to \textwidth{\usebeamerfont{frametitle}\inserttitle\hfill\cgslogos}
+  \hbox to \textwidth{\hfill\cgslogos}
 \end{beamercolorbox}
 \vspace{2mm}
 \begin{center}
-{\Large\bfseries ---\enspace\insertsubtitle\enspace---}\par\smallskip
+{\Large\bfseries \inserttitle\enspace---\par}\smallskip
 \insertauthor\par\medskip
 \begin{tikzpicture}[scale=.65]
 \foreach \x in {0,...,6} \foreach \y in {0,...,6} {
@@ -64,44 +105,56 @@
 
 \section{Vorstellung}
 \begin{frame}{Wer bin ich?}
-\tagline{Willy Scheibel · Vom Hobby zum Studium}\par\vspace{3mm}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{.82\textwidth}
+\tagline{Willy Scheibel · Vom Hobby zum Studium}
+\end{column}
+\begin{column}{.15\textwidth}
+\raggedleft
+\includegraphics[width=1.75cm]{folien/bilder/willy-scheibel-feb-2016.png}
+\end{column}
+\end{columns}
 \begin{center}
 \begin{tikzpicture}
-\zeitachse
-\zeitoffen{-.4}{ab 2003 · Hobbyprogrammierung}{2003}
-\zeitoffen{-.94}{ab 2005 · Mitwirkung in Computerlehrgängen}{2005}
-\zeitpunkt{-1.48}{2007 · Abitur}{2007}
-\zeitraum{-2.02}{2007–2008 · Programmierjob und Zivildienst}{2007}{2008}
-\zeitraum{-2.56}{2008–2010 · Werkstudent: Webseitenprogrammierung}{2008}{2010}
-\zeitraum{-3.1}{2008–2011 · Bachelorstudium am HPI}{2008}{2011}
-\zeitraum{-3.64}{2011–2014 · Masterstudium am HPI}{2011}{2014}
+\zeitgruppe{-2.82}{-4.38}
+\zeitachse[4.4]
+\zeitraum{-.4}{2001–2007 · Programmieren als Hobby}{2001}{2007}
+\zeitraum{-.93}{2004–2006 · Mitwirkung in Computerlehrgängen}{2004}{2006}
+\zeitpunkt{-1.46}{2007 · Abitur}{2007}
+\zeitraum{-1.99}{2007–2008 · Programmierjob und Zivildienst}{2007}{2008}
+\zeitraum{-2.52}{2008–2010 · Werkstudent: Webseitenprogrammierung}{2008}{2010}
+\berufsphase{-3.05}{Softwaresystemingenieur}{2007}
+\zeitraum{-3.58}{2008–2011 · Bachelorstudium am HPI}{2008}{2011}
+\zeitraum{-4.11}{2011–2014 · Masterstudium am HPI}{2011}{2014}
 \end{tikzpicture}
 \end{center}
-\hinweis{Punkt: Ereignis · Balken: Zeitraum · Pfeil: Beginn bekannt, Ende offen}
 \end{frame}
 
 \begin{frame}{Was kam danach?}
-\tagline{Willy Scheibel · Forschung, Praxis und Lehre}\par\vspace{3mm}
+\tagline{Willy Scheibel · Forschung, Praxis und Lehre}\par\vspace{1mm}
 \begin{center}
 \begin{tikzpicture}
+\zeitgruppe{-.14}{-2.25}
+\zeitgruppe{-2.28}{-4.9}
 \zeitachse
-\zeitraum{-.4}{2011–2014 · Werkstudent: Computergrafik}{2011}{2014}
-\zeitraum{-.94}{2011–2020 · Open Source in der Computergrafik}{2011}{2020}
-\zeitoffen{-1.48}{ab 2014 · Promotionsstudium am HPI}{2014}
-\zeitraum{-2.02}{2015–2022 · Miteigentümer einer Consulting-Firma\\Computergrafik}{2015}{2022}
-\zeitoffen{-2.56}{ab 2015 · Internationale Publikationen\\Computergrafik und Visualisierung}{2015}
-\zeitoffen{-3.1}{ab 2015 · Lehre\\Computergrafik und Software Engineering}{2015}
-\zeitoffen{-3.64}{ab 2017 · Universitäre Selbstverwaltung}{2017}
+\berufsphase{-.4}{Computergrafiker}{2009}
+\zeitraum{-.93}{2011–2014 · Werkstudent: Computergrafik}{2011}{2014}
+\zeitraum{-1.46}{2015–2022 · Miteigentümer einer Consulting-Firma\\Computergrafik}{2015}{2022}
+\zeitraum{-1.99}{2011–2020 · Open Source in der Computergrafik}{2011}{2020}
+\berufsphase{-2.52}{Forscher in der Computergrafik}{2013}
+\zeitoffen{-3.05}{ab 2014 · Promotionsstudium am HPI}{2014}
+\zeitoffen{-3.58}{ab 2015 · Internationale Publikationen\\Computergrafik und Visualisierung}{2015}
+\zeitoffen{-4.11}{ab 2015 · Lehre\\Computergrafik und Software Engineering}{2015}
+\zeitoffen{-4.64}{ab 2017 · Universitäre Selbstverwaltung}{2017}
 \end{tikzpicture}
 \end{center}
-\hinweis{Pfeile markieren einen angegebenen Beginn; ein Ende ist nicht dargestellt.}
 \end{frame}
 
 \begin{frame}{Studium am HPI}
 \tagline{Studium und Perspektiven}\vspace{2mm}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{.56\textwidth}
-{\small\bfseries Beispiel: Bachelor IT-Systems Engineering}\par\smallskip
+{\small\bfseries Beispiel: B.Sc. IT-Systems Engineering}\par\smallskip
 \includegraphics[width=\linewidth,height=4.1cm,keepaspectratio]{folien/bilder/hpi-studienverlaufsplan.png}\par
 {\scriptsize\color{muted}Studienverlaufsplan · Quelle: \href{https://hpi.de}{Hasso-Plattner-Institut}}
 \end{column}
@@ -109,7 +162,7 @@
 {\small\bfseries Möglicher Studienweg}\par
 {\small Bachelorstudium $\rightarrow$ Masterstudium $\rightarrow$ Promotion}\par\medskip
 {\small\bfseries Mögliche Wege danach}\par
-{\small Softwareentwicklung · Freelancing\\Gründung · Forschung}\par\medskip
+{\small Softwareentwicklung · Freelancing ·\\Gründung · Forschung}\par\medskip
 \begin{columns}[c,onlytextwidth]
 \begin{column}{1.5cm}
 \href{https://hpi.de}{\colorbox{white}{\qrcode[height=1.15cm]{https://hpi.de}}}
@@ -136,7 +189,7 @@
 \draw[-{Stealth},sea,thick] (a)--(b);\draw[-{Stealth},sea,thick] (b)--(c);\draw[-{Stealth},sea,thick] (c)--(d);\draw[-{Stealth},sea,thick] (d)--(e);
 \end{tikzpicture}
 \end{center}
-\vspace{2mm}\begin{columns}[c]\begin{column}{.64\textwidth}Wir programmieren gemeinsam in ShaderToy.\\[2mm]Jedes Beispiel beginnt mit einem vorbereiteten Stand.\end{column}\begin{column}{.30\textwidth}\qrplatz{Website}\end{column}\end{columns}
+\vspace{2mm}\begin{columns}[c]\begin{column}{.64\textwidth}Wir programmieren gemeinsam in ShaderToy.\\[2mm]Jedes Beispiel beginnt mit einem vorbereiteten Stand.\end{column}\begin{column}{.30\textwidth}\websitezugang\end{column}\end{columns}
 \end{frame}
 
 \begin{frame}{Ein Bild – viele Pixel}
@@ -320,23 +373,33 @@ void mainImage(out vec4 fragColor,
 
 \section{Ausblick}
 \begin{frame}{Was ist noch möglich?}
-\tagline{Inspirationsgalerie · Beispiele folgen}\vspace{4mm}
-\begin{columns}[T]
-\begin{column}{.31\textwidth}\begin{block}{Rotation}Matrizen verändern Koordinaten.\end{block}\end{column}
-\begin{column}{.31\textwidth}\begin{block}{Ray Marching}Abstände helfen, räumliche Szenen zu erkunden.\end{block}\end{column}
-\begin{column}{.31\textwidth}\begin{block}{Stochastik}Zufällige Verfahren erzeugen komplexe Effekte.\end{block}\end{column}
-\end{columns}
-\vspace{3mm}\hinweis{Konkrete Beispiele und Quellen werden noch ausgewählt.}
+\tagline{Inspirationsgalerie · Auf ShaderToy entdecken}\par\vspace{3mm}
+\noindent
+\galeriekachel{4df3Rn}{Mandelbrot-Fraktal}\hfill
+\galeriekachel{XdlSDs}{Leuchtender Farbkreis}\hfill
+\galeriekachel{WtfGDX}{Konturen im Dreiecksraster}\par\vspace{5mm}
+\noindent
+\galeriekachel{mtyGWy}{Kaleidoskop}\hfill
+\galeriekachel{fstyD4}{Küstenlandschaft}\hfill
+\galeriekachel{3sySRK}{Räumliche Metaballs}
 \end{frame}
 
 \begin{frame}{Was nehmen wir mit?}
-\tagline{Rückblick und Fragen}\vspace{3mm}
+\tagline{Rückblick}\vspace{3mm}
 \begin{columns}[c]
 \begin{column}{.62\textwidth}
-\begin{itemize}\item Ein Shader berechnet eine Farbe pro Pixel.\item Position und Zeit machen Bilder veränderlich.\item Mathematik verbindet einfache Regeln zu Mustern.\end{itemize}
-\medskip{\large\bfseries Was würdet ihr als Nächstes verändern?}
+\begin{itemize}
+  \item Ein Display kann Millionen Pixel enthalten.
+  \item Für jedes Pixel berechnen wir eine Farbe.
+  \item Positionsabhängige Farben ergeben ein Bild.
+  \item Farbe abhängig von der Zeit erzeugt eine Animation.
+  \item Mathematik verbindet einfache Regeln zu Mustern.
+\end{itemize}
+\bigskip
+{\small\bfseries Mit einem Studium der Informatik oder Mathematik legt ihr das Fundament, um eigene Bildwelten zu gestalten.\par}
+%\medskip{\large\bfseries Was würdet ihr als Nächstes verändern?}
 \end{column}
-\begin{column}{.32\textwidth}\qrplatz{Website}\par\medskip\hinweis{Demos und Materialien · Adresse folgt}\end{column}
+\begin{column}{.32\textwidth}\websitezugang\par\medskip\centering\hinweis{Demos und Materialien}\end{column}
 \end{columns}
 \end{frame}
 \end{document}

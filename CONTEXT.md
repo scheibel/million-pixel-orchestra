@@ -29,6 +29,7 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 
 ## Website, lokales Hosting und Release-Build (festgelegt)
 - Eine **deutsche Landingpage** bietet einen zentralen Einstieg zu Demos und Lehrmaterialien.
+- Als Website-Adresse ist seit 11. November 2026 **`https://scheibel.github.io/million-pixel-orchestra`** festgelegt. Die Übersichts- und Abschlussfolie verwenden diese Adresse als anklickbaren Link und QR-Code. Die Festlegung der Adresse ist kein Auftrag zur Veröffentlichung.
 - Ein **einfaches lokales HTTP-Hosting** stellt Landingpage und Demo-Vorschau bereit. Die reine Demo-Vorschau setzt keine LaTeX-Installation voraus.
 - Ein **vollständiger Release-Build auf dem Entwicklergerät** baut die Website, die Demos sowie die LaTeX-Beamer-Folien und Tafelbilder aus ihren versionierten Quellen nach `dist/`. Die Lehrmaterialien werden als PDFs auf der Website zum Download verlinkt. Eine passende lokale LaTeX-Distribution einschließlich benötigter Pakete wird für diesen Build vorausgesetzt.
 - Das gemeinsame Build-Ergebnis ist **statisch auf GitHub Pages hostbar**, auch unter dem Unterpfad eines Repositorys. Im Hosting ist kein eigenes Backend erforderlich.
