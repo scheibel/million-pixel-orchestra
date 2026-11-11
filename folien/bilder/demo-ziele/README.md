@@ -25,3 +25,5 @@ npm run build:pdf
 Das optionale Renderwerkzeug benötigt unter Linux Python 3 und Mesa mit `libEGL.so.1` sowie `libGLESv2.so.2`. Es nutzt die Python-Standardbibliothek und rendert über OpenGL ES 3 mit demselben GLSL-ES-3.00-Rahmen wie die WebGL2-Vorschau. Es ersetzt keinen direkten Browser-/ShaderToy-Test und ist kein zusätzlicher Pflichtschritt im Release-Build.
 
 Geprüft: Alle sechs ZIEL-Shader kompilieren und rendern mit Mesa llvmpipe. Quellprüfsummen, Bildmaße und Deckkraft stimmen. PDF-Seite 5 enthält die RGB-Füllanzeige und die fünf weiteren Zielbilder. `npm run build:pdf` läuft erfolgreich; die gerenderte Übersicht ist visuell geprüft und erzeugt keine LaTeX-Überstände.
+
+Die Konzeptfolien 6–13 nutzen zusätzlich vier gerenderte Zwischenstände: `03-kreis-und-quadrierter-abstand-kreis.png`, `08-value-noise-zufall-pro-pixel.png`, `08-value-noise-value-noise.png` und `09-fbm-fbm.png`. Diese entstehen aus den jeweiligen Katalog-Ständen `kreis`, `zufall-pro-pixel`, `value-noise` und `fbm` bei `iTime = 0`. Die Rausch-Bildstreifen blenden beim Einbinden in LaTeX jeweils 75 bp oben und unten aus. Die vollständigen PNGs und ihre Quellprüfsummen sind erhalten.

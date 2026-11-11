@@ -12,7 +12,7 @@ Verbindliche Anforderungen stehen in `CONTEXT.md`. Zwei Website-Rollen können m
 | --- | --- | --- |
 | 1 | Teilnehmer-Website: öffentlich erreichbar, vorbereitete Demos direkt bearbeiten und ausführen; Adresse und QR-Zugang vorhanden. | Öffentliche Startseite und Katalog erreichbar geprüft; Editor und Stände vorhanden. Nutzung auf tatsächlichen Teilnehmergeräten, insbesondere Schul-iPads, noch prüfen. Ein lokales Bundle allein genügt nicht. |
 | 2 | Vortragenden-Website: lokal gebaut und über lokalen HTTP-Server nutzbar, Präsentation und Live-Coding einschließlich Standwahl und Vollbild. | Vorhanden und lokal geprüft. Finalen Ablauf am Vortragsgerät mit Browser-/PDF-Wechsel und lesbarer Projektion erproben. Öffentliche Veröffentlichung ist hierfür kein Abnahmekriterium. |
-| 3 | Statische Folien: allgemeine Informationen und Konzepte, Website-Zugang und vollständige Tafelbild-Endstände; kein Code-Journal. | Aktuelles PDF mit 17 Folien enthält keine Codevergleiche mehr und ergänzt den 3D-Ausblick nach der Galerie. Die acht Tafelbild-Endstände sind noch als Projektionsalternative einzubinden. Demo-Zugänge auf die eigene Website abstimmen. |
+| 3 | Statische Folien: allgemeine Informationen und Konzepte, Website-Zugang und vollständige Tafelbild-Endstände; kein Code-Journal. | 17 Hauptfolien und acht verlinkte Tafelbild-Anhangseiten. Folien 6–13 mit Konzepten, Mathematik und Experimenten überarbeitet; sechs Demo-Zugänge führen zur eigenen Website. Codevergleiche bleiben im separaten Journal. |
 | 4 | Gedruckte Tafelbilder: lesbare A4-Vorlagen zum Live-Anzeichnen, passend zu Demos und projizierten Endständen. | Acht Tafelseiten als LaTeX-/TikZ-Quellen und Druck-PDF vorhanden. Endstände in den Folien abgleichen; Ausdruck und Druckkontrolle noch bestätigen. |
 | 5 | Gedrucktes Code-Journal: eigenständiges Druck-PDF mit START-Code, Änderungsfolge und nötigem Basiscode zum Abtippen. | Eigenständiges A4-Druck-PDF mit den bisherigen 19 Codevergleichen vorhanden und im Dokument-Build enthalten. Vollständige START- und nötige Basisblöcke für die Abtippvorlage noch ergänzen bzw. prüfen; Ausdruck und Druckkontrolle noch bestätigen. |
 
@@ -28,12 +28,12 @@ Zusätzliche Vorschläge wie Ablaufzettel und lokale Sicherheitskopie sind Empfe
 - [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
 - [x] Die 19 Codevergleiche aus den Vortragsfolien herauslösen und als eigenständiges A4-Code-Journal bauen.
 - [ ] START-Code und benötigte Basisblöcke im Journal zum Abtippen vollständig verfügbar machen; die bisher übernommenen Auszüge detailliert prüfen.
-- [ ] Die acht Tafelbild-Endstände an passenden Stellen in den statischen Foliensatz aufnehmen; dieselben Inhalte wie in der Druckfassung verwenden.
+- [x] Die acht vollständigen Tafelbild-Endstände als verlinkte Projektionsalternativen in den statischen Foliensatz aufnehmen; dieselben PDF-Seiten wie in der Druckfassung verwenden.
 - [x] Code-Journal als separates PDF in `npm run build:pdf` und den Gesamtbuild aufnehmen; vorhandenen Schutz bei LaTeX-Fehlern und Erhaltung der PDF-/Verzeichnis-Inodes auf alle Dokumente anwenden.
 - [ ] Tafelbilder und Code-Journal ausdrucken und Lesbarkeit kontrollieren; Folien/Website und Medienwechsel im Probelauf prüfen. Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
 - [ ] 90-Minuten-Ablauf durchspielen und anpassen; LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
-- [ ] Demo-Zugänge in den Folien auf die Projektwebsite abstimmen; die sechs bisherigen ShaderToy-QR-Platzhalter sind noch vorhanden.
+- [x] Demo-Zugänge in den Folien auf die Projektwebsite abstimmen; sechs anklickbare Editor-Zugänge mit START-Arbeitsauftrag ersetzen die ShaderToy-QR-Platzhalter.
 - [ ] **Optional, nach dem Workshop:** Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen und echte `shadertoyUrl`-Werte eintragen.
 - [ ] Die öffentliche Projektwebsite samt Editor auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads: Aufrufen, Demo und Stand wählen, Code ändern und kompilieren.
 - [ ] Nach gesondertem Veröffentlichungsauftrag das geprüfte Bundle mit dem vorhandenen Publish-Befehl pushen, Pages einmalig auf `gh-pages` / (root) einstellen und Website sowie QR-Zugänge prüfen.
@@ -132,6 +132,13 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 - Die Planung der Integration und die Hostbarkeit sind kein Auftrag zur Einrichtung oder Veröffentlichung auf GitHub Pages.
 
 ## 3. Workshopinhalt
+
+**Lernweg umgesetzt (12. November 2026):** Folien 6–13 sind in `folien/lernweg.tex` neu ausgearbeitet: Pixelmodell und Vorlage, RGB/Sinus, Normalisierung/Mischung, Abstand/Felder, Interpolationspolynome, Pixelzufall/Value Noise/vorbereitetes Simplex und fBm/Wolken/Drift. Jede Demo besitzt einen Link zum eigenen Editor mit START-Arbeitsauftrag und ein kleines Experiment. Die sechs ShaderToy-QR-Platzhalter entfallen; ShaderToy wird als optionale kompatible Umgebung erwähnt. Vier echte Zwischenbilder ergänzen die bestehenden Zielbilder. Vorbereiteter Code wird von der gemeinsamen Änderung unterschieden.
+
+Die acht vollständigen Druck-Tafelbilder folgen als verlinkter Anhang mit Rücksprunglinks. Der Vortrag hat 17 Hauptfolien und acht Anhangseiten; die abgenommenen Seiten 1–5 und 14–17 bleiben erhalten. Der PDF-Build erzeugt die Tafeln vor dem Vortrag und bindet die frisch gebaute PDF ein. Code-Journal-Vervollständigung, Geräteprüfung und Probelauf bleiben eigenständige offene Aufgaben.
+
+
+**Prüfung des Lernwegs:** Dokument-Build erfolgreich; keine Überstände auf Folien 6–13. Alle acht Konzeptfolien visuell geprüft. Sechs Editor-URLs und alle PDF-Sprungziele geprüft; die acht eingebundenen PDF-Formulare enthalten die unveränderten Druckseiten. Bildvergleich bestätigt unveränderte Seiten 1–5 und 14–17. Die Build-/Publish-Prüfung besteht einschließlich eines Erstbuilds mit eingebundener frischer Tafel-PDF sowie Fehler- und Inode-Erhaltung.
 
 **Testvariante der Titelfolie:** Die vom Nutzer bereitgestellte Aufnahme `folien/bilder/galerie/mtyGWy-titel.png` ersetzt das bisherige Galerie-Vorschaubild als Vollbild-Hintergrund und verlinkt die zugehörige ShaderToy-Seite. Titel und Name sind weiß, die Veranstaltungszeile leicht abgetönt weiß. Das Uni-Potsdam-Logo verwendet eine weiße Vektorvariante; das HPI-Logo behält seine Originalfarben. Die Anpassungen sind auf die Titelfolie begrenzt. Die vorhandene Bildquellendokumentation gilt auch für diese Verwendung.
 

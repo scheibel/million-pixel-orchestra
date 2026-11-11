@@ -73,9 +73,15 @@ def main():
     records = []
     catalog = json.loads((ROOT / "site/catalog.json").read_text())
     assert len(catalog["demos"]) == len(TIMES), "Zeitpunkte an den Demo-Katalog anpassen"
-    for manifest_path, time in zip(catalog["demos"], TIMES):
+    jobs = [(path, time, "ziel") for path, time in zip(catalog["demos"], TIMES)]
+    # Zwischenbilder für die Erklärfolien; Shader und Katalog bleiben unverändert.
+    jobs += [(catalog["demos"][2], 0.0, "kreis"),
+             (catalog["demos"][4], 0.0, "zufall-pro-pixel"),
+             (catalog["demos"][4], 0.0, "value-noise"),
+             (catalog["demos"][5], 0.0, "fbm")]
+    for manifest_path, time, snapshot in jobs:
         manifest = json.loads((ROOT / manifest_path).read_text())
-        goal = next(s for s in manifest["snapshots"] if s["id"] == "ziel")
+        goal = next(s for s in manifest["snapshots"] if s["id"] == snapshot)
         path = Path(manifest_path).parent / goal["file"]
         source = (ROOT / path).read_bytes()
         fragment = compile_shader(0x8B30, "#version 300 es\nprecision highp float;\nuniform vec3 iResolution;\nuniform float iTime;\nout vec4 previewColor;\n"
@@ -95,7 +101,7 @@ def main():
         pixels = C.create_string_buffer(WIDTH * HEIGHT * 4)
         function(gl, "glReadPixels", None, integer, integer, integer, integer, uint, uint, ptr)(0, 0, WIDTH, HEIGHT, 0x1908, 0x1401, pixels)
         assert function(gl, "glGetError", uint)() == 0, f"GL-Fehler: {path}"
-        filename = manifest["id"] + ".png"
+        filename = manifest["id"] + ("" if snapshot == "ziel" else "-" + snapshot) + ".png"
         (OUTPUT / filename).write_bytes(png(pixels.raw))
         records.append({"file": filename, "source": str(path), "sha256": hashlib.sha256(source).hexdigest(), "iTime": time})
         print(f"{filename}: {WIDTH} × {HEIGHT}, iTime = {time}")

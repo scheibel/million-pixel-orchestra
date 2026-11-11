@@ -85,6 +85,10 @@ Diese Aufstellung ersetzt die frühere Vorgabe, die Codeübergänge im Vortrag a
 - In Demo 4 sind Schleife und lokale Zeit schon im START vorbereitet: Grenze 1 → 4 ergänzt Stimme 3, Schrittweite 2 → 1 ergänzt später die übrigen Stimmen.
 - In Demo 5 teilen Value Noise und `simplexNoise01` den Wertebereich 0…1; ihre Integration unterscheidet sich nur im Funktionsnamen. Demo 6 übernimmt diese Basis und verwendet dieselbe normierte Schnittstelle für alle Oktaven.
 
+## Überarbeitung des Lernwegs (12. November 2026)
+
+Folien 6–13 verbinden Bildfragen, die konkrete Mathematik und kleine Versuche im eigenen Editor. ShaderToy bleibt die kompatible optionale Plattform; alle sechs Demo-Zugänge führen zur Workshopwebsite. Die Demo-Stände bleiben unverändert. Die abgenommenen Folien 1–5 und 14–17 bleiben erhalten. Acht vollständige Tafelbild-Druckseiten sind als verlinkter Anhang mit Rücksprungzielen aufgenommen; damit enthält die PDF 25 Seiten bei unverändert 17 Hauptfolien. Der Dokument-Build kompiliert die Tafelbilder zuerst und bindet deren frisch erzeugte PDF in den Vortrag ein; alle drei fertigen PDFs werden weiterhin erst gemeinsam nach Erfolg übernommen.
+
 ## Code-Journal und Codeübergänge (aktuelle Festlegung)
 - Die 19 Übergänge innerhalb der sechs Demos bilden die Grundlage des gedruckten Code-Journals. Bisher-/Jetzt-Code, Quellzeilennummern und markierte Änderungen unterstützen das Nachschlagen; START-Code und benötigte Basisblöcke müssen das Abtippen ermöglichen.
 - Das Journal unterscheidet Live-Coding von der mindestens mündlichen Erklärung des vorbereiteten Codes und seiner mathematischen Bausteine. Vorbereitete Basisblöcke sind gesondert gekennzeichnet.

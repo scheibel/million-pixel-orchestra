@@ -241,186 +241,7 @@ Universität Potsdam\par}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Ein Bild – viele Pixel}
-\tagline{Einstieg · Tafelbild 1}\vspace{3mm}
-\begin{columns}[c]
-\begin{column}{.47\textwidth}
-\begin{tikzpicture}[scale=.58]\fill[sea!35] (3,2) rectangle (4,3);\draw[step=1,muted!60] (0,0) grid (7,5);\draw[thick] (0,0) rectangle (7,5);\fill[accent] (3.5,2.5) circle (4pt);\draw[-{Stealth},accent,thick] (5.8,4.2)--(3.8,2.8);\node[anchor=west,font=\small] at (5.8,4.2) {dieses Pixel};\end{tikzpicture}
-\end{column}
-\begin{column}{.48\textwidth}
-Für jedes Pixel berechnen wir eine Farbe.
-\[\boxed{\text{Farbe}=f(x,y,t)}\]
-\begin{itemize}\item Position im Bild\item Zeit seit dem Start\item Ergebnis: Rot, Grün und Blau\end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Die ShaderToy-Vorlage}
-\tagline{Pro Pixel · Tafelbild 1}\vspace{2mm}
-\begin{columns}[T]
-\begin{column}{.55\textwidth}
-\begin{block}{Ein minimales Image-Snippet}
-\begin{verbatim}
-void mainImage(out vec4 fragColor,
-               in vec2 fragCoord)
-{
-    vec3 color = vec3(1.0);
-    fragColor = vec4(color, 1.0);
-}
-\end{verbatim}
-\end{block}
-\end{column}
-\begin{column}{.40\textwidth}
-\begin{itemize}
-\item \frag{fragCoord}: aktuelle Pixelposition
-\item \frag{iResolution.xy}: Breite und Höhe
-\item \frag{iTime}: Zeit in Sekunden
-\item \frag{fragColor}: Ergebnisfarbe
-\end{itemize}
-\hinweis{Die Vorlage ist ein vollständiges ShaderToy-Snippet.}
-\end{column}
-\end{columns}
-\end{frame}
-
-\section{Demos}
-\begin{frame}{Wie entsteht eine Farbe?}
-\demoheader{1 · Farbe und Zeit}
-\begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Ein RGB-Vektor färbt alle Pixel gleich.\item Was passiert, wenn sich die Werte ändern?\item \frag{iTime} lässt die Farbe schwingen.\end{itemize}
-\medskip\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.48\textwidth}
-\begin{tikzpicture}\bildrahmen
-\foreach \i/\name/\col/\val in {0/Rot/accent/3.8,1/Grün/sea/2.8,2/Blau/blue/4.3}{\node[anchor=east,font=\small] at (1.2,2.8-\i*.85) {\name};\fill[white] (1.4,2.65-\i*.85) rectangle (4.9,2.95-\i*.85);\fill[\col] (1.4,2.65-\i*.85) rectangle (\val,2.95-\i*.85);}
-\end{tikzpicture}\par\hinweis{Tafelbild 2 · Werte zwischen 0 und 1}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Was verrät die Position?}
-\demoheader{2 · Pixelposition und Farbverlauf}
-\begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Pixelposition durch die Bildgröße teilen.\item Position als Farbanteil sichtbar machen.\item Zwei Farben entlang der x-Achse mischen.\end{itemize}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.48\textwidth}
-\begin{tikzpicture}\bildrahmen
-\shade[left color=blue,right color=accent] (.5,.6) rectangle (4.9,3);
-\draw[-{Stealth},white,very thick] (.8,1)--(4.6,1);
-\node[white,font=\small,above] at (1.1,1) {links};\node[white,font=\small,above] at (4.2,1) {rechts};
-\end{tikzpicture}\par\hinweis{Tafelbild 3 · Position und Auflösung}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Wie werden aus Abständen Formen?}
-\demoheader{3 · Kreis und bewegte Metaballs}
-\begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Abstand zum Mittelpunkt entscheidet über die Farbe.\item Felder mehrerer Zentren addieren.\item Mit \frag{iTime} bewegen sich die Zentren.\end{itemize}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.48\textwidth}
-\begin{tikzpicture}\bildrahmen
-\fill[sea!85] (2,1.8) circle (1.0);\fill[sea!85] (3.4,1.8) circle (1.0);\fill[sea!85] (2.7,1.8) ellipse (.6 and .7);
-\fill[white] (2,1.8) circle (2pt) (3.4,1.8) circle (2pt);
-\draw[white,-{Stealth},thick] (1.9,.65)--(1.2,.65);\draw[white,-{Stealth},thick] (3.5,.65)--(4.2,.65);
-\end{tikzpicture}\par\hinweis{Tafelbilder 4–5 · Abstand und Felder}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Wie hält ein Punkt sanft an?}
-\demoheader{4 · Polynome für Bewegung und Farbe}
-\begin{columns}[c]
-\begin{column}{.53\textwidth}
-\begin{enumerate}
-\item START: ein Punkt mit LERP.
-\item Zwei Punkte mit LERP.
-\item Zwei Punkte mit Smoothstep.
-\item Vier Punkte mit Smoothstep.
-\item ZIEL: vier Punkte mit Smootherstep.
-\end{enumerate}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.43\textwidth}
-\begin{tikzpicture}\bildrahmen
-\draw[sea,thick] (2.7,3.05) -- (3.95,1.8) -- (2.7,.55) -- (1.45,1.8) -- cycle;
-\node[font=\small,above] at (2.7,3.05) {N};
-\node[font=\small,right] at (3.95,1.8) {O};
-\node[font=\small,below] at (2.7,.55) {S};
-\node[font=\small,left] at (1.45,1.8) {W};
-\fill[black] (3.2,2.55) circle (.10);
-\fill[black] (3.4,1.25) circle (.10);
-\fill[black] (2.2,1.05) circle (.10);
-\fill[black] (1.7,2.05) circle (.10);
-\draw[accent,-{Stealth},thick] (3.4,2.35) -- (3.7,2.05);
-\end{tikzpicture}\par
-\hinweis{Tafelbild 6 · Interpolation und Kanon}\par\smallskip
-\hinweis{Je Kante: 1,2\,s Fahrt + 0,6\,s Halt.}\par
-\hinweis{N: Rot · O: Grün · S: Blau · W: Gelb}\par
-\hinweis{Phase 2/3: Stimmen 1 und 3 (0/3\,s).}\par
-\hinweis{Im Halt: Schwarz $\to$ Eckfarbe $\to$ Schwarz.}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Wie wird Zufall zu einem Muster?}
-\demoheader{5 · Vom Zufall zu Noise}
-\begin{columns}[c]
-\begin{column}{.52\textwidth}
-\begin{enumerate}
-\item START: UV-Bild aus Demo 2.
-\item Zufallswert pro Pixel.
-\item Value Noise: Gitterwerte interpolieren.
-\item ZIEL: vorbereitetes Simplex Noise.
-\end{enumerate}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.44\textwidth}
-\begin{tikzpicture}\bildrahmen
-\fill[sea!20] (2,1) rectangle (3,2);
-\draw[step=1,muted] (1,.5) grid (4,3.5);
-\foreach \x in {1,2,3,4} \foreach \y in {1,2,3} \fill[sea] (\x,\y) circle (2.6pt);
-\fill[accent] (2.5,1.45) circle (3pt);\node[font=\small,anchor=west] at (2.6,1.45) {Pixel};
-\end{tikzpicture}\par
-\hinweis{Tafelbild 7 · Value Noise: Werte am Gitter, dazwischen glatt mischen.}\par\smallskip
-\hinweis{Simplex: Gradienten auf einem Dreiecksgitter; die Basis ist vorbereitet.}
-\end{column}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Wie wird Noise zu bewegten Wolken?}
-\demoheader{6 · Wolken aus Noise}
-\begin{columns}[c]
-\begin{column}{.52\textwidth}
-\begin{enumerate}
-\item START: Simplex-Ziel aus Demo 5.
-\item fBm: gewichtete Oktaven addieren.
-\item Als Wolken gestalten: Dichte und Farbe.
-\item ZIEL: Abfrageposition mit der Zeit verschieben.
-\end{enumerate}
-\qrplatz{ShaderToy-START}
-\end{column}
-\begin{column}{.44\textwidth}
-\begin{tikzpicture}\bildrahmen
-\draw[sea,step=.6] (.4,1) grid (1.6,2.2);\draw[sea,step=.3] (2.1,1) grid (3.3,2.2);\draw[sea,step=.15] (3.8,1) grid (5,2.2);
-\node at (1.85,1.6) {$+$};\node at (3.55,1.6) {$+$};
-\node[font=\small] at (2.7,.5) {grob \qquad\quad fein};
-\end{tikzpicture}\par
-\hinweis{Tafelbild 8 · Maßstab, Gewicht, Wolkendichte und Bewegung}\par\smallskip
-\hinweis{Das Muster wandert; es wird nicht pro Bild neu gewürfelt.}
-\end{column}
-\end{columns}
-\end{frame}
-
+\input{folien/lernweg.tex}
 
 \section{Ausblick}
 \begin{frame}{Was ist noch möglich?}
@@ -511,4 +332,25 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+
+% Vollständige Druckseiten als optionale Projektionsalternativen.
+% Der Dokument-Build stellt die gerade erzeugte PDF über TEXINPUTS bereit.
+\IfFileExists{tafelbilder.pdf}{\def\tafelbildpdf{tafelbilder.pdf}}%
+  {\def\tafelbildpdf{tafelbilder/build/tafelbilder.pdf}}
+\newcommand{\tafelseite}[2]{%
+  \begin{frame}[plain,noframenumbering,label=tafel#1]
+  \centering
+  \includegraphics[page=#1,width=\textwidth,height=.86\paperheight,keepaspectratio]{\tafelbildpdf}\par
+  \hyperlink{#2}{\textcolor{sea}{\scriptsize Zurück zur zugehörigen Folie}}
+  \end{frame}%
+}
+\appendix
+\tafelseite{1}{pixelprinzip}
+\tafelseite{2}{demo1}
+\tafelseite{3}{demo2}
+\tafelseite{4}{demo3}
+\tafelseite{5}{demo3}
+\tafelseite{6}{demo4}
+\tafelseite{7}{demo5}
+\tafelseite{8}{demo6}
 \end{document}

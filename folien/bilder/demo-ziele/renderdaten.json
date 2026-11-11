@@ -38,6 +38,30 @@
       "source": "demos/09-fbm/ZIEL.glsl",
       "sha256": "2f2e5b7e9c4a368fc036d860dce7756eb821a340f92e2970d6fc38ec8ed311b2",
       "iTime": 8.0
+    },
+    {
+      "file": "03-kreis-und-quadrierter-abstand-kreis.png",
+      "source": "demos/03-kreis-und-quadrierter-abstand/01-kreis.glsl",
+      "sha256": "284b586443c79ffd16067cf26a046ed7f12f125d944fed3760fe477b0503bb95",
+      "iTime": 0.0
+    },
+    {
+      "file": "08-value-noise-zufall-pro-pixel.png",
+      "source": "demos/08-value-noise/01-zufall-pro-pixel.glsl",
+      "sha256": "ecc5807168184944545b85d8f1820a5f88be3bb888b2a4f9f8a05e2e38df29ff",
+      "iTime": 0.0
+    },
+    {
+      "file": "08-value-noise-value-noise.png",
+      "source": "demos/08-value-noise/02-value-noise.glsl",
+      "sha256": "c47166ada22994ed415107c1fb821be08c0adefc5e57cae96a8c90647d200d9c",
+      "iTime": 0.0
+    },
+    {
+      "file": "09-fbm-fbm.png",
+      "source": "demos/09-fbm/01-fbm.glsl",
+      "sha256": "54e11ec037f5969deaf43fc04f540a7b0b8a44f077a5e9d3ceb3d1bd43bbed8f",
+      "iTime": 0.0
     }
   ]
 }

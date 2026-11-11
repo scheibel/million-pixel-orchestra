@@ -35,10 +35,12 @@ test("Dokument-Build meldet fehlende Quellen und Werkzeuge und erhält vorhanden
   await assert.rejects(buildDocuments({ root }), /Pflichtquelle.*tafelbilder/);
 });
 
-test("Gesamtbuild erzeugt echte PDFs ohne Webdownloads; LaTeX-Fehler erhalten den letzten Build", async t => {
+test("Gesamtbuild bindet frisch gebaute Tafeln ein; LaTeX-Fehler erhalten PDFs und Website", async t => {
   try { await execute("pdflatex", ["--version"]); }
   catch (error) { if (error.code === "ENOENT") return t.skip("LaTeX ist für die übrigen Tests nicht erforderlich."); throw error; }
   const root = await fixture(t);
+  // No previous board PDF exists: the slides must find the current staged build.
+  await writeFile(join(root, "folien/vortrag.tex"), "\\documentclass{article}\n\\usepackage{graphicx}\n\\begin{document}\\includegraphics[width=5cm]{tafelbilder.pdf}\\end{document}\n");
   const result = await buildProject({ root });
   assert.equal(result.documents.length, 3);
   for (const path of result.documents) assert.equal((await readFile(path)).subarray(0, 5).toString(), "%PDF-");

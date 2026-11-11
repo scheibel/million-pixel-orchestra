@@ -1,6 +1,6 @@
 import { execFile } from "node:child_process";
 import { copyFile, mkdir, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { delimiter, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { projectRoot } from "./build-site.mjs";
@@ -21,7 +21,8 @@ export async function buildDocuments({ root = projectRoot, engine = "pdflatex" }
   }
   const staging = await mkdtemp(join(root, ".document-build-"));
   try {
-    for (const document of documents) {
+    // Compile the boards first so the slides embed this build's exact print pages.
+    for (const document of [documents[1], documents[0], documents[2]]) {
       const output = join(staging, document.directory);
       await mkdir(output);
       const source = join(document.directory, `${document.name}.tex`);
@@ -29,7 +30,8 @@ export async function buildDocuments({ root = projectRoot, engine = "pdflatex" }
         console.log(`PDF: ${source} (Durchlauf ${pass}/${document.passes})`);
         try {
           await execute(engine, ["-interaction=nonstopmode", "-halt-on-error", "-no-shell-escape", `-output-directory=${output}`, source], {
-            cwd: root, maxBuffer: 8 * 1024 * 1024
+            cwd: root, maxBuffer: 8 * 1024 * 1024,
+            env: { ...process.env, TEXINPUTS: `${join(staging, "tafelbilder")}${delimiter}${process.env.TEXINPUTS || ""}` }
           });
         } catch (error) {
           if (error.code === "ENOENT") throw new Error("pdflatex fehlt. Eine LaTeX-Distribution mit den dokumentierten Paketen installieren; für die Website allein npm run build:site verwenden.");

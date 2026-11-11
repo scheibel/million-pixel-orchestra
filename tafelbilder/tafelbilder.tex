@@ -16,6 +16,7 @@
 \definecolor{petrol}{RGB}{0,90,91}
 \definecolor{orange}{RGB}{166,63,30}
 \definecolor{blue}{RGB}{33,70,130}
+\definecolor{rgbblue}{rgb}{0,0,1}
 \tikzset{every picture/.style={line width=0.9pt}, >={Stealth[length=2.7mm]},
   lab/.style={font=\large}, smalllab/.style={font=\normalsize},
   axis/.style={->,line width=0.9pt}, helper/.style={dashed,gray}}
@@ -57,7 +58,7 @@ Für jedes Pixel wird die Farbe berechnet:
 \kopf{2 · Farbe und Zeit}{Demo 1}
 \begin{minipage}[t]{.47\textwidth}\vspace{0pt}
 \begin{tikzpicture}[x=1cm,y=1cm]
- \foreach \y/\name/\shade in {3/Rot/orange,2/Grün/petrol,1/Blau/blue}{
+ \foreach \y/\name/\shade in {3/Rot/red,2/Grün/green,1/Blau/rgbblue}{
    \node[lab,anchor=east] at (0,\y) {\name};
    \draw (0.3,\y-.22) rectangle (5.5,\y+.22);
    \fill[\shade!70] (0.3,\y-.22) rectangle (3.6,\y+.22);
