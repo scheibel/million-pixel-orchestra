@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { buildSite, projectRoot } from "../scripts/build.mjs";
+import { buildSite, projectRoot } from "../scripts/build-site.mjs";
 import { createStaticServer } from "../scripts/serve.mjs";
 import { AnimationClock } from "../site/assets/clock.js";
 import { parseCompilerLog } from "../site/assets/renderer.js";
@@ -88,4 +88,5 @@ test("Build lehnt fehlende PDFs, doppelte IDs und unsichere Pfade ab", async t =
   await writeFile(path, JSON.stringify({ ...original, demos: [...original.demos, "demos/kopie/demo.json"] }));
   await assert.rejects(buildSite({ root }), /Doppelte Demo-ID/);
   await assert.rejects(buildSite({ root, output: root }), /Build-Ziel/);
+  await assert.rejects(buildSite({ root, output: join(root, "folien") }), /Build-Ziel/);
 });

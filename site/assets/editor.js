@@ -96,6 +96,11 @@ function selectSnapshot(id) {
   source.scrollLeft = 0;
   element("snapshot-description").textContent = state.description;
   element("shadertoy-link").href = state.shadertoyUrl || "https://www.shadertoy.com/new";
+  element("shadertoy-link").textContent = state.shadertoyUrl
+    ? "Veröffentlichten Stand in ShaderToy öffnen ↗" : "Neues ShaderToy-Projekt öffnen ↗";
+  element("shadertoy-status").textContent = state.shadertoyUrl
+    ? `Veröffentlichte Fassung: ${state.shadertoyUrl} · Eigene Änderungen überträgst du mit Kopieren und Einfügen.`
+    : "Für diesen Stand ist noch kein veröffentlichter ShaderToy-Link hinterlegt.";
   element("copy-status").textContent = "";
   preview.resetTime();
   updateDraft();
@@ -206,7 +211,7 @@ try {
   element("copy").addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(source.value);
-      element("copy-status").textContent = "Code kopiert. Bereit für ShaderToy.";
+      element("copy-status").textContent = "Code kopiert. In ShaderToy das Image-Codefeld vollständig ersetzen und mit Strg / ⌘ + V einfügen.";
     } catch {
       source.focus();
       source.select();

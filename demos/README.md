@@ -31,7 +31,7 @@ Keine Texturen, Kanäle, Maus-, Tastatur-, Audio- oder zusätzliche Uniform-Eing
 3. Die vollständigen `START.glsl`- und `ZIEL.glsl`-Dateien bearbeiten. Zwischenstände als weitere selbsterklärend benannte GLSL-Dateien ergänzen.
 4. Jeden Stand in `snapshots` eintragen. Die Listenreihenfolge bestimmt die Schaltflächenreihenfolge.
 5. Den Manifestpfad in `site/catalog.json` unter `demos` ergänzen. Diese Liste bestimmt die Reihenfolge auf der Landingpage.
-6. Seite neu laden, jeden Stand kompilieren und den sichtbaren Unterschied prüfen. Danach `npm test`, `npm run build` und bei verfügbarem Chromium `npm run test:browser` ausführen.
+6. Seite neu laden, jeden Stand kompilieren und den sichtbaren Unterschied prüfen. Danach `npm test`, `npm run build:site` und bei verfügbarem Chromium `npm run test:browser` ausführen. `npm run build` baut zusätzlich die PDFs und benötigt LaTeX.
 
 Beispiel für einen zusätzlichen Stand zwischen `start` und `ziel`:
 
@@ -50,7 +50,7 @@ Beispiel für einen zusätzlichen Stand zwischen `start` und `ziel`:
 - `title`, `summary`, `math`, `label` und `description` sind nicht leere Texte. Die Demo-`README.md` ergänzt Lernziel, Mathematik und sichtbare Änderung.
 - Für eine vollständige Live-Demo sind `start` und `ziel` erforderlich; beliebig viele weitere Stände sind möglich. Solange ein START-Stand noch fehlt, kann ein einzelner ZIEL-Stand registriert werden. Anfangs wird `start` geladen, sofern vorhanden, sonst der erste Stand.
 - `file` ist relativ zu `demo.json` und verweist auf eine vollständige GLSL-Datei. Nur lokale relative Pfade ohne `..`, versteckte Pfadteile oder externe URLs sind erlaubt.
-- Optional besitzt jeder Stand `shadertoyUrl` der Form `https://www.shadertoy.com/view/<ID>`. Nur tatsächlich vorhandene, geprüfte Projekte eintragen. Ohne Link wird auf die Seite für ein neues ShaderToy-Projekt verwiesen. Die Übertragung ist ein eigener Auftrag.
+- Optional besitzt jeder Stand `shadertoyUrl` der Form `https://www.shadertoy.com/view/<ID>`. Nur tatsächlich vorhandene, geprüfte Projekte eintragen. Die Landingpage zeigt alle hinterlegten Stand-Links unter der jeweiligen Demo. Im Editor wird der veröffentlichte Link für den gewählten Stand angezeigt; ohne URL erscheint ein Hinweis und ein Link zu einem neuen Projekt. Die Übertragung ist ein eigener Auftrag.
 - Browserentwürfe verändern keine Dateien. Sie bleiben je Stand bis zum Neuladen erhalten; „Stand wiederherstellen“ lädt die vorbereitete Fassung.
 
 Der Build prüft Metadaten, vorhandene Dateien und die grundlegende Snippet-Struktur. Die tatsächliche GLSL-Kompilierung und das Bild werden im Browser geprüft. Neue Demos erfordern keine Änderung am Editor oder Renderer.

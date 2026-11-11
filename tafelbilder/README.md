@@ -19,11 +19,11 @@ Die Tafelseiten sind ein didaktischer Entwurf. Das Meerbild auf Seite 7 ist ein 
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, PGF/TikZ, `babel` mit deutscher Sprachunterstützung, `geometry` und AMS-Mathematikpaketen. Vom Repository-Hauptverzeichnis aus:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, PGF/TikZ, `babel` mit deutscher Sprachunterstützung, `geometry` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (beide Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p tafelbilder/build
 pdflatex -interaction=nonstopmode -halt-on-error -output-directory=tafelbilder/build tafelbilder/tafelbilder.tex
 ```
 
-Das druckbare Ergebnis liegt unter `tafelbilder/build/tafelbilder.pdf`; die bearbeitbare Quelle ist `tafelbilder.tex`. Das Build-Verzeichnis ist nicht versioniert. Dieser direkte PDF-Aufruf ist unabhängig vom Website-Build; die geplante gemeinsame Dokument- und Release-Pipeline (F2/F3) ist weiterhin offen.
+Das druckbare Ergebnis liegt unter `tafelbilder/build/tafelbilder.pdf`; die bearbeitbare Quelle ist `tafelbilder.tex`. Das Build-Verzeichnis ist nicht versioniert. Der Gesamtbuild erzeugt die PDFs lokal; die Einbindung in die Website und PDF-Veröffentlichung bleiben zurückgestellt.

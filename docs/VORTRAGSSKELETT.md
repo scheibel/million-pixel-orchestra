@@ -13,7 +13,7 @@ Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren 
 | Einstieg in die Pixelberechnung | Pixelraster, RGB und das Modell „eine Farbe pro Pixel“; `fragCoord`, `iResolution`, später `iTime` direkt am Boilerplate einführen. Tafelbild 1 als Zeichnung oder fertige Seite. | Einführung und Codevorlage für den Vortrag ausarbeiten. |
 | Demo-Blöcke | Pro Block: Frage oder Zielbild → nötiges Konzept am Tafelbild oder auf der Folie → gemeinsames Live-Coding in ShaderToy → Ergebnis und kurzer Rückblick. | Siehe Zuordnung unten; je Demo START, ZIEL und sinnvolle Zwischenstände abstimmen. |
 | Inspirationsgalerie | Sechs ausgewählte ShaderToy-Demos als Raster mit zwei Zeilen und drei Spalten, jeweils mit Originalvorschaubild, QR-Code und Link. | In den Folien umgesetzt; [Quellen und ausstehende Prüfung](../folien/bilder/galerie/README.md). Keine Live-Herleitung. |
-| Abschluss | Zusammenfassung, Fragen und Möglichkeiten zum Weiterexperimentieren. QR-Code zur Website mit lesbarer Adresse. | Website-Link und QR-Code zu `https://scheibel.github.io/million-pixel-orchestra` auf Übersicht und Abschluss eingebunden. Inhalt weiter abstimmen. |
+| Abschluss | Zusammenfassung, Fragen und Möglichkeiten zum Weiterexperimentieren. QR-Code zur Website mit lesbarer Adresse. | Website-Link und QR-Code zu `https://www.willyscheibel.de/million-pixel-orchestra/` auf Übersicht und Abschluss eingebunden. Inhalt weiter abstimmen. |
 
 Ein früherer Entwurf enthält außerdem einen LLM-Ausblick. Ob und wo er vorkommt, ist noch offen.
 
@@ -53,7 +53,7 @@ Die vorhandenen weißen START-Shader sind vorläufige Platzhalter. Die konkrete 
 - [x] Galeriebeispiele auswählen und mit lokalen Originalvorschaubildern, QR-Codes und Links einbinden: `4df3Rn`, `XdlSDs`, `WtfGDX`, `mtyGWy`, `fstyD4`, `3sySRK`.
 - [ ] Live-Funktion, Originaltitel, Urheberschaft und Lizenzangaben der Galeriebeispiele auf ShaderToy prüfen; automatische Seitenabrufe waren blockiert. Auftaktbeispiel separat auswählen und prüfen.
 - [ ] Pro Demo einen QR-Code für den vorbereiteten START-Link auf der entsprechenden Folie vorsehen; weitere Stand-Links nach Bedarf zugänglich machen. Eine lesbare Kurzadresse bzw. ein alternativer Zugang hilft beim Abtippen.
-- [x] QR-Code und lesbare Adresse `https://scheibel.github.io/million-pixel-orchestra` für Übersicht und Abschluss einbinden.
+- [x] QR-Code und lesbare Adresse `https://www.willyscheibel.de/million-pixel-orchestra/` für Übersicht und Abschluss einbinden.
 - [ ] Nach Veröffentlichung Website-Erreichbarkeit prüfen; QR-Codes auf den vorgesehenen Geräten sowie in Projektionsgröße testen. Die Website-Adresse ist vorgegeben, ihre Veröffentlichung erfolgt separat.
 
 Die Website bündelt die Materialien; die Teilnehmenden programmieren in ShaderToy. Lokaler Release-Build, Veröffentlichung auf GitHub Pages und Übertragung zu ShaderToy sind eigenständige Schritte und durch dieses Skelett nicht beauftragt.

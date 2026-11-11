@@ -5,7 +5,7 @@ import { spawn } from "node:child_process";
 import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { buildSite, projectRoot } from "../scripts/build.mjs";
+import { buildSite, projectRoot } from "../scripts/build-site.mjs";
 import { createStaticServer } from "../scripts/serve.mjs";
 
 const root = await mkdtemp(join(tmpdir(), "million-pixels-browser-"));
@@ -14,6 +14,10 @@ let browser, server, socket;
 try {
   for (const directory of ["site", "demos", "templates"]) await cp(join(projectRoot, directory), join(root, directory), { recursive: true });
   await cp(join(root, "templates/demo"), join(root, "demos/meine-demo"), { recursive: true });
+  const fixtureManifestPath = join(root, "demos/meine-demo/demo.json");
+  const fixtureManifest = JSON.parse(await readFile(fixtureManifestPath, "utf8"));
+  fixtureManifest.snapshots[0].shadertoyUrl = "https://www.shadertoy.com/view/Ab12Cd";
+  await writeFile(fixtureManifestPath, JSON.stringify(fixtureManifest));
   const catalog = JSON.parse(await readFile(join(root, "site/catalog.json"), "utf8"));
   catalog.demos.push("demos/meine-demo/demo.json");
   await writeFile(join(root, "site/catalog.json"), JSON.stringify(catalog));
@@ -107,6 +111,7 @@ try {
   await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   assert.equal(await evaluate("document.documentElement.lang"), "de");
   assert.equal(await evaluate("document.querySelectorAll('#material-list a').length"), 0);
+  assert.equal(await evaluate("document.querySelector('.shadertoy-links a').href"), "https://www.shadertoy.com/view/Ab12Cd");
   for (const path of catalog.demos.slice(1, -1)) {
     const manifest = JSON.parse(await readFile(join(root, path), "utf8"));
     await page("Page.navigate", { url: `${base}editor.html?demo=${manifest.id}` });
@@ -138,6 +143,8 @@ try {
   await page("Page.navigate", { url: `${base}editor.html?demo=00-konstante-farbe` });
   await success();
   color(await pixel(), [255, 255, 255, 255]);
+  assert.equal(await evaluate("document.querySelector('#shadertoy-link').href"), "https://www.shadertoy.com/new");
+  assert.match(await evaluate("document.querySelector('#shadertoy-status').textContent"), /noch kein veröffentlichter/);
   assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 4);
   assert.equal(await evaluate("document.querySelector('#play').getAttribute('aria-label')"), "Animation pausieren");
   assert.equal(await evaluate("document.querySelector('#reset-time').getAttribute('aria-label')"), "Zeit auf 0 zurücksetzen");
@@ -249,6 +256,12 @@ try {
   await page("Page.navigate", { url: `${base}editor.html?demo=meine-demo` });
   await success();
   color(await pixel(), [20, 115, 122, 255]);
+  assert.equal(await evaluate("document.querySelector('#shadertoy-link').href"), "https://www.shadertoy.com/view/Ab12Cd");
+  assert.match(await evaluate("document.querySelector('#shadertoy-link').textContent"), /Veröffentlichten Stand/);
+  await click('[data-snapshot="ziel"]');
+  assert.equal(await evaluate("document.querySelector('#shadertoy-link').href"), "https://www.shadertoy.com/new");
+  await click('[data-snapshot="start"]');
+  assert.equal(await evaluate("document.querySelector('#shadertoy-link').href"), "https://www.shadertoy.com/view/Ab12Cd");
   await evaluate("window.testLoss = document.querySelector('#preview').getContext('webgl2').getExtension('WEBGL_lose_context'); window.testLoss.loseContext()");
   await until(`!document.querySelector('#load-error').hidden`);
   await evaluate("window.testLoss.restoreContext()");

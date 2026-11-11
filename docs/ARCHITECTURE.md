@@ -1,4 +1,4 @@
-# Architektur von F1
+# Architektur
 
 ## Statische Website ohne Laufzeitabhängigkeiten
 
@@ -32,15 +32,19 @@ Nach 350 ms Eingabepause oder auf ausdrücklichen Befehl wird ein neues Programm
 
 Jeder Stand besitzt eine vorbereitete Quelle und einen separaten Entwurf im Arbeitsspeicher. Wechsel erhält Entwürfe; der Rücksetzbefehl verwirft den aktuellen Entwurf. Neuladen startet mit den versionierten Dateien. Es gibt keine dauerhafte Speicherung oder Synchronisation mit Quelldateien bzw. ShaderToy.
 
-„Code kopieren“ übernimmt ausschließlich den vollständigen Editorinhalt. Ohne verfügbare Zwischenablage wird der Code markiert und die manuelle Kopiermöglichkeit erklärt. ShaderToy-Links werden optional je Stand hinterlegt; die Website veröffentlicht nichts.
+„Für ShaderToy kopieren“ übernimmt ausschließlich den vollständigen Editorinhalt. Ohne verfügbare Zwischenablage wird der Code markiert und die manuelle Kopiermöglichkeit erklärt. Die Demo-Seite erklärt das anschließende Einfügen in das Image-Codefeld. `shadertoyUrl` wird optional je Stand hinterlegt: Die Landingpage zeigt alle vorhandenen Links; im Editor folgt der Zugang dem ausgewählten Stand. Ohne URL wird der fehlende Veröffentlichungslink benannt und ein neues Projekt angeboten. Browseränderungen werden ausschließlich per Kopieren und Einfügen übertragen.
 
 ## Website-Build und Dokument-Builds
 
-`scripts/build.mjs` validiert Katalog, eindeutige IDs, relative Pfade und referenzierte Shaderquellen. Registrierte Materialien müssen als PDFs vorliegen. Ein temporäres Verzeichnis wird fertiggestellt, bevor der vorhandene Website-Build ersetzt wird. Kopiervorlage und Tests landen nicht im Bundle. `.nojekyll` ermöglicht die Bereitstellung ohne Jekyll-Verarbeitung.
+`scripts/build-site.mjs` validiert Katalog, eindeutige IDs, relative Pfade und referenzierte Shaderquellen. Registrierte Materialien müssen als PDFs vorliegen. Ein temporäres Verzeichnis wird fertiggestellt, bevor der vorhandene Website-Build ersetzt wird. Kopiervorlage und Tests landen nicht im Bundle. `.nojekyll` ermöglicht die Bereitstellung ohne Jekyll-Verarbeitung.
 
-F2 wird Dokumentquellen exportieren; F3 wird PDFs und Website im vollständigen Release-Build zusammenführen. Die jetzige Schnittstelle dafür besteht aus PDFs unter `site/downloads/` und `materials`-Einträgen im Katalog. Das endgültige Übergabeverzeichnis kann in F2/F3 angepasst werden. `npm run build` ist nur der Website-Build und führt weder LaTeX noch einen Push aus.
+`scripts/build-documents.mjs` baut beide Dokumente mit pdfLaTeX aus dem Repository-Hauptverzeichnis in temporäre Ausgabeverzeichnisse. Die Folien benötigen zwei Durchläufe. Erst nach erfolgreicher Prüfung beider PDFs werden `folien/build/` und `tafelbilder/build/` ersetzt. Fehlende Quellen, Werkzeuge und LaTeX-Fehler brechen den Vorgang ab.
 
-Veröffentlichungsbranch und Push-Ablauf werden bei der separaten Veröffentlichungsintegration festgelegt. F1 richtet kein Hosting ein; GitHub-Actions-Workflows sind nicht vorgesehen.
+`scripts/build.mjs` orchestriert Dokument- und Website-Build mit `npm run build`. Die PDFs bleiben aktuell lokal; ihre Einbindung in `dist/` und den Materialkatalog ist zurückgestellt. `npm run build:site` und `npm run dev` benötigen kein LaTeX. Der Build führt keinen Push aus.
+
+## GitHub-Pages-Veröffentlichung
+
+`scripts/publish-pages.mjs` prüft das vorhandene Bundle und übernimmt ausschließlich `dist/` in ein temporäres Git-Repository. Ein vorhandener `origin/gh-pages`-Stand wird vor dem Kopieren geladen und anschließend normal fortgeschrieben. Veraltete Dateien werden entfernt, unveränderte Bundles erzeugen keinen Commit. `--dry-run` zeigt die Änderungen ohne Commit oder Push. Quellbranch und Index werden nicht geändert; auf dem Host erfolgt kein Projekt-Build. Ein konkurrierendes Update führt zur Ablehnung des normalen Pushs. Die einmalige Pages-Einstellung ist in `docs/PUBLISHING.md` beschrieben. Eigene GitHub-Actions-Workflows werden nicht angelegt.
 
 ## Prüfung
 

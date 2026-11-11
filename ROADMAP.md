@@ -2,13 +2,28 @@
 
 Die Planung besteht aus drei getrennten Bereichen: **Features des Rahmenwerks**, **externe Integrationen** und **Workshopinhalt**. Sie haben eigene Aufgaben und Abnahmen. Ihre Reihenfolge im Dokument ist keine gemeinsame Implementierungsfolge und kein Auftrag, alles auf einmal umzusetzen.
 
-Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1 ist seit 29. Oktober 2026 lokal implementiert und geprüft. F2/F3, Veröffentlichung und die fachliche Ausarbeitung der Workshopmaterialien stehen noch aus.
+Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1 ist implementiert. Seit 11. November 2026 sind auch Dokument-/Gesamtbuild, ShaderToy-Kopierablauf mit veröffentlichten Stand-Links und der Pages-Publish-Prozess umgesetzt. PDF-Inklusion auf der Website, tatsächliche Veröffentlichung und fachliche Fertigstellung bleiben offen.
+
+## Aktueller Backlog — konkrete Restarbeit
+
+- [ ] Stil der Website iterieren: Gestaltung der Landingpage und Demo-Seite abstimmen und überarbeiten.
+- [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
+- [ ] Live-Coding-Schritte je Demo festlegen und daraus geeignete START- und fehlende Zwischenstände erstellen; bei Noise die vorbereiteten Basisfunktionen einbinden.
+- [ ] Vorhandene Folien und Tafelbilder an diese Schritte anpassen; Auftaktbeispiel auswählen und einbinden.
+- [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
+- [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung, LLM-Ausblick, Meerbild und Integration der weichen Kante entscheiden.
+- [ ] Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen, echte `shadertoyUrl`-Werte eintragen und die QR-Platzhalter der Demo-Folien ersetzen.
+- [ ] ShaderToy auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads.
+- [ ] Nach gesondertem Veröffentlichungsauftrag das geprüfte Bundle mit dem vorhandenen Publish-Befehl pushen, Pages einmalig auf `gh-pages` / (root) einstellen und Website sowie QR-Zugänge prüfen.
+- [ ] Die ältere Folien-Checkliste im Vortragsskelett mit dem inzwischen vorhandenen Materialbestand abgleichen.
+
+Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Bereits umgesetzte Anforderungen sind keine zusätzlichen offenen Aufgaben.
 
 ## 1. Features des Rahmenwerks
 
 ### F1 — Landingpage, lokales Hosting und Shader-Vorschau
 
-**Stand: umgesetzt und lokal geprüft (29. Oktober 2026).** Einstieg über `npm run dev`, Website-Build über `npm run build`; Details in `README.md` und `docs/ARCHITECTURE.md`. Die folgenden Punkte beschreiben den umgesetzten Umfang.
+**Stand: umgesetzt und lokal geprüft (29. Oktober 2026), ShaderToy-Zugang am 11. November 2026 ergänzt.** Einstieg über `npm run dev`, reiner Website-Build über `npm run build:site`; Details in `README.md` und `docs/ARCHITECTURE.md`. Die folgenden Punkte beschreiben den umgesetzten Umfang.
 
 - Kleine deutsche Landingpage als Einstieg zur Demo-Vorschau erstellen; den Downloadbereich für später gebaute Lehrmaterialien vorsehen. Nur vorhandene Dateien verlinken.
 - Einfachen lokalen HTTP-Server mit dokumentiertem Startbefehl für Website und Vorschau bereitstellen; ohne LaTeX-Abhängigkeit für diese Nutzung.
@@ -38,28 +53,32 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 - `npm test`: Zeitverhalten, Compiler-Zeilen, Einbindung einer kopierten Demo-Vorlage ohne Viewer-Änderung, Build-Validierung, Link-Erreichbarkeit und HTTP-Hosting unter einem simulierten Repositorypfad geprüft.
 - `npm run test:browser`: mit Chromium 156 und Software-WebGL2 unter `/million-pixel-orchestra/` echte Farbwerte, alle Beispielstände, Live-Änderungen, Fehler samt Korrektur, Entwürfe, Pause/Zeitreset, Zwischenablage einschließlich Fallback, Größenwechsel und Gerätepixeldichte geprüft. Mobile Ansicht visuell kontrolliert; Kontextverlust, fehlende Quellen und fehlendes WebGL2 geprüft.
-- `npm run build`: statisches Bundle mit einer konstanten Farb-Demo und drei Ständen erzeugt. Keine PDF-Downloads registriert, daher keine nicht funktionierenden PDF-Links.
+- Der damalige Website-Build (heute `npm run build:site`) erzeugte ein statisches Bundle mit einer konstanten Farb-Demo und drei Ständen. Keine PDF-Downloads registriert, daher keine nicht funktionierenden PDF-Links.
 - ShaderToy-Kompatibilität lokal über vollständige unveränderte Image-Snippets geprüft. Ein direkter Test in ShaderToy steht noch aus. Die lokale Website wird vorrangig für die Vorführung auf einem Laptop betrachtet; ihre iPad-Funktion ist nachrangig. Keine externe Veröffentlichung vorgenommen.
 
 ### F2 — Build für Folien und Tafelbilder
 
-- Automatisierten lokalen PDF-Build für LaTeX-Beamer-Quellen bereitstellen. Auf dem Entwicklergerät wird eine passende LaTeX-Distribution einschließlich benötigter Pakete vorausgesetzt; Distribution, Engine und Paketbedarf bei der Umsetzung dokumentieren.
-- Tafelbilder aus bearbeitbaren LaTeX-Quellen mit PGF/TikZ automatisiert als druckbare PDFs erzeugen.
-- Build-Werkzeuge, Voraussetzungen und Aufruf dokumentieren. Die reine Website-/Demo-Vorschau bleibt ohne LaTeX nutzbar.
-- **Abnahme:** PDF-Erzeugung mit minimalen technischen Beispielen prüfen; diese sind keine fertigen Lehrmaterialien. Fehlende Werkzeuge und fehlgeschlagene Dokument-Builds verständlich melden.
+**Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer- und PGF/TikZ-Quellen nach `folien/build/` und `tafelbilder/build/`. Zwei Durchläufe für die Folien, einer für die Tafelbilder. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
+
+- Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
+- **Prüfung:** echte Projektdokumente (17 Folien, zehn Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
 
-- Auf F1 und F2 aufbauen: Ein dokumentierter Gesamtbefehl baut auf dem Entwicklergerät Website und Demos sowie Folien- und Tafelbild-PDFs aus den versionierten Quellen und bündelt alles in `dist/`. Für den vollständigen Release-Build wird die passende lokale LaTeX-Distribution vorausgesetzt.
-- `dist/` enthält das fertig gebaute, statisch hostbare Bundle. Der Build führt keinen Push aus; die Veröffentlichung ist ein separater Schritt. Keine GitHub-Actions-Workflows für Build oder Deployment einführen.
-- Die erzeugten PDFs auf der Landingpage zum Download verlinken. Fehlende Pflichtquellen, Build-Werkzeuge oder fehlgeschlagene Dokument-Builds müssen den vollständigen Release-Build mit verständlicher Meldung abbrechen; keine stillschweigend unvollständigen Releases.
-- Die Pipeline unabhängig von der fachlichen Ausarbeitung der Lehrmaterialien entwickeln. Technische Beispieldokumente erlauben die Prüfung des Rahmenwerks; die vollständigen Workshopmaterialien werden zusätzlich geprüft, sobald sie vorliegen.
-- **Abnahme:** vollständigen lokalen Build aus einem sauberen Checkout mit dokumentierten Voraussetzungen ausführen; ausschließlich `dist/` per lokalem HTTP-Server unter einem simulierten GitHub-Pages-Projektpfad bereitstellen. Demos und Downloads müssen erreichbar, PDFs lesbar und alle internen Links gültig sein; die Bereitstellung der fertigen Dateien benötigt keine LaTeX-Distribution oder Projekt-Build-Werkzeuge.
+**Stand: Gesamtbuild umgesetzt und lokal geprüft (11. November 2026); PDF-Inklusion ausdrücklich zurückgestellt.** `npm run build` erzeugt zuerst die PDFs und anschließend die Website samt Demos. Bei einem Dokumentfehler wird kein neuer Website-Build erzeugt. `npm run build:site` ist weiterhin ohne LaTeX nutzbar.
+
+- Aktuelle Ausgaben: statisches Bundle in `dist/`, PDFs ausschließlich in den lokalen Dokument-Build-Verzeichnissen. `site/catalog.json` enthält weiterhin keine Materialien. Build und Push bleiben getrennte Befehle.
+- **Offen, zurückgestellt:** PDFs ins Bundle übernehmen, Downloadlinks aktivieren und das Bundle einschließlich Downloads unter einem Repository-Unterpfad prüfen. Dieser Schritt wird nicht durch den aktuellen Build-Auftrag umgesetzt.
+
+### F4 — Website-Stil
+
+**Offen:** Stil der Landingpage und der Demo-Seite iterieren. Als eigene Aufgabe im Backlog aufgenommen; noch kein Gestaltungsauftrag.
 
 ## 2. Externe Integrationen vordenken
 
 ### I1 — ShaderToy
 
+- **Umgesetzt (11. November 2026):** expliziter Kopier-/Einfügeablauf auf der Demo-Seite mit Zwischenablage-Fallback. `shadertoyUrl` je Stand steuert den veröffentlichten Zugang auf Landingpage und Demo-Seite. Fehlende URLs werden angezeigt; es werden keine veröffentlichten Projekte vorgetäuscht. Tests prüfen Kopieren und Stand-Linkwechsel.
 - Kopierbare `mainImage`-Snippets und die festgelegten ShaderToy-Eingaben als Schnittstelle berücksichtigen; keine Abhängigkeit der Lehr-Snippets vom lokalen Viewer.
 - Lokale und ShaderToy-Ausführung sollen dieselbe Pixelberechnung verwenden. Kompatibilität zunächst lokal soweit möglich prüfen.
 - Für die Unterrichtsvorbereitung prüfen, ob die Teilnehmenden die vorbereiteten Demos in ShaderToy auf den vorgesehenen Geräten, insbesondere Schul-iPads, aufrufen und bearbeiten können. Das betrifft ShaderToy; die lokale Website ist dafür keine Voraussetzung.
@@ -68,10 +87,11 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 ### I2 — GitHub Pages
 
-- Festgelegte Website-Adresse: `https://scheibel.github.io/million-pixel-orchestra`. Link und QR-Code sind auf Übersichts- und Abschlussfolie eingebunden; die Veröffentlichung bleibt ein eigener Schritt.
+- Festgelegte Website-Adresse: `https://www.willyscheibel.de/million-pixel-orchestra/`. Link und QR-Code sind auf Übersichts- und Abschlussfolie eingebunden; die Veröffentlichung bleibt ein eigener Schritt.
 - Statisches Gesamtergebnis ohne erforderliches Server-Backend vorsehen; keine fest kodierte Domain.
 - Relative oder passend konfigurierte Pfade müssen auch unter einem Repository-Unterverzeichnis funktionieren, einschließlich Shader-Dateien und PDF-Downloads.
-- Festgelegter Veröffentlichungsweg: Website samt PDFs vollständig auf dem Entwicklergerät nach `dist/` bauen, lokal prüfen und anschließend das fertige Bundle in die GitHub-Pages-Veröffentlichungsquelle pushen. Veröffentlichungsbranch und konkreten Push-Ablauf bei der Umsetzung dokumentieren.
+- **Umgesetzt (11. November 2026):** `npm run publish:pages` pusht das zuvor gebaute `dist/` nach `origin/gh-pages`; `--dry-run` prüft ohne Commit oder Push. Temporäres Git-Repository, Erhaltung der Branchhistorie, kein Force-Push und keine Änderung des Quellarbeitsbaums. Anleitung und einmalige Einstellung auf `gh-pages` / (root) in `docs/PUBLISHING.md`. Lokal gegen ein temporäres Bare-Repository geprüft: Erstveröffentlichung, Updates, Löschungen, Probelauf und unverändertes Bundle.
+- Aktuell werden ausschließlich Website und Demos veröffentlicht; die PDF-Inklusion bleibt zurückgestellt. Tatsächlicher Push und einmalige GitHub-Einstellung sind noch auszuführen, sobald die Veröffentlichung beauftragt ist.
 - Keine GitHub-Actions-Workflows für Build oder Deployment verwenden. GitHub Pages stellt die fertigen Dateien bereit; dort keine LaTeX-Distribution oder Projekt-Build-Werkzeuge voraussetzen.
 - Build und Push getrennt halten; vorerst lokal unter einem simulierten Projektpfad prüfen.
 - Die Planung der Integration und die Hostbarkeit sind kein Auftrag zur Einrichtung oder Veröffentlichung auf GitHub Pages.

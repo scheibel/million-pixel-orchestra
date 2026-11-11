@@ -12,11 +12,11 @@ Der auf der bereitgestellten Vorlage basierende Stil liegt in `stil.tex`: weiße
 
 Der zusammengeführte Vortragstitel erscheint auf der Titelfolie zentriert und fett im bisherigen Untertitelstil, mit einem Zeilenumbruch nach dem Gedankenstrich. Die Kopfzeile enthält die Logos; die Fußzeilen der Inhaltsfolien verwenden Foliennummer, Abschnitt und Kurztitel.
 
-Die Website-Adresse ist als `https://scheibel.github.io/million-pixel-orchestra` festgelegt. Übersicht und Abschluss enthalten dafür einen echten QR-Code mit weißer Ruhezone sowie die anklickbare, über zwei Zeilen lesbare Adresse. Das Ziel wird zentral über `\workshopurl` in `vortrag.tex` gesetzt. Die URL wird wie vorgegeben verwendet; die Online-Erreichbarkeit ist nach der separaten Veröffentlichung zu prüfen.
+Die Website-Adresse ist als `https://www.willyscheibel.de/million-pixel-orchestra/` festgelegt. Übersicht und Abschluss enthalten dafür einen echten QR-Code mit weißer Ruhezone sowie die anklickbare, über zwei Zeilen lesbare Adresse. Das Ziel wird zentral über `\workshopurl` in `vortrag.tex` gesetzt. Die URL wird wie vorgegeben verwendet; die Online-Erreichbarkeit ist nach der separaten Veröffentlichung zu prüfen.
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Vom Repository-Hauptverzeichnis aus:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (beide Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p folien/build
@@ -24,4 +24,4 @@ pdflatex -interaction=nonstopmode -halt-on-error -output-directory=folien/build 
 pdflatex -interaction=nonstopmode -halt-on-error -output-directory=folien/build folien/vortrag.tex
 ```
 
-Das Ergebnis ist `folien/build/vortrag.pdf`; die bearbeitbare Quelle ist `vortrag.tex`. Das Build-Verzeichnis ist nicht versioniert. Dieser direkte Aufruf ist unabhängig vom Website-Build; die gemeinsame Dokument- und Release-Pipeline (F2/F3) ist weiterhin offen.
+Das Ergebnis ist `folien/build/vortrag.pdf`; die bearbeitbare Quelle ist `vortrag.tex`. Das Build-Verzeichnis ist nicht versioniert. Der Gesamtbuild erzeugt die PDFs lokal; die Einbindung in die Website und PDF-Veröffentlichung bleiben zurückgestellt.

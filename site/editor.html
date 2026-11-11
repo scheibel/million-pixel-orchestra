@@ -23,9 +23,18 @@
         <section class="code-pane" aria-labelledby="code-title">
           <div class="pane-heading"><h2 id="code-title">Quellcode <span class="language-label">GLSL</span></h2><span id="draft-status" class="small">Vorbereitete Fassung</span></div>
           <div class="code-editor"><div id="line-numbers" class="line-numbers" aria-hidden="true"></div><textarea id="source" aria-label="GLSL-Quellcode" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea></div>
-          <div class="code-actions"><button id="compile" type="button" class="button primary">Kompilieren</button><button id="copy" type="button" class="button">Code kopieren</button><button id="restore" type="button" class="text-button" disabled>Stand wiederherstellen</button></div>
+          <div class="code-actions"><button id="compile" type="button" class="button primary">Kompilieren</button><button id="copy" type="button" class="button">Für ShaderToy kopieren</button><button id="restore" type="button" class="text-button" disabled>Stand wiederherstellen</button></div>
           <div class="editor-help"><span>Live-Vorschau nach kurzer Eingabepause.</span><span>Strg / ⌘ + Enter: kompilieren</span></div>
           <p id="copy-status" class="small" role="status"></p>
+          <div class="shadertoy-export" aria-labelledby="export-title">
+            <h3 id="export-title">In ShaderToy weiterprogrammieren</h3>
+            <ol>
+              <li>Gewünschten Stand auswählen und „Für ShaderToy kopieren“ drücken.</li>
+              <li><a id="shadertoy-link" href="https://www.shadertoy.com/new" target="_blank" rel="noopener noreferrer">Neues ShaderToy-Projekt öffnen ↗</a></li>
+              <li>Den Inhalt des Image-Codefelds vollständig durch den kopierten Code ersetzen (Strg / ⌘ + V) und ausführen.</li>
+            </ol>
+            <p id="shadertoy-status" class="small">Für diesen Stand ist noch kein veröffentlichter ShaderToy-Link hinterlegt.</p>
+          </div>
         </section>
         <section class="preview-pane" aria-labelledby="preview-title">
           <div class="pane-heading"><h2 id="preview-title">Das berechnete Bild</h2><span id="resolution" class="small"></span></div>
@@ -51,7 +60,7 @@
       </div>
     </fieldset>
     <section class="math-note"><p class="eyebrow">Die Mathematik dahinter</p><p id="demo-math"></p></section>
-    <div class="editor-footnote"><p>Eigene Änderungen bleiben je Stand in dieser geöffneten Seite erhalten. Beim Neuladen werden die vorbereiteten Fassungen geladen.</p><a id="shadertoy-link" href="https://www.shadertoy.com/new" target="_blank" rel="noopener noreferrer">In ShaderToy weiterarbeiten ↗</a></div>
+    <div class="editor-footnote"><p>Eigene Änderungen bleiben je Stand in dieser geöffneten Seite erhalten. Beim Neuladen werden die vorbereiteten Fassungen geladen.</p></div>
   </main>
   <footer class="site-footer shell wide"><span>color = f(x, y, t)</span><span>Position + Zeit → Farbe</span></footer>
 </body>

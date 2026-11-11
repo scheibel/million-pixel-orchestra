@@ -15,13 +15,13 @@
 \newcommand{\tagline}[1]{{\color{accent}\footnotesize\bfseries\MakeUppercase{#1}}}
 \newcommand{\frag}[1]{\texttt{#1}}
 \newcommand{\qrplatz}[1]{\begin{tikzpicture}\node[draw=muted!60,rounded corners=2pt,minimum width=3.0cm,minimum height=1.1cm,align=center,text=muted,font=\scriptsize] {QR-Code: #1\\Adresse folgt};\end{tikzpicture}}
-\newcommand{\workshopurl}{https://scheibel.github.io/million-pixel-orchestra}
+\newcommand{\workshopurl}{https://www.willyscheibel.de/million-pixel-orchestra/}
 \newcommand{\websitezugang}{%
   \begingroup\centering
   \setlength{\fboxsep}{2mm}% Weiße Ruhezone für den QR-Code.
   \href{\workshopurl}{\colorbox{white}{\color{black}\qrcode[height=2cm,level=M]{\workshopurl}}}\par\smallskip
   {\fontsize{7.5}{9}\selectfont\color{sea}
-    \href{\workshopurl}{\texttt{scheibel.github.io/}\\\texttt{million-pixel-orchestra}}\par}
+    \href{\workshopurl}{\texttt{www.willyscheibel.de/}\\\texttt{million-pixel-orchestra/}}\par}
   \endgroup
 }
 \newcommand{\demoheader}[1]{\tagline{Demo #1}\par\smallskip}

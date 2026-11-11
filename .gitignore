@@ -7,5 +7,6 @@ dist/
 *.synctex.gz
 .browser-test-*/
 .website-build-*/
+.document-build-*/
 tafelbilder/build/
 folien/build/
