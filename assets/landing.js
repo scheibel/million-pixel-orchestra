@@ -1,7 +1,12 @@
 import { loadCatalog } from "./catalog.js";
 
 try {
-  const { demos, materials, base } = await loadCatalog();
+  const { demos, starter } = await loadCatalog();
+  if (starter) {
+    const link = document.querySelector("#empty-editor");
+    link.href = `./editor.html?demo=${encodeURIComponent(starter.id)}`;
+    link.hidden = false;
+  }
   const list = document.querySelector("#demo-list");
   list.replaceChildren();
   demos.forEach((demo, index) => {
@@ -16,10 +21,7 @@ try {
     title.textContent = demo.title;
     const summary = document.createElement("p");
     summary.textContent = demo.summary;
-    const meta = document.createElement("span");
-    meta.className = "demo-meta";
-    meta.textContent = `${demo.snapshots.length} ${demo.snapshots.length === 1 ? "vorbereiteter Stand" : "vorbereitete Stände"} · Code & Live-Vorschau`;
-    content.append(title, summary, meta);
+    content.append(title, summary);
     const arrow = document.createElement("span");
     arrow.className = "demo-arrow";
     arrow.textContent = "↗";
@@ -43,17 +45,6 @@ try {
     }
   });
   if (!demos.length) list.textContent = "Noch keine Demos vorhanden.";
-  if (materials.length) {
-    const list = document.querySelector("#material-list");
-    list.replaceChildren();
-    for (const material of materials) {
-      const link = document.createElement("a");
-      link.className = "material-link";
-      link.href = new URL(material.file, base).href;
-      link.textContent = `${material.title} · PDF ↓`;
-      list.append(link);
-    }
-  }
 } catch (error) {
   document.querySelector("#demo-list").replaceChildren();
   const message = document.querySelector("#catalog-error");

@@ -1,20 +1,38 @@
 {
   "id": "05-polynom-und-weiche-kante",
-  "title": "Polynom und weiche Kante",
-  "summary": "Ein kubisches Polynom macht den Rand eines Kreises weich.",
-  "math": "fragCoord und iResolution.xy bestimmen die Position relativ zur Bildmitte; die Division durch die Bildhöhe hält den Kreis rund. Der Abstand wird über ein schmales Randintervall auf t zwischen 0 und 1 abgebildet. 3t² − 2t³ verläuft an beiden Enden flach und mischt Innen- und Außenfarbe weich.",
+  "title": "Polynome für Bewegung und Farbe",
+  "summary": "Ein, zwei und vier Punkte im Kanon: LERP → Smoothstep → Smootherstep für Bewegung und Schwarz–Eckfarbe–Schwarz im Halt.",
+  "math": "fragCoord und iResolution.xy ergeben zentrierte Koordinaten mit gleichen Einheiten auf beiden Achsen. Die Punkte fahren zwischen N, O, S und W. LERP ist lineare Interpolation und heisst in GLSL mix: (1 − s) · a + s · b. Im START ist verlauf(t) = t. Zunächst kommt ein zweiter Punkt hinzu. Danach glättet Smoothstep mit 3t² − 2t³ die Fahrt und den Farbwechsel der beiden Punkte; an den Enden ist die erste Ableitung null. Anschließend werden es vier Punkte. Im ZIEL glättet Smootherstep mit 6t⁵ − 15t⁴ + 10t³ zusätzlich die zweite Ableitung an den Enden. Je Kante folgen auf 1,2 Sekunden Fahrt 0,6 Sekunden Halt. Während der Fahrt bleiben die Punkte schwarz. Im Halt steuert dieselbe Funktion verlauf den Wechsel Schwarz → Eckfarbe → Schwarz. N ist rot, O grün, S blau, W gelb. Jeder Punkt fährt erst nach der Rückkehr zu Schwarz weiter. Phase 2 und 3 zeigen die Stimmen 1 und 3 des bisherigen Kanons mit Verzögerungen von 0 und 3 Sekunden. Ab Phase 4 kommen die Stimmen 2 und 4 hinzu; dann sind die Verzögerungen 0, 1,5, 3 und 4,5 Sekunden. Eine Runde dauert 7,2 Sekunden. Der Einsatzabstand unterscheidet sich von der Abschnittsdauer von 1,8 Sekunden und erzeugt den Kanon.",
   "snapshots": [
     {
       "id": "start",
-      "label": "START · Weiß",
+      "label": "START · 1 Punkt · LERP",
       "file": "START.glsl",
-      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+      "description": "Ein Punkt fährt linear und wechselt im Halt linear von Schwarz zur Eckfarbe und zurück."
+    },
+    {
+      "id": "zwei-punkte-lerp",
+      "label": "Phase 2 · 2 Punkte · LERP",
+      "file": "01-zwei-punkte-lerp.glsl",
+      "description": "Die Stimmen 1 und 3 des Kanons laufen linear mit Verzögerungen von 0 und 3 Sekunden."
+    },
+    {
+      "id": "zwei-punkte-smoothstep",
+      "label": "Phase 3 · 2 Punkte · Smoothstep",
+      "file": "02-zwei-punkte-smoothstep.glsl",
+      "description": "Smoothstep glättet Bewegung und Farbwechsel der Stimmen 1 und 3; ihre Verzögerungen bleiben 0 und 3 Sekunden."
+    },
+    {
+      "id": "vier-punkte-smoothstep",
+      "label": "Phase 4 · 4 Punkte · Smoothstep",
+      "file": "03-vier-punkte-smoothstep.glsl",
+      "description": "Die Stimmen 2 und 4 ergänzen den bisherigen Kanon; alle vier verwenden weiterhin Smoothstep."
     },
     {
       "id": "ziel",
-      "label": "ZIEL",
+      "label": "ZIEL · 4 Punkte · Smootherstep",
       "file": "ZIEL.glsl",
-      "description": "Ein kubisches Polynom macht den Rand eines Kreises weich."
+      "description": "Alle vier Punkte verwenden das Polynom fünften Grades. Weg und Farbwechsel haben an den Übergängen zusätzlich die zweite Ableitung null."
     }
   ]
 }

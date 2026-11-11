@@ -2,7 +2,7 @@
   "id": "03-kreis-und-quadrierter-abstand",
   "title": "Kreis und bewegte Metaballs",
   "summary": "Vom Abstandstest zum Kreisfeld und zu bewegten Metaballs.",
-  "math": "fragCoord ist die Pixelposition und iResolution.xy die Bildgröße. Die Verschiebung zur Bildmitte und Division durch die Bildhöhe sorgen für gleiche Abstandseinheiten. dot(p, p) berechnet den quadrierten Abstand. Zwei abfallende Abstandsfelder werden addiert und mit einem Schwellenwert verglichen. sin(iTime) bewegt ihre Mittelpunkte aufeinander zu und wieder auseinander.",
+  "math": "fragCoord ist die Pixelposition, iResolution.xy die Bildgröße. Die auf die Bildhöhe bezogene Position hält den Kreis rund. dot(a, a) ergibt den quadrierten Abstand zum Mittelpunkt. Zunächst wird er mit radius² verglichen, danach durch 0.035 / (d² + 0.01) in ein abfallendes Feld umgerechnet. Ein zweites Feld wird addiert; oberhalb des Grenzwerts 1 entsteht die Form. 0.01 verhindert eine Division durch null. Erst im ZIEL ersetzt 0.23 + 0.14 · sin(iTime) den konstanten Mittelpunktversatz. Hintergrund- und Objektfarbe bleiben in den Form-Ständen gleich.",
   "snapshots": [
     {
       "id": "start",
@@ -17,9 +17,15 @@
       "description": "Ein Vergleich des quadrierten Abstands mit dem Radius zeichnet einen Kreis."
     },
     {
+      "id": "abstandsfeld",
+      "label": "Ein Abstandsfeld",
+      "file": "02-ein-abstandsfeld.glsl",
+      "description": "Ein einzelnes abstandsabhängiges Feld wird mit einem Grenzwert verglichen. Die Farben bleiben unverändert."
+    },
+    {
       "id": "metaballs",
       "label": "Zwischenstand · Metaballs",
-      "file": "02-metaballs-statisch.glsl",
+      "file": "03-metaballs-statisch.glsl",
       "description": "Zwei statische Abstandsfelder werden addiert und mit einem Schwellenwert verglichen."
     },
     {

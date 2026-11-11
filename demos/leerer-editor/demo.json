@@ -1,0 +1,14 @@
+{
+  "id": "leer",
+  "title": "Leerer Editor",
+  "summary": "Platz für eigene Ideen. Eine weiße Fläche ist der Ausgangspunkt.",
+  "math": "Jedes Pixel erhält zunächst dieselbe Farbe: vec3(1.0) setzt Rot, Grün und Blau auf 1 und ergibt Weiß. Ändere die Farbberechnung, um dein eigenes Bild zu gestalten.",
+  "snapshots": [
+    {
+      "id": "ziel",
+      "label": "Vorlage · Weiß",
+      "file": "VORLAGE.glsl",
+      "description": "Ein lauffähiges ShaderToy-Grundgerüst für eigene Experimente."
+    }
+  ]
+}

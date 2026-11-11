@@ -1,20 +1,32 @@
 {
   "id": "08-value-noise",
-  "title": "Value Noise",
-  "summary": "Interpolierte Pseudozufallswerte ergeben ein weiches Muster.",
-  "math": "fragCoord ist die Pixelposition, iResolution.xy die Bildgröße; die Division durch die Bildhöhe sorgt für quadratische Gitterzellen. Eine vorbereitete Hashfunktion erzeugt reproduzierbare Pseudozufallswerte an Gitterpunkten. Das Polynom 3t² − 2t³ glättet die Interpolation zwischen vier Eckwerten.",
+  "title": "Vom Zufall zu Noise",
+  "summary": "UV-Bild → Zufall pro Pixel → Value Noise → Simplex Noise.",
+  "math": "Das UV-Bild zeigt normierte Pixelpositionen. Eine vorbereitete Hashfunktion liefert pro Pixel einen reproduzierbaren Pseudozufallswert. Value Noise verankert solche Werte an einem gröberen quadratischen Gitter und interpoliert sie mit mix und dem Smoothstep-Polynom aus Demo 4. Die Division durch iResolution.y hält die Gitterzellen quadratisch. Simplex Noise ist ein anderes Verfahren: gewichtete Gradientenbeiträge auf einem Dreiecksgitter statt interpolierter Eckwerte. Die Simplex-Basis wird vorbereitet und nicht live hergeleitet. Die vorbereitete Schnittstelle simplexNoise01 bildet das Ergebnis von ungefähr −1…1 auf 0…1 ab und begrenzt es auf diesen Bereich. Im Gestaltungs-Code wird nur valueNoise(p) durch simplexNoise01(p) ersetzt; Koordinaten und Graustufenausgabe bleiben gleich. Vorherige Basisfunktionen bleiben erhalten.",
   "snapshots": [
     {
       "id": "start",
-      "label": "START · Weiß",
+      "label": "START · UV-Bild",
       "file": "START.glsl",
-      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+      "description": "Rot zeigt die normierte x-Position, Grün die normierte y-Position: Rückgriff auf Demo 2."
+    },
+    {
+      "id": "zufall-pro-pixel",
+      "label": "Phase 1 · Zufall pro Pixel",
+      "file": "01-zufall-pro-pixel.glsl",
+      "description": "Jedes Pixel erhält einen eigenen Grauwert. Das Muster bleibt ohne Zeitabhängigkeit unverändert."
+    },
+    {
+      "id": "value-noise",
+      "label": "Phase 2 · Value Noise",
+      "file": "02-value-noise.glsl",
+      "description": "An einem gröberen Gitter verankerte Zufallswerte werden innerhalb jeder Zelle glatt interpoliert."
     },
     {
       "id": "ziel",
-      "label": "ZIEL",
+      "label": "ZIEL · Simplex Noise",
       "file": "ZIEL.glsl",
-      "description": "Interpolierte Pseudozufallswerte ergeben ein weiches Muster."
+      "description": "Eine vorbereitete Simplex-Funktion erzeugt ein zusammenhängendes Grauwertmuster aus Gradienten auf einem Dreiecksgitter."
     }
   ]
 }

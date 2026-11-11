@@ -1,20 +1,32 @@
 {
   "id": "09-fbm",
-  "title": "fBm: Wolken aus Noise",
-  "summary": "Mehrere unterschiedlich große Noise-Muster ergeben eine Wolkentextur.",
-  "math": "fragCoord und iResolution.y ergeben Koordinaten mit gleich großen Einheiten auf beiden Achsen. Die vorbereitete Value-Noise-Funktion interpoliert Pseudozufallswerte im Gitter. Vier Oktaven mit jeweils doppelter Frequenz und halbem Gewicht überlagern grobe und feine Strukturen. Die Gewichtssumme 0,9375 normalisiert das Ergebnis.",
+  "title": "Wolken aus Noise",
+  "summary": "Simplex Noise → fBm → Wolkengestaltung → Animation.",
+  "math": "Der START übernimmt das Simplex-Noise-Ziel aus Demo 5 unverändert. Vier Oktaven mit doppelter Frequenz und halbem Gewicht überlagern grobe und feine Strukturen. Alle Oktaven verwenden simplexNoise01 mit Werten zwischen 0 und 1. Die Division durch die Gewichtssumme 0.9375 ergibt einen gewichteten Mittelwert im selben Bereich; eine zusätzliche Wertebereichsumrechnung ist nicht nötig. Smoothstep übersetzt die Werte in Wolkendichte; mix mischt Blau und Weiß. Erst im ZIEL verschiebt iTime die Abfrageposition: Das vorhandene räumliche Muster wandert, statt pro Bild neu gewürfelt zu werden.",
   "snapshots": [
     {
       "id": "start",
-      "label": "START · Weiß",
+      "label": "START · Simplex Noise",
       "file": "START.glsl",
-      "description": "Ausgangspunkt: Alle Pixel erhalten dieselbe weiße Farbe."
+      "description": "Unveränderter Anschluss an das ZIEL von Demo 5: ein statisches Simplex-Noise-Muster in Graustufen."
+    },
+    {
+      "id": "fbm",
+      "label": "Phase 1 · fBm",
+      "file": "01-fbm.glsl",
+      "description": "Vier gewichtete Simplex-Noise-Oktaven ergänzen kleinere Strukturen; die Darstellung bleibt in Graustufen."
+    },
+    {
+      "id": "wolken",
+      "label": "Phase 2 · Wolken",
+      "file": "02-wolken.glsl",
+      "description": "Schwellbereich und Farbmischung gestalten dasselbe statische fBm-Muster als weiße Wolken vor blauem Himmel."
     },
     {
       "id": "ziel",
-      "label": "ZIEL",
+      "label": "Phase 3 · Animation · ZIEL",
       "file": "ZIEL.glsl",
-      "description": "Mehrere unterschiedlich große Noise-Muster ergeben eine Wolkentextur."
+      "description": "Eine zeitabhängige Verschiebung der Abfrageposition lässt das zusammenhängende Wolkenmuster wandern."
     }
   ]
 }

@@ -108,9 +108,10 @@ function selectSnapshot(id) {
 }
 
 try {
-  const { demos } = await loadCatalog();
+  const { demos, starter } = await loadCatalog();
   const requested = new URLSearchParams(location.search).get("demo");
-  const demo = requested ? demos.find(demo => demo.id === requested) : demos[0];
+  const entries = starter ? [...demos, starter] : demos;
+  const demo = requested ? entries.find(demo => demo.id === requested) : demos[0];
   if (!demo) throw new Error("Diese Demo ist nicht im Katalog vorhanden. Bitte über „Alle Demos“ eine Demo auswählen.");
   element("demo-title").textContent = demo.title;
   document.title = `${demo.title} · Millionen Pixel`;
