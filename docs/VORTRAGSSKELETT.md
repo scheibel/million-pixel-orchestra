@@ -4,6 +4,8 @@ Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren 
 
 ## Vorgeschlagener Ablauf
 
+**Aktualisierte Workshopentscheidung:** Die Teilnehmenden arbeiten direkt auf der öffentlichen Projektwebsite im eigenen Live-Editor. ShaderToy bleibt eine optionale Erwähnung und die Plattform für die Inspirationsgalerie. Die nachfolgenden älteren ShaderToy-Zugangsaufgaben sind damit keine Pflichtvorbereitung mehr. In den Folien stehen noch sechs ShaderToy-QR-Platzhalter; diese sind auf den Website-Zugang abzustimmen.
+
 | Abschnitt | Inhalt und Medien | Stand / offene Arbeit |
 | --- | --- | --- |
 | Auftakt | Titel, ein eindrucksvolles Shader-Beispiel und die Leitfrage: Wie berechnet Mathematik ein Bild? | Beispiel und Quellen auswählen. |
@@ -68,4 +70,4 @@ Demo 4 besitzt einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START;
 - [x] QR-Code und lesbare Adresse `https://www.willyscheibel.de/million-pixel-orchestra/` für Übersicht und Abschluss einbinden.
 - [ ] Nach Veröffentlichung Website-Erreichbarkeit prüfen; QR-Codes auf den vorgesehenen Geräten sowie in Projektionsgröße testen. Die Website-Adresse ist vorgegeben, ihre Veröffentlichung erfolgt separat.
 
-Die Website bündelt die Materialien; die Teilnehmenden programmieren in ShaderToy. Lokaler Release-Build, Veröffentlichung auf GitHub Pages und Übertragung zu ShaderToy sind eigenständige Schritte und durch dieses Skelett nicht beauftragt.
+Die Website bündelt die vorbereiteten Demos und ist die gemeinsame Programmierumgebung. Lokaler Release-Build, Veröffentlichung auf GitHub Pages und eine optionale Übertragung zu ShaderToy sind eigenständige Schritte und durch dieses Skelett nicht beauftragt.

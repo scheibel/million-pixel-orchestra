@@ -6,6 +6,8 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 ## Aktueller Backlog — konkrete Restarbeit
 
+**Entscheidung für den Workshop am 12. November 2026:** Die Teilnehmenden öffnen zu Beginn die öffentliche Projektwebsite und arbeiten direkt im eigenen Live-Editor mit den vorbereiteten Ständen. ShaderToy wird als optionale Plattform erwähnt; eigene ShaderToy-Projekte, veröffentlichte Stand-Links und deren Geräteprüfung sind keine Pflichtaufgaben für morgen. Die öffentliche Startseite und der Katalog wurden am 11. November 2026 erreichbar geprüft. Die frühere Planung mit ShaderToy als Teilnehmerumgebung ist ersetzt; ältere Abnahmeberichte dokumentieren den damaligen Stand.
+
 - [ ] Stil der Website weiter iterieren: Landingpage in der ersten Iteration vereinfacht und freien Editor-Einstieg ergänzt; weitere Gestaltung der Landingpage und Demo-Seite abstimmen.
 - [ ] **Zurückgestellt:** GLSL-Syntax-Highlighting im Live-Editor ergänzen. Als mögliche Umsetzung wurde eine farbige Darstellung unter dem bestehenden Textfeld besprochen; die technische Umsetzung ist noch nicht festgelegt.
 - [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
@@ -13,8 +15,9 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 - [ ] 19 Änderungsfolien zu allen Übergängen sind erstellt; Folien und Tafelbilder im Probelauf abstimmen und Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
 - [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung und LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
-- [ ] Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen, echte `shadertoyUrl`-Werte eintragen und die QR-Platzhalter der Demo-Folien ersetzen.
-- [ ] ShaderToy auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads.
+- [ ] Demo-Zugänge in den Folien auf die Projektwebsite abstimmen; die sechs bisherigen ShaderToy-QR-Platzhalter sind noch vorhanden.
+- [ ] **Optional, nach dem Workshop:** Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen und echte `shadertoyUrl`-Werte eintragen.
+- [ ] Die öffentliche Projektwebsite samt Editor auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads: Aufrufen, Demo und Stand wählen, Code ändern und kompilieren.
 - [ ] Nach gesondertem Veröffentlichungsauftrag das geprüfte Bundle mit dem vorhandenen Publish-Befehl pushen, Pages einmalig auf `gh-pages` / (root) einstellen und Website sowie QR-Zugänge prüfen.
 - [ ] Die ältere Folien-Checkliste im Vortragsskelett mit dem inzwischen vorhandenen Materialbestand abgleichen.
 
@@ -86,6 +89,8 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 ## 2. Externe Integrationen vordenken
 
 ### I1 — ShaderToy
+
+**Aktuelle Rolle:** optionale Weiterverwendung und Inspirationsgalerie. Die eigene Website übernimmt das Live-Coding der Teilnehmenden; die folgenden ShaderToy-Übertragungsaufgaben sind keine Voraussetzung für den Workshop.
 
 - **Umgesetzt (11. November 2026):** expliziter Kopier-/Einfügeablauf auf der Demo-Seite mit Zwischenablage-Fallback. `shadertoyUrl` je Stand steuert den veröffentlichten Zugang auf Landingpage und Demo-Seite. Fehlende URLs werden angezeigt; es werden keine veröffentlichten Projekte vorgetäuscht. Tests prüfen Kopieren und Stand-Linkwechsel.
 - Kopierbare `mainImage`-Snippets und die festgelegten ShaderToy-Eingaben als Schnittstelle berücksichtigen; keine Abhängigkeit der Lehr-Snippets vom lokalen Viewer.

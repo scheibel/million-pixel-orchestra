@@ -4,7 +4,7 @@ Rahmenwerk für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren �
 
 Live-Website: [www.willyscheibel.de/million-pixel-orchestra/](https://www.willyscheibel.de/million-pixel-orchestra/).
 
-Die Schülerinnen und Schüler rufen die Demos zum Mitprogrammieren in ShaderToy auf. Die lokale Werkstatt ist insbesondere für die Vorführung auf einem Laptop vorgesehen und bietet Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. Website und PDFs lassen sich gemeinsam bauen; die PDF-Einbindung auf der Website bleibt zurückgestellt. Die Workshop-Demos werden noch didaktisch ausgearbeitet.
+Die Schülerinnen und Schüler öffnen zu Beginn die öffentliche Projektwebsite und programmieren direkt im eigenen Live-Editor. Dieser bietet Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. ShaderToy wird als optionale Plattform zum Weiterexperimentieren erwähnt; alle Snippets bleiben dorthin kopierbar. Website und PDFs lassen sich gemeinsam bauen; die PDF-Einbindung auf der Website bleibt zurückgestellt. Die Workshop-Demos werden noch didaktisch ausgearbeitet.
 
 Die Landingpage bietet die sechs vorbereiteten Demos und darüber „Leeren Editor öffnen“ für eigene Experimente. Dieser Einstieg lädt ein ShaderToy-Grundgerüst mit weißer Ausgabe. Der Materialbereich kehrt mit der Veröffentlichung von Materialien zurück.
 
@@ -100,7 +100,7 @@ npm run test:browser
 
 `npm run test:browser` benötigt zusätzlich einen lokal installierten Chromium-Browser. Standardbefehl ist `chromium`; ein anderer Pfad ist über `CHROME_BIN` möglich. Der Test startet einen isolierten Headless-Browser mit Software-WebGL und temporärem Profil. Er prüft echte Pixelwerte, Entwürfe, GLSL-Fehler und Korrektur, Animation, Zwischenablage samt Fallback, mobile Ansicht, Pixeldichte, Kontextverlust und Ladefehler. Die Testwebsite liegt unter `/million-pixel-orchestra/`; die Quell-Demos werden dabei nicht verändert. Optionale Screenshots: `SCREENSHOT_DIR` setzen.
 
-Die lokale ShaderToy-Kompatibilität wird über unveränderte Snippets im WebGL2-Adapter geprüft. Ein direkter Test in ShaderToy sowie die Prüfung von ShaderToy auf den vorgesehenen Teilnehmergeräten stehen noch aus; es wurde nichts veröffentlicht. Die iPad-Unterstützung der lokalen Website ist nachrangig.
+Die ShaderToy-Kompatibilität wird über unveränderte Snippets im WebGL2-Adapter geprüft; ein direkter Test in ShaderToy steht noch aus und ist für den Workshop optional. Die eigene Website ist die Teilnehmerumgebung und muss auf den vorgesehenen Geräten nutzbar sein. Ein Test des Editors auf tatsächlichen Schul-iPads steht noch aus.
 
 ## Repository
 

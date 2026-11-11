@@ -4,7 +4,7 @@
 
 *Ergänzt am 29. Oktober 2026 um die verbindlichen Sprachvorgaben, den Umfang der Lehrmaterialien, Website und Release-Build sowie die Trennung der Planungsebenen.*
 
-*Ebenfalls am 29. Oktober 2026 ergänzt: mehrere per Schaltfläche auswählbare Quellcode-Stände je Demo sowie ein lokaler Code-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung. Die Schülerinnen und Schüler programmieren live in ShaderToy.*
+*Ebenfalls am 29. Oktober 2026 ergänzt: mehrere per Schaltfläche auswählbare Quellcode-Stände je Demo sowie ein eigener Code-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung. Die damalige Planung zum Live-Coding in ShaderToy ist durch die Entscheidung vom 11. November 2026 ersetzt: Die Teilnehmenden programmieren auf der öffentlich gehosteten Projektwebsite.*
 
 ## Planungsebenen (festgelegt)
 1. **Rahmenwerk (Framework):** Features für Landingpage, lokale Vorschau, Hosting, Dokument-Builds und gemeinsamen Release-Build.
@@ -17,9 +17,9 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - **Workshop-Titel:** „Grafiken programmieren – Mit Mathematik zu Millionen Pixeln“.
 - **Format:** 90 Minuten, Oberstufe am Marie-Curie-Gymnasium (MCG), gemeinsam entwickelte Live-Demos.
 - **Geräte:** möglichst Schul-iPad oder eigener Laptop; dedizierte Tastatur vorteilhaft. Beamer/Smartboard und Tafel/Whiteboard. Sonderzeichen und Copy/Paste als praktische Hürde berücksichtigen.
-- **Plattform für die abschließenden Demos:** ShaderToy. Die Beispiele sollen zuerst lokal versioniert entwickelt und erst später nach ShaderToy übertragen werden.
-- **Live-Coding der Schülerinnen und Schüler:** in ShaderToy. Parallel bietet das lokale Rahmenwerk einen erweiterten Shader-Editor mit Live-Vorschau; beide Umgebungen verwenden dieselben kopierbaren Shader-Snippets.
-- **Prüfpriorität:** Die Website und ihre lokale Vorschau sind insbesondere für die Vorführung auf einem Laptop vorgesehen; ihre Funktion auf iPads ist nachrangig. Die Teilnehmenden rufen dieselben Demos zum Mitprogrammieren in ShaderToy auf. Ob das auf Schul-iPads funktioniert, hängt von ShaderToy und dessen Nutzung auf diesen Geräten ab und ist in der Unterrichtsvorbereitung dort zu prüfen.
+- **Workshopplattform (festgelegt am 11. November 2026):** Die öffentlich gehostete Projektwebsite unter `https://www.willyscheibel.de/million-pixel-orchestra/` bietet alle vorbereiteten Demos und den eigenen Live-Editor. Die Teilnehmenden öffnen diese Seite zu Beginn und programmieren direkt dort.
+- **ShaderToy:** wird erwähnt und bleibt eine optionale Plattform zum Weiterexperimentieren. Die Snippets bleiben ShaderToy-kompatibel. Eigene ShaderToy-Projekte, Stand-Links und deren Übertragung sind keine Voraussetzung für den Workshop.
+- **Prüfpriorität:** Die Projektwebsite ist sowohl Vorführ- als auch Teilnehmerumgebung. Ihre Nutzung auf den vorgesehenen Geräten, insbesondere Schul-iPads, ist deshalb relevant. Bisherige Laptop- und Browserprüfungen ersetzen keinen Test auf einem tatsächlichen Teilnehmergerät. Dies ersetzt die frühere Einstufung der eigenen iPad-Unterstützung als nachrangig.
 
 ## Sprache und Materialumfang (festgelegt)
 - Ziel des Projekts sind **deutsche Lehrmaterialien**. Beschreibende Texte auf Webseiten und insbesondere auf Folien sind auf Deutsch zu halten.
@@ -49,7 +49,7 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 
 ## Lokaler Shader-Editor (festgelegt)
 - Die Demo-Seite enthält einen bearbeitbaren Code-Editor mit Live-Vorschau, Fehlerbehandlung und Animationssteuerung als erweiterte lokale Umsetzung der Shader-Coding-Umgebung.
-- Der lokale Editor ergänzt das Live-Coding der Schülerinnen und Schüler in ShaderToy. Er bleibt Teil der statischen Website und benötigt kein Server-Backend.
+- Der eigene Editor ist die primäre Live-Coding-Umgebung für Vortrag und Teilnehmende. Er ist lokal und auf der öffentlichen statischen Website nutzbar und benötigt kein Server-Backend.
 - Editor, Vorschau und vorbereitete Quellcode-Stände sind miteinander verbunden. Die Shader bleiben vollständig nach ShaderToy kopierbar; die lokalen Entwicklungshilfen erfordern keine zusätzlichen Lehr-Uniforms.
 - Die zuvor vorgeschlagenen Bedienregeln sind mit dem Implementierungsauftrag vom 29. Oktober 2026 in F1 umgesetzt: automatische Kompilierung nach 350 ms, letzte gültige Vorschau bei Fehlern, Wiedergabe/Pause und Zeitrücksetzung sowie getrennte Entwürfe je Stand bis zum Neuladen. Einzelheiten stehen in `README.md` und F1 der Roadmap.
 - Die Bildvorschau bietet Vollbild über eine Schaltfläche oder Strg-Klick auf das Canvas; Strg-Klick und Esc schließen es wieder. Die Zeitsteuerung verwendet zugänglich beschriftete Symbole. Diese Funktionen gehören ausschließlich zur lokalen Vorschau.
@@ -86,7 +86,7 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - Die Leitformel beginnt mit einer konstanten Farbe und umfasst anschließend zeitabhängige Farbe `color = f(t)`, ortsabhängige Farbe `color = f(x, y)` und orts- und zeitabhängige Farbe `color = f(x, y, t)`. **Kein zusätzlicher Interaktionsparameter `p`.**
 - Unmittelbar nacheinander passende mathematische Konzepte und kleine Live-Coding-Ergebnisse; keine Vorab-Mathematikvorlesung.
 - Für jede Live-Demo **mindestens die vorbereiteten ShaderToy-Stände `START` und `ZIEL`**, damit Teilnehmende den START-Stand übernehmen und zum ZIEL mitprogrammieren können. Zusätzliche Zwischenstände unterstützen den Rückgriff bei Fehlern im Live-Coding.
-- Im Workshop vorbereitete ShaderToy-Links zum Abtippen/Übernehmen nutzen; frühere gemeinsame Planung sieht keine Abhängigkeit vom erstmaligen Live-Erstellen von ShaderToy-Projekten vor.
+- Im Workshop die vorbereiteten Stände direkt im Editor der Projektwebsite öffnen. Die frühere Planung mit verpflichtenden ShaderToy-Links ist ersetzt; ein erstmaliges Anlegen von ShaderToy-Projekten ist nicht erforderlich.
 
 ## Roter Faden der ersten vier Demos (festgelegt am 11. November 2026)
 
