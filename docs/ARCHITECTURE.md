@@ -10,6 +10,8 @@ Node.js ab Version 22 mit Standardbibliothek stellt HTTP-Server und Website-Buil
 
 `site/catalog.json` registriert Demo-Manifeste und vorhandene PDF-Downloads. Ein `demo.json` enthält Texte und eine geordnete Liste vollständiger Shader-Dateien. Die Landingpage liest die Metadaten; die Demo-Seite lädt alle vorbereiteten Quellen und führt den ausgewählten Stand aus. Eine Demo wird über `editor.html?demo=<id>` adressiert.
 
+Der optionale Katalogeintrag `starter` registriert eine freie Shader-Vorlage außerhalb der Workshop-Reihenfolge. Die Landingpage bietet dafür „Leeren Editor öffnen“ an. Editor, Build und Bundle-Prüfung verwenden denselben Metadatenvertrag wie für die Workshop-Demos. Die Materialsektion der Landingpage bleibt bis zur Veröffentlichung von Materialien entfernt; der Datenvertrag für spätere Downloads bleibt erhalten.
+
 URLs werden relativ zur Website bzw. zum Manifest aufgelöst. Dasselbe Bundle funktioniert auf `/` und `/million-pixel-orchestra/`, ohne Domainkonfiguration. Der Entwicklungsserver liefert `site/` und zusätzlich `demos/`; der Produktionshost liefert ausschließlich das fertige Bundle.
 
 ## Trennung von Shader und Vorschau

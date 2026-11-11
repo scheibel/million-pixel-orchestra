@@ -46,6 +46,8 @@ Beispiel für einen zusätzlichen Stand zwischen `start` und `ziel`:
 
 ## Metadatenvertrag
 
+`site/catalog.json` registriert unter `demos` die geordnete Workshop-Reihenfolge. Der optionale Eintrag `starter` verweist separat auf das Demo-Manifest für den leeren Editor. Diese Vorlage erscheint oberhalb der Liste und wird bei Build und Bundle-Prüfung wie die übrigen Shader berücksichtigt. Sie ist keine zusätzliche Live-Demo; ein einzelner Stand `ziel` mit der Beschriftung „Vorlage · Weiß“ genügt.
+
 - Demo- und Stand-IDs bestehen aus Kleinbuchstaben, Zahlen und trennenden Bindestrichen. Demo-IDs sind im Katalog eindeutig, Stand-IDs innerhalb einer Demo.
 - `title`, `summary`, `math`, `label` und `description` sind nicht leere Texte. Die Demo-`README.md` ergänzt Lernziel, Mathematik und sichtbare Änderung.
 - Für eine vollständige Live-Demo sind `start` und `ziel` erforderlich; beliebig viele weitere Stände sind möglich. Solange ein START-Stand noch fehlt, kann ein einzelner ZIEL-Stand registriert werden. Anfangs wird `start` geladen, sofern vorhanden, sonst der erste Stand.

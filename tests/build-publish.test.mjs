@@ -58,6 +58,9 @@ test("Publish prüft das Bundle vor Git-Zugriff", async t => {
   await buildSite({ root });
   await rm(join(root, "dist/assets/renderer.js"));
   await assert.rejects(publishPages({ root, dryRun: true }), /Kein vollständiges Website-Bundle.*renderer\.js/);
+  await buildSite({ root });
+  await rm(join(root, "dist/demos/leerer-editor/VORLAGE.glsl"));
+  await assert.rejects(publishPages({ root, dryRun: true }), /Kein vollständiges Website-Bundle.*VORLAGE\.glsl/);
 });
 
 test("Pages-Publish: Probelauf, erster Push, Fortschreibung und unverändertes Bundle", async t => {

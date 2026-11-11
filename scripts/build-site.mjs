@@ -16,7 +16,8 @@ export async function buildSite({ root = projectRoot, output = join(root, "dist"
   const catalog = validateCatalog(await json(join(root, "site/catalog.json")));
   const copies = [];
   const ids = new Set();
-  for (const path of catalog.demos) {
+  const paths = catalog.starter ? [...catalog.demos, catalog.starter] : catalog.demos;
+  for (const path of paths) {
     const manifestPath = join(root, path);
     const demo = validateDemo(await json(manifestPath));
     if (ids.has(demo.id)) throw new Error(`Doppelte Demo-ID: ${demo.id}`);
@@ -53,7 +54,7 @@ export async function buildSite({ root = projectRoot, output = join(root, "dist"
   } finally {
     await rm(staging, { recursive: true, force: true });
   }
-  return { output, demos: ids.size, materials: catalog.materials.length };
+  return { output, demos: catalog.demos.length, materials: catalog.materials.length };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

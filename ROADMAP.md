@@ -6,7 +6,8 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 ## Aktueller Backlog — konkrete Restarbeit
 
-- [ ] Stil der Website iterieren: Gestaltung der Landingpage und Demo-Seite abstimmen und überarbeiten.
+- [ ] Stil der Website weiter iterieren: Landingpage in der ersten Iteration vereinfacht und freien Editor-Einstieg ergänzt; weitere Gestaltung der Landingpage und Demo-Seite abstimmen.
+- [ ] **Zurückgestellt:** GLSL-Syntax-Highlighting im Live-Editor ergänzen. Als mögliche Umsetzung wurde eine farbige Darstellung unter dem bestehenden Textfeld besprochen; die technische Umsetzung ist noch nicht festgelegt.
 - [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
 - [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
 - [ ] 19 Änderungsfolien zu allen Übergängen sind erstellt; Folien und Tafelbilder im Probelauf abstimmen und Auftaktbeispiel auswählen und einbinden.
@@ -72,7 +73,15 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 
 ### F4 — Website-Stil
 
-**Offen:** Stil der Landingpage und der Demo-Seite iterieren. Als eigene Aufgabe im Backlog aufgenommen; noch kein Gestaltungsauftrag.
+Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https://github.com/scheibel/million-pixel-orchestra`.
+
+**Ergänzung:** Der Footer ist auf Landingpage und Editor-Seite entfernt. Im Einstieg der Landingpage entfallen außerdem der Button „Demos entdecken“ und der darunterstehende ShaderToy-Begleittext.
+
+**Erste Iteration umgesetzt (11. November 2026):** Header auf „Million Pixel Orchestra“ reduziert, Themenzeile entfernt und Überschrift auf „Millionen Pixel. Eine Berechnungsvorschrift.“ geändert. Das Pixelbild erläutert Berechnungsvorschrift `f`, Pixelposition `x/y` und Zeit `t`. „Vorbereitete Demos“ ersetzt die bisherigen Einleitungstexte; die Karten zeigen keine Standanzahl und keinen Vorschauhinweis mehr. Arbeitsorte-Block und Materialsektion sind entfernt; Materialien kehren erst mit ihrer Veröffentlichung zurück.
+
+„Leeren Editor öffnen“ führt separat von der Workshop-Reihenfolge zu einer weißen, lauffähigen Shader-Vorlage. Der optionale Katalogeintrag `starter` bindet sie in Laden, Website-Build und Bundle-Prüfung ein. Der Shader ist ein vollständiges `mainImage`-Snippet und verwendet keine zusätzlichen Eingaben. Weitere Gestaltungsiterationen bleiben offen; Syntax-Highlighting bleibt zurückgestellt.
+
+**Prüfung:** Website-Build und zehn Node-Tests erfolgreich, einschließlich der Vorlage unter einem Repository-Unterpfad und der Prüfung auf fehlende Vorlagendateien im Bundle. Landingpage mit Firefox 159 bei 320, 375, 768 und 1440 Pixel Breite visuell geprüft; kein horizontales Überlaufen. Die freie Vorlage kompiliert in WebGL2, Bearbeiten und Wiederherstellen funktionieren. Die Chromium-Browserprüfung ist um diesen Ablauf ergänzt, konnte hier mangels Chromium jedoch nicht ausgeführt werden.
 
 ## 2. Externe Integrationen vordenken
 

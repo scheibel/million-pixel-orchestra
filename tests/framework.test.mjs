@@ -7,6 +7,7 @@ import { buildSite, projectRoot } from "../scripts/build-site.mjs";
 import { createStaticServer } from "../scripts/serve.mjs";
 import { AnimationClock } from "../site/assets/clock.js";
 import { parseCompilerLog } from "../site/assets/renderer.js";
+import { loadCatalog } from "../site/assets/catalog.js";
 
 test("Animation pausiert ohne Zeitsprung und kann pausiert zurückgesetzt werden", () => {
   const clock = new AnimationClock(1000);
@@ -49,6 +50,12 @@ test("Vorlage lässt sich ohne Viewer-Änderung einbinden; Build läuft unter Pr
   await new Promise(resolve => server.once("listening", resolve));
   t.after(() => new Promise(resolve => server.close(resolve)));
   const base = `http://127.0.0.1:${server.address().port}/workshop/`;
+  const loaded = await loadCatalog(new URL(base));
+  assert.equal(loaded.demos.length, catalog.demos.length);
+  assert.equal(loaded.starter.id, "leer");
+  assert.ok(!loaded.demos.some(demo => demo.id === loaded.starter.id), "Die freie Vorlage gehört nicht zur Workshop-Reihenfolge");
+  const starterSource = new URL(loaded.starter.snapshots[0].file, loaded.starter.url);
+  assert.match(await (await fetch(starterSource)).text(), /void mainImage/);
   const paths = ["", "editor.html?demo=meine-demo", "assets/editor.js", "assets/style.css", "catalog.json", "demos/meine-demo/demo.json", "demos/meine-demo/START.glsl", "demos/00-konstante-farbe/ZIEL.glsl"];
   for (const path of paths) assert.equal((await fetch(new URL(path, base))).status, 200, path);
   assert.match((await fetch(new URL("assets/editor.js", base))).headers.get("content-type"), /javascript/);
@@ -83,6 +90,10 @@ test("Build lehnt fehlende PDFs, doppelte IDs und unsichere Pfade ab", async t =
   await assert.rejects(buildSite({ root }), /Ungültige PDF/);
   await writeFile(path, JSON.stringify({ ...original, demos: ["demos/../../CONTEXT.md/demo.json"] }));
   await assert.rejects(buildSite({ root }), /Ungültiger Demo-Pfad/);
+  await writeFile(path, JSON.stringify({ ...original, starter: "demos/../leer/demo.json" }));
+  await assert.rejects(buildSite({ root }), /Ungültiger Demo-Pfad/);
+  await writeFile(path, JSON.stringify({ ...original, starter: original.demos[0] }));
+  await assert.rejects(buildSite({ root }), /Doppelte Demo/);
   await writeFile(path, JSON.stringify(original));
   await cp(join(root, "demos/00-konstante-farbe"), join(root, "demos/kopie"), { recursive: true });
   await writeFile(path, JSON.stringify({ ...original, demos: [...original.demos, "demos/kopie/demo.json"] }));

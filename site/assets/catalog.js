@@ -11,8 +11,9 @@ export function validateCatalog(catalog) {
   if (!catalog || !Array.isArray(catalog.demos) || !Array.isArray(catalog.materials)) {
     throw new Error("Der Katalog benötigt die Listen demos und materials.");
   }
-  if (new Set(catalog.demos).size !== catalog.demos.length) throw new Error("Doppelte Demo im Katalog.");
-  for (const path of catalog.demos) {
+  const paths = catalog.starter === undefined ? catalog.demos : [...catalog.demos, catalog.starter];
+  if (new Set(paths).size !== paths.length) throw new Error("Doppelte Demo im Katalog.");
+  for (const path of paths) {
     if (!localPath(path) || !path.startsWith("demos/") || !path.endsWith("/demo.json")) {
       throw new Error(`Ungültiger Demo-Pfad: ${path}`);
     }
@@ -62,10 +63,15 @@ export async function fetchText(url) {
 
 export async function loadCatalog(base = new URL("../", import.meta.url)) {
   const catalog = validateCatalog(JSON.parse(await fetchText(new URL("catalog.json", base))));
-  const demos = await Promise.all(catalog.demos.map(async path => {
+  const loadDemo = async path => {
     const url = new URL(path, base);
     return { ...validateDemo(JSON.parse(await fetchText(url))), url };
-  }));
-  if (new Set(demos.map(demo => demo.id)).size !== demos.length) throw new Error("Demo-IDs müssen eindeutig sein.");
-  return { demos, materials: catalog.materials, base };
+  };
+  const [demos, starter] = await Promise.all([
+    Promise.all(catalog.demos.map(loadDemo)),
+    catalog.starter ? loadDemo(catalog.starter) : null
+  ]);
+  const entries = starter ? [...demos, starter] : demos;
+  if (new Set(entries.map(demo => demo.id)).size !== entries.length) throw new Error("Demo-IDs müssen eindeutig sein.");
+  return { demos, starter, materials: catalog.materials, base };
 }

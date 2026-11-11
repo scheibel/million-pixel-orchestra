@@ -13,52 +13,43 @@ button, a, textarea, summary { outline-offset: 4px; }
 [hidden] { display: none !important; }
 .shell { max-width: 1180px; margin-inline: auto; padding-inline: 40px; }
 .shell.wide { max-width: 1600px; }
-.site-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 100px; border-bottom: 1px solid var(--line); }
+.site-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; min-height: 100px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.header-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 750; font-size: 1.05rem; letter-spacing: -.03em; }
-.brand-mark { display: grid; place-items: center; width: 32px; height: 32px; background: var(--ink); color: var(--paper); border-radius: 5px; font-size: 27px; line-height: 1; }
-.brand-note { color: var(--muted); font-size: .8rem; font-weight: 400; letter-spacing: 0; margin-left: 18px; }
-nav { display: flex; gap: 28px; font-size: .88rem; }
-nav a, .back-link { text-decoration: none; }
-nav a:hover, .back-link:hover { text-decoration: underline; }
-.hero { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: 54px; padding-block: 84px 80px; }
+.back-link { text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); align-items: center; gap: 54px; padding-block: 64px; }
 .eyebrow { font-size: .7rem; font-weight: 750; text-transform: uppercase; letter-spacing: .13em; margin: 0 0 16px; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.9rem, 5.1vw, 4.4rem); font-weight: 400; line-height: 1.08; letter-spacing: -.045em; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(2rem, 3.8vw, 3.2rem); hyphens: auto; overflow-wrap: anywhere; }
 h2 { font-family: Georgia, "Times New Roman", serif; font-size: 2.15rem; font-weight: 400; letter-spacing: -.035em; line-height: 1.2; margin-bottom: 12px; }
 .hero-copy { font-size: 1.05rem; line-height: 1.8; color: var(--muted); max-width: 510px; margin-bottom: 28px; }
 .button { border: 1px solid var(--line); border-radius: 5px; background: transparent; color: var(--ink); padding: 9px 15px; display: inline-flex; align-items: center; justify-content: center; gap: 24px; text-decoration: none; font-weight: 650; font-size: .83rem; white-space: nowrap; min-height: 42px; }
 .button:hover:not(:disabled) { background: #e5e8de; }
 .button.primary { color: #fff; background: var(--ink); border-color: var(--ink); }
 .button.primary:hover:not(:disabled) { background: #2b5656; }
-.hero .button { padding: 13px 20px; }
-.hero-caption { font-size: .75rem; color: var(--muted); max-width: 330px; margin-top: 20px; margin-bottom: 0; }
 .hero-art { min-height: 375px; position: relative; padding: 28px; display: flex; align-items: flex-end; background: #e9e8dc; border: 1px solid #d9daca; border-radius: 6px; overflow: hidden; }
 .pixel-field { position: absolute; inset: -30px -5px 65px 85px; transform: rotate(-12deg); background: repeating-linear-gradient(0deg, transparent 0 28px, #e9e8dc 28px 32px), repeating-linear-gradient(90deg, transparent 0 28px, #e9e8dc 28px 32px), conic-gradient(from 25deg at 50% 42%, #f6b4a0, #d4553e, #ab3d2e, #f4d4b3, #f6b4a0); }
-.formula-card { z-index: 1; background: var(--paper); border: 1px solid #d1d6c7; padding: 21px 24px; width: 100%; box-shadow: 0 8px 24px #193c3d0c; margin-bottom: 21px; }
+.formula-card { z-index: 1; background: var(--paper); border: 1px solid #d1d6c7; padding: 21px 24px; width: 100%; box-shadow: 0 8px 24px #193c3d0c; }
 .formula-card .eyebrow { display: block; font-size: .6rem; margin-bottom: 8px; }
 .formula { font-family: Georgia, serif; font-size: clamp(1.5rem, 2.5vw, 2rem); display: block; font-style: italic; }
-.formula-note { color: var(--muted); font-size: .7rem; }
-.art-caption { position: absolute; bottom: 15px; font-size: .65rem; color: var(--muted); }
+.formula-note { color: var(--muted); font-size: .7rem; margin: 8px 0 16px; }
+.formula-symbols { margin: 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: .75rem; }
+.formula-symbols > div { display: grid; grid-template-columns: 36px 1fr; gap: 8px; }
+.formula-symbols dt { font-family: Georgia, serif; font-size: 1rem; font-style: italic; }
+.formula-symbols dd { margin: 0; color: var(--muted); }
 .section { padding-block: 40px 48px; border-top: 1px solid var(--line); }
-.section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 22px; }
-.section-heading .eyebrow { margin-bottom: 9px; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 22px; }
 .section-heading h2 { margin: 0; }
-.section-heading > p { font-size: .8rem; color: var(--muted); margin: 0; }
 .demo-card { display: flex; align-items: center; gap: 25px; padding: 28px; background: #fffdf8; border: 1px solid var(--line); border-radius: 5px; text-decoration: none; transition: border-color .15s, transform .15s; margin-top: 12px; }
 .demo-card:hover { border-color: var(--ink); transform: translateY(-2px); }
 .demo-number { display: grid; place-items: center; align-self: stretch; min-width: 86px; background: #dfe9de; color: #2f6461; font-family: Georgia, serif; font-size: 2.4rem; border-radius: 3px; }
 .demo-card h3 { font-size: 1.25rem; font-weight: 650; margin-bottom: 6px; letter-spacing: -.025em; }
-.demo-card p { color: var(--muted); font-size: .85rem; margin-bottom: 10px; }
-.demo-meta { font-size: .7rem; color: var(--muted); }
+.demo-card p { color: var(--muted); font-size: .85rem; margin-bottom: 0; }
 .demo-arrow { margin-left: auto; padding-left: 14px; font-size: 1.8rem; }
 .shadertoy-links { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 10px 28px; font-size: .8rem; }
-.workshop-note { display: flex; gap: 40px; align-items: center; padding: 35px; margin-bottom: 44px; background: #e8ecdf; border-radius: 4px; }
-.note-index { font-family: Georgia, serif; font-style: italic; white-space: nowrap; font-size: 1.7rem; }
-.workshop-note h2 { font-family: inherit; font-weight: 650; font-size: 1rem; margin-bottom: 8px; letter-spacing: -.01em; }
-.workshop-note p { font-size: .85rem; color: var(--muted); margin: 0; }
-.material-link { display: block; padding-block: 12px; }
 .muted { color: var(--muted); }
-.site-footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-block: 24px; font-size: .68rem; color: var(--muted); }
 .skip-link { position: fixed; top: -80px; left: 20px; z-index: 10; padding: 12px; background: var(--paper); }
 .skip-link:focus { top: 10px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -125,6 +116,6 @@ h2 { font-family: Georgia, "Times New Roman", serif; font-size: 2.15rem; font-we
 .editor-footnote p { max-width: 650px; margin: 0; }
 .editor-footnote a { flex-shrink: 0; }
 @media (min-width: 1450px) { .code-editor, .preview-frame { height: 400px; } .line-numbers, #source { font-size: 14px; } }
-@media (max-width: 1000px) { .shell { padding-inline: 26px; } .brand-note { display: none; } .hero { gap: 30px; padding-block: 60px; } .hero-art { min-height: 335px; padding: 18px; } .workbench { grid-template-columns: 1fr; } .code-pane { border-right: 0; border-bottom: 1px solid var(--line); } .preview-frame { height: auto; aspect-ratio: 16 / 9; } .code-editor { height: 280px; } }
-@media (max-width: 640px) { .shell { padding-inline: 18px; } .site-header { min-height: 78px; gap: 14px; } .brand { font-size: .9rem; gap: 8px; } .brand-mark { width: 28px; height: 28px; font-size: 24px; } nav { gap: 16px; font-size: .75rem; } .hero { grid-template-columns: 1fr; padding-block: 42px; gap: 32px; } h1 { font-size: 3rem; } .hero-copy { font-size: .95rem; } .hero-art { min-height: 270px; } .formula-card { max-width: 330px; } .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; } h2 { font-size: 1.8rem; } .section { padding-block: 30px; } .demo-card { padding: 18px; gap: 15px; } .demo-number { min-width: 42px; font-size: 1.8rem; } .demo-card h3 { font-size: 1.05rem; } .demo-arrow { font-size: 1.3rem; padding-left: 0; } .workshop-note { flex-direction: column; align-items: flex-start; gap: 15px; padding: 22px; margin-bottom: 30px; } .site-footer { flex-direction: column; gap: 6px; } .editor-heading { padding-top: 25px; } .editor-heading .chip { display: none; } .snapshot-bar { padding: 15px; } .snapshot-button { font-size: .7rem; padding-inline: 10px; } .code-pane, .preview-pane { padding: 12px; } .code-actions { gap: 9px; } .button { font-size: .75rem; padding-inline: 11px; } .editor-footnote { flex-direction: column; gap: 12px; } .line-numbers, #source { font-size: 12px; } .back-link { font-size: .7rem; } }
+@media (max-width: 1000px) { .shell { padding-inline: 26px; } .hero { gap: 30px; padding-block: 60px; } .hero-art { min-height: 335px; padding: 18px; } .workbench { grid-template-columns: 1fr; } .code-pane { border-right: 0; border-bottom: 1px solid var(--line); } .preview-frame { height: auto; aspect-ratio: 16 / 9; } .code-editor { height: 280px; } }
+@media (max-width: 640px) { .shell { padding-inline: 18px; } .site-header { min-height: 78px; gap: 14px; } .brand { font-size: .9rem; gap: 8px; } .hero { grid-template-columns: 1fr; padding-block: 42px; gap: 32px; } h1 { font-size: 3rem; } .hero-copy { font-size: .95rem; } .hero-art { min-height: 320px; } .formula-card { padding: 18px; } .section-heading { align-items: flex-start; flex-direction: column; gap: 16px; } h2 { font-size: 1.8rem; } .section { padding-block: 30px; } .demo-card { padding: 18px; gap: 15px; } .demo-number { min-width: 42px; font-size: 1.8rem; } .demo-card h3 { font-size: 1.05rem; } .demo-arrow { font-size: 1.3rem; padding-left: 0; } .editor-heading { padding-top: 25px; } .editor-heading .chip { display: none; } .snapshot-bar { padding: 15px; } .snapshot-button { font-size: .7rem; padding-inline: 10px; } .code-pane, .preview-pane { padding: 12px; } .code-actions { gap: 9px; } .button { font-size: .75rem; padding-inline: 11px; } .editor-footnote { flex-direction: column; gap: 12px; } .line-numbers, #source { font-size: 12px; } .back-link { font-size: .7rem; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .demo-card { transition: none; } }

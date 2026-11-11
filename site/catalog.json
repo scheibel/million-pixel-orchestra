@@ -7,5 +7,6 @@
     "demos/08-value-noise/demo.json",
     "demos/09-fbm/demo.json"
   ],
+  "starter": "demos/leerer-editor/demo.json",
   "materials": []
 }

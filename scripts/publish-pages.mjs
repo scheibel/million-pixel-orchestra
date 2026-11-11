@@ -16,7 +16,8 @@ async function checkBundle(directory) {
       await readFile(join(directory, file));
     }
     const catalog = validateCatalog(JSON.parse(await readFile(join(directory, "catalog.json"), "utf8")));
-    for (const path of catalog.demos) {
+    const paths = catalog.starter ? [...catalog.demos, catalog.starter] : catalog.demos;
+    for (const path of paths) {
       const demo = validateDemo(JSON.parse(await readFile(join(directory, path), "utf8")));
       for (const snapshot of demo.snapshots) await readFile(join(directory, dirname(path), snapshot.file));
     }

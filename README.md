@@ -6,6 +6,8 @@ Live-Website: [www.willyscheibel.de/million-pixel-orchestra/](https://www.willys
 
 Die Schülerinnen und Schüler rufen die Demos zum Mitprogrammieren in ShaderToy auf. Die lokale Werkstatt ist insbesondere für die Vorführung auf einem Laptop vorgesehen und bietet Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. Website und PDFs lassen sich gemeinsam bauen; die PDF-Einbindung auf der Website bleibt zurückgestellt. Die Workshop-Demos werden noch didaktisch ausgearbeitet.
 
+Die Landingpage bietet die sechs vorbereiteten Demos und darüber „Leeren Editor öffnen“ für eigene Experimente. Dieser Einstieg lädt ein ShaderToy-Grundgerüst mit weißer Ausgabe. Der Materialbereich kehrt mit der Veröffentlichung von Materialien zurück.
+
 ## Lokal starten
 
 Voraussetzungen: **Node.js ab Version 22**, npm und ein aktueller Browser mit **WebGL2**. Es gibt keine npm-Abhängigkeiten; Paketinstallation und LaTeX sind für die Vorschau nicht erforderlich.

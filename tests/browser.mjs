@@ -134,8 +134,22 @@ try {
   await page("Page.navigate", { url: base });
   await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   assert.equal(await evaluate("document.documentElement.lang"), "de");
-  assert.equal(await evaluate("document.querySelectorAll('#material-list a').length"), 0);
+  assert.equal(await evaluate("document.querySelector('#materialien')"), null);
   assert.equal(await evaluate("document.querySelector('.shadertoy-links a').href"), "https://www.shadertoy.com/view/Ab12Cd");
+  await click('#empty-editor');
+  await success();
+  assert.equal(await evaluate("document.querySelector('#demo-title').textContent"), "Leerer Editor");
+  assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), 1);
+  const blankSource = await readFile(join(root, "demos/leerer-editor/VORLAGE.glsl"), "utf8");
+  assert.equal(await evaluate("document.querySelector('#source').value"), blankSource);
+  color(await pixel(), [255, 255, 255, 255]);
+  await edit(blankSource.replace('vec3(1.0)', 'vec3(0.2, 0.4, 0.6)'));
+  await success();
+  color(await pixel(), [51, 102, 153, 255]);
+  await click('#restore');
+  await success();
+  color(await pixel(), [255, 255, 255, 255]);
+  console.log("✓ Leerer Editor: Einstieg, lauffähige Vorlage, Änderungen und Wiederherstellung");
   for (const path of catalog.demos.slice(1, -1)) {
     const manifest = JSON.parse(await readFile(join(root, path), "utf8"));
     await page("Page.navigate", { url: `${base}editor.html?demo=${manifest.id}` });
