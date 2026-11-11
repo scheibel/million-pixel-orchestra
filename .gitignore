@@ -6,3 +6,4 @@ dist/
 .browser-test-*/
 .website-build-*/
 tafelbilder/build/
+folien/build/

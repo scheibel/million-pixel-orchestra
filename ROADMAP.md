@@ -79,6 +79,8 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 
 Die Inhaltsplanung und das Rahmenwerk haben getrennte Aufgaben. Lernziele, festgelegte Einschränkungen und die abgestimmte didaktische Progression aus `CONTEXT.md` bleiben Grundlage.
 
+Das [Vortragsskelett](docs/VORTRAGSSKELETT.md) ordnet die geplanten Folien, Demos, Tafelbilder, ShaderToy-Beispiele und QR-Codes dem Ablauf zu. Es enthält die offenen Aufgaben für persönliche Vorstellung, HPI-Studium, Übersicht, Demo-Folien und Zugangslinks. Reihenfolge und Zeitplanung bleiben Arbeitsstand.
+
 ### Konzeptablauf pro Demo — Arbeitsstand
 
 Die ersten drei Abläufe folgen dem Vorschlag des Nutzers. Die anschließenden Abläufe sind Vorschläge zur gemeinsamen weiteren Planung; sie legen noch keine zusätzlichen Shader-Stände fest. Vor Demo 1 stehen Pixelraster, Fragment-Shader, ShaderToy-Boilerplate und RGB.
@@ -104,7 +106,7 @@ Die konzeptionellen Schritte sind nicht sämtlich als eigene Shader-Stände vorh
 - **Glatte Übergänge:** `05-polynom-und-weiche-kante` mit Herleitung von `3t²-2t³` und Anwendung auf weiche Übergänge.
 - **Zeit und Approximation:** `06-wellen-und-animation` mit Sinus/Cosinus, Phase und `iTime`; `07-taylor-approximation` mit sichtbarem Vergleich zur Referenz.
 - **Zufall, Noise, fBm:** `08-value-noise` mit Pseudozufall und vorgegebener Gitter-/Interpolationsbasis; `09-fbm` mit mehreren Noise-Oktaven und Wolken/Marmor als möglichen Ergebnissen.
-- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Ein erster Entwurf mit zehn druckbaren PGF/TikZ-Tafelseiten liegt unter `tafelbilder/`; eine Umgestaltung von Wellenmotiv und weicher Kante bleibt Gegenstand der Inhaltsabstimmung.
+- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Erste Entwürfe liegen unter `folien/` und `tafelbilder/`; persönliche Inhalte, funktionierende QR-Codes und die weitere Abstimmung stehen aus. Eine Umgestaltung von Wellenmotiv und weicher Kante bleibt Gegenstand der Inhaltsabstimmung.
 - **Unterrichtsvorbereitung:** separate START-/ZIEL-Stände lokal prüfen, Links und Handout-Referenzen ordnen, Tastatureingaben/Sonderzeichen minimieren; Galerie-Beispiele auswählen und externe Werke mit Quellen zuordnen.
 
 ### Provisorische Ablaufskizze (aus letztem Planungsstand, noch nicht final beschlossen)

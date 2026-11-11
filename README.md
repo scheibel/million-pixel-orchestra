@@ -31,6 +31,7 @@ Für Zugriff von einem anderen Gerät im lokalen Netz mit `--host 0.0.0.0` start
 Acht Demos decken die geplanten Themen von Farbe bis fBm ab. Jede Demo beginnt vorläufig mit einem weißen START-Shader und besitzt einen ZIEL-Stand; die ersten drei Demos enthalten zusätzlich Zwischenstände. Die weitere Unterrichtsausarbeitung steht noch aus.
 
 Ein erster Satz druckbarer Tafelbildentwürfe mit LaTeX-/PGF/TikZ-Quelle und Aufbauhinweisen liegt unter [tafelbilder/](tafelbilder/README.md).
+Eine erste Beamer-Präsentation mit Build-Anleitung liegt unter [folien/](folien/README.md).
 
 ## Neue Demo ableiten
 
