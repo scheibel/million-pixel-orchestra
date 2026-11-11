@@ -8,6 +8,8 @@ Die Schülerinnen und Schüler öffnen zu Beginn die öffentliche Projektwebsite
 
 Die Landingpage bietet die sechs vorbereiteten Demos und darüber „Leeren Editor öffnen“ für eigene Experimente. Dieser Einstieg lädt ein ShaderToy-Grundgerüst mit weißer Ausgabe. Der Materialbereich kehrt mit der Veröffentlichung von Materialien zurück.
 
+Der geklärte Materialumfang für den Workshop umfasst die öffentlich gehostete Teilnehmer-Website, eine lokal ausreichend bereitgestellte Vortragenden-Website, statische Vortragsfolien mit Tafelbild-Endständen sowie ausgedruckte Tafelbilder und ein separat gedrucktes Code-Journal. Beide Website-Rollen dürfen dieselbe Anwendung verwenden. Die Dokumente werden getrennt gebaut: 16 Präsentationsfolien ohne Codevergleiche, acht Tafelseiten und ein A4-Code-Journal mit den bisherigen 19 Übergängen. Die Einbindung der Tafelbild-Endstände in den Vortrag und die weitere Ausarbeitung des Journals bleiben offen. Anforderungen und Stand sind in [CONTEXT.md](CONTEXT.md) und [ROADMAP.md](ROADMAP.md) dokumentiert.
+
 ## Lokal starten
 
 Voraussetzungen: **Node.js ab Version 22**, npm und ein aktueller Browser mit **WebGL2**. Es gibt keine npm-Abhängigkeiten; Paketinstallation und LaTeX sind für die Vorschau nicht erforderlich.
@@ -37,6 +39,7 @@ Sechs Demos führen von Farbe bis zu animierten Wolken. Demo 4 führt über fün
 
 Ein erster Satz druckbarer Tafelbildentwürfe mit LaTeX-/PGF/TikZ-Quelle und Aufbauhinweisen liegt unter [tafelbilder/](tafelbilder/README.md).
 Eine erste Beamer-Präsentation mit Build-Anleitung liegt unter [folien/](folien/README.md).
+Das separate [Code-Journal](code-journal/README.md) enthält die Änderungsfolgen als Druckfassung.
 
 ## Neue Demo ableiten
 
@@ -55,15 +58,16 @@ npm run build
 npm run preview
 ```
 
-`npm run build` erzeugt zuerst beide PDFs, anschließend die Website und Demos. Ergebnis:
+`npm run build` erzeugt zuerst alle drei PDFs, anschließend die Website und Demos. Ergebnis:
 
 | Ausgabe | Inhalt |
 | --- | --- |
 | `dist/` | Statische Website und Shader-Demos |
 | `folien/build/vortrag.pdf` | Beamer-Folien, zwei LaTeX-Durchläufe |
 | `tafelbilder/build/tafelbilder.pdf` | Druckbare Tafelbilder |
+| `code-journal/build/journal.pdf` | Druckbares Code-Journal, A4 hoch |
 
-Fehlende Pflichtquellen, fehlendes `pdflatex` oder LaTeX-Fehler brechen den Build ab. Bisherige PDFs werden erst ersetzt, wenn beide Dokumente erfolgreich gebaut wurden; bei einem Dokumentfehler bleibt auch die bisherige Website erhalten. Es wird kein Push ausgeführt.
+Fehlende Pflichtquellen, fehlendes `pdflatex` oder LaTeX-Fehler brechen den Build ab. Bisherige PDFs werden erst ersetzt, wenn alle drei Dokumente erfolgreich gebaut wurden; bei einem Dokumentfehler bleibt auch die bisherige Website erhalten. Es wird kein Push ausgeführt.
 
 Die PDFs werden **vorerst weder nach `dist/` kopiert noch auf der Website verlinkt**. Der Materialkatalog bleibt leer. Ihre spätere Einbindung ist ein eigener Backlogpunkt.
 
@@ -71,7 +75,7 @@ Einzelne Teile lassen sich separat bauen:
 
 ```sh
 npm run build:site  # Nur Website und Demos, ohne LaTeX
-npm run build:pdf   # Nur Folien und Tafelbilder
+npm run build:pdf   # Folien, Tafelbilder und Code-Journal
 ```
 
 `npm run preview` stellt ausschließlich `dist/` unter http://127.0.0.1:8000/ bereit. Alle Build-Verzeichnisse werden ignoriert.

@@ -1,5 +1,7 @@
 # Tafelbilder – Entwurf
 
+**Geklärte Verwendung:** Der Vortragende erhält die Tafelbilder ausgedruckt als Vorlage zum Live-Anzeichnen. Dieselben vollständigen Endstände sollen zusätzlich in die statischen Vortragsfolien aufgenommen werden, falls das Anzeichnen entfällt. Diese Folieneinbindung ist noch offen. Das Code-Journal ist ein separates Druckartefakt.
+
 Acht A4-Seiten im Querformat begleiten den fachlichen Ablauf von Pixeln bis fBm. Jede Seite zeigt den fertigen Zusammenhang und nennt unten eine mögliche Reihenfolge für den Aufbau an Tafel oder Whiteboard. Die PDF-Seiten lassen sich einzeln ausdrucken oder direkt zeigen; für die Projektion empfiehlt sich die Vollbildansicht.
 
 | Seite | Inhalt | Bezug |
@@ -17,7 +19,7 @@ Die Tafelseiten sind ein didaktischer Entwurf. Die früheren Seiten zu Wellen un
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, PGF/TikZ, `babel` mit deutscher Sprachunterstützung, `geometry` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (beide Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, PGF/TikZ, `babel` mit deutscher Sprachunterstützung, `geometry` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle drei Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p tafelbilder/build

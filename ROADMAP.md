@@ -2,7 +2,21 @@
 
 Die Planung besteht aus drei getrennten Bereichen: **Features des Rahmenwerks**, **externe Integrationen** und **Workshopinhalt**. Sie haben eigene Aufgaben und Abnahmen. Ihre Reihenfolge im Dokument ist keine gemeinsame Implementierungsfolge und kein Auftrag, alles auf einmal umzusetzen.
 
-Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1 ist implementiert. Seit 11. November 2026 sind auch Dokument-/Gesamtbuild, ShaderToy-Kopierablauf mit veröffentlichten Stand-Links und der Pages-Publish-Prozess umgesetzt. PDF-Inklusion auf der Website, tatsächliche Veröffentlichung und fachliche Fertigstellung bleiben offen.
+Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1, Dokument-/Gesamtbuild, ShaderToy-Kopierablauf mit optionalen veröffentlichten Stand-Links und der Pages-Publish-Prozess sind umgesetzt. Die öffentliche Website ist erreichbar geprüft. PDF-Inklusion auf der Website sowie die folgenden Anpassungen der Lehrmaterialien bleiben offen.
+
+## Artefakte für morgen — Anforderungen und Stand
+
+Verbindliche Anforderungen stehen in `CONTEXT.md`. Zwei Website-Rollen können mit derselben Anwendung erfüllt werden; ihr Unterschied liegt in der Bereitstellung.
+
+| Nr. | Artefakt und Abnahme | Aktueller Stand / verbleibende Arbeit |
+| --- | --- | --- |
+| 1 | Teilnehmer-Website: öffentlich erreichbar, vorbereitete Demos direkt bearbeiten und ausführen; Adresse und QR-Zugang vorhanden. | Öffentliche Startseite und Katalog erreichbar geprüft; Editor und Stände vorhanden. Nutzung auf tatsächlichen Teilnehmergeräten, insbesondere Schul-iPads, noch prüfen. Ein lokales Bundle allein genügt nicht. |
+| 2 | Vortragenden-Website: lokal gebaut und über lokalen HTTP-Server nutzbar, Präsentation und Live-Coding einschließlich Standwahl und Vollbild. | Vorhanden und lokal geprüft. Finalen Ablauf am Vortragsgerät mit Browser-/PDF-Wechsel und lesbarer Projektion erproben. Öffentliche Veröffentlichung ist hierfür kein Abnahmekriterium. |
+| 3 | Statische Folien: allgemeine Informationen und Konzepte, Website-Zugang und vollständige Tafelbild-Endstände; kein Code-Journal. | Aktuelles PDF mit 17 Folien enthält keine Codevergleiche mehr und ergänzt den 3D-Ausblick nach der Galerie. Die acht Tafelbild-Endstände sind noch als Projektionsalternative einzubinden. Demo-Zugänge auf die eigene Website abstimmen. |
+| 4 | Gedruckte Tafelbilder: lesbare A4-Vorlagen zum Live-Anzeichnen, passend zu Demos und projizierten Endständen. | Acht Tafelseiten als LaTeX-/TikZ-Quellen und Druck-PDF vorhanden. Endstände in den Folien abgleichen; Ausdruck und Druckkontrolle noch bestätigen. |
+| 5 | Gedrucktes Code-Journal: eigenständiges Druck-PDF mit START-Code, Änderungsfolge und nötigem Basiscode zum Abtippen. | Eigenständiges A4-Druck-PDF mit den bisherigen 19 Codevergleichen vorhanden und im Dokument-Build enthalten. Vollständige START- und nötige Basisblöcke für die Abtippvorlage noch ergänzen bzw. prüfen; Ausdruck und Druckkontrolle noch bestätigen. |
+
+Zusätzliche Vorschläge wie Ablaufzettel und lokale Sicherheitskopie sind Empfehlungen, keine neu vereinbarten Pflichtartefakte. Anforderungen festzuhalten ist noch keine Umsetzung der offenen Dokumentänderungen.
 
 ## Aktueller Backlog — konkrete Restarbeit
 
@@ -12,7 +26,11 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 - [ ] **Zurückgestellt:** GLSL-Syntax-Highlighting im Live-Editor ergänzen. Als mögliche Umsetzung wurde eine farbige Darstellung unter dem bestehenden Textfeld besprochen; die technische Umsetzung ist noch nicht festgelegt.
 - [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
 - [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
-- [ ] 19 Änderungsfolien zu allen Übergängen sind erstellt; Folien und Tafelbilder im Probelauf abstimmen und Auftaktbeispiel auswählen und einbinden.
+- [x] Die 19 Codevergleiche aus den Vortragsfolien herauslösen und als eigenständiges A4-Code-Journal bauen.
+- [ ] START-Code und benötigte Basisblöcke im Journal zum Abtippen vollständig verfügbar machen; die bisher übernommenen Auszüge detailliert prüfen.
+- [ ] Die acht Tafelbild-Endstände an passenden Stellen in den statischen Foliensatz aufnehmen; dieselben Inhalte wie in der Druckfassung verwenden.
+- [x] Code-Journal als separates PDF in `npm run build:pdf` und den Gesamtbuild aufnehmen; vorhandenen Schutz bei LaTeX-Fehlern und Erhaltung der PDF-/Verzeichnis-Inodes auf alle Dokumente anwenden.
+- [ ] Tafelbilder und Code-Journal ausdrucken und Lesbarkeit kontrollieren; Folien/Website und Medienwechsel im Probelauf prüfen. Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
 - [ ] 90-Minuten-Ablauf durchspielen und anpassen; LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
 - [ ] Demo-Zugänge in den Folien auf die Projektwebsite abstimmen; die sechs bisherigen ShaderToy-QR-Platzhalter sind noch vorhanden.
@@ -60,13 +78,15 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 - Der damalige Website-Build (heute `npm run build:site`) erzeugte ein statisches Bundle mit einer konstanten Farb-Demo und drei Ständen. Keine PDF-Downloads registriert, daher keine nicht funktionierenden PDF-Links.
 - ShaderToy-Kompatibilität lokal über vollständige unveränderte Image-Snippets geprüft. Ein direkter Test in ShaderToy steht noch aus. Die lokale Website wird vorrangig für die Vorführung auf einem Laptop betrachtet; ihre iPad-Funktion ist nachrangig. Keine externe Veröffentlichung vorgenommen.
 
-### F2 — Build für Folien und Tafelbilder
+### F2 — Build für Folien, Tafelbilder und Code-Journal
 
-**Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer- und PGF/TikZ-Quellen nach `folien/build/` und `tafelbilder/build/`. Zwei Durchläufe für die Folien, einer für die Tafelbilder. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
+**Erweiterung umgesetzt:** Der Dokument- und Gesamtbuild erzeugt drei getrennte PDFs: Vortrag zum Präsentieren sowie Tafelbilder und Code-Journal zum Drucken. Das Journal liegt unter `code-journal/build/journal.pdf` (A4 hoch, 19 Seiten); der Vortrag enthält nach dem Herauslösen 16 Folien, die Tafelbilder weiterhin acht Seiten. Die Einbindung der Tafelbild-Endstände in den Vortrag ist noch offen. PDF-Veröffentlichung bleibt zurückgestellt.
+
+**Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer-, PGF/TikZ- und Journal-Quellen nach `folien/build/`, `tafelbilder/build/` und `code-journal/build/`. Zwei Durchläufe für die Folien, je einer für Tafelbilder und Journal. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
 
 - Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
-- **Rebuilds:** Nach erfolgreicher temporärer Kompilierung beider Dokumente werden die Dateien in den bestehenden Build-Verzeichnissen überschrieben. Die Verzeichnisse und PDF-Dateien behalten ihre Inodes; die automatisierte Prüfung kontrolliert dies zusammen mit tatsächlich geändertem PDF-Inhalt.
-- **Prüfung:** echte Projektdokumente (aktuell 35 Folien, acht Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
+- **Rebuilds:** Nach erfolgreicher temporärer Kompilierung aller drei Dokumente werden die Dateien in den bestehenden Build-Verzeichnissen überschrieben. Die Verzeichnisse und PDF-Dateien behalten ihre Inodes; die automatisierte Prüfung kontrolliert dies zusammen mit tatsächlich geändertem PDF-Inhalt.
+- **Prüfung:** echte Projektdokumente (aktuell 16 Folien, acht Tafelseiten, 19 Journal-Seiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
 
@@ -113,7 +133,11 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 
 ## 3. Workshopinhalt
 
-**Folienreihenfolge festgelegt:** „Studium am HPI“ ist vom bisherigen Platz als Folie 5 ans Ende hinter Inspirationsgalerie und Rückblick verschoben. Die Folie konkretisiert die abschließende Studienbotschaft. Der Vortrag bleibt bei 35 Folien; die frühere Frage nach der HPI-Platzierung ist damit entschieden.
+**3D-Ausblick ergänzt (11. November 2026):** Direkt nach „Was ist noch möglich?“ steht „Von Pixeln zu 3D-Welten“ mit den beiden bereitgestellten Screenshots und anklickbaren Links zu `https://webgl-operate.org` und `https://hpicgs.github.io/cg1-playground`. Der Ausblick motiviert zum Weiterexperimentieren; der Live-Coding-Umfang bleibt bei sechs Fragment-Shader-Demos. Die Bilder sind lokal unter `folien/bilder/3d-ausblick/` gespeichert; Quellen und der per LaTeX gewählte Playground-Ausschnitt sind dort dokumentiert. Der Vortrag umfasst damit 17 Folien.
+
+**Prüfung des 3D-Ausblicks:** `npm run build:pdf` erfolgreich; neue Folie 15 gerendert und visuell ohne Überstände geprüft. Beide Bildlinks und beide ausgeschriebenen Adressen in der erzeugten PDF auf die vorgegebenen Ziele geprüft.
+
+**Folienreihenfolge festgelegt:** „Studium am HPI“ ist vom bisherigen Platz als Folie 5 ans Ende hinter Inspirationsgalerie und Rückblick verschoben. Die Folie konkretisiert die abschließende Studienbotschaft. Der zuletzt gebaute Vortrag vor der Trennung von Folien und Code-Journal hat 35 Folien; die frühere Frage nach der HPI-Platzierung ist damit entschieden.
 
 **Aktuelle Folienkorrektur:** Auf „Vom Hobby zum Studium“ ist der gleichlautende rote Untertitel entfernt. Die folgende Zeitleistenfolie trägt den bisherigen roten Text „Forschung, Praxis und Lehre“ als Überschrift; auch dort entfällt der Untertitel.
 
@@ -144,13 +168,15 @@ Festgelegte Fortsetzung (11. November 2026):
 
 Die bisherigen Demos 5 (Wellen/Animation) und 6 (Taylor) sind entfernt. Die bisherigen Demos 7/8 heißen im Vortrag jetzt 5/6; technische IDs und Pfade `08-value-noise` und `09-fbm` bleiben für vorhandene Links erhalten. Beide haben vier eigenständige ShaderToy-Snippets mit vorbereiteter Noise-Basis und vollständigen Lizenzhinweisen.
 
-**Lokale Prüfung:** Gesamtbuild mit sechs Demos, 35 Folien und acht Tafelseiten; die automatisierten Tests prüfen zusätzlich die unveränderten Rahmen in Demo 4 und die einzelnen Noise-Aufrufwechsel. Die Browserprüfung kompiliert sämtliche Stände in WebGL2 unter einem Repository-Unterpfad und prüft UV-Farben, unveränderte statische Zufalls-/Noise-Bilder, räumlichen Zusammenhang, den identischen Anschluss Demo 5 → 6, Wolkenfarben und den erst im ZIEL animierten Drift. Direkte Ausführung in ShaderToy und Erprobung im Unterricht stehen noch aus.
+**Frühere lokale Prüfung vor der Dokumenttrennung:** Gesamtbuild mit sechs Demos, 35 Folien und acht Tafelseiten; die automatisierten Tests prüfen zusätzlich die unveränderten Rahmen in Demo 4 und die einzelnen Noise-Aufrufwechsel. Die Browserprüfung kompiliert sämtliche Stände in WebGL2 unter einem Repository-Unterpfad und prüft UV-Farben, unveränderte statische Zufalls-/Noise-Bilder, räumlichen Zusammenhang, den identischen Anschluss Demo 5 → 6, Wolkenfarben und den erst im ZIEL animierten Drift. Direkte Ausführung in ShaderToy und Erprobung im Unterricht stehen noch aus.
 
 Die konzeptionellen Schritte der ersten drei Demos sind noch nicht sämtlich als eigene Shader-Stände vorhanden; ihre weißen START-Stände sind vorläufig. Demo 4 hat einen vorbereiteten Bewegungsrahmen, Demo 5 startet mit dem UV-Bild und Demo 6 mit Simplex Noise. Die minutengenaue Planung bleibt offen.
 
-### Änderungsfolien für die Übergänge
+### Code-Journal für die Übergänge
 
-**Umgesetzt:** 19 Folien in `folien/code-schritte.tex`, direkt nach der jeweiligen Demo-Einstiegsfolie eingebunden. Verteilung: Demo 1 drei, Demo 2 zwei, Demo 3 vier, Demo 4 vier, Demo 5 drei und Demo 6 drei Übergänge. Bisher-/Jetzt-Auszüge mit Quellzeilennummern zeigen die tatsächlich geänderten Stellen; ergänzte Basisfunktionen sind separat markiert. Jede Folie benennt den Live-Coding-Anteil und die mindestens mündlich zu erläuternden mathematischen Bausteine. Die vollständigen Shader bleiben unverändert. Foliensatz insgesamt: 35 Seiten.
+**Herausgelöst und separat gebaut:** Die 19 Codevergleiche liegen unter `code-journal/code-schritte.tex`; `code-journal/journal.tex` stellt sie auf je einer A4-Druckseite dar. Verteilung: Demo 1 drei, Demo 2 zwei, Demo 3 vier, Demo 4 vier, Demo 5 drei und Demo 6 drei Übergänge. Bisher-/Jetzt-Auszüge, Quellzeilennummern und Erklärungshinweise sind übernommen. Der Vortrag enthält diese Übergänge nicht mehr. Die vollständigen START- und benötigten Basisblöcke als lückenlose Abtippvorlage sind in der nächsten Detailrunde zu ergänzen bzw. zu prüfen; die Tafelbild-Endstände bleiben separat in die statischen Folien einzubinden.
+
+**Prüfung der Trennung:** Dokument- und Gesamtbuild mit allen drei PDFs erfolgreich. Alle 19 Übergänge, 108 gesetzten Codezeilen einschließlich Fortsetzungszeilen und 19 Erklärungstexte unverändert übernommen. Journal-Seiten 1 und 15 visuell geprüft; keine Überstände im LaTeX-Protokoll. Die vier Build-/Publish-Tests bestehen, einschließlich eines Fehlers im dritten Dokument und der Erhaltung aller PDF-/Verzeichnis-Inodes. Auch beim echten Projekt-Rebuild bleiben die sechs betroffenen Inodes erhalten.
 
 ### Bisheriger Themen- und Materialbestand der Planung
 

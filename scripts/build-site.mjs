@@ -10,7 +10,7 @@ const json = async path => JSON.parse(await readFile(path, "utf8"));
 export async function buildSite({ root = projectRoot, output = join(root, "dist") } = {}) {
   root = resolve(root);
   output = resolve(output);
-  if (output === root || !output.startsWith(`${root}/`) || ["site", "demos", "scripts", "templates", "tests", "folien", "tafelbilder", "docs", ".git"].some(name => output === join(root, name) || output.startsWith(`${join(root, name)}/`))) {
+  if (output === root || !output.startsWith(`${root}/`) || ["site", "demos", "scripts", "templates", "tests", "folien", "tafelbilder", "code-journal", "docs", ".git"].some(name => output === join(root, name) || output.startsWith(`${join(root, name)}/`))) {
     throw new Error("Das Build-Ziel muss ein eigenes Ausgabeverzeichnis innerhalb des Projekts sein.");
   }
   const catalog = validateCatalog(await json(join(root, "site/catalog.json")));

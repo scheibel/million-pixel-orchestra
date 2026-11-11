@@ -17,7 +17,7 @@ async function fixture(t) {
   const root = await mkdtemp(join(tmpdir(), "million-pixels-release-test-"));
   t.after(() => rm(root, { recursive: true, force: true }));
   for (const directory of ["site", "demos"]) await cp(join(projectRoot, directory), join(root, directory), { recursive: true });
-  for (const [directory, name] of [["folien", "vortrag"], ["tafelbilder", "tafelbilder"]]) {
+  for (const [directory, name] of [["folien", "vortrag"], ["tafelbilder", "tafelbilder"], ["code-journal", "journal"]]) {
     await mkdir(join(root, directory));
     await writeFile(join(root, directory, `${name}.tex`), "\\documentclass{article}\n\\begin{document}Build-Test\\end{document}\n");
   }
@@ -40,12 +40,12 @@ test("Gesamtbuild erzeugt echte PDFs ohne Webdownloads; LaTeX-Fehler erhalten de
   catch (error) { if (error.code === "ENOENT") return t.skip("LaTeX ist für die übrigen Tests nicht erforderlich."); throw error; }
   const root = await fixture(t);
   const result = await buildProject({ root });
-  assert.equal(result.documents.length, 2);
+  assert.equal(result.documents.length, 3);
   for (const path of result.documents) assert.equal((await readFile(path)).subarray(0, 5).toString(), "%PDF-");
   assert.deepEqual(JSON.parse(await readFile(join(root, "dist/catalog.json"), "utf8")).materials, []);
   await assert.rejects(readFile(join(root, "dist/downloads/folien.pdf")), /ENOENT/);
   const pdfInodes = await Promise.all(result.documents.map(async path => (await stat(path)).ino));
-  const directories = [join(root, "folien/build"), join(root, "tafelbilder/build")];
+  const directories = [join(root, "folien/build"), join(root, "tafelbilder/build"), join(root, "code-journal/build")];
   const directoryInodes = await Promise.all(directories.map(async path => (await stat(path)).ino));
   const firstPdf = await readFile(result.documents[0]);
   await writeFile(join(root, "folien/vortrag.tex"), "\\documentclass{article}\n\\begin{document}Geaenderter Vortrag nach Rebuild\\end{document}\n");
@@ -53,11 +53,11 @@ test("Gesamtbuild erzeugt echte PDFs ohne Webdownloads; LaTeX-Fehler erhalten de
   assert.deepEqual(await Promise.all(result.documents.map(async path => (await stat(path)).ino)), pdfInodes, "PDF-Inodes bleiben beim Rebuild erhalten");
   assert.deepEqual(await Promise.all(directories.map(async path => (await stat(path)).ino)), directoryInodes, "Build-Verzeichnisse bleiben beim Rebuild erhalten");
   assert.notDeepEqual(await readFile(result.documents[0]), firstPdf, "Das bestehende PDF enthält den neuen Vortrag");
-  const previousPdf = await readFile(result.documents[0]);
+  const previousPdfs = await Promise.all(result.documents.map(path => readFile(path)));
   const previousSite = await readFile(join(root, "dist/index.html"));
-  await writeFile(join(root, "tafelbilder/tafelbilder.tex"), "\\documentclass{article}\\begin{document}\\absichtlichUngueltig\\end{document}");
-  await assert.rejects(buildProject({ root }), /PDF-Build fehlgeschlagen:.*tafelbilder/);
-  assert.deepEqual(await readFile(result.documents[0]), previousPdf);
+  await writeFile(join(root, "code-journal/journal.tex"), "\\documentclass{article}\\begin{document}\\absichtlichUngueltig\\end{document}");
+  await assert.rejects(buildProject({ root }), /PDF-Build fehlgeschlagen:.*code-journal/);
+  assert.deepEqual(await Promise.all(result.documents.map(path => readFile(path))), previousPdfs);
   assert.deepEqual(await readFile(join(root, "dist/index.html")), previousSite);
 });
 

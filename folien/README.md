@@ -1,8 +1,12 @@
 # Vortragsfolien – erster Entwurf
 
+**Aktuelle Anforderung:** Der projizierte Vortrag enthält allgemeine Informationen und Konzepte sowie die vollständigen acht Tafelbild-Endstände als Alternative zum Live-Anzeichnen. Das Code-Journal wird als eigenständiges Dokument für den Vortragenden gedruckt und gehört nicht in den Foliensatz. Das Code-Journal ist herausgelöst und wird separat gebaut. Die Einbindung der Tafelbild-Endstände ist noch offen; der aktuelle Vortrag umfasst 17 Folien.
+
 Die beiden Zeitstrahlfolien heißen „Vom Hobby zum Studium“ und „Forschung, Praxis und Lehre“. Sie verwenden jeweils nur die reguläre Folienüberschrift; die bisherigen roten Untertitel entfallen.
 
-`vortrag.tex` enthält einen ersten deutschen LaTeX-Beamer-Foliensatz im 16:9-Format. Die 35 Folien folgen dem [Vortragsskelett](../docs/VORTRAGSSKELETT.md): Vorstellung, Überblick, Pixel und Boilerplate, eine Einstiegsfolie pro Demo, 19 Änderungsfolien für deren Übergänge, Galerie, Rückblick und abschließend Studium am HPI. Die Demo-Folien verweisen auf passende [Tafelbilder](../tafelbilder/README.md).
+Direkt nach „Was ist noch möglich?“ ergänzt „Von Pixeln zu 3D-Welten“ den Ausblick: zwei Beispielbilder zu webgl-operate und cg1-playground, jeweils mit anklickbarem Bild und ausgeschriebener Adresse. Die bereitgestellten Screenshots liegen lokal; [Quellen und Bildausschnitt](bilder/3d-ausblick/README.md) sind dokumentiert. Der Foliensatz umfasst damit 17 Folien.
+
+`vortrag.tex` enthält einen ersten deutschen LaTeX-Beamer-Foliensatz im 16:9-Format. Die 17 Folien folgen dem [Vortragsskelett](../docs/VORTRAGSSKELETT.md): Vorstellung, Überblick, Pixel und Boilerplate, eine Einstiegsfolie pro Demo, Galerie, 3D-Ausblick, Rückblick und abschließend Studium am HPI. Die Demo-Folien verweisen auf passende [Tafelbilder](../tafelbilder/README.md).
 
 Auf die persönliche Vorstellungsfolie folgen zwei Zeitstrahlfolien mit gemeinsamer Skala von 2000 bis 2027 und verkleinerter Beschriftung (6,3 pt für Stationen, 6,5 pt für Jahreszahlen). Programmieren als Hobby reicht von 2001 bis 2007; die Mitwirkung in Computerlehrgängen liegt zwischen 2004 und 2006. Drei rote, fortlaufende Zeiträume gliedern die berufliche Entwicklung direkt zwischen den Stationen: Softwaresystemingenieur seit 2007 (erste bezahlte Programmierarbeit) zwischen Webseitenprogrammierung und Bachelorstudium; Computergrafiker seit 2009 (erste Projekte in diesem Bereich) nach dem Masterstudium, zu Beginn der zweiten Timeline-Folie; Forscher in der Computergrafik seit 2013 (erste Forschungsprojekte mit anschließenden Publikationen) zwischen Open Source und Promotionsstudium. Die Consulting-Firma ist dem Bereich Computergrafiker zugeordnet. Dezente Gruppenflächen bündeln Kategorien und zugehörige Stationen. Die konkreten Stationen sind blau; ein Punkt markiert das Abitur. Dünne graue Jahreslinien ordnen Balken und Pfeile der Zeitachse zu; eine Legende entfällt. Pfeile kennzeichnen Einträge mit angegebenem Beginn und offenem Ende. Der Skalenendpunkt 2027 ist kein Enddatum für diese Tätigkeiten.
 
@@ -16,28 +20,13 @@ Der zusammengeführte Vortragstitel erscheint auf der Titelfolie zentriert und f
 
 Die Website-Adresse ist als `https://www.willyscheibel.de/million-pixel-orchestra/` festgelegt. Übersicht und Abschluss enthalten dafür einen echten QR-Code mit weißer Ruhezone sowie die anklickbare, über zwei Zeilen lesbare Adresse. Das Ziel wird zentral über `\workshopurl` in `vortrag.tex` gesetzt. Die URL wird wie vorgegeben verwendet; die Online-Erreichbarkeit ist nach der separaten Veröffentlichung zu prüfen.
 
-## Änderungen zwischen den Phasen zeigen
+## Separates Code-Journal
 
-[code-schritte.tex](code-schritte.tex) enthält für jeden der 19 Übergänge zwischen aufeinanderfolgenden Shader-Ständen eine eigene Folie. Die sechs Gruppen werden in `vortrag.tex` jeweils direkt nach der Demo-Einstiegsfolie eingebunden.
-
-| Demo | Übergänge | Folien im PDF |
-| --- | --- | --- |
-| 1 · Farbe und Zeit | 3 | 9–11 |
-| 2 · Position und Farbverlauf | 2 | 13–14 |
-| 3 · Kreis und Metaballs | 4 | 16–19 |
-| 4 · Polynome für Bewegung und Farbe | 4 | 21–24 |
-| 5 · Vom Zufall zu Noise | 3 | 26–28 |
-| 6 · Wolken aus Noise | 3 | 30–32 |
-
-Jede Folie zeigt **Bisher / Jetzt** mit Dateinamen und den tatsächlichen Quellzeilennummern. Ersetzte Zeilen sind rot, neue Zeilen blau, unveränderter Kontext grau. Gelbe Kästen kennzeichnen zusätzlich übernommenen Basiscode bzw. ausdrücklich zu erklärenden vorbereiteten Code. Die beiden Hinweise **Live programmieren** und **Mündlich erläutern** benennen die Änderung und ihre mathematischen Bausteine. Lange Funktionen werden als gekennzeichnete Auszüge gezeigt; die vollständigen kopierbaren Fassungen stehen weiterhin in den Shader-Dateien.
-
-Die Schrittnummern zählen Übergänge, nicht Shader-Stände. Der identische Anschluss von Demo 5 zu Demo 6 ist kein zusätzlicher Übergang innerhalb einer Demo. Die Folien sind Begleiter für das Live-Coding, kein zusätzlicher Theorieblock. Bei späteren Shader-Änderungen Codeauszüge und Zeilennummern mitziehen.
-
-Die Änderungsfolien verwenden die bestehende LaTeX-Ausstattung. Es sind keine zusätzlichen Pakete, npm-Abhängigkeiten, externen Downloads oder Shell-Escape-Befehle erforderlich.
+Die 19 Codevergleiche stehen jetzt unter [code-journal/](../code-journal/README.md) und werden als eigenständiges A4-Druckdokument gebaut. `vortrag.tex` bindet keine Codeübergänge mehr ein. Die Shader und ihre vorbereiteten Stände sind unverändert.
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (beide Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle drei Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p folien/build

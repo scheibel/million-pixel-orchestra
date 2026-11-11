@@ -8,7 +8,8 @@ import { projectRoot } from "./build-site.mjs";
 const execute = promisify(execFile);
 const documents = [
   { directory: "folien", name: "vortrag", passes: 2 },
-  { directory: "tafelbilder", name: "tafelbilder", passes: 1 }
+  { directory: "tafelbilder", name: "tafelbilder", passes: 1 },
+  { directory: "code-journal", name: "journal", passes: 1 }
 ];
 
 export async function buildDocuments({ root = projectRoot, engine = "pdflatex" } = {}) {

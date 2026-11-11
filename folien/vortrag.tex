@@ -26,7 +26,6 @@
 }
 \newcommand{\demoheader}[1]{\tagline{Demo #1}\par\smallskip}
 \newcommand{\hinweis}[1]{{\small\color{muted}#1}}
-\input{folien/code-schritte.tex}
 \newcommand{\bildrahmen}{\path[fill=soft,rounded corners=3pt] (0,0) rectangle (5.4,3.6);}
 % Ein gemeinsames Linkziel für Vorschaubild, QR-Code und lesbare Adresse.
 \newcommand{\galeriekachel}[2]{%
@@ -91,7 +90,7 @@
 \end{beamercolorbox}
 \vspace{2mm}
 \begin{center}
-{\Large\bfseries \inserttitle\enspace---\par}\smallskip
+{\Large\bfseries \inserttitle\enspace\par}\smallskip
 \insertauthor\par\medskip
 \begin{tikzpicture}[scale=.65]
 \foreach \x in {0,...,6} \foreach \y in {0,...,6} {
@@ -107,14 +106,15 @@
 \section{Vorstellung}
 \begingroup
 % Auf dieser Folie stehen die groesseren Logos unten statt in der Kopfzeile.
-\renewcommand{\cgslogos}{}
+% WS: Override logo omission, consistency overrides aestethics this time
+%\renewcommand{\cgslogos}{}
 \begin{frame}{Wer bin ich?}
 \setlength{\parskip}{0pt}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{.53\textwidth}
 {\Large\bfseries Willy Scheibel\par}
 \vspace{1mm}
-M.Sc. IT-Systems-Engineering\par
+M.Sc. IT-Systems Engineering\par
 \href{https://www.willyscheibel.de}{\textcolor{sea}{\texttt{www.willyscheibel.de}}}\par
 \vspace{4mm}
 {\normalsize\bfseries Wissenschaftlicher Mitarbeiter\par}
@@ -126,8 +126,8 @@ Digital Engineering Fakultät\par
 Universität Potsdam\par}
 \vspace{6mm}
 {\centering
-\includegraphics[height=12mm]{folien/logos/hpi-logo-voll.pdf}\hspace{8mm}%
-\includegraphics[height=12mm]{folien/logos/uni_logo.pdf}\par}
+\includegraphics[height=18mm]{folien/logos/hpi-logo-voll.pdf}\hspace{8mm}%
+\includegraphics[height=18mm]{folien/logos/uni_logo.pdf}\par}
 \end{column}
 \begin{column}{.43\textwidth}
 \raggedleft
@@ -193,9 +193,9 @@ Objekte steuern und Bewegung mit Farbe verknüpfen.
 \end{enumerate}
 \end{column}
 \begin{column}{.27\textwidth}
-\websitezugang\par\medskip
-\centering\hinweis{Gemeinsam programmieren in ShaderToy.}\par\smallskip
-\hinweis{Jede Demo beginnt mit einem vorbereiteten Stand.}
+\websitezugang\par%\medskip
+%\centering\hinweis{Gemeinsam programmieren in ShaderToy.}\par\smallskip
+%\hinweis{Jede Demo beginnt mit einem vorbereiteten Stand.}
 \end{column}
 \end{columns}
 \end{frame}
@@ -256,7 +256,6 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
-\schritteDemoEins
 
 
 \begin{frame}{Was verrät die Position?}
@@ -275,7 +274,6 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
-\schritteDemoZwei
 
 
 \begin{frame}{Wie werden aus Abständen Formen?}
@@ -294,7 +292,6 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
-\schritteDemoDrei
 
 
 \begin{frame}{Wie hält ein Punkt sanft an?}
@@ -331,7 +328,6 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
-\schritteDemoVier
 
 
 \begin{frame}{Wie wird Zufall zu einem Muster?}
@@ -358,7 +354,6 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
-\schritteDemoFuenf
 
 
 \begin{frame}{Wie wird Noise zu bewegten Wolken?}
@@ -384,7 +379,6 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
-\schritteDemoSechs
 
 
 \section{Ausblick}
@@ -398,6 +392,35 @@ void mainImage(out vec4 fragColor,
 \galeriekachel{mtyGWy}{Kaleidoskop}\hfill
 \galeriekachel{fstyD4}{Küstenlandschaft}\hfill
 \galeriekachel{3sySRK}{Räumliche Metaballs}
+\end{frame}
+
+\begin{frame}{Von 2D Pixelbildern zu 3D-Welten}
+\tagline{Ausblick · 3D-Computergrafik für virtuelle Umgebungen}\par
+{\small\bfseries Mit Mathematik entstehen auch räumliche Welten.\par}
+\vspace{3mm}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+{\small\bfseries Demo: Dynamische Landschaften aus Würfeln\par}
+\vspace{1mm}
+\noindent\parbox[c][3.4cm][c]{\linewidth}{%
+  \href{https://webgl-operate.org/demos/cubescape.html}{%
+    \includegraphics[width=\linewidth]{folien/bilder/3d-ausblick/webgl-operate-wuerfellandschaft.png}}}\par
+\vspace{2mm}
+{\footnotesize\href{https://webgl-operate.org/demos/cubescape.html}{\textcolor{sea}{\texttt{webgl-operate.org/demos/cubescape.html}}}\par}
+{\small Räumliche Bildwelten entdecken.\par}
+\end{column}
+\begin{column}{.48\textwidth}
+{\small\bfseries Übungen der 3D-Computergrafik I 2026/27\par}
+\vspace{1mm}
+\noindent\parbox[c][3.4cm][c]{\linewidth}{%
+  \href{https://hpicgs.github.io/cg1-playground}{%
+    % Nur Editor und Demo zeigen; das Original bleibt unverändert gespeichert.
+    \includegraphics[width=\linewidth,trim=379bp 389bp 325bp 155bp,clip]{folien/bilder/3d-ausblick/cg1-playground.png}}}\par
+\vspace{2mm}
+{\footnotesize\href{https://hpicgs.github.io/cg1-playground}{\textcolor{sea}{\texttt{hpicgs.github.io/cg1-playground}}}\par}
+{\small Mit Code und Bildern experimentieren.\par}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Was nehmen wir mit?}

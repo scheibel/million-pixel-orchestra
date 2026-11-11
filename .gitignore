@@ -10,3 +10,4 @@ dist/
 .document-build-*/
 tafelbilder/build/
 folien/build/
+code-journal/build/

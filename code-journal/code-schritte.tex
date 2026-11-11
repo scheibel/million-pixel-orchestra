@@ -1,39 +1,11 @@
-% Änderungsfolien: je ein tatsächlicher Übergang zwischen zwei Shader-Ständen.
+% Code-Journal: je ein tatsächlicher Übergang zwischen zwei Shader-Ständen.
 % Bearbeitbare Lehrmaterialien; Quellzeilen stammen aus den angegebenen Dateien.
 % Farbig: ersetzte/neue Zeilen. Grau: unveränderter Kontext.
-\setbeamercolor{schrittvorher}{fg=ink,bg=accent!5}
-\setbeamercolor{schrittnachher}{fg=ink,bg=sea!6}
-\setbeamercolor{schrittbasis}{fg=ink,bg=hpi@yellow!12}
-\newcommand{\schrittzeile}[4]{%
-  \hbox to \dimexpr\hsize-2mm\relax{%
-    \makebox[4mm][r]{\fontsize{6.5}{8}\selectfont\color{muted}#2}\hspace{2mm}%
-    {\fontsize{8.2}{9.4}\selectfont\ttfamily\color{#1}\hspace*{#3em}#4}\hfil}%
-}
-\newcommand{\schrittcode}[3]{%
-  \begin{beamercolorbox}[wd=\linewidth,sep=1mm]{schritt#1}
-    \setlength{\parskip}{0pt}%
-    {\fontsize{7}{8.5}\selectfont\bfseries #2\par}\vspace{.5mm}%
-    \begingroup\fontsize{8.2}{9.4}\selectfont #3\endgroup
-  \end{beamercolorbox}
-}
-\newcommand{\schrittkommentar}[2]{%
-  \par\vspace{1mm}
-  \begin{columns}[T,onlytextwidth]
-    \begin{column}{.47\textwidth}
-      {\fontsize{8}{9.5}\selectfont\bfseries\color{sea}LIVE PROGRAMMIEREN\par}
-      {\fontsize{8.5}{10}\selectfont #1\par}
-    \end{column}
-    \begin{column}{.50\textwidth}
-      {\fontsize{8}{9.5}\selectfont\bfseries\color{muted}MÜNDLICH ERLÄUTERN\par}
-      {\fontsize{8.5}{10}\selectfont #2\par}
-    \end{column}
-  \end{columns}
-}
 
 \newcommand{\schritteDemoEins}{%
 % transition: 00-konstante-farbe/START.glsl -> 01-violett.glsl
-\begin{frame}[t]{Weiß wird Violett}
-\tagline{Demo 1 · Übergang 1/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Weiß wird Violett}
+\tagline{Demo 1 · Übergang 1/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{START.glsl}}{%
 \schrittzeile{accent}{3}{0.75}{float rot = 1.0;}
 \schrittzeile{accent}{4}{0.75}{float gruen = 1.0;}
@@ -46,11 +18,11 @@
 \schrittzeile{sea}{5}{0.75}{float blau = 0.78;}
 }
 \schrittkommentar{Drei RGB-Werte ändern; die Farbausgabe bleibt erhalten.}{Jeder Kanal liegt zwischen 0 und 1. Alle Pixel bekommen dieselbe Farbe: Die Position wird hier noch nicht verwendet.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 00-konstante-farbe/01-violett.glsl -> 02-koralle.glsl
-\begin{frame}[t]{Eine andere Farbmischung}
-\tagline{Demo 1 · Übergang 2/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Eine andere Farbmischung}
+\tagline{Demo 1 · Übergang 2/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{01-violett.glsl}}{%
 \schrittzeile{accent}{3}{0.75}{float rot = 0.45;}
 \schrittzeile{muted}{4}{0.75}{float gruen = 0.32;}
@@ -63,11 +35,11 @@
 \schrittzeile{sea}{5}{0.75}{float blau = 0.20;}
 }
 \schrittkommentar{Rot erhöhen und Blau senken. Grün bleibt bei 0,32.}{Die drei Kanäle lassen sich unabhängig verändern. Vor dem Ausführen die neue Farbe vorhersagen.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 00-konstante-farbe/02-koralle.glsl -> ZIEL.glsl
-\begin{frame}[t]{Die Zeit verändert die Farbe}
-\tagline{Demo 1 · Übergang 3/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Die Zeit verändert die Farbe}
+\tagline{Demo 1 · Übergang 3/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{02-koralle.glsl}}{%
 \schrittzeile{accent}{3}{0.75}{float rot = 0.95;}
 \schrittzeile{accent}{4}{0.75}{float gruen = 0.32;}
@@ -80,14 +52,14 @@
 \schrittzeile{sea}{5}{0.75}{float blau = 0.5 + 0.5 * sin(iTime + 4.0);}
 }
 \schrittkommentar{Die drei Konstanten durch zeitabhängige Ausdrücke ersetzen.}{\texttt{iTime}: Sekunden. Sinus liefert $[-1,1]$; halbieren und um 0,5 verschieben ergibt $[0,1]$. $+2$ und $+4$ versetzen die Schwingungen.}
-\end{frame}
+\end{journalschritt}
 
 }
 
 \newcommand{\schritteDemoZwei}{%
 % transition: 01-pixelposition-und-normalisierung/START.glsl -> 01-normalisierung.glsl
-\begin{frame}[t]{Pixelposition wird Farbe}
-\tagline{Demo 2 · Übergang 1/2}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Pixelposition wird Farbe}
+\tagline{Demo 2 · Übergang 1/2}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{START.glsl}}{%
 \schrittzeile{accent}{3}{0.75}{vec3 color = vec3(1.0);}
 }
@@ -97,11 +69,11 @@
 \schrittzeile{sea}{4}{0.75}{vec3 color = vec3(uv.x, uv.y, 0.0);}
 }
 \schrittkommentar{Normierte Koordinaten ergänzen und die Farbe aus x und y bilden.}{\texttt{fragCoord}: Pixelposition; \texttt{iResolution.xy}: Breite und Höhe. Komponentenweise teilen: links/unten nahe 0, rechts/oben nahe 1.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 01-pixelposition-und-normalisierung/01-normalisierung.glsl -> ZIEL.glsl
-\begin{frame}[t]{Zwischen zwei Farben mischen}
-\tagline{Demo 2 · Übergang 2/2}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Zwischen zwei Farben mischen}
+\tagline{Demo 2 · Übergang 2/2}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{01-normalisierung.glsl}}{%
 \schrittzeile{accent}{4}{0.75}{vec3 color = vec3(uv.x, uv.y, 0.0);}
 }
@@ -112,14 +84,14 @@
 \schrittzeile{sea}{6}{0.75}{vec3 color = mix(links, rechts, uv.x);}
 }
 \schrittkommentar{Zwei Referenzfarben ergänzen; mit der x-Position mischen.}{$\operatorname{mix}(a,b,t)=(1-t)a+tb$. Links gilt $t\approx0$, rechts $t\approx1$; in der Mitte werden beide Farben gleich gewichtet.}
-\end{frame}
+\end{journalschritt}
 
 }
 
 \newcommand{\schritteDemoDrei}{%
 % transition: 03-kreis-und-quadrierter-abstand/START.glsl -> 01-kreis.glsl
-\begin{frame}[t]{Ein Abstandstest zeichnet einen Kreis}
-\tagline{Demo 3 · Übergang 1/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Ein Abstandstest zeichnet einen Kreis}
+\tagline{Demo 3 · Übergang 1/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{START.glsl}}{%
 \schrittzeile{accent}{3}{0.75}{vec3 color = vec3(1.0);}
 }
@@ -135,11 +107,11 @@
 \schrittzeile{sea}{10}{0.75}{\}}
 }
 \schrittkommentar{Koordinaten, quadrierten Abstand, Radius und die Farbentscheidung ergänzen.}{Bildmitte abziehen, beide Achsen durch die Höhe teilen. \texttt{a=p}: Mittelpunkt im Ursprung. $\operatorname{dot}(a,a)=a_x^2+a_y^2$; innen gilt $d^2<r^2$.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 03-kreis-und-quadrierter-abstand/01-kreis.glsl -> 02-ein-abstandsfeld.glsl
-\begin{frame}[t]{Aus Abstand wird ein Einfluss}
-\tagline{Demo 3 · Übergang 2/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Aus Abstand wird ein Einfluss}
+\tagline{Demo 3 · Übergang 2/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{01-kreis.glsl}}{%
 \schrittzeile{accent}{6}{0.75}{float radius = 0.3;}
 \schrittzeile{muted}{7}{0.75}{vec3 color = vec3(0.04, 0.08, 0.16);}
@@ -152,11 +124,11 @@
 \schrittzeile{sea}{8}{0.75}{if (feld > 1.0) \{}
 }
 \schrittkommentar{Radius-Zeile und Bedingung ersetzen; die Farben bleiben gleich.}{Größerer Abstand: kleinerer Einfluss. $+0{,}01$ verhindert Division durch null; Maßstab und Schwelle bestimmen die Größe. Der Radius muss nicht erhalten bleiben.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 03-kreis-und-quadrierter-abstand/02-ein-abstandsfeld.glsl -> 03-metaballs-statisch.glsl
-\begin{frame}[t]{Ein zweites Feld kommt hinzu}
-\tagline{Demo 3 · Übergang 3/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Ein zweites Feld kommt hinzu}
+\tagline{Demo 3 · Übergang 3/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{02-ein-abstandsfeld.glsl}}{%
 \schrittzeile{accent}{4}{0.75}{vec2 a = p;}
 \schrittzeile{muted}{5}{0.75}{float abstandQuadrat = dot(a, a);}
@@ -172,11 +144,11 @@
 \schrittzeile{sea}{9}{0.75}{feld += 0.035 / (dot(b, b) + 0.01);}
 }
 \schrittkommentar{Zentren symmetrisch versetzen; den zweiten Feldbeitrag addieren.}{$p-M$ misst relativ zum Mittelpunkt. \texttt{+=} addiert zum bisherigen Wert. Die gemeinsame Schwelle wird erst auf die Summe angewendet: Formen können verschmelzen.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 03-kreis-und-quadrierter-abstand/03-metaballs-statisch.glsl -> ZIEL.glsl
-\begin{frame}[t]{Die Mittelpunkte bewegen sich}
-\tagline{Demo 3 · Übergang 4/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Die Mittelpunkte bewegen sich}
+\tagline{Demo 3 · Übergang 4/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{03-metaballs-statisch.glsl}}{%
 \schrittzeile{accent}{4}{0.75}{float versatz = 0.23;}
 }
@@ -185,14 +157,14 @@
 \schrittzeile{sea}{4}{0.75}{float versatz = 0.23 + 0.14 * sin(iTime);}
 }
 \schrittkommentar{Nur den konstanten Versatz durch eine Schwingung ersetzen.}{0,23 ist die Mitte, 0,14 die Amplitude: Der Versatz liegt zwischen 0,09 und 0,37. Die Zentren bei $\pm\text{Versatz}$ bewegen sich gegenläufig.}
-\end{frame}
+\end{journalschritt}
 
 }
 
 \newcommand{\schritteDemoVier}{%
 % transition: 05-polynom-und-weiche-kante/START.glsl -> 01-zwei-punkte-lerp.glsl
-\begin{frame}[t]{Eine weitere Stimme des Kanons}
-\tagline{Demo 4 · Übergang 1/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Eine weitere Stimme des Kanons}
+\tagline{Demo 4 · Übergang 1/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{START.glsl}}{%
 \schrittzeile{accent}{23}{0.75}{for (int index = 0; index < 1; index += 2) \{}
 }
@@ -208,11 +180,11 @@
 \schrittzeile{muted}{52}{1.50}{vec3 punktfarbe = mix(vec3(0.0), eckfarbe, verlauf(puls));}
 }
 \schrittkommentar{Nur die Schleifengrenze von 1 auf 4 erhöhen.}{Schrittweite 2 wählt $j=0,2$: Stimmen 1 und 3, mit 0/3\,s Versatz. START-Rahmen erläutern: Zeitplan, Eckpunkte, Abstandstest und Farbimpuls im Halt.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 05-polynom-und-weiche-kante/01-zwei-punkte-lerp.glsl -> 02-zwei-punkte-smoothstep.glsl
-\begin{frame}[t]{Sanft bremsen und anfahren}
-\tagline{Demo 4 · Übergang 2/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Sanft bremsen und anfahren}
+\tagline{Demo 4 · Übergang 2/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{01-zwei-punkte-lerp.glsl}}{%
 \schrittzeile{accent}{4}{0.75}{return t;}
 }
@@ -221,11 +193,11 @@
 \schrittzeile{sea}{4}{0.75}{return t * t * (3.0 - 2.0 * t);}
 }
 \schrittkommentar{Nur die Rückgabe von verlauf durch das kubische Polynom ersetzen.}{$s(t)=3t^2-2t^3$: gleicher Anfang und gleiches Ende, dort flache Steigung. Dieselbe Kurve glättet Weg und Farbe. Die Haltezeit kommt weiterhin aus dem Zeitplan.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 05-polynom-und-weiche-kante/02-zwei-punkte-smoothstep.glsl -> 03-vier-punkte-smoothstep.glsl
-\begin{frame}[t]{Den Kanon vervollständigen}
-\tagline{Demo 4 · Übergang 3/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Den Kanon vervollständigen}
+\tagline{Demo 4 · Übergang 3/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{02-zwei-punkte-smoothstep.glsl}}{%
 \schrittzeile{accent}{23}{0.75}{for (int index = 0; index < 4; index += 2) \{}
 }
@@ -234,11 +206,11 @@
 \schrittzeile{sea}{23}{0.75}{for (int index = 0; index < 4; index += 1) \{}
 }
 \schrittkommentar{Nur die Schrittweite von 2 auf 1 ändern.}{Jetzt werden $j=0,1,2,3$ ausgeführt. Die zusätzlichen Stimmen erhalten 1,5/4,5\,s Versatz. Kurve, Bahn, Haltezeit und Farbwechsel bleiben gleich.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 05-polynom-und-weiche-kante/03-vier-punkte-smoothstep.glsl -> ZIEL.glsl
-\begin{frame}[t]{Den Verlauf weiter glätten}
-\tagline{Demo 4 · Übergang 4/4}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Den Verlauf weiter glätten}
+\tagline{Demo 4 · Übergang 4/4}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{03-vier-punkte-smoothstep.glsl}}{%
 \schrittzeile{accent}{4}{0.75}{return t * t * (3.0 - 2.0 * t);}
 }
@@ -247,14 +219,14 @@
 \schrittzeile{sea}{4}{0.75}{return t * t * t * (t * (6.0 * t - 15.0) + 10.0);}
 }
 \schrittkommentar{Nur die Rückgabe durch das vorbereitete Polynom fünften Grades ersetzen.}{Ausmultipliziert: $6t^5-15t^4+10t^3$. Die Beschleunigung endet ebenfalls bei null. Vertiefung: $s''(0)=s''(1)=0$; eine vollständige Herleitung ist optional.}
-\end{frame}
+\end{journalschritt}
 
 }
 
 \newcommand{\schritteDemoFuenf}{%
 % transition: 08-value-noise/START.glsl -> 01-zufall-pro-pixel.glsl
-\begin{frame}[t]{Jedes Pixel erhält einen Zufallswert}
-\tagline{Demo 5 · Übergang 1/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Jedes Pixel erhält einen Zufallswert}
+\tagline{Demo 5 · Übergang 1/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{START.glsl}}{%
 \schrittzeile{accent}{6}{0.75}{vec3 color = vec3(uv.x, uv.y, 0.0);}
 }
@@ -272,11 +244,11 @@
 \schrittzeile{ink}{19}{0.00}{\}}
 }
 \schrittkommentar{Zufallswert abfragen und als drei gleiche Farbkanäle ausgeben.}{\texttt{floor} wählt die ganze Pixeladresse. Hash-Bausteine: Koordinaten gewichten, Sinus, vergrößern, Nachkommaanteil. Gleicher Ort liefert denselben Wert; ohne Zeit kein Flimmern.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 08-value-noise/01-zufall-pro-pixel.glsl -> 02-value-noise.glsl
-\begin{frame}[t]{Zwischen Gitterwerten interpolieren}
-\tagline{Demo 5 · Übergang 2/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Zwischen Gitterwerten interpolieren}
+\tagline{Demo 5 · Übergang 2/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{01-zufall-pro-pixel.glsl}}{%
 \schrittzeile{accent}{8}{0.75}{float wert = zufall(floor(fragCoord));}
 }
@@ -296,11 +268,11 @@
 \schrittzeile{ink}{31}{0.75}{return mix(unten, oben, weich.y);}
 }
 \schrittkommentar{Aufruf wechseln; valueNoise deklarieren und ergänzen.}{\texttt{floor}: Zelle; \texttt{fract}: Zellposition. Vier Eckwerte horizontal, dann vertikal mischen; Smoothstep glättet.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 08-value-noise/02-value-noise.glsl -> ZIEL.glsl
-\begin{frame}[t]{Die Noise-Basis austauschen}
-\tagline{Demo 5 · Übergang 3/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Die Noise-Basis austauschen}
+\tagline{Demo 5 · Übergang 3/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{02-value-noise.glsl}}{%
 \schrittzeile{accent}{9}{0.75}{float wert = valueNoise(p);}
 }
@@ -317,14 +289,14 @@
 \schrittzeile{ink}{114}{0.00}{\}}
 }
 \schrittkommentar{Im Gestaltungs-Code nur den Funktionsnamen austauschen.}{Simplex-Basis samt Lizenz übernehmen. Grundidee: Dreieck bestimmen, Richtungen auswerten, nach Abstand gewichten, Beiträge addieren. Beide Aufrufe liefern $[0,1]$; Maßstab und Farbe bleiben gleich.}
-\end{frame}
+\end{journalschritt}
 
 }
 
 \newcommand{\schritteDemoSechs}{%
 % transition: 09-fbm/START.glsl -> 01-fbm.glsl
-\begin{frame}[t]{Grobe und feine Muster überlagern}
-\tagline{Demo 6 · Übergang 1/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Grobe und feine Muster überlagern}
+\tagline{Demo 6 · Übergang 1/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{START.glsl}}{%
 \schrittzeile{accent}{10}{0.75}{float wert = simplexNoise01(p);}
 }
@@ -341,11 +313,11 @@
 \schrittzeile{sea}{20}{0.75}{float wert = fbm(p);}
 }
 \schrittkommentar{Oktavsumme ergänzen und den Aufruf auf fbm umstellen.}{Basis aus Demo 5 unverändert. Größere Argumente erzeugen kleinere Strukturen. Gewichte halbieren; ihre Summe 0,9375 normalisiert den Mittelwert. Alle Oktaven liefern $[0,1]$.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 09-fbm/01-fbm.glsl -> 02-wolken.glsl
-\begin{frame}[t]{Aus Grauwerten werden Wolken}
-\tagline{Demo 6 · Übergang 2/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Aus Grauwerten werden Wolken}
+\tagline{Demo 6 · Übergang 2/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{01-fbm.glsl}}{%
 \schrittzeile{accent}{21}{0.75}{vec3 color = vec3(wert);}
 }
@@ -357,11 +329,11 @@
 \schrittzeile{sea}{24}{0.75}{vec3 color = mix(himmel, wolke, dichte);}
 }
 \schrittkommentar{Wolkendichte und Farben ergänzen; die Graustufenausgabe ersetzen.}{Unter 0,4 bleibt der Himmel blau, über 0,65 wird er weiß. Dazwischen wirken Begrenzung, Normierung und das bekannte kubische Polynom; \texttt{mix} mischt die Farben.}
-\end{frame}
+\end{journalschritt}
 
 % transition: 09-fbm/02-wolken.glsl -> ZIEL.glsl
-\begin{frame}[t]{Das Wolkenfeld wandert}
-\tagline{Demo 6 · Übergang 3/3}\hfill{\fontsize{7}{8}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
+\begin{journalschritt}{Das Wolkenfeld wandert}
+\tagline{Demo 6 · Übergang 3/3}\hfill{\fontsize{9}{11}\selectfont\color{muted}Grau: unveränderter Kontext}\par\vspace{1mm}
 \schrittcode{vorher}{Bisher · \texttt{02-wolken.glsl}}{%
 \schrittzeile{muted}{19}{0.75}{vec2 p = fragCoord / iResolution.y * 6.0;}
 \schrittzeile{muted}{20}{0.75}{float wert = fbm(p);}
@@ -373,6 +345,6 @@
 \schrittzeile{muted}{21}{0.75}{float wert = fbm(p);}
 }
 \schrittkommentar{Eine Zeile zwischen Koordinatenberechnung und Noise-Abfrage einfügen.}{Abfrageposition $p-vt$: Dasselbe Muster wandert nach rechts oben. Die Pixel bleiben an ihren Orten und berechnen neue Farben. Es wird kein neuer Zufall pro Bild erzeugt.}
-\end{frame}
+\end{journalschritt}
 
 }

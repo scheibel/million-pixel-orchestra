@@ -1,0 +1,59 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=16mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\pagestyle{plain}
+
+% Dunkle Schrift und ausdrückliche Beschriftungen bleiben auch im Graustufendruck lesbar.
+\definecolor{ink}{gray}{0}
+\definecolor{muted}{gray}{.3}
+\definecolor{accent}{RGB}{120,25,30}
+\definecolor{sea}{RGB}{0,70,85}
+\definecolor{schrittvorher}{gray}{.97}
+\definecolor{schrittnachher}{gray}{.97}
+\definecolor{schrittbasis}{gray}{.94}
+
+\newenvironment{journalschritt}[1]{%
+  \clearpage
+  {\small\sffamily Code-Journal · Grafiken programmieren}\par\medskip
+  {\LARGE\bfseries #1\par}\medskip
+}{\par}
+\newcommand{\tagline}[1]{{\small\bfseries #1}}
+\newcommand{\schrittzeile}[4]{%
+  \hbox to \hsize{%
+    \makebox[6mm][r]{\fontsize{8.5}{12}\selectfont\color{muted}#2}\hspace{2mm}%
+    {\fontsize{9.5}{12}\selectfont\ttfamily\color{#1}\hspace*{#3em}#4}\hfil}%
+}
+\newcommand{\schrittcode}[3]{%
+  \par\smallskip\begingroup
+  \setlength{\fboxsep}{3mm}%
+  \colorbox{schritt#1}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}
+      \setlength{\parskip}{0pt}%
+      {\small\bfseries #2\par}\vspace{2mm}%
+      \begingroup\fontsize{9.5}{12}\selectfont #3\endgroup
+    \end{minipage}}
+  \endgroup\par
+}
+\newcommand{\schrittkommentar}[2]{%
+  \par\bigskip
+  {\small\bfseries LIVE PROGRAMMIEREN\par}
+  #1\par\medskip
+  {\small\bfseries MÜNDLICH ERLÄUTERN\par}
+  #2\par
+}
+
+\input{code-journal/code-schritte.tex}
+\begin{document}
+\schritteDemoEins
+\schritteDemoZwei
+\schritteDemoDrei
+\schritteDemoVier
+\schritteDemoFuenf
+\schritteDemoSechs
+\end{document}

@@ -4,6 +4,8 @@ Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren 
 
 ## Vorgeschlagener Ablauf
 
+**Verbindliche Materialaufteilung:** Die Teilnehmer-Website muss öffentlich gehostet sein; für die Vortragenden-Website genügt ein lokal gebauter Stand mit lokalem HTTP-Server. Beide dürfen dieselbe Anwendung verwenden. Die statischen Folien enthalten allgemeine Informationen, Konzepte und die vollständigen Tafelbild-Endstände als Alternative zum Live-Anzeichnen. Das Code-Journal gehört ausschließlich in ein separates Druckdokument für den Vortragenden. Hinzu kommen die ausgedruckten Tafelbilder als Zeichenreferenz. Anforderungen und aktueller Stand stehen in `CONTEXT.md` und `ROADMAP.md`; der Vortrag enthält nach dem Herauslösen der Codevergleiche 16 Folien, das separate A4-Code-Journal 19 Seiten. Die vollständigen Tafelbild-Endstände sind noch in die statischen Folien einzubinden.
+
 **Aktualisierte Workshopentscheidung:** Die Teilnehmenden arbeiten direkt auf der öffentlichen Projektwebsite im eigenen Live-Editor. ShaderToy bleibt eine optionale Erwähnung und die Plattform für die Inspirationsgalerie. Die nachfolgenden älteren ShaderToy-Zugangsaufgaben sind damit keine Pflichtvorbereitung mehr. In den Folien stehen noch sechs ShaderToy-QR-Platzhalter; diese sind auf den Website-Zugang abzustimmen.
 
 | Abschnitt | Inhalt und Medien | Stand / offene Arbeit |
@@ -46,9 +48,14 @@ Die Reihenfolge folgt dem aktuellen Katalog; die Nummern bezeichnen hier die Vor
 
 Die technischen IDs `08-value-noise` und `09-fbm` bleiben erhalten; sie sind keine Vortragsnummern.
 
-Demo 4 besitzt einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START; die Schleife ist bereits vorbereitet; im Live-Coding wird zunächst nur ihre Grenze für zwei Punkte erhöht, dann Smoothstep eingeführt, danach auf vier Punkte erweitert und zuletzt Smootherstep eingesetzt. Die weißen START-Shader der ersten drei Demos sind vorläufige Platzhalter. Deren konkrete Live-Coding-Progression und zusätzliche Stände müssen noch ausgearbeitet werden. Demo 5 und 6 besitzen die festgelegten vier Stände mit vorbereiteter Noise-Basis; das ZIEL von Demo 5 entspricht exakt dem START von Demo 6. Jeder Stand behält möglichst denselben Rahmen. In Demo 5 wechselt der Gestaltungs-Code von Value zu Simplex ausschließlich über den Funktionsnamen `valueNoise` → `simplexNoise01`; neue Basisblöcke werden nur ergänzt. Für jeden der 19 Übergänge gibt es eine eigene Änderungsfolie in [code-schritte.tex](../folien/code-schritte.tex), jeweils direkt nach der Demo-Einstiegsfolie. Bisher-/Jetzt-Code mit Zeilennummern und markierten Änderungen wird durch Hinweise für Live-Coding und die mündliche Erklärung ergänzt; vorbereitete Basisfunktionen sind gesondert ausgewiesen. Der Foliensatz enthält 35 Seiten. Die Folien begleiten die Konzepte jeweils unmittelbar bei ihrer Anwendung; sie sind kein separater Theorieblock.
+Demo 4 besitzt einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START; die Schleife ist bereits vorbereitet; im Live-Coding wird zunächst nur ihre Grenze für zwei Punkte erhöht, dann Smoothstep eingeführt, danach auf vier Punkte erweitert und zuletzt Smootherstep eingesetzt. Die weißen START-Shader der ersten drei Demos sind vorläufige Platzhalter. Deren konkrete Live-Coding-Progression und zusätzliche Stände müssen noch ausgearbeitet werden. Demo 5 und 6 besitzen die festgelegten vier Stände mit vorbereiteter Noise-Basis; das ZIEL von Demo 5 entspricht exakt dem START von Demo 6. Jeder Stand behält möglichst denselben Rahmen. In Demo 5 wechselt der Gestaltungs-Code von Value zu Simplex ausschließlich über den Funktionsnamen `valueNoise` → `simplexNoise01`; neue Basisblöcke werden nur ergänzt. Die 19 Übergänge liegen jetzt ausschließlich im separaten [Code-Journal](../code-journal/README.md), mit Bisher-/Jetzt-Code, Quellzeilennummern und Erklärungshinweisen. Das Journal hat 19 A4-Seiten; vollständige START- und benötigte Basisblöcke sind noch zu ergänzen bzw. zu prüfen. Der Foliensatz enthält 16 Seiten ohne Codevergleiche. Die Folien begleiten die Konzepte jeweils unmittelbar bei ihrer Anwendung; sie sind kein separater Theorieblock.
 
 ## Folienbestand – To-dos
+
+- [x] Die 19 Codevergleiche aus dem Vortrag herauslösen und als eigenständiges A4-Code-Journal bauen.
+- [ ] Das Journal mit vollständigem START-Code und benötigtem Basiscode als Abtippvorlage vervollständigen.
+- [ ] Alle acht Tafelbild-Endstände an den fachlich passenden Stellen in die statischen Vortragsfolien aufnehmen.
+- [ ] Druckfassungen von Tafelbildern und Code-Journal auf Lesbarkeit und Demo-Zuordnung prüfen und ausdrucken.
 
 - [ ] Titel und Auftakt mit ausgewähltem Beispiel.
 - [x] „Wer bin ich?“ mit Name, Abschluss, Website, Position, Affiliation, Porträt, Potsdam-Karte mit HPI-Markierung und den beiden Logos vor der Zeitleiste ergänzen.
