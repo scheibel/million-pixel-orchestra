@@ -204,19 +204,27 @@ Universität Potsdam\par}
 \end{frame}
 
 \section{Einstieg}
-\begin{frame}{Was machen wir heute?}
-\tagline{Vom einzelnen Pixel zum Bild}\vspace{3mm}
-\begin{center}
-\begin{tikzpicture}[node distance=4mm, every node/.style={font=\small}]
-\node[fill=soft,rounded corners,minimum width=2cm,minimum height=1cm] (a) at (0,0) {Farbe};
-\node[fill=soft,rounded corners,minimum width=2cm,minimum height=1cm] (b) at (2.7,0) {Position};
-\node[fill=soft,rounded corners,minimum width=2cm,minimum height=1cm] (c) at (5.4,0) {Formen};
-\node[fill=soft,rounded corners,minimum width=2cm,minimum height=1cm] (d) at (8.1,0) {Bewegung};
-\node[fill=soft,rounded corners,minimum width=2cm,minimum height=1cm] (e) at (10.8,0) {Noise};
-\draw[-{Stealth},sea,thick] (a)--(b);\draw[-{Stealth},sea,thick] (b)--(c);\draw[-{Stealth},sea,thick] (c)--(d);\draw[-{Stealth},sea,thick] (d)--(e);
-\end{tikzpicture}
-\end{center}
-\vspace{2mm}\begin{columns}[c]\begin{column}{.64\textwidth}Wir programmieren gemeinsam in ShaderToy.\\[2mm]Jedes Beispiel beginnt mit einem vorbereiteten Stand.\end{column}\begin{column}{.30\textwidth}\websitezugang\end{column}\end{columns}
+\begin{frame}{Die ersten vier Demos}
+\tagline{Von Farbe zu gezielter Bewegung}\par\vspace{3mm}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{.68\textwidth}
+\begin{enumerate}
+\item \textbf{Farbe und Zeit}\\
+Eine Farbe festlegen und mit der Zeit verändern.
+\item \textbf{Farbe und Position}\\
+Pixelraster, Positionen und Farbverläufe.
+\item \textbf{Objekte und Abstände}\\
+Formen durch Abstände und Felder erzeugen.
+\item \textbf{Bewegung und Farbe gezielt gestalten}\\
+Objekte steuern und Bewegung mit Farbe verknüpfen.
+\end{enumerate}
+\end{column}
+\begin{column}{.27\textwidth}
+\websitezugang\par\medskip
+\centering\hinweis{Gemeinsam programmieren in ShaderToy.}\par\smallskip
+\hinweis{Jede Demo beginnt mit einem vorbereiteten Stand.}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Ein Bild – viele Pixel}
@@ -311,7 +319,7 @@ void mainImage(out vec4 fragColor,
 \end{frame}
 
 \begin{frame}{Wie hält ein Punkt sanft an?}
-\demoheader{4 · Polynom und weiche Kante}
+\demoheader{4 · Polynome für Bewegung und Farbe}
 \begin{columns}[c]
 \begin{column}{.53\textwidth}
 \begin{enumerate}

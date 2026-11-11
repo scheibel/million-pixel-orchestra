@@ -19,7 +19,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
         color = vec3(0.55, 0.60, 0.65);
     }
     // Vier Stimmen derselben Bewegung, jeweils um 1,5 Sekunden verzoegert.
-    // Der Versatz ist kuerzer als ein Abschnitt: Die Punkte halten nacheinander.
+    // Der Versatz ist kuerzer als ein Abschnitt: Die Punkte halten zeitversetzt.
     for (int index = 0; index < 4; index++) {
         float punktzeit = mod(iTime - float(index) * 1.5, 4.0 * abschnittsdauer);
         float abschnitt = floor(punktzeit / abschnittsdauer);

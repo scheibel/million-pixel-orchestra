@@ -1,4 +1,4 @@
-# Polynom und weiche Kante
+# Polynome für Bewegung und Farbe
 
 **Zielbild:** Vier Punkte fahren wie Stimmen eines Kanons zeitversetzt auf einem um 45° gedrehten Quadrat. Die Ecken stehen auf Nord, Ost, Süd und West. Vor jeder Ecke wird ein Punkt langsamer, hält an und wechselt von Schwarz zur Eckfarbe und zurück zu Schwarz. Erst dann beschleunigt er auf der nächsten Kante wieder. Eckfarben: N rot, O grün, S blau, W gelb. Die fünf Stände entwickeln den Ablauf mit einem, zwei und vier Punkten: 1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep.
 
@@ -25,6 +25,16 @@ Die vorbereitete Funktion `verlauf(t)` berechnet den Mischparameter und wird sow
 5. **Vier Punkte Smootherstep:** Als Erweiterung auch `s″(0) = s″(1) = 0` verlangen: `s(t) = 6t⁵ − 15t⁴ + 10t³`. Das Polynom wird bereitgestellt; die vollständige Herleitung ist kein zusätzlicher Pflichtblock. Alle vier Punkte mit dem vorherigen Smoothstep-Stand vergleichen.
 
 Die Raute behält ihre geraden Kanten. Geglättet wird der zeitliche Verlauf des Mischparameters. Die Steigung entspricht der Geschwindigkeit entlang einer Kante, bis auf den konstanten Faktor aus Kantenlänge und Fahrzeit. Smootherstep hat auch beim Übergang zur Haltephase eine stetige Beschleunigung; der Unterschied zu Smoothstep ist feiner als der zu Lerp.
+
+## Hinweise aus dem didaktischen Review
+
+- **Kernidee:** Dieselbe Interpolation erzeugt eine Position und eine Farbe. Dies knüpft an die Farbmischung aus Demo 2 und die zeitabhängigen Mittelpunkte aus Demo 3 an. Die Haltephase macht den Farbwechsel als zweite Anwendung unmittelbar sichtbar.
+- **Vorbereiteter Code:** START umfasst 54 Zeilen. Koordinaten, Eckpunktauswahl, Zeitzerlegung und Zeichnen werden vorbereitet übernommen und abschnittsweise erklärt. Im Live-Coding stehen Positionsmischung, Kurvenwechsel und Schleifenschrittweite im Vordergrund. Das vollständige Abtippen des Rahmens passt nicht in das bisher vorgesehene Zeitbudget von neun Minuten.
+- **Vergleich bei gleicher Fahrzeit:** Glatteres Anfahren und Bremsen bedeutet eine höhere Geschwindigkeit in der Mitte. Die maximalen normierten Steigungen betragen bei LERP 1, bei Smoothstep 1,5 und bei Smootherstep 1,875. Alle erreichen dieselbe Ecke nach derselben Fahrzeit.
+- **Smootherstep als Vertiefung:** Gegenüber Smoothstep beträgt der maximale normierte Wegunterschied rund 0,054. Bei der aktuellen Kantenlänge und einer Vorschauhöhe von 340 Pixeln sind das rund acht Pixel Positionsunterschied. Den Vergleich daher mit Funktionsgraph und Randbedingungen begleiten; die vollständige quintische Herleitung bleibt eine optionale Vertiefung.
+- **Zeitversatz genau benennen:** Die Stimmen 1 und 3 haben drei Sekunden Abstand. Eine halbe Runde dauert 3,6 Sekunden; deshalb sind die Punkte nicht zu jeder Zeit exakt diametral gegenüber. Die Auswahl entspricht dem vereinbarten Kanon. Auch Haltephasen verschiedener Stimmen können sich überlappen; sie sind zeitversetzt, aber nicht streng nacheinander.
+
+Der Titel „Polynome für Bewegung und Farbe“ beschreibt beide Anwendungen. Die technische Demo-ID und das Verzeichnis `05-polynom-und-weiche-kante` bleiben erhalten, damit bestehende Vorschau-Links funktionieren.
 
 ## Vorbereiteter Rahmen und Haltezeit
 

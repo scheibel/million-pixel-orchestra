@@ -11,7 +11,7 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 - [ ] Live-Coding-Schritte je Demo festlegen und daraus geeignete START- und fehlende Zwischenstände erstellen; bei Noise die vorbereiteten Basisfunktionen einbinden.
 - [ ] Vorhandene Folien und Tafelbilder an diese Schritte anpassen; Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
-- [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung, LLM-Ausblick und Meerbild entscheiden. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten.
+- [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung, LLM-Ausblick und Meerbild entscheiden. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
 - [ ] Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen, echte `shadertoyUrl`-Werte eintragen und die QR-Platzhalter der Demo-Folien ersetzen.
 - [ ] ShaderToy auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads.
 - [ ] Nach gesondertem Veröffentlichungsauftrag das geprüfte Bundle mit dem vorhandenen Publish-Befehl pushen, Pages einmalig auf `gh-pages` / (root) einstellen und Website sowie QR-Zugänge prüfen.
@@ -108,13 +108,15 @@ Die Inspirationsgalerie ist mit den sechs am 11. November 2026 ausgewählten Sha
 
 ### Konzeptablauf pro Demo — Arbeitsstand
 
+Für die ersten vier Demos ist der übergeordnete Ablauf jetzt festgelegt: **Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung der Objekte und Verknüpfung mit Farbe**. Dies bildet den roten Faden der Übersicht in den Folien. Die nachfolgenden Details beschreiben die einzelnen Lernschritte; die Fortsetzung ab Demo 5 bleibt Planungsstand.
+
 Die ersten drei Abläufe folgen dem Vorschlag des Nutzers. Demo 4 wurde am 11. November 2026 anhand der neuen Vorgaben konkretisiert und mit fünf Ständen umgesetzt. Die Abläufe ab Demo 5 sind Vorschläge zur gemeinsamen weiteren Planung. Vor Demo 1 stehen Pixelraster, Fragment-Shader, ShaderToy-Boilerplate und RGB.
 
 1. **Farbe und Zeit:** Farbe → Farbe 1 → Farbe 2 → Farbe in Abhängigkeit von der Zeit. `iTime` und die Schwingung der Farbkomponenten werden hier erstmals anschaulich eingeführt.
 2. **Pixelposition und Farbverlauf:** Pixelposition und Auflösung → normierte Position → Farbe in Abhängigkeit der Pixelposition → Mischung zweier Referenzfarben anhand der x-Position.
 3. **Kreis und Metaballs:** Vordergrund und Hintergrund unterscheiden → Vordergrund anhand des Abstands vom Zentrum → quadrierter Abstand → mehrere Kreise → Kreise als Energiefelder → überlagerte Felder auswerten → Positionen zeitabhängig verändern. Die Zentrierung und das Seitenverhältnis werden bei der Abstandsmessung erklärt.
 
-4. **Polynom und weiche Kante:** fünf Stände in der Reihenfolge **1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep (ZIEL)**. Punkte auf einer Raute mit Ecken N/O/S/W; im Halt mit derselben Kurve wie für den Weg Schwarz → Eckfarbe → Schwarz, erst dann weiterfahren. Lokale Zuordnung: N rot, O grün, S blau, W gelb. Schritt 1 → 2 führt die Schleife mit den Stimmen 1 und 3 des Kanons ein (Indizes 0 und 2, Verzögerungen 0/3 Sekunden); Schritt 2 → 3 ändert nur die Rückgabe von `verlauf`; Schritt 3 → 4 ändert die Schleifenschrittweite von 2 auf 1 und ergänzt die Stimmen 2 und 4; Schritt 4 → ZIEL ändert nur das Polynom. Der Einsatzabstand von 1,5 Sekunden weicht von der Abschnittsdauer von 1,8 Sekunden ab. Aktuelle Zeitwahl: 1,2 Sekunden Fahrt und 0,6 Sekunden Halt. Folie und Tafelbild 6 begleiten die fünf Schritte.
+4. **Polynome für Bewegung und Farbe:** fünf Stände in der Reihenfolge **1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep (ZIEL)**. Punkte auf einer Raute mit Ecken N/O/S/W; im Halt mit derselben Kurve wie für den Weg Schwarz → Eckfarbe → Schwarz, erst dann weiterfahren. Lokale Zuordnung: N rot, O grün, S blau, W gelb. Schritt 1 → 2 führt die Schleife mit den Stimmen 1 und 3 des Kanons ein (Indizes 0 und 2, Verzögerungen 0/3 Sekunden); Schritt 2 → 3 ändert nur die Rückgabe von `verlauf`; Schritt 3 → 4 ändert die Schleifenschrittweite von 2 auf 1 und ergänzt die Stimmen 2 und 4; Schritt 4 → ZIEL ändert nur das Polynom. Der Einsatzabstand von 1,5 Sekunden weicht von der Abschnittsdauer von 1,8 Sekunden ab. Aktuelle Zeitwahl: 1,2 Sekunden Fahrt und 0,6 Sekunden Halt. Folie und Tafelbild 6 begleiten die fünf Schritte.
 
 Vorschlag für die Fortsetzung:
 

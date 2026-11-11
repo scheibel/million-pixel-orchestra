@@ -10,7 +10,7 @@ Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren 
 | Wer bin ich? | Name, M.Sc. IT-Systems-Engineering, Website, Position und Affiliation; Porträt rechts oben, darunter Google-Maps-Karte von Potsdam mit HPI-Markierung am Griebnitzsee; HPI-Vollogo und Uni-Potsdam-Logo unten links. | Neue persönliche Vorstellungsfolie vor der Zeitleiste umgesetzt. |
 | Werdegang | Zwei Zeitstrahlfolien von Hobbyprogrammierung und Ausbildung bis zu Computergrafik, Forschung und Lehre. | Persönliche Schwerpunkte für den Vortrag abstimmen; erste Folie heißt „Vom Hobby zum Studium“. |
 | Studium am HPI | Bachelor, Master und Promotion sowie mögliche Berufswege; Studienverlaufsplan, Link und QR-Code zu hpi.de. | Platzierung im Ablauf abstimmen; eine Vertiefung am Ende ist ebenfalls möglich. |
-| Übersicht | Was wir heute bauen: Farbe → Position → Formen → Bewegung → Noise. Hinweis auf Mitprogrammieren in ShaderToy. | Übersicht und Umfang mit den Demos abstimmen. |
+| Übersicht | Erster Workshopblock: Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung von Bewegung und Farbe. Hinweis auf Mitprogrammieren in ShaderToy. | Die vier Leitideen sind festgelegt und auf der Übersichtsfolie abgebildet. Fortsetzung ab Demo 5 bleibt Planungsstand. |
 | Einstieg in die Pixelberechnung | Pixelraster, RGB und das Modell „eine Farbe pro Pixel“; `fragCoord`, `iResolution`, später `iTime` direkt am Boilerplate einführen. Tafelbild 1 als Zeichnung oder fertige Seite. | Einführung und Codevorlage für den Vortrag ausarbeiten. |
 | Demo-Blöcke | Pro Block: Frage oder Zielbild → nötiges Konzept am Tafelbild oder auf der Folie → gemeinsames Live-Coding in ShaderToy → Ergebnis und kurzer Rückblick. | Siehe Zuordnung unten; je Demo START, ZIEL und sinnvolle Zwischenstände abstimmen. |
 | Inspirationsgalerie | Sechs ausgewählte ShaderToy-Demos als Raster mit zwei Zeilen und drei Spalten, jeweils mit Originalvorschaubild, QR-Code und Link. | In den Folien umgesetzt; [Quellen und ausstehende Prüfung](../folien/bilder/galerie/README.md). Keine Live-Herleitung. |
@@ -20,6 +20,17 @@ Ein früherer Entwurf enthält außerdem einen LLM-Ausblick. Ob und wo er vorkom
 
 ## Demos und begleitende Materialien
 
+Der rote Faden der ersten vier Demos ist festgelegt:
+
+| Demo | Leitidee |
+| --- | --- |
+| 1 | Eine Farbe und Farbe in Abhängigkeit der Zeit. |
+| 2 | Farbe in Abhängigkeit der Position im Bild: Raster, Pixelpositionen und Auflösung. |
+| 3 | Objekte im Bild über Abstände und Felder sichtbar machen. |
+| 4 | Objekte gezielt steuern und ihre Bewegung mit Farbe verknüpfen. |
+
+Animation ist schon ab Demo 1 sichtbar; Demo 4 gestaltet ihren zeitlichen Verlauf bewusst mit Interpolation und Polynomen. Die folgenden Demos bilden die bisher geplante Fortsetzung.
+
 Die Reihenfolge folgt dem aktuellen Katalog; die Nummern bezeichnen hier die Vortragsfolge. Die zehn [Tafelbildentwürfe](../tafelbilder/README.md) können live entwickelt oder fertig gezeigt werden. Ein erster [Beamer-Foliensatz](../folien/README.md) enthält Demo-Folien, echte QR-Codes für Website und Inspirationsgalerie sowie vorläufige QR-Platzhalter für die noch offenen ShaderToy-START-Links.
 
 | Nr. | Demo und Konzept | Tafelbildseiten | Folie und ShaderToy |
@@ -27,7 +38,7 @@ Die Reihenfolge folgt dem aktuellen Katalog; die Nummern bezeichnen hier die Vor
 | 1 | [Farbe und Zeit](../demos/00-konstante-farbe/README.md): RGB, konstante Farben, zeitabhängiger Farbwechsel | 2 | Zielbild, RGB und Einstieg zu `iTime`; QR-Code zum vorbereiteten START. |
 | 2 | [Pixelposition und Farbverlauf](../demos/01-pixelposition-und-normalisierung/README.md): Position, Auflösung, Normalisierung und Mischung | 3 | Koordinaten und zwei Referenzfarben; QR-Code zum START. |
 | 3 | [Kreis und bewegte Metaballs](../demos/03-kreis-und-quadrierter-abstand/README.md): Abstand, Felder, Überlagerung und Bewegung | 4–5 | Kreis → Felder → Metaballs; QR-Code zum START. |
-| 4 | [Polynom und weiche Kante](../demos/05-polynom-und-weiche-kante/README.md): Lerp → Smoothstep → Smootherstep | 6 | Punkt auf einer Raute N/O/S/W; abbremsen, halten, beschleunigen. Im Halt mit derselben Kurve Schwarz → Rot/Grün/Blau/Gelb → Schwarz. Fünf Stände: 1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep. Phase 2/3 zeigen die Stimmen 1 und 3 (0/3 Sekunden Verzögerung); ab Phase 4 kommen Stimmen 2 und 4 hinzu (0/1,5/3/4,5 Sekunden); QR-Code zum ShaderToy-START bleibt offen. |
+| 4 | [Polynome für Bewegung und Farbe](../demos/05-polynom-und-weiche-kante/README.md): Lerp → Smoothstep → Smootherstep | 6 | Punkt auf einer Raute N/O/S/W; abbremsen, halten, beschleunigen. Im Halt mit derselben Kurve Schwarz → Rot/Grün/Blau/Gelb → Schwarz. Fünf Stände: 1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep. Phase 2/3 zeigen die Stimmen 1 und 3 (0/3 Sekunden Verzögerung); ab Phase 4 kommen Stimmen 2 und 4 hinzu (0/1,5/3/4,5 Sekunden); QR-Code zum ShaderToy-START bleibt offen. |
 | 5 | [Wellen und Animation](../demos/06-wellen-und-animation/README.md): Sinus, Phase und Zeit | 7 | Sinus als Bildbaustein; QR-Code zum START. Ein Meerbild wurde vorgeschlagen und ist noch nicht umgesetzt oder beschlossen. |
 | 6 | [Taylorapproximation](../demos/07-taylor-approximation/README.md): Referenz und lokale Näherung vergleichen | 8 | Vergleich und Entwicklungsstelle; QR-Code zum START. |
 | 7 | [Value Noise](../demos/08-value-noise/README.md): Gitterwerte und Interpolation | 9 | Gitter und glatte Mischung; QR-Code zum START. Noise-Basisfunktionen werden für das Live-Coding vorbereitet. |

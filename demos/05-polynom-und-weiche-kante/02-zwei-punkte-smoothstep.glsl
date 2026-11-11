@@ -19,7 +19,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
         color = vec3(0.55, 0.60, 0.65);
     }
     // Stimmen 1 und 3 des Kanons: Verzögerungen 0 und 3 Sekunden.
-    // Der Versatz ist kuerzer als ein Abschnitt: Die Punkte halten zeitversetzt.
+    // Die ausgewaehlten Stimmen haben 3 Sekunden Abstand bei 7,2 Sekunden Rundenzeit.
     for (int index = 0; index < 4; index += 2) {
         float punktzeit = mod(iTime - float(index) * 1.5, 4.0 * abschnittsdauer);
         float abschnitt = floor(punktzeit / abschnittsdauer);
