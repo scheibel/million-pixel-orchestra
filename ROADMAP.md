@@ -75,9 +75,27 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 - Build und Push getrennt halten; vorerst lokal unter einem simulierten Projektpfad prüfen.
 - Die Planung der Integration und die Hostbarkeit sind kein Auftrag zur Einrichtung oder Veröffentlichung auf GitHub Pages.
 
-## 3. Workshopinhalt — hierarchische Ausarbeitung später
+## 3. Workshopinhalt
 
-Eine eigene hierarchische Inhaltsplanung wird später erarbeitet. Die folgenden Punkte bewahren den bisherigen fachlichen Planungsstand; sie sind keine Implementierungsphasen des Rahmenwerks. Lernziele, festgelegte Einschränkungen und die abgestimmte didaktische Progression aus `CONTEXT.md` bleiben Grundlage.
+Die Inhaltsplanung und das Rahmenwerk haben getrennte Aufgaben. Lernziele, festgelegte Einschränkungen und die abgestimmte didaktische Progression aus `CONTEXT.md` bleiben Grundlage.
+
+### Konzeptablauf pro Demo — Arbeitsstand
+
+Die ersten drei Abläufe folgen dem Vorschlag des Nutzers. Die anschließenden Abläufe sind Vorschläge zur gemeinsamen weiteren Planung; sie legen noch keine zusätzlichen Shader-Stände fest. Vor Demo 1 stehen Pixelraster, Fragment-Shader, ShaderToy-Boilerplate und RGB.
+
+1. **Farbe und Zeit:** Farbe → Farbe 1 → Farbe 2 → Farbe in Abhängigkeit von der Zeit. `iTime` und die Schwingung der Farbkomponenten werden hier erstmals anschaulich eingeführt.
+2. **Pixelposition und Farbverlauf:** Pixelposition und Auflösung → normierte Position → Farbe in Abhängigkeit der Pixelposition → Mischung zweier Referenzfarben anhand der x-Position.
+3. **Kreis und Metaballs:** Vordergrund und Hintergrund unterscheiden → Vordergrund anhand des Abstands vom Zentrum → quadrierter Abstand → mehrere Kreise → Kreise als Energiefelder → überlagerte Felder auswerten → Positionen zeitabhängig verändern. Die Zentrierung und das Seitenverhältnis werden bei der Abstandsmessung erklärt.
+
+Vorschlag für die Fortsetzung:
+
+4. **Weiche Kante:** harte Kante → lineare Mischung über ein Übergangsintervall → Polynom `3t² − 2t³` aus Randbedingungen herleiten → weiche Kante.
+5. **Wellen und Animation:** Funktionsgraph als Pixelbild → Sinuskurve → Amplitude und Frequenz → Phase → Bewegung mit `iTime`.
+6. **Taylorapproximation:** bekannte Sinuskurve → Polynom als lokale Näherung → Näherung und Referenz gemeinsam darstellen → Abweichung mit wachsendem Abstand vom Entwicklungspunkt beobachten.
+7. **Value Noise:** reproduzierbare Pseudozufallswerte → Werte auf einem Gitter → lineare Interpolation → glatte Interpolation → Interpolation in zwei Dimensionen. Noise-Basisfunktionen werden vorbereitet.
+8. **fBm:** vorhandenes Value Noise → größere und kleinere Strukturen durch Skalierung → gewichtete Überlagerung mehrerer Oktaven → Normalisierung → Wolkenbild.
+
+Die konzeptionellen Schritte sind nicht sämtlich als eigene Shader-Stände vorhanden. Insbesondere die weißen START-Stände sind vorläufig; die konkreten START- und Zwischenstände für Live-Coding und die Zeitplanung bleiben auszuarbeiten.
 
 ### Bisheriger Themen- und Materialbestand der Planung
 
@@ -86,7 +104,7 @@ Eine eigene hierarchische Inhaltsplanung wird später erarbeitet. Die folgenden 
 - **Glatte Übergänge:** `05-polynom-und-weiche-kante` mit Herleitung von `3t²-2t³` und Anwendung auf weiche Übergänge.
 - **Zeit und Approximation:** `06-wellen-und-animation` mit Sinus/Cosinus, Phase und `iTime`; `07-taylor-approximation` mit sichtbarem Vergleich zur Referenz.
 - **Zufall, Noise, fBm:** `08-value-noise` mit Pseudozufall und vorgegebener Gitter-/Interpolationsbasis; `09-fbm` mit mehreren Noise-Oktaven und Wolken/Marmor als möglichen Ergebnissen.
-- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos.
+- **Begleitmaterialien:** deutsche LaTeX-Beamer-Folien und Tafelbilder mit versionierten Quellen, abgestimmt auf Lernziele und mathematische Kerngedanken der Demos. Ein erster Entwurf mit zehn druckbaren PGF/TikZ-Tafelseiten liegt unter `tafelbilder/`; eine Umgestaltung von Wellenmotiv und weicher Kante bleibt Gegenstand der Inhaltsabstimmung.
 - **Unterrichtsvorbereitung:** separate START-/ZIEL-Stände lokal prüfen, Links und Handout-Referenzen ordnen, Tastatureingaben/Sonderzeichen minimieren; Galerie-Beispiele auswählen und externe Werke mit Quellen zuordnen.
 
 ### Provisorische Ablaufskizze (aus letztem Planungsstand, noch nicht final beschlossen)

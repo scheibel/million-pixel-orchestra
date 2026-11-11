@@ -9,7 +9,7 @@
 ## Planungsebenen (festgelegt)
 1. **Rahmenwerk (Framework):** Features für Landingpage, lokale Vorschau, Hosting, Dokument-Builds und gemeinsamen Release-Build.
 2. **Externe Integrationen:** ShaderToy und GitHub Pages frühzeitig vordenken und ihre Anforderungen im Rahmenwerk berücksichtigen. Tatsächliche Übertragung und Veröffentlichung sind eigene Schritte.
-3. **Workshopinhalt:** Demos, Folien und Tafelbilder fachlich und didaktisch planen. Die hierarchische Aufschlüsselung dieses Bereichs erfolgt später; der bisherige Themen- und Ablaufstand bleibt erhalten.
+3. **Workshopinhalt:** Demos, Folien und Tafelbilder fachlich und didaktisch planen. Die konzeptionelle Aufschlüsselung pro Demo wird in `ROADMAP.md` erarbeitet; der bisherige Themen- und Ablaufstand bleibt erhalten.
 
 Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Implementierungsfolge für das Rahmenwerk. Die technische Dokument-Build-Pipeline kann mit minimalen Beispielen unabhängig von den später ausgearbeiteten Lehrmaterialien entwickelt werden. `ROADMAP.md` führt Aufgaben und Abnahmen nach diesen Bereichen.
 

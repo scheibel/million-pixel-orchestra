@@ -1,0 +1,262 @@
+\documentclass[12pt,a4paper,landscape]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[margin=14mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\normalsize}{\fontsize{16}{20}\selectfont}
+\renewcommand{\large}{\fontsize{18}{22}\selectfont}
+\renewcommand{\Large}{\fontsize{20}{25}\selectfont}
+\renewcommand{\LARGE}{\fontsize{24}{29}\selectfont}
+\renewcommand{\small}{\fontsize{13}{16}\selectfont}
+\definecolor{petrol}{RGB}{0,90,91}
+\definecolor{orange}{RGB}{166,63,30}
+\definecolor{blue}{RGB}{33,70,130}
+\tikzset{every picture/.style={line width=0.9pt}, >={Stealth[length=2.7mm]},
+  lab/.style={font=\large}, smalllab/.style={font=\normalsize},
+  axis/.style={->,line width=0.9pt}, helper/.style={dashed,gray}}
+\newcommand{\kopf}[2]{\noindent{\LARGE\bfseries #1}\hfill{\large #2}\par\vspace{2mm}\hrule\vspace{4mm}}
+\newcommand{\folge}[1]{\vfill\noindent\rule{\textwidth}{0.4pt}\par\vspace{2mm}{\small\textbf{Live aufbauen:} #1}}
+\begin{document}
+\normalsize
+
+\kopf{1 · Ein Bild aus Pixeln}{Einstieg}
+\begin{minipage}[t]{.46\textwidth}
+\vspace{0pt}\begin{tikzpicture}[scale=.72]
+  \fill[petrol!20] (3,2) rectangle (4,3);
+  \draw[step=1,gray] (0,0) grid (7,5);
+  \draw[very thick] (0,0) rectangle (7,5);
+  \node[lab] at (3.5,2.5) {$\bullet$};
+  \draw[->,orange,thick] (5,4.3) -- (3.8,2.8);
+  \node[lab,anchor=west] at (5,4.4) {aktuelles Pixel};
+  \draw[axis] (0,-.5) -- (7.4,-.5) node[right] {$x$};
+  \draw[axis] (-.5,0) -- (-.5,5.4) node[above] {$y$};
+  \node[smalllab,anchor=north east] at (0,0) {$(0,0)$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.50\textwidth}\vspace{0pt}
+\Large
+Für jedes Pixel wird die Farbe berechnet:
+\[\boxed{\text{Farbe}=f(x,y,t)}\]
+\normalsize
+\begin{tabular}{ll}
+\texttt{fragCoord} & Position des aktuellen Pixels \\
+\texttt{iResolution.xy} & Bildbreite und Bildhöhe \\
+\texttt{iTime} & Zeit in Sekunden
+\end{tabular}
+\par\medskip
+\texttt{mainImage} berechnet eine Farbe pro Pixel.
+\end{minipage}
+\folge{Raster zeichnen → ein Pixel markieren → Position, Bildgröße und Zeit benennen → Farbformel.}
+\newpage
+
+\kopf{2 · Farbe und Zeit}{Demo 1}
+\begin{minipage}[t]{.47\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \foreach \y/\name/\shade in {3/Rot/orange,2/Grün/petrol,1/Blau/blue}{
+   \node[lab,anchor=east] at (0,\y) {\name};
+   \draw (0.3,\y-.22) rectangle (5.5,\y+.22);
+   \fill[\shade!70] (0.3,\y-.22) rectangle (3.6,\y+.22);
+   \node[smalllab] at (0.3,\y-.6) {0}; \node[smalllab] at (5.5,\y-.6) {1};
+ }
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.50\textwidth}\vspace{0pt}
+\Large\[\text{Farbe}=(R,G,B)\]
+\normalsize Jeder Wert liegt zwischen 0 und 1.\\
+$(0,0,0)$ ist Schwarz, $(1,1,1)$ ist Weiß.
+\par\medskip
+Mit Zeit ändert sich die Farbe überall zugleich:
+\[R(t)=0{,}5+0{,}5\sin(t)\]
+Grün und Blau schwingen zeitversetzt.
+\end{minipage}
+\folge{RGB-Anteile eintragen → zwei Farben vergleichen → Zeit als Eingabe ergänzen → Wertebereich des Sinus erklären.}
+\newpage
+
+\kopf{3 · Position wird Farbe}{Demo 2}
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \draw[thick] (0,0) rectangle (7,4);
+ \draw[axis] (0,0) -- (7.5,0) node[right] {$x$};
+ \draw[axis] (0,0) -- (0,4.4) node[above] {$y$};
+ \fill[orange] (3.5,2.5) circle (2.5pt);
+ \draw[helper] (3.5,0) -- (3.5,2.5) -- (0,2.5);
+ \node[lab,above right] at (3.5,2.5) {$(x,y)$};
+ \node[smalllab,below] at (3.5,0) {$x$};
+ \node[smalllab,left] at (0,2.5) {$y$};
+ \node[smalllab,below] at (7,0) {Breite $W$};
+ \node[smalllab,left] at (0,4) {Höhe $H$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.48\textwidth}\vspace{0pt}
+\Large\[u=\frac{x}{W},\qquad v=\frac{y}{H}\]
+\normalsize Positionsfarbe: $(R,G,B)=(u,v,0)$.\par\medskip
+Zwei Farben entlang der x-Achse mischen:
+\[\text{Farbe}=(1-u)\,\text{links}+u\,\text{rechts}\]
+$u=0$: links; \quad $u=1$: rechts.
+\par\medskip
+Getrennt normierte Achsen sind für Abstände noch nicht gleich skaliert.
+\end{minipage}
+\folge{Pixel und Auflösung markieren → normieren → Koordinaten als Farben zeigen → zwei Farben mischen.}
+\newpage
+
+\kopf{4 · Vom Abstand zum Kreis}{Demo 3}
+\begin{minipage}[t]{.48\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \draw[axis] (-3.4,0) -- (3.5,0) node[right] {$p_x$};
+ \draw[axis] (0,-2.4) -- (0,2.6) node[above] {$p_y$};
+ \draw[petrol,very thick] (0,0) circle (2);
+ \fill (0,0) circle (2pt) node[below left] {$M$};
+ \fill[orange] (1.45,1.05) circle (2.5pt) node[above right] {$P$};
+ \draw[orange,thick,->] (0,0) -- (1.45,1.05) node[midway,above left] {$\vec p$};
+ \draw[helper] (1.45,0) -- (1.45,1.05) -- (0,1.05);
+ \draw[petrol,->] (0,0) -- (-1.4,1.43) node[midway,above left] {$r$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+Bildmitte als Ursprung, durch Bildhöhe skalieren:
+\[\vec p=\frac{\texttt{fragCoord}-\tfrac12\,\texttt{iResolution.xy}}{\texttt{iResolution.y}}\]
+Gleiche Einheiten auf beiden Achsen halten den Kreis rund.
+\[d^2=p_x^2+p_y^2=\operatorname{dot}(\vec p,\vec p)\]
+\[\text{innen: }d^2<r^2\qquad\text{außen: }d^2\ge r^2\]
+\end{minipage}
+\folge{Mittelpunkt und Pixel einzeichnen → Koordinaten zentrieren → Abstand → Radiusvergleich und zwei Farben.}
+\newpage
+
+\kopf{5 · Von Kreisen zu Metaballs}{Demo 3}
+\begin{minipage}[t]{.48\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \draw[petrol,very thick] (-1.45,1.7) circle (1.25);
+ \draw[blue,very thick] (1.45,1.7) circle (1.25);
+ \fill[petrol] (-1.45,1.7) circle (3pt) node[below] {$M_1$};
+ \fill[blue] (1.45,1.7) circle (3pt) node[below] {$M_2$};
+ \node[lab] at (0,-.15) {Zwei Felder beeinflussen jeden Punkt.};
+ \draw[->,thick] (-2,-.6) -- (2,-.6);
+ \node[smalllab] at (0,-1.05) {Bewegung der Mittelpunkte mit $t$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+Ein Feld wird mit wachsendem Abstand kleiner:
+\[E_i(P)=\frac{a}{\lVert P-M_i\rVert^2+\varepsilon}\]
+Die Felder addieren sich:
+\[E(P)=E_1(P)+E_2(P)\]
+\[E(P)>\text{Schwelle}\quad\Rightarrow\quad\text{Vordergrund}\]
+Zwischen den Zentren kann die Summe die Schwelle überschreiten: Die Formen verbinden sich. $\varepsilon$ verhindert Division durch null.
+\end{minipage}
+\folge{Zwei Kreise → abfallende Felder → Werte an einem Punkt addieren → Schwelle → Bewegung.}
+\newpage
+
+\kopf{6 · Weiche Übergänge}{Polynom und Kante}
+\begin{minipage}[t]{.48\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=5cm,y=3.5cm]
+ \draw[axis] (-.08,0) -- (1.18,0) node[right] {$t$};
+ \draw[axis] (0,-.08) -- (0,1.12) node[above] {$s$};
+ \draw[gray,dashed] (0,0) -- (1,1) node[above right,font=\small] {linear};
+ \draw[petrol,very thick,domain=0:1,samples=60] plot (\x,{3*\x*\x-2*\x*\x*\x});
+ \fill (0,0) circle (.55pt) (1,1) circle (.55pt);
+ \node[below] at (1,0) {1}; \node[left] at (0,1) {1};
+ \node[petrol,anchor=west] at (.43,.23) {$3t^2-2t^3$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+Im Übergang läuft der Mischparameter $t$ von 0 bis 1.
+\[s(t)=at^3+bt^2+ct+d\]
+Die Bedingungen $s(0)=0$, $s(1)=1$ und $s'(0)=s'(1)=0$ ergeben $a=-2$, $b=3$, $c=d=0$:
+\[s(t)=3t^2-2t^3\]
+Die Kurve startet und endet waagerecht.
+\[\text{Farbe}=(1-s)\,\text{innen}+s\,\text{außen}\]
+Anwendung: Kante eines Kreises oder einer Feldschwelle.
+\end{minipage}
+\folge{Harte Kante → Übergangsintervall → lineare Mischung → Randbedingungen → kubisches Polynom.}
+\newpage
+
+\kopf{7 · Sinus: Form und Bewegung}{Wellen}
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=.9cm,y=1cm]
+ \draw[axis] (-.2,0) -- (7.2,0) node[right] {$x$};
+ \draw[axis] (0,-1.7) -- (0,1.8) node[above] {Höhe};
+ \draw[petrol,very thick,domain=0:6.8,samples=100] plot (\x,{1.1*sin(\x*90)});
+ \draw[blue,dashed,thick,domain=0:6.8,samples=100] plot (\x,{1.1*sin(\x*90-60)});
+ \draw[<->,orange,thick] (.7,0) -- (.7,1.1) node[midway,right] {$A$};
+ \node[smalllab] at (3.4,-2.15) {durchgezogen: früher; gestrichelt: später};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\[h(x,t)=A\sin(kx-\omega t)\]
+\begin{tabular}{ll}
+$A$ & Amplitude: wie hoch? \\
+$k$ & räumliche Frequenz: wie eng? \\
+$\omega t$ & Phase: wie verschoben?
+\end{tabular}
+\par\medskip
+Ein mögliches Motiv: Wasser unter der Linie, Himmel darüber. Die Kurve dient hier zur Erklärung.
+\end{minipage}
+\folge{Wiederholung der Farbschwingung → Höhe über x → Amplitude und Frequenz → Zeit verschiebt die Phase.}
+\newpage
+
+\kopf{8 · Sinus durch ein Polynom annähern}{Taylor}
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\begin{tikzpicture}[x=.72cm,y=1.45cm]
+ \draw[axis] (-4.1,0) -- (4.2,0) node[right] {$x$};
+ \draw[axis] (0,-1.35) -- (0,1.45);
+ \draw[petrol,very thick,domain=-3.7:3.7,samples=120] plot (\x,{sin(\x r)});
+ \draw[orange,dashed,thick,domain=-3:3,samples=120] plot (\x,{\x-\x*\x*\x/6+\x*\x*\x*\x*\x/120});
+ \node[petrol,anchor=west] at (2.1,1.15) {$\sin(x)$};
+ \node[orange,anchor=west] at (2.1,.85) {Polynom};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\[\sin(x)\approx x-\frac{x^3}{6}+\frac{x^5}{120}\]
+\textbf{Entwicklungspunkt:} $x=0$.
+\par\medskip
+In der Nähe von 0 stimmen die Kurven gut überein. Weiter entfernt wächst die Abweichung.
+\par\medskip
+Die Approximation ist ein Polynom, der Sinus eine periodische Funktion.
+\end{minipage}
+\folge{Sinus als Referenz zeichnen → Polynomnäherung ergänzen → Nähe bei 0 und Abweichung besprechen.}
+\newpage
+
+\kopf{9 · Value Noise: Zufall wird weich}{Noise}
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\begin{tikzpicture}[scale=1.25]
+ \draw[gray] (0,0) grid (3,3);
+ \fill[petrol!15] (1,1) rectangle (2,2);
+ \foreach \x/\y/\s in {1/1/a,2/1/b,1/2/c,2/2/d}{\fill[petrol] (\x,\y) circle (2pt); \node[above right,font=\small] at (\x,\y) {$\s$};}
+ \fill[orange] (1.55,1.35) circle (2.2pt) node[below right] {$P$};
+ \draw[orange,->] (1.55,1.35) -- (2.5,.45);
+ \node[smalllab,anchor=west] at (2.5,.4) {Position in der Zelle};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
+\begin{enumerate}\setlength{\itemsep}{5pt}
+ \item Jedem Gitterpunkt einen reproduzierbaren Pseudozufallswert zuordnen.
+ \item Innerhalb der Zelle zwischen den vier Eckwerten mischen.
+ \item Den Mischfaktor mit $s(t)=3t^2-2t^3$ glätten.
+\end{enumerate}
+Ergebnis: ein zusammenhängendes, weich veränderliches Muster.
+\end{minipage}
+\folge{Gitter und Eckwerte → Punkt in einer Zelle → erst horizontal, dann vertikal mischen → glätten.}
+\newpage
+
+\kopf{10 · fBm: Grob und fein überlagern}{fBm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \foreach \x/\step/\label in {0/1/Grob,5/.5/Mittel,10/.25/Fein}{
+   \draw[step=\step,gray] (\x,0) grid +(3,3);
+   \draw[very thick] (\x,0) rectangle +(3,3);
+   \node[lab] at (\x+1.5,-.45) {\label};
+ }
+ \node[font=\Huge] at (4,1.5) {$+$};
+ \node[font=\Huge] at (9,1.5) {$+$};
+ \draw[->,thick] (13.4,1.5) -- (14.4,1.5);
+ \node[lab,align=left,anchor=west] at (14.5,1.5) {Wolken-\\struktur};
+\end{tikzpicture}
+\end{center}
+\[F(p)=\frac{0{,}5\,N(p)+0{,}25\,N(2p)+0{,}125\,N(4p)+0{,}0625\,N(8p)}{0{,}9375}\]
+\begin{center}$N$: Value Noise. Das Bild zeigt drei Maßstäbe; die Formel verwendet vier Oktaven. Jede verdoppelt die Frequenz und halbiert das Gewicht.\end{center}
+\folge{Ein Noise-Muster → kleinere Strukturen → schwächer gewichtet addieren → Gewichtssumme erklären.}
+\end{document}
