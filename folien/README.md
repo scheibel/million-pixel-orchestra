@@ -18,7 +18,7 @@ Die HPI-Folie enthält einen QR-Code und Link zu `https://hpi.de` sowie den Stud
 
 Der auf der bereitgestellten Vorlage basierende Stil liegt in `stil.tex`: weißer Hintergrund, schwarze Schrift, HPI-Farben sowie Kopf- und Fußzeile. Eingebunden werden `logos/uni_logo.pdf` und `logos/hpi-logo-cmyk.pdf`; ein TU-Graz-Logo ist nicht vorgesehen. Fehlende Logodateien werden als Platzhalter dargestellt.
 
-Der zusammengeführte Vortragstitel erscheint auf der Titelfolie zentriert und fett im bisherigen Untertitelstil, mit einem Zeilenumbruch nach dem Gedankenstrich. Die Kopfzeile enthält die Logos; die Fußzeilen der Inhaltsfolien verwenden Foliennummer, Abschnitt und Kurztitel.
+Der vollständige Vortragstitel steht auf der Titelfolie oben links, fett und in einer Zeile in der bisherigen Schriftgröße. Die Logos stehen unabhängig vom Hintergrund oben rechts; der Sprechername steht links unter dem Titel, die Veranstaltungsangaben unten rechts. Die Platzierung erfolgt mit TikZ relativ zu den Folienrändern. Als Testvariante füllt die bereitgestellte Kaleidoskop-Aufnahme `bilder/galerie/mtyGWy-titel.png` den gesamten Hintergrund und verlinkt die zugehörige ShaderToy-Seite. Titel und Name sind weiß, die Veranstaltungszeile leicht abgetönt weiß. Die Kopfzeile verwendet eine [weiße Vektorvariante des Uni-Potsdam-Logos](logos/README.md) und das HPI-Logo in seinen Originalfarben. Diese Einstellungen sind auf die Titelfolie begrenzt. Die [Bildquelle](bilder/galerie/README.md) ist bei der Galerie dokumentiert. Die Fußzeilen der Inhaltsfolien verwenden Foliennummer, Abschnitt und Kurztitel.
 
 Die Website-Adresse ist als `https://www.willyscheibel.de/million-pixel-orchestra/` festgelegt. Übersicht und Abschluss enthalten dafür einen echten QR-Code mit weißer Ruhezone sowie die anklickbare, über zwei Zeilen lesbare Adresse. Das Ziel wird zentral über `\workshopurl` in `vortrag.tex` gesetzt. Die URL wird wie vorgegeben verwendet; die Online-Erreichbarkeit ist nach der separaten Veröffentlichung zu prüfen.
 
@@ -28,7 +28,7 @@ Die 19 Codevergleiche stehen jetzt unter [code-journal/](../code-journal/README.
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle drei Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `pdfrender`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle drei Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p folien/build

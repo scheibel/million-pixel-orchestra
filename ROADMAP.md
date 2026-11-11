@@ -133,6 +133,12 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 
 ## 3. Workshopinhalt
 
+**Testvariante der Titelfolie:** Die vom Nutzer bereitgestellte Aufnahme `folien/bilder/galerie/mtyGWy-titel.png` ersetzt das bisherige Galerie-Vorschaubild als Vollbild-Hintergrund und verlinkt die zugehörige ShaderToy-Seite. Titel und Name sind weiß, die Veranstaltungszeile leicht abgetönt weiß. Das Uni-Potsdam-Logo verwendet eine weiße Vektorvariante; das HPI-Logo behält seine Originalfarben. Die Anpassungen sind auf die Titelfolie begrenzt. Die vorhandene Bildquellendokumentation gilt auch für diese Verwendung.
+
+Die Schrift auf der Titelfolie erhält mit `pdfrender` eine schwarze Kontur: 0,4 pt für den Titel, 0,3 pt für den Namen und 0,2 pt für die kleinere Veranstaltungszeile. Die Logos werden nicht konturiert.
+
+**Anordnung der Titelfolie:** Logos oben rechts, vollständiger Titel oben links in einer Zeile, Sprechername links darunter und Veranstaltungsangaben unten rechts. TikZ verankert die Inhalte direkt an den Folienrändern. Der Titel passt mit rund 141,5 mm Breite in die 148 mm breite Textfläche, ohne die bisherige Schriftgröße zu verkleinern.
+
 **Demo-Übersicht aktualisiert (11. November 2026):** Folie 5 umfasst alle sechs aktuellen Demos in zwei Reihen mit je drei ZIEL-Vorschaubildern, einschließlich Simplex Noise und animierter fBm-Wolken. Die Bilder werden mit dem optionalen Werkzeug `scripts/render-demo-previews.py` aus den unveränderten Ziel-Snippets bei festen Zeiten gerendert und unter `folien/bilder/demo-ziele/` versioniert. Quellprüfsummen und Renderdaten sind dort dokumentiert; der PDF-Build bleibt unabhängig vom Renderwerkzeug. Website-Adresse, QR-Code und Hinweis zum Mitprogrammieren bleiben auf der Übersicht erhalten.
 
 **Präzisierung zu Demo 1:** Auf der Übersicht ersetzt eine RGB-Füllanzeige die einfarbige Vorschau. Drei Balken zeigen die Farbkomponenten des ZIEL-Shaders bei `iTime = 0`; Pfeile deuten steigende bzw. fallende Anteile an. Die Grafik ist als bearbeitbares TikZ direkt in der Folienquelle angelegt.

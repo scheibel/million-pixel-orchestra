@@ -5,9 +5,10 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{qrcode}
+\usepackage{pdfrender}
 \usetikzlibrary{arrows.meta,calc}
 \input{folien/stil.tex}
-\title[Grafiken programmieren – Mit Mathematik zu Millionen Pixeln]{Grafiken programmieren –\\Mit Mathematik zu Millionen Pixeln}
+\title[Grafiken programmieren – Mit Mathematik zu Millionen Pixeln]{Grafiken programmieren – Mit Mathematik zu Millionen Pixeln}
 \author{Willy Scheibel}
 \institute{Marie-Curie-Gymnasium · 12.11.2026 · Marie-Curie-Tag}
 \date{}
@@ -111,24 +112,39 @@
 }
 
 \begin{document}
-\begin{frame}[plain]
-\begin{beamercolorbox}[left,leftskip=0pt,ht=6mm,dp=1mm,wd=\textwidth]{frametitle}
-  \hbox to \textwidth{\hfill\cgslogos}
-\end{beamercolorbox}
-\vspace{2mm}
-\begin{center}
-{\Large\bfseries \inserttitle\enspace\par}\smallskip
-\insertauthor\par\medskip
-\begin{tikzpicture}[scale=.65]
-\foreach \x in {0,...,6} \foreach \y in {0,...,6} {
-  \pgfmathtruncatemacro{\tone}{15+8*\x+3*\y}
-  \fill[sea!\tone!paper,rounded corners=1pt] (\x*.48,\y*.48) rectangle ++(.4,.4);
+\begingroup
+% Dunkle Titelvariante; Farben und Logos gelten nur für diese Folie.
+\setbeamertemplate{background}{%
+  \href{https://www.shadertoy.com/view/mtyGWy}{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{folien/bilder/galerie/mtyGWy-titel.png}}}
+\setbeamercolor{normal text}{fg=white,bg=black}
+\setbeamercolor{frametitle}{fg=white,bg=}
+\renewcommand{\cgslogos}{%
+  \logoplatz{folien/logos/uni_logo-weiss.pdf}{Logo 1}\hspace{2mm}%
+  \logoplatz{folien/logos/hpi-logo-cmyk.pdf}{Logo 2}%
 }
-\fill[accent] (1.44,1.44) rectangle ++(.4,.4);
+\begin{frame}[plain]
+\color{white}
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,inner sep=0pt]
+  at ([xshift=-6mm,yshift=-6mm]current page.north east) {\cgslogos};
+% Der vollständige Titel passt in der bisherigen Schriftgröße in eine Zeile.
+\node[anchor=north west,inner sep=0pt,font=\Large\bfseries]
+  at ([xshift=6mm,yshift=-16mm]current page.north west) {{%
+    \pdfrender{TextRenderingMode=FillStroke,FillColor=white,StrokeColor=black,LineWidth=.4pt,LineJoinStyle=Round}%
+    \inserttitle}};
+\node[anchor=north west,inner sep=0pt]
+  at ([xshift=6mm,yshift=-26mm]current page.north west) {%
+    % Bei leichter Schrift zuerst die Kontur, dann die volle weiße Füllung setzen.
+    \rlap{{\pdfrender{TextRenderingMode=Stroke,StrokeColor=black,LineWidth=.3pt,LineJoinStyle=Round}\insertauthor}}%
+    \color{white}\insertauthor};
+\node[anchor=south east,inner sep=0pt,font=\footnotesize]
+  at ([xshift=-6mm,yshift=6mm]current page.south east) {%
+    \rlap{{\pdfrender{TextRenderingMode=Stroke,StrokeColor=black,LineWidth=.2pt,LineJoinStyle=Round}\insertinstitute}}%
+    \color{white!85!black}\insertinstitute};
 \end{tikzpicture}
-\end{center}
-\vfill\noindent{\footnotesize\color{muted}\insertinstitute}
 \end{frame}
+\endgroup
 
 \section{Vorstellung}
 \begingroup
@@ -469,25 +485,29 @@ void mainImage(out vec4 fragColor,
 \begin{frame}{Studium am HPI}
 \tagline{Studium und Perspektiven}\vspace{2mm}
 \begin{columns}[T,onlytextwidth]
-\begin{column}{.56\textwidth}
+\begin{column}{.46\textwidth}
 {\small\bfseries Beispiel: B.Sc. IT-Systems Engineering}\par\smallskip
 \includegraphics[width=\linewidth,height=4.1cm,keepaspectratio]{folien/bilder/hpi-studienverlaufsplan.png}\par
 {\scriptsize\color{muted}Studienverlaufsplan · Quelle: \href{https://hpi.de}{Hasso-Plattner-Institut}}
 \end{column}
-\begin{column}{.40\textwidth}
+\begin{column}{.50\textwidth}
 {\small\bfseries Möglicher Studienweg}\par
-{\small Bachelorstudium $\rightarrow$ Masterstudium $\rightarrow$ Promotion}\par\medskip
+{\small
+\begin{enumerate}
+\item Bachelorstudium
+\item Masterstudium
+\item Promotion
+\end{enumerate}}
+\medskip
 {\small\bfseries Mögliche Wege danach}\par
-{\small Softwareentwicklung · Freelancing ·\\Gründung · Forschung}\par\medskip
-\begin{columns}[c,onlytextwidth]
-\begin{column}{1.5cm}
+{\small Teamleiter Softwareentwicklung · Selbstständig · Ausgründung · Forschung}\par\medskip
+\noindent\begin{minipage}[c]{1.5cm}
 \href{https://hpi.de}{\colorbox{white}{\qrcode[height=1.15cm]{https://hpi.de}}}
-\end{column}
-\begin{column}{2.5cm}
+\end{minipage}\hspace{3mm}%
+\begin{minipage}[c]{2.5cm}
 \href{https://hpi.de}{\textcolor{sea}{\textbf{hpi.de}}}\par
 {\scriptsize Infos zum Studium}
-\end{column}
-\end{columns}
+\end{minipage}
 \end{column}
 \end{columns}
 \end{frame}

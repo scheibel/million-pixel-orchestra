@@ -1,5 +1,7 @@
 # Vorschaubilder der Inspirationsgalerie
 
+Für den Vollbild-Hintergrund der Titelfolie wird zusätzlich `mtyGWy-titel.png` verwendet: die unveränderte, vom Nutzer bereitgestellte Aufnahme `Screenshot From 2026-11-11 23-30-46.png` (2560 × 1440 Pixel) der ShaderToy-Vollbildansicht ohne Browser-Hinweis. Sie ersetzt die vorherige Aufnahme von 23:29:16. Die Galerie verwendet weiterhin das bisherige `mtyGWy.jpg`.
+
 Die sechs Demos wurden am 11. November 2026 für die Inspirationsgalerie ausgewählt. Das Raster zeigt zwei Zeilen mit je drei Spalten in der unten angegebenen Reihenfolge. Die deutschen Kacheltitel beschreiben die Bilder; sie sind keine Wiedergabe der Originaltitel.
 
 Die JPEG-Dateien sind unveränderte öffentliche ShaderToy-Vorschaubilder, abgerufen am 11. November 2026. Sie werden lokal eingebunden, sodass der Folien-Build und die PDF-Anzeige ohne Netzwerkzugriff funktionieren. Die Rechte an den Werken verbleiben bei ihren jeweiligen Urhebern; durch die Ablage wird keine zusätzliche Lizenz erteilt. Die Originalseiten sind über Vorschaubild, QR-Code und ausgeschriebenen Link in der Galerie erreichbar.
