@@ -14,7 +14,7 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 - [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
 - [ ] 19 Änderungsfolien zu allen Übergängen sind erstellt; Folien und Tafelbilder im Probelauf abstimmen und Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
-- [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung und LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
+- [ ] 90-Minuten-Ablauf durchspielen und anpassen; LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
 - [ ] Demo-Zugänge in den Folien auf die Projektwebsite abstimmen; die sechs bisherigen ShaderToy-QR-Platzhalter sind noch vorhanden.
 - [ ] **Optional, nach dem Workshop:** Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen und echte `shadertoyUrl`-Werte eintragen.
 - [ ] Die öffentliche Projektwebsite samt Editor auf Teilnehmergeräten prüfen, insbesondere auf Schul-iPads: Aufrufen, Demo und Stand wählen, Code ändern und kompilieren.
@@ -65,6 +65,7 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 **Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer- und PGF/TikZ-Quellen nach `folien/build/` und `tafelbilder/build/`. Zwei Durchläufe für die Folien, einer für die Tafelbilder. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
 
 - Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
+- **Rebuilds:** Nach erfolgreicher temporärer Kompilierung beider Dokumente werden die Dateien in den bestehenden Build-Verzeichnissen überschrieben. Die Verzeichnisse und PDF-Dateien behalten ihre Inodes; die automatisierte Prüfung kontrolliert dies zusammen mit tatsächlich geändertem PDF-Inhalt.
 - **Prüfung:** echte Projektdokumente (aktuell 35 Folien, acht Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
@@ -111,6 +112,10 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 - Die Planung der Integration und die Hostbarkeit sind kein Auftrag zur Einrichtung oder Veröffentlichung auf GitHub Pages.
 
 ## 3. Workshopinhalt
+
+**Folienreihenfolge festgelegt:** „Studium am HPI“ ist vom bisherigen Platz als Folie 5 ans Ende hinter Inspirationsgalerie und Rückblick verschoben. Die Folie konkretisiert die abschließende Studienbotschaft. Der Vortrag bleibt bei 35 Folien; die frühere Frage nach der HPI-Platzierung ist damit entschieden.
+
+**Aktuelle Folienkorrektur:** Auf „Vom Hobby zum Studium“ ist der gleichlautende rote Untertitel entfernt. Die folgende Zeitleistenfolie trägt den bisherigen roten Text „Forschung, Praxis und Lehre“ als Überschrift; auch dort entfällt der Untertitel.
 
 Die Inhaltsplanung und das Rahmenwerk haben getrennte Aufgaben. Lernziele, festgelegte Einschränkungen und die abgestimmte didaktische Progression aus `CONTEXT.md` bleiben Grundlage.
 

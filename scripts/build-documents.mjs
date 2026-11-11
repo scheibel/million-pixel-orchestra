@@ -1,5 +1,5 @@
 import { execFile } from "node:child_process";
-import { mkdir, mkdtemp, readFile, rename, rm } from "node:fs/promises";
+import { copyFile, mkdir, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
@@ -42,8 +42,12 @@ export async function buildDocuments({ root = projectRoot, engine = "pdflatex" }
     // Keep previous PDFs until every source has compiled successfully.
     for (const document of documents) {
       const output = join(root, document.directory, "build");
-      await rm(output, { recursive: true, force: true });
-      await rename(join(staging, document.directory), output);
+      const source = join(staging, document.directory);
+      await mkdir(output, { recursive: true });
+      // Overwrite existing files to preserve their inodes and PDF viewer watches.
+      for (const name of await readdir(source)) {
+        await copyFile(join(source, name), join(output, name));
+      }
     }
     return documents.map(document => join(root, document.directory, "build", `${document.name}.pdf`));
   } finally {

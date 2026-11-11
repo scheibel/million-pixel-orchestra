@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
-import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
@@ -44,6 +44,15 @@ test("Gesamtbuild erzeugt echte PDFs ohne Webdownloads; LaTeX-Fehler erhalten de
   for (const path of result.documents) assert.equal((await readFile(path)).subarray(0, 5).toString(), "%PDF-");
   assert.deepEqual(JSON.parse(await readFile(join(root, "dist/catalog.json"), "utf8")).materials, []);
   await assert.rejects(readFile(join(root, "dist/downloads/folien.pdf")), /ENOENT/);
+  const pdfInodes = await Promise.all(result.documents.map(async path => (await stat(path)).ino));
+  const directories = [join(root, "folien/build"), join(root, "tafelbilder/build")];
+  const directoryInodes = await Promise.all(directories.map(async path => (await stat(path)).ino));
+  const firstPdf = await readFile(result.documents[0]);
+  await writeFile(join(root, "folien/vortrag.tex"), "\\documentclass{article}\n\\begin{document}Geaenderter Vortrag nach Rebuild\\end{document}\n");
+  await buildProject({ root });
+  assert.deepEqual(await Promise.all(result.documents.map(async path => (await stat(path)).ino)), pdfInodes, "PDF-Inodes bleiben beim Rebuild erhalten");
+  assert.deepEqual(await Promise.all(directories.map(async path => (await stat(path)).ino)), directoryInodes, "Build-Verzeichnisse bleiben beim Rebuild erhalten");
+  assert.notDeepEqual(await readFile(result.documents[0]), firstPdf, "Das bestehende PDF enthält den neuen Vortrag");
   const previousPdf = await readFile(result.documents[0]);
   const previousSite = await readFile(join(root, "dist/index.html"));
   await writeFile(join(root, "tafelbilder/tafelbilder.tex"), "\\documentclass{article}\\begin{document}\\absichtlichUngueltig\\end{document}");

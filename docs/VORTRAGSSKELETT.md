@@ -11,12 +11,12 @@ Arbeitsstand für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren 
 | Auftakt | Titel, ein eindrucksvolles Shader-Beispiel und die Leitfrage: Wie berechnet Mathematik ein Bild? | Beispiel und Quellen auswählen. |
 | Wer bin ich? | Name, M.Sc. IT-Systems-Engineering, Website, Position und Affiliation; Porträt rechts oben, darunter Google-Maps-Karte von Potsdam mit HPI-Markierung am Griebnitzsee; HPI-Vollogo und Uni-Potsdam-Logo unten links. | Neue persönliche Vorstellungsfolie vor der Zeitleiste umgesetzt. |
 | Werdegang | Zwei Zeitstrahlfolien von Hobbyprogrammierung und Ausbildung bis zu Computergrafik, Forschung und Lehre. | Persönliche Schwerpunkte für den Vortrag abstimmen; erste Folie heißt „Vom Hobby zum Studium“. |
-| Studium am HPI | Bachelor, Master und Promotion sowie mögliche Berufswege; Studienverlaufsplan, Link und QR-Code zu hpi.de. | Platzierung im Ablauf abstimmen; eine Vertiefung am Ende ist ebenfalls möglich. |
 | Übersicht | Erster Workshopblock: Farbe und Zeit → Farbe abhängig von der Bildposition → Objekte durch Abstände → gezielte Steuerung von Bewegung und Farbe. Hinweis auf Mitprogrammieren in ShaderToy. | Die vier Leitideen sind festgelegt und auf der Übersichtsfolie abgebildet. Fortsetzung festgelegt: Noise → fBm/Wolken/Animation. |
 | Einstieg in die Pixelberechnung | Pixelraster, RGB und das Modell „eine Farbe pro Pixel“; `fragCoord`, `iResolution`, später `iTime` direkt am Boilerplate einführen. Tafelbild 1 als Zeichnung oder fertige Seite. | Einführung und Codevorlage für den Vortrag ausarbeiten. |
 | Demo-Blöcke | Pro Block: Frage oder Zielbild → nötiges Konzept am Tafelbild oder auf der Folie → gemeinsames Live-Coding in ShaderToy → Ergebnis und kurzer Rückblick. | Siehe Zuordnung unten; je Demo START, ZIEL und sinnvolle Zwischenstände abstimmen. |
 | Inspirationsgalerie | Sechs ausgewählte ShaderToy-Demos als Raster mit zwei Zeilen und drei Spalten, jeweils mit Originalvorschaubild, QR-Code und Link. | In den Folien umgesetzt; [Quellen und ausstehende Prüfung](../folien/bilder/galerie/README.md). Keine Live-Herleitung. |
 | Abschluss | Zusammenfassung, Fragen und Möglichkeiten zum Weiterexperimentieren. QR-Code zur Website mit lesbarer Adresse. | Website-Link und QR-Code zu `https://www.willyscheibel.de/million-pixel-orchestra/` auf Übersicht und Abschluss eingebunden. Inhalt weiter abstimmen. |
+| Studium am HPI | Bachelor, Master und Promotion sowie mögliche Berufswege; Studienverlaufsplan, Link und QR-Code zu hpi.de. | Ans Ende hinter Galerie und Rückblick verschoben: konkrete Antwort auf die abschließende Studienbotschaft. |
 
 Ein früherer Entwurf enthält außerdem einen LLM-Ausblick. Ob und wo er vorkommt, ist noch offen.
 

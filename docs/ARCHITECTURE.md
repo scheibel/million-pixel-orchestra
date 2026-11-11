@@ -40,7 +40,7 @@ Jeder Stand besitzt eine vorbereitete Quelle und einen separaten Entwurf im Arbe
 
 `scripts/build-site.mjs` validiert Katalog, eindeutige IDs, relative Pfade und referenzierte Shaderquellen. Registrierte Materialien müssen als PDFs vorliegen. Ein temporäres Verzeichnis wird fertiggestellt, bevor der vorhandene Website-Build ersetzt wird. Kopiervorlage und Tests landen nicht im Bundle. `.nojekyll` ermöglicht die Bereitstellung ohne Jekyll-Verarbeitung.
 
-`scripts/build-documents.mjs` baut beide Dokumente mit pdfLaTeX aus dem Repository-Hauptverzeichnis in temporäre Ausgabeverzeichnisse. Die Folien benötigen zwei Durchläufe. Erst nach erfolgreicher Prüfung beider PDFs werden `folien/build/` und `tafelbilder/build/` ersetzt. Fehlende Quellen, Werkzeuge und LaTeX-Fehler brechen den Vorgang ab.
+`scripts/build-documents.mjs` baut beide Dokumente mit pdfLaTeX aus dem Repository-Hauptverzeichnis in temporäre Ausgabeverzeichnisse. Die Folien benötigen zwei Durchläufe. Erst nach erfolgreicher Prüfung beider PDFs werden die erzeugten Dateien in den bestehenden Verzeichnissen `folien/build/` und `tafelbilder/build/` überschrieben. Verzeichnisse und vorhandene PDF-Dateien behalten dabei ihre Inodes, damit PDF-Viewer ihre Dateibeobachtung behalten können. Fehlende Quellen, Werkzeuge und LaTeX-Fehler brechen den Vorgang vor dem Überschreiben ab. Das anschließende Überschreiben ist kein atomarer Dateiaustausch.
 
 `scripts/build.mjs` orchestriert Dokument- und Website-Build mit `npm run build`. Die PDFs bleiben aktuell lokal; ihre Einbindung in `dist/` und den Materialkatalog ist zurückgestellt. `npm run build:site` und `npm run dev` benötigen kein LaTeX. Der Build führt keinen Push aus.
 
