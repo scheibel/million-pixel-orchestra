@@ -1,0 +1,75 @@
+% An den bereitgestellten cgs-Beamerstil angelehnt; Inhalte bleiben deutsch.
+\useinnertheme{rectangles}
+\usepackage[libertine]{newtxmath}
+\usepackage[default,light]{sourcesanspro}
+\usepackage[default,bold]{sourcecodepro}
+\usepackage[default,sfdefault,light,bold]{roboto}
+\usepackage[final,babel]{microtype}
+\usepackage{graphicx}
+
+% Farben des Vorlagenstils; die Aliasnamen werden von den Foliengrafiken benutzt.
+\definecolor{textblack}{cmyk}{0,0,0,1}
+\definecolor{darkgray}{cmyk}{.10,0,0,.66}
+\definecolor{lightgray}{cmyk}{.05,0,0,.33}
+\definecolor{light}{cmyk}{0,0,0,.10}
+\definecolor{hpi@gray}{RGB}{90,96,101}
+\definecolor{hpi@red}{RGB}{177,6,58}
+\definecolor{hpi@yellow}{RGB}{246,168,0}
+\definecolor{hpi@orange}{RGB}{221,97,8}
+\definecolor{hpi@blue}{RGB}{0,122,158}
+\colorlet{ink}{textblack}
+\colorlet{muted}{hpi@gray}
+\colorlet{paper}{white}
+\colorlet{soft}{light}
+\colorlet{accent}{hpi@red}
+\colorlet{blue}{hpi@blue}
+\colorlet{sea}{hpi@blue}
+
+\setbeamercolor{normal text}{fg=textblack,bg=white}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{title}{fg=textblack}
+\setbeamercolor{subtitle}{fg=textblack}
+\setbeamercolor{author}{fg=textblack}
+\setbeamercolor{institute}{fg=hpi@gray}
+\setbeamercolor{frametitle}{fg=textblack,bg=white}
+\setbeamercolor{footline}{fg=textblack,bg=white}
+\setbeamercolor{structure}{fg=hpi@red}
+\setbeamercolor{block title}{fg=textblack,bg=light}
+\setbeamercolor{block body}{fg=textblack,bg=light}
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{footline}{size=\tiny}
+\setbeamersize{text margin left=6mm,text margin right=6mm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamercolor{itemize item}{fg=textblack}
+\setbeamertemplate{itemize subitem}{$-$}
+\setbeamercolor{itemize subitem}{fg=textblack}
+
+% Ohne nachgelieferte Logos bleibt der Build nutzbar. Dateinamen wie in der Vorlage.
+\newcommand{\logoplatz}[2]{%
+  \IfFileExists{#1}{\includegraphics[width=14mm,height=5mm,keepaspectratio]{#1}}%
+    {\fbox{\parbox[c][4mm][c]{12mm}{\centering\fontsize{4}{4}\selectfont #2}}}%
+}
+\newcommand{\cgslogos}{%
+  \logoplatz{folien/logos/uni_logo.pdf}{Logo 1}\hspace{2mm}%
+  \logoplatz{folien/logos/hpi-logo-cmyk.pdf}{Logo 2}%
+}
+\defbeamertemplate*{frametitle}{cgs-workshop}{%
+  \begin{beamercolorbox}[ht=7mm,dp=1mm,wd=\paperwidth]{frametitle}%
+    \hbox to \paperwidth{\hspace*{6mm}\usebeamerfont{frametitle}\insertframetitle\hfill\cgslogos\hspace*{6mm}}%
+  \end{beamercolorbox}%
+  \vspace{1mm}%
+}
+\defbeamertemplate*{footline}{cgs-workshop}{%
+  \begin{beamercolorbox}[left,leftskip=6mm,rightskip=6mm,dp=3mm,wd=\paperwidth]{footline}%
+    \usebeamerfont{footline}\insertframenumber\enspace|\enspace\insertsubtitle%
+    \ifx\insertsectionhead\empty\else\enspace--\enspace\insertsectionhead\fi%
+    \hfill\insertshorttitle\quad\insertshortdate
+  \end{beamercolorbox}%
+}
+\setbeamertemplate{frametitle}[cgs-workshop]
+\setbeamertemplate{footline}[cgs-workshop]
