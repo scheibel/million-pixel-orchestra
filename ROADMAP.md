@@ -9,7 +9,7 @@ Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode dar
 - [ ] Stil der Website iterieren: Gestaltung der Landingpage und Demo-Seite abstimmen und überarbeiten.
 - [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
 - [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
-- [ ] Vorhandene Folien und Tafelbilder an diese Schritte anpassen; Auftaktbeispiel auswählen und einbinden.
+- [ ] 19 Änderungsfolien zu allen Übergängen sind erstellt; Folien und Tafelbilder im Probelauf abstimmen und Auftaktbeispiel auswählen und einbinden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
 - [ ] 90-Minuten-Ablauf durchspielen und anpassen; HPI-Platzierung und LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
 - [ ] Nach gesondertem Übertragungsauftrag die Demo-Stände auf ShaderToy bereitstellen, echte `shadertoyUrl`-Werte eintragen und die QR-Platzhalter der Demo-Folien ersetzen.
@@ -61,7 +61,7 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 **Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer- und PGF/TikZ-Quellen nach `folien/build/` und `tafelbilder/build/`. Zwei Durchläufe für die Folien, einer für die Tafelbilder. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
 
 - Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
-- **Prüfung:** echte Projektdokumente (aktuell 16 Folien, acht Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
+- **Prüfung:** echte Projektdokumente (aktuell 35 Folien, acht Tafelseiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
 
@@ -125,9 +125,13 @@ Festgelegte Fortsetzung (11. November 2026):
 
 Die bisherigen Demos 5 (Wellen/Animation) und 6 (Taylor) sind entfernt. Die bisherigen Demos 7/8 heißen im Vortrag jetzt 5/6; technische IDs und Pfade `08-value-noise` und `09-fbm` bleiben für vorhandene Links erhalten. Beide haben vier eigenständige ShaderToy-Snippets mit vorbereiteter Noise-Basis und vollständigen Lizenzhinweisen.
 
-**Lokale Prüfung:** Gesamtbuild mit sechs Demos, 16 Folien und acht Tafelseiten; die automatisierten Tests prüfen zusätzlich die unveränderten Rahmen in Demo 4 und die einzelnen Noise-Aufrufwechsel. Die Browserprüfung kompiliert sämtliche Stände in WebGL2 unter einem Repository-Unterpfad und prüft UV-Farben, unveränderte statische Zufalls-/Noise-Bilder, räumlichen Zusammenhang, den identischen Anschluss Demo 5 → 6, Wolkenfarben und den erst im ZIEL animierten Drift. Direkte Ausführung in ShaderToy und Erprobung im Unterricht stehen noch aus.
+**Lokale Prüfung:** Gesamtbuild mit sechs Demos, 35 Folien und acht Tafelseiten; die automatisierten Tests prüfen zusätzlich die unveränderten Rahmen in Demo 4 und die einzelnen Noise-Aufrufwechsel. Die Browserprüfung kompiliert sämtliche Stände in WebGL2 unter einem Repository-Unterpfad und prüft UV-Farben, unveränderte statische Zufalls-/Noise-Bilder, räumlichen Zusammenhang, den identischen Anschluss Demo 5 → 6, Wolkenfarben und den erst im ZIEL animierten Drift. Direkte Ausführung in ShaderToy und Erprobung im Unterricht stehen noch aus.
 
 Die konzeptionellen Schritte der ersten drei Demos sind noch nicht sämtlich als eigene Shader-Stände vorhanden; ihre weißen START-Stände sind vorläufig. Demo 4 hat einen vorbereiteten Bewegungsrahmen, Demo 5 startet mit dem UV-Bild und Demo 6 mit Simplex Noise. Die minutengenaue Planung bleibt offen.
+
+### Änderungsfolien für die Übergänge
+
+**Umgesetzt:** 19 Folien in `folien/code-schritte.tex`, direkt nach der jeweiligen Demo-Einstiegsfolie eingebunden. Verteilung: Demo 1 drei, Demo 2 zwei, Demo 3 vier, Demo 4 vier, Demo 5 drei und Demo 6 drei Übergänge. Bisher-/Jetzt-Auszüge mit Quellzeilennummern zeigen die tatsächlich geänderten Stellen; ergänzte Basisfunktionen sind separat markiert. Jede Folie benennt den Live-Coding-Anteil und die mindestens mündlich zu erläuternden mathematischen Bausteine. Die vollständigen Shader bleiben unverändert. Foliensatz insgesamt: 35 Seiten.
 
 ### Bisheriger Themen- und Materialbestand der Planung
 

@@ -26,6 +26,7 @@
 }
 \newcommand{\demoheader}[1]{\tagline{Demo #1}\par\smallskip}
 \newcommand{\hinweis}[1]{{\small\color{muted}#1}}
+\input{folien/code-schritte.tex}
 \newcommand{\bildrahmen}{\path[fill=soft,rounded corners=3pt] (0,0) rectangle (5.4,3.6);}
 % Ein gemeinsames Linkziel für Vorschaubild, QR-Code und lesbare Adresse.
 \newcommand{\galeriekachel}[2]{%
@@ -283,6 +284,8 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+\schritteDemoEins
+
 
 \begin{frame}{Was verrät die Position?}
 \demoheader{2 · Pixelposition und Farbverlauf}
@@ -300,6 +303,8 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+\schritteDemoZwei
+
 
 \begin{frame}{Wie werden aus Abständen Formen?}
 \demoheader{3 · Kreis und bewegte Metaballs}
@@ -317,6 +322,8 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+\schritteDemoDrei
+
 
 \begin{frame}{Wie hält ein Punkt sanft an?}
 \demoheader{4 · Polynome für Bewegung und Farbe}
@@ -352,6 +359,8 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+\schritteDemoVier
+
 
 \begin{frame}{Wie wird Zufall zu einem Muster?}
 \demoheader{5 · Vom Zufall zu Noise}
@@ -377,6 +386,8 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+\schritteDemoFuenf
+
 
 \begin{frame}{Wie wird Noise zu bewegten Wolken?}
 \demoheader{6 · Wolken aus Noise}
@@ -401,6 +412,8 @@ void mainImage(out vec4 fragColor,
 \end{column}
 \end{columns}
 \end{frame}
+\schritteDemoSechs
+
 
 \section{Ausblick}
 \begin{frame}{Was ist noch möglich?}

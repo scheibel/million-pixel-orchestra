@@ -66,6 +66,11 @@ Diese Bereiche sind getrennt zu planen. Die didaktische Reihenfolge ist keine Im
 - In Demo 4 sind Schleife und lokale Zeit schon im START vorbereitet: Grenze 1 → 4 ergänzt Stimme 3, Schrittweite 2 → 1 ergänzt später die übrigen Stimmen.
 - In Demo 5 teilen Value Noise und `simplexNoise01` den Wertebereich 0…1; ihre Integration unterscheidet sich nur im Funktionsnamen. Demo 6 übernimmt diese Basis und verwendet dieselbe normierte Schnittstelle für alle Oktaven.
 
+## Visuelle Zusammenfassung der Codeübergänge (festgelegt)
+- Jeder der 19 Übergänge innerhalb der sechs Demos erhält eine Änderungsfolie mit Bisher-/Jetzt-Code, Quellzeilennummern und markierten Änderungen.
+- Die Folien unterscheiden Live-Coding von der mindestens mündlichen Erklärung des vorbereiteten Codes und seiner mathematischen Bausteine. Vorbereitete Basisblöcke sind gesondert gekennzeichnet.
+- Die bearbeitbare Quelle liegt in `folien/code-schritte.tex`; `vortrag.tex` bindet die Schrittfolien direkt nach der jeweiligen Demo-Einstiegsfolie ein. Der Vortrag umfasst damit 35 Folien; die Zeitplanung bleibt zu erproben.
+
 ## Übergeordnete Lernziele (festgelegt)
 1. Interesse an Informatikstudium und Programmieren wecken.
 2. Computergrafik als Teilgebiet der Computer Science sichtbar machen.
