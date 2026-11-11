@@ -150,28 +150,55 @@ Zwischen den Zentren kann die Summe die Schwelle überschreiten: Die Formen verb
 \folge{Zwei Kreise → abfallende Felder → Werte an einem Punkt addieren → Schwelle → Bewegung.}
 \newpage
 
-\kopf{6 · Weiche Übergänge}{Polynom und Kante}
-\begin{minipage}[t]{.48\textwidth}\vspace{0pt}
-\begin{tikzpicture}[x=5cm,y=3.5cm]
- \draw[axis] (-.08,0) -- (1.18,0) node[right] {$t$};
- \draw[axis] (0,-.08) -- (0,1.12) node[above] {$s$};
- \draw[gray,dashed] (0,0) -- (1,1) node[above right,font=\small] {linear};
- \draw[petrol,very thick,domain=0:1,samples=60] plot (\x,{3*\x*\x-2*\x*\x*\x});
- \fill (0,0) circle (.55pt) (1,1) circle (.55pt);
- \node[below] at (1,0) {1}; \node[left] at (0,1) {1};
- \node[petrol,anchor=west] at (.43,.23) {$3t^2-2t^3$};
+\kopf{6 · Sanft bremsen und anfahren}{Demo 4 · Polynome}
+\begin{minipage}[t]{.47\textwidth}\vspace{0pt}
+\begin{center}
+\begin{tikzpicture}[scale=.8]
+ \draw[petrol,very thick] (0,2.5) -- (2.5,0) -- (0,-2.5) -- (-2.5,0) -- cycle;
+ \node[above] at (0,2.5) {N}; \node[right] at (2.5,0) {O};
+ \node[below] at (0,-2.5) {S}; \node[left] at (-2.5,0) {W};
+ \fill[black] (.7,1.8) circle (.13);
+ \draw[->,orange,thick] (.95,1.55) -- (1.5,1.0);
 \end{tikzpicture}
+\end{center}
+Zwischen zwei benachbarten Ecken:
+\[P(t)=(1-s(t))A+s(t)B\]
+Lerp: lineare Interpolation, in GLSL \texttt{mix}.\\
+\textbf{Je Kante:} 1,2\,s Fahrt + 0,6\,s Halt.\\
+\texttt{clamp} hält den Zeitfortschritt am Ende bei 1.\par\smallskip
+{\small Im Halt: Schwarz $\to$ Eckfarbe $\to$ Schwarz.\\
+N: Rot; O: Grün; S: Blau; W: Gelb.\\
+Farbimpuls $u=1-|2h-1|$ für Haltefortschritt $h$.\\
+Dieselbe Kurve $s$ mischt die Farbe:
+\[C(h)=s(u)\,C_{\text{Ecke}}\]}
+
 \end{minipage}\hfill
-\begin{minipage}[t]{.49\textwidth}\vspace{0pt}
-Im Übergang läuft der Mischparameter $t$ von 0 bis 1.
-\[s(t)=at^3+bt^2+ct+d\]
-Die Bedingungen $s(0)=0$, $s(1)=1$ und $s'(0)=s'(1)=0$ ergeben $a=-2$, $b=3$, $c=d=0$:
-\[s(t)=3t^2-2t^3\]
-Die Kurve startet und endet waagerecht.
-\[\text{Farbe}=(1-s)\,\text{innen}+s\,\text{außen}\]
-Anwendung: Kante eines Kreises oder einer Feldschwelle.
+\begin{minipage}[t]{.50\textwidth}\vspace{0pt}
+\begin{center}
+\begin{tikzpicture}[x=5cm,y=3.0cm]
+ \draw[axis] (-.08,0) -- (1.13,0) node[right] {$t$};
+ \draw[axis] (0,-.08) -- (0,1.12) node[above] {$s(t)$};
+ \draw[gray,dashed,thick] (0,0) -- (1,1);
+ \draw[petrol,very thick,domain=0:1,samples=60] plot (\x,{3*\x*\x-2*\x*\x*\x});
+ \draw[orange,thick,domain=0:1,samples=60] plot (\x,{6*\x^5-15*\x^4+10*\x^3});
+ \node[below] at (1,0) {1}; \node[left] at (0,1) {1};
+\end{tikzpicture}
+\end{center}
+{\small
+\textcolor{gray}{Linear:} $s(t)=t$; abrupter Start und Halt.\par\smallskip
+\textcolor{petrol}{Smoothstep:} $s(t)=3t^2-2t^3$.\par
+Aus $s(0)=0$, $s(1)=1$, $s'(0)=s'(1)=0$ mit einem kubischen Ansatz herleiten.\par\smallskip
+\textcolor{orange}{Smootherstep:} $s(t)=6t^5-15t^4+10t^3$.\par
+Zusätzlich gilt $s''(0)=s''(1)=0$; auch die Beschleunigung geht an den Enden auf null.\par\smallskip
+Die Steigung des Graphen bestimmt die Geschwindigkeit entlang der Kante. Die Bahn bleibt dieselbe.
+\par\smallskip
+\textbf{Kanon ab Phase 2:} zwei, später vier Punkte mit lokaler Zeit
+\[T_j=(T-1{,}5j)\bmod 7{,}2.\]
+Phase 2/3: $j=0,2$ (Stimmen 1 und 3).\\
+Ab Phase 4: $j=0,1,2,3$ (alle vier Stimmen).
+}
 \end{minipage}
-\folge{Harte Kante → Übergangsintervall → lineare Mischung → Randbedingungen → kubisches Polynom.}
+\folge{Ein Punkt mit LERP und Farbwechsel → Stimme 3 zeitversetzt ergänzen → Smoothstep herleiten und einsetzen → Stimmen 2 und 4 ergänzen → Smootherstep einsetzen und vergleichen.}
 \newpage
 
 \kopf{7 · Sinus: Form und Bewegung}{Wellen}

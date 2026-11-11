@@ -117,8 +117,10 @@ try {
     await page("Page.navigate", { url: `${base}editor.html?demo=${manifest.id}` });
     await success();
     assert.equal(await evaluate("document.querySelectorAll('.snapshot-button').length"), manifest.snapshots.length);
-    color(await pixel(), [255, 255, 255, 255]);
-    color(await pixel(".1", ".9"), [255, 255, 255, 255]);
+    if (manifest.id !== '05-polynom-und-weiche-kante') {
+      color(await pixel(), [255, 255, 255, 255]);
+      color(await pixel(".1", ".9"), [255, 255, 255, 255]);
+    }
     for (const snapshot of manifest.snapshots.slice(1, -1)) {
       await click(`[data-snapshot="${snapshot.id}"]`);
       await success();
@@ -134,9 +136,115 @@ try {
       await until(`parseFloat(document.querySelector('#time').value.replace(',', '.')) > 1.0`);
       assert.notEqual(await frameSignature(), before, 'Metaballs bewegen sich');
     }
+    if (manifest.id === '05-polynom-und-weiche-kante') {
+      await click('#play');
+      // Freeze only the test rendering time; the teaching snippets stay unchanged.
+      async function pointsAt(time) {
+        await pixel();
+        return evaluate(`(() => {
+          const c = document.querySelector('#preview');
+          const gl = c.getContext('webgl2');
+          gl.uniform1f(gl.getUniformLocation(gl.getParameter(gl.CURRENT_PROGRAM), 'iTime'), ${time});
+          gl.drawArrays(gl.TRIANGLES, 0, 3);
+          const data = new Uint8Array(c.width * c.height * 4);
+          gl.readPixels(0, 0, c.width, c.height, gl.RGBA, gl.UNSIGNED_BYTE, data);
+          const visited = new Uint8Array(c.width * c.height);
+          const points = [];
+          const isPoint = i => Math.min(data[4 * i], data[4 * i + 1], data[4 * i + 2]) < 30;
+          for (let seed = 0; seed < visited.length; seed++) {
+            if (visited[seed] || !isPoint(seed)) continue;
+            const stack = [seed];
+            visited[seed] = 1;
+            let count = 0, sumX = 0, sumY = 0;
+            while (stack.length) {
+              const i = stack.pop(), x = i % c.width, y = Math.floor(i / c.width);
+              count++; sumX += x + .5; sumY += y + .5;
+              const neighbors = [];
+              if (x > 0) neighbors.push(i - 1);
+              if (x + 1 < c.width) neighbors.push(i + 1);
+              if (y > 0) neighbors.push(i - c.width);
+              if (y + 1 < c.height) neighbors.push(i + c.width);
+              for (const neighbor of neighbors) if (!visited[neighbor] && isPoint(neighbor)) {
+                visited[neighbor] = 1; stack.push(neighbor);
+              }
+            }
+            const center = 4 * (Math.floor(sumY / count) * c.width + Math.floor(sumX / count));
+            points.push({ position: [(sumX / count - c.width / 2) / c.height, (sumY / count - c.height / 2) / c.height], rgb: Array.from(data.slice(center, center + 3)) });
+          }
+          return points;
+        })()`);
+      }
+      const near = (actual, expected) => {
+        assert.ok(actual, 'Bewegter Punkt ist sichtbar');
+        assert.ok(Math.hypot(actual.position[0] - expected[0], actual.position[1] - expected[1]) < .004, `${actual.position} liegt nicht bei ${expected}`);
+      };
+      const stages = [
+        ['start', [0]], ['zwei-punkte-lerp', [0, 2]], ['zwei-punkte-smoothstep', [0, 2]],
+        ['vier-punkte-smoothstep', [0, 1, 2, 3]], ['ziel', [0, 1, 2, 3]]
+      ];
+      assert.deepEqual(manifest.snapshots.map(snapshot => snapshot.id), stages.map(([id]) => id));
+      const early = [];
+      const phaseFrames = new Map();
+      for (const [id, voices] of stages) {
+        const count = voices.length;
+        await click(`[data-snapshot="${id}"]`);
+        await success();
+        async function frameAt(time) {
+          const points = await pointsAt(time);
+          assert.equal(points.length, count, `${id}: erwartete Punktzahl bei ${time} s`);
+          return points;
+        }
+        async function leaderAt(time, position) {
+          const points = await frameAt(time);
+          const point = points.find(point => Math.hypot(point.position[0] - position[0], point.position[1] - position[1]) < .004);
+          near(point, position);
+          return point;
+        }
+        color((await leaderAt(0, [0, .3])).rgb, [0, 0, 0]);
+        // The leading point is the only point on the north-east edge at this time.
+        const travel = (await frameAt(.3)).find(point => point.position[0] > 0 && point.position[1] > 0);
+        assert.ok(travel, 'Führender Punkt fährt auf der ersten Kante');
+        early.push(travel.position[0]);
+        color(travel.rgb, [0, 0, 0]);
+        color((await leaderAt(.6, [.15, .15])).rgb, [0, 0, 0]);
+        for (const time of [1.2, 1.275, 1.5, 1.725, 1.8]) await leaderAt(time, [.3, 0]);
+        color((await leaderAt(1.2, [.3, 0])).rgb, [0, 0, 0]);
+        color((await leaderAt(1.8, [.3, 0])).rgb, [0, 0, 0]);
+        const rising = (await leaderAt(1.275, [.3, 0])).rgb;
+        const falling = (await leaderAt(1.725, [.3, 0])).rgb;
+        color(rising, falling);
+        assert.ok(Math.abs(rising[1] / 255 - travel.position[0] / .3) < .02, 'Weg und Farbimpuls verwenden dieselbe Kurve');
+        for (const [time, position, rgb] of [
+          [1.5, [.3, 0], [0, 255, 0]],
+          [3.3, [0, -.3], [0, 0, 255]],
+          [5.1, [-.3, 0], [255, 255, 0]],
+          [6.9, [0, .3], [255, 0, 0]]
+        ]) color((await leaderAt(time, position)).rgb, rgb);
+        color((await leaderAt(7.2, [0, .3])).rgb, [0, 0, 0]);
+        const canon = await frameAt(1.5);
+        phaseFrames.set(id, canon);
+        assert.equal(canon.filter(point => point.rgb[1] > 240).length, 1, 'Farbphasen sind zeitversetzt');
+        // Two-point phases retain voices 1 and 3 of the complete canon.
+        for (const voice of voices) {
+          color((await leaderAt(1.5 + voice * 1.5, [.3, 0])).rgb, [0, 255, 0]);
+        }
+      }
+      assert.ok(Math.abs(early[0] - early[1]) < .004, 'Zweiter LERP-Punkt verändert den ersten nicht');
+      assert.ok(Math.abs(early[2] - early[3]) < .004, 'Vier Smoothstep-Punkte behalten dieselbe Kurve');
+      assert.ok(early[1] > early[2] && early[3] > early[4], 'Smoothstep und Smootherstep fahren zunehmend sanft an');
+      for (const [before, after] of [['start', 'zwei-punkte-lerp'], ['zwei-punkte-smoothstep', 'vier-punkte-smoothstep']]) {
+        const expanded = phaseFrames.get(after);
+        for (const point of phaseFrames.get(before)) {
+          const match = expanded.find(candidate => Math.hypot(candidate.position[0] - point.position[0], candidate.position[1] - point.position[1]) < .004);
+          near(match, point.position);
+          color(match.rgb, point.rgb);
+        }
+      }
+      console.log('✓ Fünf Demo-4-Stände: Punktzahlen 1–2–2–4–4, Stimmen 1/3 in Phase 2/3, Farbimpuls und Kanon');
+    }
     await screenshot(manifest.id);
   }
-  console.log("✓ Weiße START-Stände und ZIEL-Shader aller neuen Demos");
+  console.log("✓ START-, Zwischen- und ZIEL-Stände aller Demos");
   await page("Page.navigate", { url: base });
   await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   await screenshot("landing-desktop");

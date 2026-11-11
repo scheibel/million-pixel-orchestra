@@ -9,13 +9,13 @@ Zehn A4-Seiten im Querformat begleiten den fachlichen Ablauf von Pixeln bis fBm.
 | 3 | Pixelkoordinaten, Normierung und Farbverlauf | Demo 2 |
 | 4 | Abstand, quadrierter Abstand und Kreis | Demo 3 |
 | 5 | Felder, Überlagerung und Metaballs | Demo 3 |
-| 6 | Lineare und kubische Übergänge | Weiche Kante |
+| 6 | Raute, Fahrt und Halt; Lerp, Smoothstep, Smootherstep für Weg und Farbwechsel | Demo 4 |
 | 7 | Sinus, Amplitude, Frequenz und Phase | Wellen |
 | 8 | Sinus und Taylorpolynom | Approximation |
 | 9 | Gitterwerte und Interpolation | Value Noise |
 | 10 | Überlagerung von Noise-Oktaven | fBm |
 
-Die Tafelseiten sind ein didaktischer Entwurf. Das Meerbild auf Seite 7 ist ein Motivvorschlag und noch kein umgesetzter Shader. Eine Zusammenfassung der weichen Kante mit den Metaballs ist ebenfalls noch nicht beschlossen. Die Nummern der Tafelseiten sind keine Demo-Nummern.
+Die Tafelseiten sind ein didaktischer Entwurf. Das Meerbild auf Seite 7 ist ein Motivvorschlag und noch kein umgesetzter Shader. Demo 4 verwendet seit 11. November 2026 eine eigene Raute mit Punktbewegung und Schwarz–Eckfarbe–Schwarz im Halt; Seite 6 zeigt die fünf Stände 1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep sowie die Auswahl der Stimmen 1 und 3 in Phase 2/3 (0/3 Sekunden Verzögerung) und den vollständigen Kanon ab Phase 4 (0/1,5/3/4,5 Sekunden). Die Nummern der Tafelseiten sind keine Demo-Nummern.
 
 ## PDF erstellen
 

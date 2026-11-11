@@ -283,21 +283,37 @@ void mainImage(out vec4 fragColor,
 \end{columns}
 \end{frame}
 
-\begin{frame}{Was macht eine Kante weich?}
+\begin{frame}{Wie hält ein Punkt sanft an?}
 \demoheader{4 · Polynom und weiche Kante}
 \begin{columns}[c]
-\begin{column}{.48\textwidth}
-\begin{itemize}\item Harte Grenze durch einen Übergang ersetzen.\item Farben zunächst linear mischen.\item Ein Polynom glättet beide Enden.\end{itemize}
+\begin{column}{.53\textwidth}
+\begin{enumerate}
+\item START: ein Punkt mit LERP.
+\item Zwei Punkte mit LERP.
+\item Zwei Punkte mit Smoothstep.
+\item Vier Punkte mit Smoothstep.
+\item ZIEL: vier Punkte mit Smootherstep.
+\end{enumerate}
 \qrplatz{ShaderToy-START}
 \end{column}
-\begin{column}{.48\textwidth}
+\begin{column}{.43\textwidth}
 \begin{tikzpicture}\bildrahmen
-\draw[-{Stealth},muted] (.6,.6)--(4.8,.6) node[right] {\scriptsize $t$};
-\draw[-{Stealth},muted] (.6,.6)--(.6,3.1);
-\draw[dashed,muted] (.6,.6)--(4.5,2.8);
-\draw[sea,very thick,domain=0:1,samples=50] plot ({.6+3.9*\x},{.6+2.2*(3*\x*\x-2*\x*\x*\x)});
-\node[font=\small,text=sea] at (2.8,1.15) {$3t^2-2t^3$};
-\end{tikzpicture}\par\hinweis{Tafelbild 6 · Randbedingungen}
+\draw[sea,thick] (2.7,3.05) -- (3.95,1.8) -- (2.7,.55) -- (1.45,1.8) -- cycle;
+\node[font=\small,above] at (2.7,3.05) {N};
+\node[font=\small,right] at (3.95,1.8) {O};
+\node[font=\small,below] at (2.7,.55) {S};
+\node[font=\small,left] at (1.45,1.8) {W};
+\fill[black] (3.2,2.55) circle (.10);
+\fill[black] (3.4,1.25) circle (.10);
+\fill[black] (2.2,1.05) circle (.10);
+\fill[black] (1.7,2.05) circle (.10);
+\draw[accent,-{Stealth},thick] (3.4,2.35) -- (3.7,2.05);
+\end{tikzpicture}\par
+\hinweis{Tafelbild 6 · Interpolation und Kanon}\par\smallskip
+\hinweis{Je Kante: 1,2\,s Fahrt + 0,6\,s Halt.}\par
+\hinweis{N: Rot · O: Grün · S: Blau · W: Gelb}\par
+\hinweis{Phase 2/3: Stimmen 1 und 3 (0/3\,s).}\par
+\hinweis{Im Halt: Schwarz $\to$ Eckfarbe $\to$ Schwarz.}
 \end{column}
 \end{columns}
 \end{frame}

@@ -26,13 +26,13 @@ Die Reihenfolge folgt dem aktuellen Katalog; die Nummern bezeichnen hier die Vor
 | 1 | [Farbe und Zeit](../demos/00-konstante-farbe/README.md): RGB, konstante Farben, zeitabhängiger Farbwechsel | 2 | Zielbild, RGB und Einstieg zu `iTime`; QR-Code zum vorbereiteten START. |
 | 2 | [Pixelposition und Farbverlauf](../demos/01-pixelposition-und-normalisierung/README.md): Position, Auflösung, Normalisierung und Mischung | 3 | Koordinaten und zwei Referenzfarben; QR-Code zum START. |
 | 3 | [Kreis und bewegte Metaballs](../demos/03-kreis-und-quadrierter-abstand/README.md): Abstand, Felder, Überlagerung und Bewegung | 4–5 | Kreis → Felder → Metaballs; QR-Code zum START. |
-| 4 | [Polynom und weiche Kante](../demos/05-polynom-und-weiche-kante/README.md): Übergang und kubische Interpolation | 6 | Harte und weiche Kante vergleichen; QR-Code zum START. Eine Integration in Demo 3 wurde vorgeschlagen und ist noch nicht beschlossen. |
+| 4 | [Polynom und weiche Kante](../demos/05-polynom-und-weiche-kante/README.md): Lerp → Smoothstep → Smootherstep | 6 | Punkt auf einer Raute N/O/S/W; abbremsen, halten, beschleunigen. Im Halt mit derselben Kurve Schwarz → Rot/Grün/Blau/Gelb → Schwarz. Fünf Stände: 1 Punkt LERP → 2 Punkte LERP → 2 Punkte Smoothstep → 4 Punkte Smoothstep → 4 Punkte Smootherstep. Phase 2/3 zeigen die Stimmen 1 und 3 (0/3 Sekunden Verzögerung); ab Phase 4 kommen Stimmen 2 und 4 hinzu (0/1,5/3/4,5 Sekunden); QR-Code zum ShaderToy-START bleibt offen. |
 | 5 | [Wellen und Animation](../demos/06-wellen-und-animation/README.md): Sinus, Phase und Zeit | 7 | Sinus als Bildbaustein; QR-Code zum START. Ein Meerbild wurde vorgeschlagen und ist noch nicht umgesetzt oder beschlossen. |
 | 6 | [Taylorapproximation](../demos/07-taylor-approximation/README.md): Referenz und lokale Näherung vergleichen | 8 | Vergleich und Entwicklungsstelle; QR-Code zum START. |
 | 7 | [Value Noise](../demos/08-value-noise/README.md): Gitterwerte und Interpolation | 9 | Gitter und glatte Mischung; QR-Code zum START. Noise-Basisfunktionen werden für das Live-Coding vorbereitet. |
 | 8 | [fBm](../demos/09-fbm/README.md): mehrere gewichtete Noise-Oktaven und Wolken | 10 | Grobe und feine Strukturen; QR-Code zum START. |
 
-Die vorhandenen weißen START-Shader sind vorläufige Platzhalter. Die konkrete Live-Coding-Progression und zusätzliche Stände müssen noch ausgearbeitet werden. Die Folien begleiten die Konzepte jeweils unmittelbar bei ihrer Anwendung; sie sind kein separater Theorieblock.
+Demo 4 besitzt einen vorbereiteten Bewegungs-, Farb- und Zeichenrahmen im START; im Live-Coding wird zunächst auf zwei Punkte erweitert, dann Smoothstep eingeführt, danach auf vier Punkte erweitert und zuletzt Smootherstep eingesetzt. Die weißen START-Shader der übrigen Demos sind vorläufige Platzhalter. Deren konkrete Live-Coding-Progression und zusätzliche Stände müssen noch ausgearbeitet werden. Die Folien begleiten die Konzepte jeweils unmittelbar bei ihrer Anwendung; sie sind kein separater Theorieblock.
 
 ## Folienbestand – To-dos
 
