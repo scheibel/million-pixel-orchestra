@@ -52,6 +52,11 @@ test("Vorlage lässt sich ohne Viewer-Änderung einbinden; Build läuft unter Pr
   const base = `http://127.0.0.1:${server.address().port}/workshop/`;
   const loaded = await loadCatalog(new URL(base));
   assert.equal(loaded.demos.length, catalog.demos.length);
+  assert.deepEqual(loaded.materials, [{ title: "Vortragsfolien", file: "downloads/folien.pdf" }]);
+  const download = await fetch(new URL(loaded.materials[0].file, base));
+  assert.equal(download.status, 200);
+  assert.equal(download.headers.get("content-type"), "application/pdf");
+  assert.deepEqual(Buffer.from(await download.arrayBuffer()), await readFile(join(root, "site/downloads/folien.pdf")), "Der PDF-Download funktioniert unverändert unter einem Repository-Unterpfad");
   assert.equal(loaded.starter.id, "leer");
   assert.ok(!loaded.demos.some(demo => demo.id === loaded.starter.id), "Die freie Vorlage gehört nicht zur Workshop-Reihenfolge");
   const starterSource = new URL(loaded.starter.snapshots[0].file, loaded.starter.url);
@@ -84,6 +89,7 @@ test("Build lehnt fehlende PDFs, doppelte IDs und unsichere Pfade ab", async t =
   const path = join(root, "site/catalog.json");
   const original = JSON.parse(await readFile(path, "utf8"));
   await writeFile(path, JSON.stringify({ ...original, materials: [{ title: "Folien", file: "downloads/folien.pdf" }] }));
+  await rm(join(root, "site/downloads/folien.pdf"));
   await assert.rejects(buildSite({ root }), /ENOENT/);
   await mkdir(join(root, "site/downloads"), { recursive: true });
   await writeFile(join(root, "site/downloads/folien.pdf"), "Keine PDF");

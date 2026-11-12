@@ -1,6 +1,6 @@
 # Veröffentlichung auf GitHub Pages
 
-Die Live-Adresse der Website ist `https://www.willyscheibel.de/million-pixel-orchestra/`. Das lokale `dist/`-Bundle wird in den Branch `gh-pages` von `origin` gepusht. Die PDFs bleiben derzeit ausschließlich in `folien/build/` und `tafelbilder/build/`; sie werden nicht veröffentlicht.
+Die Live-Adresse der Website ist `https://www.willyscheibel.de/million-pixel-orchestra/`. Das lokale `dist/`-Bundle wird in den Branch `gh-pages` von `origin` gepusht. Es enthält die freigegebenen Vortragsfolien unter `downloads/folien.pdf`. Code-Journal und Tafelbilder bleiben lokale Unterlagen.
 
 ## Voraussetzungen
 
@@ -15,7 +15,7 @@ npm run build
 npm run preview
 ```
 
-Der Gesamtbuild benötigt die in der README genannten LaTeX-Pakete. Für eine reine Website-Veröffentlichung genügt `npm run build:site` ohne LaTeX. In der Vorschau die Demos und die Codeübernahme prüfen. Die automatisierten Tests prüfen den Repository-Unterpfad mit `npm test` und `npm run test:browser`.
+Der Gesamtbuild benötigt die in der README genannten LaTeX-Pakete. Für eine reine Website-Veröffentlichung genügt `npm run build:site` ohne LaTeX; die freigegebene PDF liegt bereits unter `site/downloads/folien.pdf`. Nach Freigabe überarbeiteter Folien zunächst `npm run build:pdf` ausführen und ausschließlich `folien/build/vortrag-website.pdf` nach `site/downloads/folien.pdf` kopieren. Diese Fassung enthält 14 Seiten ohne die lokalen Folien 2–4; `vortrag.pdf` mit allen 17 Seiten bleibt lokal. In der Vorschau Demos, Codeübernahme und PDF-Download prüfen. Die automatisierten Tests prüfen den Repository-Unterpfad mit `npm test` und `npm run test:browser`.
 
 ## Probelauf und Push
 

@@ -2,9 +2,17 @@
 
 Die Planung besteht aus drei getrennten Bereichen: **Features des Rahmenwerks**, **externe Integrationen** und **Workshopinhalt**. Sie haben eigene Aufgaben und Abnahmen. Ihre Reihenfolge im Dokument ist keine gemeinsame Implementierungsfolge und kein Auftrag, alles auf einmal umzusetzen.
 
-Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1, Dokument-/Gesamtbuild, ShaderToy-Kopierablauf mit optionalen veröffentlichten Stand-Links und der Pages-Publish-Prozess sind umgesetzt. Die öffentliche Website ist erreichbar geprüft. PDF-Inklusion auf der Website sowie die folgenden Anpassungen der Lehrmaterialien bleiben offen.
+Lehrmaterialien und beschreibende Webseitentexte sind auf Deutsch; Quellcode darf auf Englisch sein. F1, Dokument-/Gesamtbuild, ShaderToy-Kopierablauf mit optionalen veröffentlichten Stand-Links und der Pages-Publish-Prozess sind umgesetzt. Die öffentliche Website ist erreichbar geprüft. Die freigegebenen Vortragsfolien sind als PDF-Material in das Website-Bundle aufgenommen; Code-Journal und Tafelbilder bleiben lokale Unterlagen.
 
 ## Artefakte für morgen — Anforderungen und Stand
+
+**Abnahme am 12. November 2026:** Vortragsfolien vom Nutzer reviewt und überarbeitet; vorliegendes Code-Journal akzeptiert. Weitere Journal-Ergänzungen sind für diesen Workshop zurückgestellt. Tafelbild-Vorlagen müssen auf ausdrücklichen Nutzerentscheid nicht ausgedruckt werden. Verbleibend: Journal drucken und Druckbild prüfen; Geräte-, Projektions- und Ablaufprüfungen sind weiterhin nicht bestätigt. Ältere Detailberichte unten dokumentieren frühere Stände.
+
+**Kontakt ergänzt:** Vorstellungsfolie mit `willy.scheibel@hpi.uni-potsdam.de` unter der Homepage; Rückblick mit zusätzlichem Kontaktblock neben „Demos und Materialien“. Beide Adressen sind als E-Mail-Link anklickbar.
+
+**Lokale und öffentliche Folien getrennt:** Der lokale Vortrag behält alle 17 Seiten. Die Website-Fassung `folien/build/vortrag-website.pdf` lässt die persönlichen Folien 2–4 aus und enthält 14 fortlaufend nummerierte Seiten. Sie wird aus derselben LaTeX-Quelle gebaut und ersetzt die freigegebene Kopie `site/downloads/folien.pdf`. Die lokale Vollfassung wird nicht ins Website-Bundle übernommen; der öffentliche Push bleibt ausstehend.
+
+**Prüfung der Fassungen:** Gesamtbuild und alle zehn Node-Tests erfolgreich. PDF-Textprüfung bestätigt die drei persönlichen Folientitel ausschließlich in der lokalen Fassung; alle übrigen Folien stimmen nach Normalisierung der Seitennummern inhaltlich überein. Die öffentliche Übersicht beginnt auf Seite 2 und wurde visuell geprüft. Download und Bundle sind bytegleich mit der 14-seitigen Website-Fassung. Beide Vortragsfassungen haben keine LaTeX-Überstände. Die Build-Tests prüfen zusätzlich die öffentliche Auswahl sowie den Erhalt aller vier PDFs und der Website bei Fehlern in Website-Fassung oder Journal.
 
 Verbindliche Anforderungen stehen in `CONTEXT.md`. Zwei Website-Rollen können mit derselben Anwendung erfüllt werden; ihr Unterschied liegt in der Bereitstellung.
 
@@ -12,9 +20,9 @@ Verbindliche Anforderungen stehen in `CONTEXT.md`. Zwei Website-Rollen können m
 | --- | --- | --- |
 | 1 | Teilnehmer-Website: öffentlich erreichbar, vorbereitete Demos direkt bearbeiten und ausführen; Adresse und QR-Zugang vorhanden. | Öffentliche Startseite und Katalog erreichbar geprüft; Editor und Stände vorhanden. Nutzung auf tatsächlichen Teilnehmergeräten, insbesondere Schul-iPads, noch prüfen. Ein lokales Bundle allein genügt nicht. |
 | 2 | Vortragenden-Website: lokal gebaut und über lokalen HTTP-Server nutzbar, Präsentation und Live-Coding einschließlich Standwahl und Vollbild. | Vorhanden und lokal geprüft. Finalen Ablauf am Vortragsgerät mit Browser-/PDF-Wechsel und lesbarer Projektion erproben. Öffentliche Veröffentlichung ist hierfür kein Abnahmekriterium. |
-| 3 | Statische Folien: allgemeine Informationen und Konzepte, Website-Zugang und vollständige Tafelbild-Endstände; kein Code-Journal. | 17 Hauptfolien und acht verlinkte Tafelbild-Anhangseiten. Folien 6–13 mit Konzepten, Mathematik und Experimenten überarbeitet; sechs Demo-Zugänge führen zur eigenen Website. Codevergleiche bleiben im separaten Journal. |
-| 4 | Gedruckte Tafelbilder: lesbare A4-Vorlagen zum Live-Anzeichnen, passend zu Demos und projizierten Endständen. | Acht Tafelseiten als LaTeX-/TikZ-Quellen und Druck-PDF vorhanden. Endstände in den Folien abgleichen; Ausdruck und Druckkontrolle noch bestätigen. |
-| 5 | Gedrucktes Code-Journal: eigenständiges Druck-PDF mit START-Code, Änderungsfolge und nötigem Basiscode zum Abtippen. | Eigenständiges A4-Druck-PDF mit den bisherigen 19 Codevergleichen vorhanden und im Dokument-Build enthalten. Vollständige START- und nötige Basisblöcke für die Abtippvorlage noch ergänzen bzw. prüfen; Ausdruck und Druckkontrolle noch bestätigen. |
+| 3 | Statische Folien: allgemeine Informationen und Konzepte sowie Website-Zugang; kein Code-Journal. | Aktuelle Fassung mit 17 Folien vom Nutzer reviewt und überarbeitet. Die acht Tafelbild-Anhangseiten und die direkten Demo-Zugänge sind derzeit auskommentiert; Website-Zugang über Übersicht und Rückblick. Codevergleiche bleiben im separaten Journal. |
+| 4 | Digitale Tafelbild-Vorlagen; Ausdruck entfällt laut Nutzerentscheid. | Acht Tafelseiten als LaTeX-/TikZ-Quellen und Druck-PDF vorhanden. Der Vortragende kennt die Inhalte ausreichend und benötigt keine ausgedruckte Vorlage. |
+| 5 | Gedrucktes Code-Journal als Arbeitsunterlage für den Vortragenden. | Vorliegendes A4-Druck-PDF mit 19 Codevergleichen vom Nutzer akzeptiert. Weitere Ergänzungen für diesen Workshop zurückgestellt; Ausdruck und Druckkontrolle verbleiben. |
 
 Zusätzliche Vorschläge wie Ablaufzettel und lokale Sicherheitskopie sind Empfehlungen, keine neu vereinbarten Pflichtartefakte. Anforderungen festzuhalten ist noch keine Umsetzung der offenen Dokumentänderungen.
 
@@ -24,13 +32,13 @@ Zusätzliche Vorschläge wie Ablaufzettel und lokale Sicherheitskopie sind Empfe
 
 - [ ] Stil der Website weiter iterieren: Landingpage in der ersten Iteration vereinfacht und freien Editor-Einstieg ergänzt; weitere Gestaltung der Landingpage und Demo-Seite abstimmen.
 - [ ] **Zurückgestellt:** GLSL-Syntax-Highlighting im Live-Editor ergänzen. Als mögliche Umsetzung wurde eine farbige Darstellung unter dem bestehenden Textfeld besprochen; die technische Umsetzung ist noch nicht festgelegt.
-- [ ] **Zurückgestellt:** PDFs aus den lokalen Build-Verzeichnissen in das Website-Bundle übernehmen und als Downloads verlinken.
+- [x] Freigegebene Vortragsfolien als versioniertes PDF in das Website-Bundle aufnehmen und auf der Landingpage unter „Materialien“ verlinken. Code-Journal und Tafelbilder bleiben lokale Unterlagen.
 - [ ] Live-Coding-Schritte insbesondere für Demo 1–3 konkretisieren und geeignete START-/Zwischenstände ausarbeiten; bei Demo 4–6 den vorbereiteten Rahmen erklären und die vorhandenen Stände didaktisch erproben. Noise-Basisfunktionen sind eingebunden.
 - [x] Die 19 Codevergleiche aus den Vortragsfolien herauslösen und als eigenständiges A4-Code-Journal bauen.
-- [ ] START-Code und benötigte Basisblöcke im Journal zum Abtippen vollständig verfügbar machen; die bisher übernommenen Auszüge detailliert prüfen.
+- [ ] **Für diesen Workshop zurückgestellt:** START-Code und benötigte Basisblöcke im Journal ergänzen; der Nutzer hat die vorliegende Journalfassung akzeptiert.
 - [x] Die acht vollständigen Tafelbild-Endstände als verlinkte Projektionsalternativen in den statischen Foliensatz aufnehmen; dieselben PDF-Seiten wie in der Druckfassung verwenden.
 - [x] Code-Journal als separates PDF in `npm run build:pdf` und den Gesamtbuild aufnehmen; vorhandenen Schutz bei LaTeX-Fehlern und Erhaltung der PDF-/Verzeichnis-Inodes auf alle Dokumente anwenden.
-- [ ] Tafelbilder und Code-Journal ausdrucken und Lesbarkeit kontrollieren; Folien/Website und Medienwechsel im Probelauf prüfen. Auftaktbeispiel auswählen und einbinden.
+- [ ] Code-Journal ausdrucken und Lesbarkeit kontrollieren; der Tafelbild-Ausdruck entfällt auf Nutzerentscheid. Folien/Website und Medienwechsel im Probelauf prüfen. Das Auftaktbild ist eingebunden.
 - [ ] Galeriebeispiele auf Funktion prüfen und Originaltitel, Urheberschaft sowie Lizenzangaben vervollständigen.
 - [ ] 90-Minuten-Ablauf durchspielen und anpassen; LLM-Ausblick entscheiden; Zeit für die sechs Demos neu verteilen. Für Demo 4 die Zeit für Smoothstep, Smootherstep und Farbwechsel bewerten; beim Probelauf den vorbereiteten Rahmen und die Sichtbarkeit des Smootherstep-Vergleichs prüfen. Reviewhinweise stehen in der Demo-README.
 - [x] Demo-Zugänge in den Folien auf die Projektwebsite abstimmen; sechs anklickbare Editor-Zugänge mit START-Arbeitsauftrag ersetzen die ShaderToy-QR-Platzhalter.
@@ -85,15 +93,16 @@ Die folgenden Abschnitte dokumentieren den Stand und die Abnahmekriterien. Berei
 **Stand: umgesetzt und lokal geprüft (11. November 2026).** `npm run build:pdf` baut mit pdfLaTeX die vorhandenen Beamer-, PGF/TikZ- und Journal-Quellen nach `folien/build/`, `tafelbilder/build/` und `code-journal/build/`. Zwei Durchläufe für die Folien, je einer für Tafelbilder und Journal. Voraussetzungen und Pakete sind in den README-Dateien dokumentiert; geprüft mit TeX Live 2022/dev (Debian).
 
 - Fehlende Pflichtquellen, fehlendes `pdflatex` und LaTeX-Fehler werden gemeldet; vorhandene PDFs bleiben bei einem Kompilierungsfehler erhalten.
-- **Rebuilds:** Nach erfolgreicher temporärer Kompilierung aller drei Dokumente werden die Dateien in den bestehenden Build-Verzeichnissen überschrieben. Die Verzeichnisse und PDF-Dateien behalten ihre Inodes; die automatisierte Prüfung kontrolliert dies zusammen mit tatsächlich geändertem PDF-Inhalt.
+- **Rebuilds:** Nach erfolgreicher temporärer Kompilierung aller vier Dokumente werden die Dateien in den bestehenden Build-Verzeichnissen überschrieben. Die Verzeichnisse und PDF-Dateien behalten ihre Inodes; die automatisierte Prüfung kontrolliert dies zusammen mit tatsächlich geändertem PDF-Inhalt.
 - **Prüfung:** echte Projektdokumente (aktuell 16 Folien, acht Tafelseiten, 19 Journal-Seiten) gebaut; automatisierte Tests mit kleinen Dokumenten prüfen Erfolg, Fehler und Erhaltung des vorherigen Builds. Die Demo-Vorschau bleibt ohne LaTeX nutzbar.
 
 ### F3 — Gemeinsamer Release-Build und Downloads
 
-**Stand: Gesamtbuild umgesetzt und lokal geprüft (11. November 2026); PDF-Inklusion ausdrücklich zurückgestellt.** `npm run build` erzeugt zuerst die PDFs und anschließend die Website samt Demos. Bei einem Dokumentfehler wird kein neuer Website-Build erzeugt. `npm run build:site` ist weiterhin ohne LaTeX nutzbar.
+**Stand: Gesamtbuild umgesetzt; Folien-Download am 12. November 2026 ergänzt.** `npm run build` erzeugt zuerst die PDFs und anschließend die Website samt Demos und freigegebenen Downloads. Bei einem Dokumentfehler wird kein neuer Website-Build erzeugt. `npm run build:site` ist weiterhin ohne LaTeX nutzbar.
 
-- Aktuelle Ausgaben: statisches Bundle in `dist/`, PDFs ausschließlich in den lokalen Dokument-Build-Verzeichnissen. `site/catalog.json` enthält weiterhin keine Materialien. Build und Push bleiben getrennte Befehle.
-- **Offen, zurückgestellt:** PDFs ins Bundle übernehmen, Downloadlinks aktivieren und das Bundle einschließlich Downloads unter einem Repository-Unterpfad prüfen. Dieser Schritt wird nicht durch den aktuellen Build-Auftrag umgesetzt.
+- Aktuelle Ausgaben: statisches Bundle in `dist/`, vier neu gebaute PDFs in den lokalen Dokument-Build-Verzeichnissen (lokaler Vortrag, Website-Fassung, Tafelbilder, Journal). `site/catalog.json` registriert die freigegebenen Vortragsfolien unter `downloads/folien.pdf`; die versionierte PDF liegt unter `site/downloads/folien.pdf`. Dokument-Rebuilds verändern diese freigegebene Fassung nicht automatisch. Build und Push bleiben getrennte Befehle.
+- Die Landingpage zeigt den Materialbereich mit einem PDF-Downloadlink. Die Build-Prüfung verlangt ein gültiges PDF; die Publish-Prüfung verlangt die Datei im Bundle. Code-Journal und Tafelbilder sind nicht im Materialkatalog registriert.
+- **Prüfung:** Website-Build mit sechs Demos und einem PDF, alle zehn Node-Tests und die Chromium-Browserprüfung unter `/million-pixel-orchestra/` erfolgreich. PDF-Download mit HTTP 200, passendem MIME-Typ und unverändertem Inhalt geprüft; Materialbereich am Desktop visuell kontrolliert. Die freigegebene Kopie und das Bundle-PDF entsprechen der Website-Fassung; sie enthält 14 Seiten ohne die lokalen Folien 2–4. Der Veröffentlichungs-Probelauf zeigt ausschließlich sechs geänderte bzw. neue Dateien für Materialbereich und Download. Der tatsächliche Push wurde von der automatischen Freigabeprüfung wegen des fehlenden ausdrücklichen Veröffentlichungsauftrags abgelehnt und bleibt ausstehend.
 
 ### F4 — Website-Stil
 
@@ -126,7 +135,7 @@ Der Header von Landingpage und Editor verlinkt das Quellrepository unter `https:
 - Statisches Gesamtergebnis ohne erforderliches Server-Backend vorsehen; keine fest kodierte Domain.
 - Relative oder passend konfigurierte Pfade müssen auch unter einem Repository-Unterverzeichnis funktionieren, einschließlich Shader-Dateien und PDF-Downloads.
 - **Umgesetzt (11. November 2026):** `npm run publish:pages` pusht das zuvor gebaute `dist/` nach `origin/gh-pages`; `--dry-run` prüft ohne Commit oder Push. Temporäres Git-Repository, Erhaltung der Branchhistorie, kein Force-Push und keine Änderung des Quellarbeitsbaums. Anleitung und einmalige Einstellung auf `gh-pages` / (root) in `docs/PUBLISHING.md`. Lokal gegen ein temporäres Bare-Repository geprüft: Erstveröffentlichung, Updates, Löschungen, Probelauf und unverändertes Bundle.
-- Aktuell werden ausschließlich Website und Demos veröffentlicht; die PDF-Inklusion bleibt zurückgestellt. Tatsächlicher Push und einmalige GitHub-Einstellung sind noch auszuführen, sobald die Veröffentlichung beauftragt ist.
+- Das Website-Bundle enthält seit der Freigabe vom 12. November 2026 zusätzlich die Vortragsfolien als PDF-Download. Code-Journal und Tafelbilder bleiben lokale Unterlagen. Tatsächlicher Push und Website-Einrichtung bleiben getrennte Schritte.
 - Keine GitHub-Actions-Workflows für Build oder Deployment verwenden. GitHub Pages stellt die fertigen Dateien bereit; dort keine LaTeX-Distribution oder Projekt-Build-Werkzeuge voraussetzen.
 - Build und Push getrennt halten; vorerst lokal unter einem simulierten Projektpfad prüfen.
 - Die Planung der Integration und die Hostbarkeit sind kein Auftrag zur Einrichtung oder Veröffentlichung auf GitHub Pages.

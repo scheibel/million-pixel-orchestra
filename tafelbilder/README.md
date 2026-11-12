@@ -21,7 +21,7 @@ Die RGB-Balken auf Seite 2 verwenden Rot, Grün und Blau. Alle acht frisch gebau
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, PGF/TikZ, `babel` mit deutscher Sprachunterstützung, `geometry` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle drei Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, PGF/TikZ, `babel` mit deutscher Sprachunterstützung, `geometry` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle vier PDFs) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p tafelbilder/build

@@ -1,7 +1,28 @@
 import { loadCatalog } from "./catalog.js";
 
 try {
-  const { demos, starter } = await loadCatalog();
+  const { demos, starter, materials } = await loadCatalog();
+  const materialList = document.querySelector("#material-list");
+  for (const material of materials) {
+    const link = document.createElement("a");
+    link.className = "material-card";
+    link.href = `./${material.file}`;
+    link.type = "application/pdf";
+    link.download = "";
+    const content = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = material.title;
+    const format = document.createElement("p");
+    format.textContent = "PDF herunterladen";
+    content.append(title, format);
+    const arrow = document.createElement("span");
+    arrow.className = "demo-arrow";
+    arrow.textContent = "↓";
+    arrow.setAttribute("aria-hidden", "true");
+    link.append(content, arrow);
+    materialList.append(link);
+  }
+  document.querySelector("#materialien").hidden = materials.length === 0;
   if (starter) {
     const link = document.querySelector("#empty-editor");
     link.href = `./editor.html?demo=${encodeURIComponent(starter.id)}`;

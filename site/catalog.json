@@ -8,5 +8,10 @@
     "demos/09-fbm/demo.json"
   ],
   "starter": "demos/leerer-editor/demo.json",
-  "materials": []
+  "materials": [
+    {
+      "title": "Vortragsfolien",
+      "file": "downloads/folien.pdf"
+    }
+  ]
 }

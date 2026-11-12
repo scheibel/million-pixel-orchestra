@@ -14,7 +14,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     const result = await buildProject();
     console.log(`Build abgeschlossen: Website mit ${result.demos} Demos in ${result.output}.`);
     for (const path of result.documents) console.log(`PDF: ${path}`);
-    console.log("PDFs werden vorerst lokal erzeugt; ihre Einbindung in die Website bleibt zurückgestellt.");
+    console.log("Freigegebene PDF-Downloads aus site/downloads/ sind im Website-Bundle enthalten.");
   } catch (error) {
     console.error(`Build fehlgeschlagen: ${error.message}`);
     process.exitCode = 1;

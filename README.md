@@ -4,11 +4,11 @@ Rahmenwerk für den 90-Minuten-Oberstufenworkshop **„Grafiken programmieren �
 
 Live-Website: [www.willyscheibel.de/million-pixel-orchestra/](https://www.willyscheibel.de/million-pixel-orchestra/).
 
-Die Schülerinnen und Schüler öffnen zu Beginn die öffentliche Projektwebsite und programmieren direkt im eigenen Live-Editor. Dieser bietet Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. ShaderToy wird als optionale Plattform zum Weiterexperimentieren erwähnt; alle Snippets bleiben dorthin kopierbar. Website und PDFs lassen sich gemeinsam bauen; die PDF-Einbindung auf der Website bleibt zurückgestellt. Die Workshop-Demos werden noch didaktisch ausgearbeitet.
+Die Schülerinnen und Schüler öffnen zu Beginn die öffentliche Projektwebsite und programmieren direkt im eigenen Live-Editor. Dieser bietet Live-Vorschau, Fehleranzeigen, Animationssteuerung und vorbereitete Quellcode-Stände. ShaderToy wird als optionale Plattform zum Weiterexperimentieren erwähnt; alle Snippets bleiben dorthin kopierbar. Website und PDFs lassen sich gemeinsam bauen. Die freigegebenen Vortragsfolien sind auf der Landingpage als PDF verlinkt.
 
-Die Landingpage bietet die sechs vorbereiteten Demos und darüber „Leeren Editor öffnen“ für eigene Experimente. Dieser Einstieg lädt ein ShaderToy-Grundgerüst mit weißer Ausgabe. Der Materialbereich kehrt mit der Veröffentlichung von Materialien zurück.
+Die Landingpage bietet die sechs vorbereiteten Demos und darüber „Leeren Editor öffnen“ für eigene Experimente. Dieser Einstieg lädt ein ShaderToy-Grundgerüst mit weißer Ausgabe. Unter „Materialien“ stehen die freigegebenen Vortragsfolien zum Herunterladen bereit.
 
-Der geklärte Materialumfang für den Workshop umfasst die öffentlich gehostete Teilnehmer-Website, eine lokal ausreichend bereitgestellte Vortragenden-Website, statische Vortragsfolien mit Tafelbild-Endständen sowie ausgedruckte Tafelbilder und ein separat gedrucktes Code-Journal. Beide Website-Rollen dürfen dieselbe Anwendung verwenden. Die Dokumente werden getrennt gebaut: 16 Präsentationsfolien ohne Codevergleiche, acht Tafelseiten und ein A4-Code-Journal mit den bisherigen 19 Übergängen. Die Einbindung der Tafelbild-Endstände in den Vortrag und die weitere Ausarbeitung des Journals bleiben offen. Anforderungen und Stand sind in [CONTEXT.md](CONTEXT.md) und [ROADMAP.md](ROADMAP.md) dokumentiert.
+Der geklärte Materialumfang für den Workshop umfasst die öffentlich gehostete Teilnehmer-Website, eine lokal ausreichend bereitgestellte Vortragenden-Website, die reviewten Vortragsfolien und ein separat gedrucktes Code-Journal. Beide Website-Rollen dürfen dieselbe Anwendung verwenden. Die Dokumente werden getrennt gebaut: 17 Präsentationsfolien ohne Codevergleiche, acht digitale Tafelseiten und ein A4-Code-Journal mit 19 Übergängen. Der Nutzer hat die Journalfassung akzeptiert und verzichtet auf den Ausdruck der Tafelbild-Vorlage. Anforderungen und Stand sind in [CONTEXT.md](CONTEXT.md) und [ROADMAP.md](ROADMAP.md) dokumentiert.
 
 ## Lokal starten
 
@@ -58,18 +58,19 @@ npm run build
 npm run preview
 ```
 
-`npm run build` erzeugt zuerst alle drei PDFs, anschließend die Website und Demos. Ergebnis:
+`npm run build` erzeugt zuerst alle vier PDFs, anschließend die Website und Demos. Ergebnis:
 
 | Ausgabe | Inhalt |
 | --- | --- |
 | `dist/` | Statische Website und Shader-Demos |
-| `folien/build/vortrag.pdf` | Beamer-Folien, zwei LaTeX-Durchläufe |
+| `folien/build/vortrag.pdf` | Lokaler Vortrag mit allen 17 Folien, zwei LaTeX-Durchläufe |
+| `folien/build/vortrag-website.pdf` | Website-Fassung mit 14 Folien ohne die lokalen Folien 2–4, zwei LaTeX-Durchläufe |
 | `tafelbilder/build/tafelbilder.pdf` | Druckbare Tafelbilder |
 | `code-journal/build/journal.pdf` | Druckbares Code-Journal, A4 hoch |
 
-Fehlende Pflichtquellen, fehlendes `pdflatex` oder LaTeX-Fehler brechen den Build ab. Bisherige PDFs werden erst ersetzt, wenn alle drei Dokumente erfolgreich gebaut wurden; bei einem Dokumentfehler bleibt auch die bisherige Website erhalten. Es wird kein Push ausgeführt.
+Fehlende Pflichtquellen, fehlendes `pdflatex` oder LaTeX-Fehler brechen den Build ab. Bisherige PDFs werden erst ersetzt, wenn alle vier Dokumente erfolgreich gebaut wurden; bei einem Dokumentfehler bleibt auch die bisherige Website erhalten. Es wird kein Push ausgeführt.
 
-Die PDFs werden **vorerst weder nach `dist/` kopiert noch auf der Website verlinkt**. Der Materialkatalog bleibt leer. Ihre spätere Einbindung ist ein eigener Backlogpunkt.
+Die freigegebene Fassung der Vortragsfolien liegt versioniert unter `site/downloads/folien.pdf` und wird nach `dist/downloads/folien.pdf` übernommen. Der Materialkatalog registriert diesen Download. Dokument-Rebuilds ersetzen die freigegebene Fassung nicht automatisch; nach einer erneuten Freigabe wird die Datei ausschließlich aus `folien/build/vortrag-website.pdf` aktualisiert. Diese öffentliche Fassung umfasst 14 Seiten und lässt die persönlichen Folien 2–4 aus; der lokale Vortrag behält alle 17 Seiten. Dadurch bleiben Website-Build und Demo-Vorschau ohne LaTeX nutzbar. Code-Journal und Tafelbilder bleiben lokale Unterlagen. Details: [Freigegebene Materialien](site/downloads/README.md).
 
 Einzelne Teile lassen sich separat bauen:
 

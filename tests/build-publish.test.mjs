@@ -21,6 +21,7 @@ async function fixture(t) {
     await mkdir(join(root, directory));
     await writeFile(join(root, directory, `${name}.tex`), "\\documentclass{article}\n\\begin{document}Build-Test\\end{document}\n");
   }
+  await cp(join(projectRoot, "folien/vortrag-website.tex"), join(root, "folien/vortrag-website.tex"));
   return root;
 }
 
@@ -40,12 +41,24 @@ test("Gesamtbuild bindet frisch gebaute Tafeln ein; LaTeX-Fehler erhalten PDFs u
   catch (error) { if (error.code === "ENOENT") return t.skip("LaTeX ist für die übrigen Tests nicht erforderlich."); throw error; }
   const root = await fixture(t);
   // No previous board PDF exists: the slides must find the current staged build.
-  await writeFile(join(root, "folien/vortrag.tex"), "\\documentclass{article}\n\\usepackage{graphicx}\n\\begin{document}\\includegraphics[width=5cm]{tafelbilder.pdf}\\end{document}\n");
+  await writeFile(join(root, "folien/vortrag.tex"), "\\documentclass{article}\n\\usepackage{graphicx}\n\\begin{document}\\ifdefined\\oeffentlicheFolien\\else Private Vorstellung\\newpage\\fi Gemeinsamer Inhalt\\includegraphics[width=5cm]{tafelbilder.pdf}\\end{document}\n");
   const result = await buildProject({ root });
-  assert.equal(result.documents.length, 3);
+  assert.equal(result.documents.length, 4);
   for (const path of result.documents) assert.equal((await readFile(path)).subarray(0, 5).toString(), "%PDF-");
-  assert.deepEqual(JSON.parse(await readFile(join(root, "dist/catalog.json"), "utf8")).materials, []);
-  await assert.rejects(readFile(join(root, "dist/downloads/folien.pdf")), /ENOENT/);
+  try {
+    const localText = (await execute("pdftotext", [join(root, "folien/build/vortrag.pdf"), "-"])).stdout;
+    const publicText = (await execute("pdftotext", [join(root, "folien/build/vortrag-website.pdf"), "-"])).stdout;
+    assert.match(localText, /Private Vorstellung/);
+    assert.doesNotMatch(publicText, /Private Vorstellung/);
+    for (const text of [localText, publicText]) assert.match(text, /Gemeinsamer Inhalt/);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+    t.diagnostic("PDF-Textvergleich entfällt, weil pdftotext fehlt.");
+  }
+  const materials = JSON.parse(await readFile(join(root, "dist/catalog.json"), "utf8")).materials;
+  assert.deepEqual(materials, [{ title: "Vortragsfolien", file: "downloads/folien.pdf" }]);
+  assert.deepEqual(await readFile(join(root, "dist/downloads/folien.pdf")), await readFile(join(root, "site/downloads/folien.pdf")), "Das Bundle enthält die freigegebene Fassung, unabhängig von Dokument-Rebuilds");
+  for (const name of ["tafelbilder", "journal"]) await assert.rejects(readFile(join(root, `dist/downloads/${name}.pdf`)), /ENOENT/);
   const pdfInodes = await Promise.all(result.documents.map(async path => (await stat(path)).ino));
   const directories = [join(root, "folien/build"), join(root, "tafelbilder/build"), join(root, "code-journal/build")];
   const directoryInodes = await Promise.all(directories.map(async path => (await stat(path)).ino));
@@ -61,6 +74,11 @@ test("Gesamtbuild bindet frisch gebaute Tafeln ein; LaTeX-Fehler erhalten PDFs u
   await assert.rejects(buildProject({ root }), /PDF-Build fehlgeschlagen:.*code-journal/);
   assert.deepEqual(await Promise.all(result.documents.map(path => readFile(path))), previousPdfs);
   assert.deepEqual(await readFile(join(root, "dist/index.html")), previousSite);
+  await writeFile(join(root, "code-journal/journal.tex"), "\\documentclass{article}\\begin{document}Journal\\end{document}");
+  await writeFile(join(root, "folien/vortrag-website.tex"), "\\documentclass{article}\\begin{document}\\absichtlichUngueltig\\end{document}");
+  await assert.rejects(buildProject({ root }), /PDF-Build fehlgeschlagen:.*vortrag-website/);
+  assert.deepEqual(await Promise.all(result.documents.map(path => readFile(path))), previousPdfs);
+  assert.deepEqual(await readFile(join(root, "dist/index.html")), previousSite);
 });
 
 test("Publish prüft das Bundle vor Git-Zugriff", async t => {
@@ -72,6 +90,9 @@ test("Publish prüft das Bundle vor Git-Zugriff", async t => {
   await buildSite({ root });
   await rm(join(root, "dist/demos/leerer-editor/VORLAGE.glsl"));
   await assert.rejects(publishPages({ root, dryRun: true }), /Kein vollständiges Website-Bundle.*VORLAGE\.glsl/);
+  await buildSite({ root });
+  await rm(join(root, "dist/downloads/folien.pdf"));
+  await assert.rejects(publishPages({ root, dryRun: true }), /Kein vollständiges Website-Bundle.*folien\.pdf/);
 });
 
 test("Pages-Publish: Probelauf, erster Push, Fortschreibung und unverändertes Bundle", async t => {

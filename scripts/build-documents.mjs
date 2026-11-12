@@ -9,7 +9,8 @@ const execute = promisify(execFile);
 const documents = [
   { directory: "folien", name: "vortrag", passes: 2 },
   { directory: "tafelbilder", name: "tafelbilder", passes: 1 },
-  { directory: "code-journal", name: "journal", passes: 1 }
+  { directory: "code-journal", name: "journal", passes: 1 },
+  { directory: "folien", name: "vortrag-website", passes: 2 }
 ];
 
 export async function buildDocuments({ root = projectRoot, engine = "pdflatex" } = {}) {
@@ -22,9 +23,9 @@ export async function buildDocuments({ root = projectRoot, engine = "pdflatex" }
   const staging = await mkdtemp(join(root, ".document-build-"));
   try {
     // Compile the boards first so the slides embed this build's exact print pages.
-    for (const document of [documents[1], documents[0], documents[2]]) {
+    for (const document of [documents[1], documents[0], documents[3], documents[2]]) {
       const output = join(staging, document.directory);
-      await mkdir(output);
+      await mkdir(output, { recursive: true });
       const source = join(document.directory, `${document.name}.tex`);
       for (let pass = 1; pass <= document.passes; pass++) {
         console.log(`PDF: ${source} (Durchlauf ${pass}/${document.passes})`);
@@ -43,9 +44,9 @@ export async function buildDocuments({ root = projectRoot, engine = "pdflatex" }
       if (!pdf.subarray(0, 5).equals(Buffer.from("%PDF-"))) throw new Error(`Keine gültige PDF erzeugt: ${source}`);
     }
     // Keep previous PDFs until every source has compiled successfully.
-    for (const document of documents) {
-      const output = join(root, document.directory, "build");
-      const source = join(staging, document.directory);
+    for (const directory of new Set(documents.map(document => document.directory))) {
+      const output = join(root, directory, "build");
+      const source = join(staging, directory);
       await mkdir(output, { recursive: true });
       // Overwrite existing files to preserve their inodes and PDF viewer watches.
       for (const name of await readdir(source)) {

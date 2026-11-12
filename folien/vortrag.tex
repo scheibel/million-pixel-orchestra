@@ -146,6 +146,8 @@
 \end{frame}
 \endgroup
 
+% Die Website-Fassung lässt die drei persönlichen Vorstellungsfolien aus.
+\ifdefined\oeffentlicheFolien\else
 \section{Vorstellung}
 \begingroup
 % Auf dieser Folie stehen die groesseren Logos unten statt in der Kopfzeile.
@@ -159,6 +161,7 @@
 \vspace{1mm}
 M.Sc. IT-Systems Engineering\par
 \href{https://www.willyscheibel.de}{\textcolor{sea}{\texttt{www.willyscheibel.de}}}\par
+{\small\href{mailto:willy.scheibel@hpi.uni-potsdam.de}{\textcolor{sea}{\texttt{willy.scheibel@hpi.uni-potsdam.de}}}\par}
 \vspace{4mm}
 {\normalsize\bfseries Wissenschaftlicher Mitarbeiter\par}
 Fachgebiet Computergrafische Systeme\par
@@ -167,7 +170,7 @@ Fachgebiet Computergrafische Systeme\par
 Hasso-Plattner-Institut\par
 Digital Engineering Fakultät\par
 Universität Potsdam\par}
-\vspace{6mm}
+\vspace{5mm}
 {\centering
 \includegraphics[height=18mm]{folien/logos/hpi-logo-voll.pdf}\hspace{8mm}%
 \includegraphics[height=18mm]{folien/logos/uni_logo.pdf}\par}
@@ -219,6 +222,7 @@ Universität Potsdam\par}
 \end{center}
 \end{frame}
 
+\fi
 \section{Einstieg}
 \begin{frame}{Die sechs Demos im Überblick}
 \tagline{Von Farbe zu bewegten Wolken}\par\vspace{3mm}
@@ -300,7 +304,13 @@ Universität Potsdam\par}
 {\small\bfseries Mit einem Studium der Informatik oder Mathematik legt ihr das Fundament, um eigene Bildwelten zu gestalten.\par}
 %\medskip{\large\bfseries Was würdet ihr als Nächstes verändern?}
 \end{column}
-\begin{column}{.32\textwidth}\websitezugang\par\medskip\centering\hinweis{Demos und Materialien}\end{column}
+\begin{column}{.32\textwidth}
+\websitezugang\par\medskip
+\centering\hinweis{Demos und Materialien}\par\medskip
+\hinweis{Kontakt}\par\smallskip
+{\small\href{mailto:willy.scheibel@hpi.uni-potsdam.de}{\textcolor{sea}{%
+  \texttt{willy.scheibel@}\\\texttt{hpi.uni-potsdam.de}}}\par}
+\end{column}
 \end{columns}
 \end{frame}
 \begin{frame}{Studium am HPI}

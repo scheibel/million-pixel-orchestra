@@ -134,7 +134,15 @@ try {
   await page("Page.navigate", { url: base });
   await until(`document.querySelectorAll('.demo-card').length === ${catalog.demos.length}`);
   assert.equal(await evaluate("document.documentElement.lang"), "de");
-  assert.equal(await evaluate("document.querySelector('#materialien')"), null);
+  await until(`document.querySelectorAll('.material-card').length === ${catalog.materials.length}`);
+  assert.equal(await evaluate("document.querySelector('#materialien').hidden"), false);
+  assert.equal(await evaluate("document.querySelector('.material-card').href"), `${base}downloads/folien.pdf`);
+  assert.equal(await evaluate("document.querySelector('.material-card').hasAttribute('download')"), true);
+  assert.equal(await evaluate(`(async () => {
+    const response = await fetch(document.querySelector('.material-card').href);
+    return response.ok && response.headers.get('content-type') === 'application/pdf'
+      && (await response.text()).startsWith('%PDF-');
+  })()`), true);
   assert.equal(await evaluate("document.querySelector('.shadertoy-links a').href"), "https://www.shadertoy.com/view/Ab12Cd");
   await click('#empty-editor');
   await success();

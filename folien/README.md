@@ -1,6 +1,6 @@
 # Vortragsfolien – erster Entwurf
 
-**Aktuelle Anforderung:** Der projizierte Vortrag enthält allgemeine Informationen und Konzepte sowie die vollständigen acht Tafelbild-Endstände als Alternative zum Live-Anzeichnen. Das Code-Journal wird als eigenständiges Dokument für den Vortragenden gedruckt und gehört nicht in den Foliensatz. Das Code-Journal ist herausgelöst und wird separat gebaut. Die acht vollständigen Tafelbild-Endstände sind als verlinkte Projektionsalternativen eingebunden. Der Vortrag umfasst 17 Hauptfolien und acht Anhangseiten (25 PDF-Seiten).
+**Aktuelle Fassungen:** Der lokale Vortrag umfasst 17 Folien. Die Website-Fassung umfasst 14 Folien und lässt die persönlichen Folien 2–4 („Wer bin ich?“ und beide Zeitstrahlen) aus. Beide Fassungen verwenden dieselbe Hauptquelle; `vortrag-website.tex` aktiviert die öffentliche Auswahl. Die acht Tafelbild-Anhangseiten und ihre Verweise sind aktuell auskommentiert. Das Code-Journal wird separat für den Vortragenden gedruckt und gehört nicht in den Foliensatz.
 
 Die beiden Zeitstrahlfolien heißen „Vom Hobby zum Studium“ und „Forschung, Praxis und Lehre“. Sie verwenden jeweils nur die reguläre Folienüberschrift; die bisherigen roten Untertitel entfallen.
 
@@ -36,7 +36,7 @@ Die 19 Codevergleiche stehen jetzt unter [code-journal/](../code-journal/README.
 
 ## PDF erstellen
 
-Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `pdfrender`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle drei Dokumente) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
+Voraussetzungen: eine lokale LaTeX-Distribution mit `pdflatex`, Beamer, PGF/TikZ, `qrcode`, `pdfrender`, `babel` mit deutscher Sprachunterstützung, `newtxmath`, `sourcesanspro`, `sourcecodepro`, `roboto`, `microtype` und AMS-Mathematikpaketen. Automatisiert vom Repository-Hauptverzeichnis aus mit `npm run build:pdf` (alle vier PDFs) oder `npm run build` (zusätzlich Website). Direkter LaTeX-Aufruf:
 
 ```sh
 mkdir -p folien/build tafelbilder/build
@@ -45,4 +45,4 @@ pdflatex -interaction=nonstopmode -halt-on-error -output-directory=folien/build 
 pdflatex -interaction=nonstopmode -halt-on-error -output-directory=folien/build folien/vortrag.tex
 ```
 
-Das Ergebnis ist `folien/build/vortrag.pdf`; die bearbeitbare Quelle ist `vortrag.tex`. Das Build-Verzeichnis ist nicht versioniert. Der Gesamtbuild erzeugt die PDFs lokal; die Einbindung in die Website und PDF-Veröffentlichung bleiben zurückgestellt.
+Das Ergebnis ist `folien/build/vortrag.pdf`; die bearbeitbare Quelle ist `vortrag.tex`. Das Build-Verzeichnis ist nicht versioniert. Zusätzlich baut `vortrag-website.tex` aus derselben Quelle die öffentliche Fassung `folien/build/vortrag-website.pdf` mit 14 Seiten: Die lokalen Folien 2–4 (Vorstellung und beide Zeitstrahlen) werden ausgelassen, die übrigen Folien fortlaufend nummeriert. Die am 12. November 2026 freigegebene Website-Fassung liegt unter `site/downloads/folien.pdf` und ist als Material auf der Landingpage verlinkt. Nach Freigabe überarbeiteter Folien muss diese Kopie ausdrücklich aus der neuen Website-Fassung aktualisiert werden; Dokument-Rebuilds verändern den freigegebenen Stand nicht automatisch. Code-Journal und Tafelbilder bleiben lokale Unterlagen.

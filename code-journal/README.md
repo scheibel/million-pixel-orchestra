@@ -25,4 +25,4 @@ npm run build:pdf
 
 Der gemeinsame Dokument-Build erzeugt Vortragsfolien, Tafelbilder und `code-journal/build/journal.pdf`. `npm run build` baut danach zusätzlich die Website. Für das Journal werden pdfLaTeX mit `babel` einschließlich Deutsch, `geometry`, `xcolor` und den AMS-Paketen benötigt; diese gehören bereits zur dokumentierten LaTeX-Ausstattung.
 
-Alle drei Dokumente werden zuerst temporär gebaut. Erst bei vollständigem Erfolg werden die bestehenden Ausgabedateien mit erhaltenen Inodes überschrieben. Das Build-Verzeichnis wird ignoriert; das Journal wird nicht in die Website übernommen oder veröffentlicht.
+Alle vier PDFs (lokaler Vortrag, Website-Fassung, Tafelbilder und Journal) werden zuerst temporär gebaut. Erst bei vollständigem Erfolg werden die bestehenden Ausgabedateien mit erhaltenen Inodes überschrieben. Das Build-Verzeichnis wird ignoriert; das Journal wird nicht in die Website übernommen oder veröffentlicht.
