@@ -81,12 +81,12 @@
   \foreach \jahr in {2000,...,2027} {
     \draw[muted!20,line width=.15pt] ({(\jahr-2000)*.275},0) -- +(0,-#1);
   }
-  \foreach \jahr in {2000,2005,2010,2015,2020,2027} {
+  \foreach \jahr in {2000,2005,2010,2015,2020,2025} {
     \draw[muted!45,line width=.25pt] ({(\jahr-2000)*.275},0) -- +(0,-#1);
     \draw[muted] ({(\jahr-2000)*.275},0.07) -- +(0,-0.14);
     \node[font=\fontsize{6.5}{7.5}\selectfont,text=muted,above] at ({(\jahr-2000)*.275},.1) {\jahr};
   }
-  \draw[muted,thick] (0,0) -- (7.425,0);
+  \draw[muted,thick,-{Stealth[length=2.3mm]}] (0,0) -- (7.425,0);
 }
 \newcommand{\zeitlabel}[2]{\node[overlay,anchor=east,align=right,font=\fontsize{6.3}{7.2}\selectfont,text=ink] at (-.25,#1) {#2};}
 \newcommand{\zeitraum}[4]{%
@@ -207,9 +207,9 @@ Universität Potsdam\par}
 \zeitgruppe{-2.28}{-4.9}
 \zeitachse
 \berufsphase{-.4}{Computergrafiker}{2009}
-\zeitraum{-.93}{2011–2014 · Werkstudent: Computergrafik}{2011}{2014}
-\zeitraum{-1.46}{2015–2022 · Miteigentümer einer Consulting-Firma\\Computergrafik}{2015}{2022}
-\zeitraum{-1.99}{2011–2020 · Open Source in der Computergrafik}{2011}{2020}
+\zeitraum{-.93}{2011–2014 · Wissenschaftliche Hilfskraft}{2011}{2014}
+\zeitraum{-1.46}{2015–2022 · Computergrafik Consulting}{2015}{2022}
+\zeitraum{-1.99}{2011–2020 · Open Source Projektentwicklung}{2011}{2020}
 \berufsphase{-2.52}{Forscher in der Computergrafik}{2013}
 \zeitoffen{-3.05}{ab 2014 · Promotionsstudium am HPI}{2014}
 \zeitoffen{-3.58}{ab 2015 · Internationale Publikationen\\Computergrafik und Visualisierung}{2015}
@@ -344,13 +344,13 @@ Universität Potsdam\par}
   \hyperlink{#2}{\textcolor{sea}{\scriptsize Zurück zur zugehörigen Folie}}
   \end{frame}%
 }
-\appendix
-\tafelseite{1}{pixelprinzip}
-\tafelseite{2}{demo1}
-\tafelseite{3}{demo2}
-\tafelseite{4}{demo3}
-\tafelseite{5}{demo3}
-\tafelseite{6}{demo4}
-\tafelseite{7}{demo5}
-\tafelseite{8}{demo6}
+% \appendix
+% \tafelseite{1}{pixelprinzip}
+% \tafelseite{2}{demo1}
+% \tafelseite{3}{demo2}
+% \tafelseite{4}{demo3}
+% \tafelseite{5}{demo3}
+% \tafelseite{6}{demo4}
+% \tafelseite{7}{demo5}
+% \tafelseite{8}{demo6}
 \end{document}

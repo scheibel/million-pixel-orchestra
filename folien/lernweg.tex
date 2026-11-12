@@ -40,9 +40,9 @@ Dieselbe Berechnung wird für jede Pixelposition ausgeführt.
 Ein \textbf{Fragment-Shader} berechnet daraus Rot, Grün und Blau für dieses Pixel.}
 \end{column}
 \end{columns}
-\vfill
-{\small\textbf{Zum Start:} Wir geben jedem Pixel dieselbe Farbe. Was braucht die Berechnung dafür?\par}
-\tafelverweis{1}{Pixel, Position und Bildgröße}
+%\vfill
+%{\small\textbf{Zum Start:} Wir geben jedem Pixel dieselbe Farbe. Was braucht die Berechnung dafür?\par}
+%\tafelverweis{1}{Pixel, Position und Bildgröße}
 \end{frame}
 
 \begin{frame}[fragile,label=pixelvorlage]{Unsere Pixel-Vorlage}
@@ -69,9 +69,9 @@ void mainImage(out vec4 fragColor,
 Die Position wird hier noch nicht benutzt: Alle Pixel werden weiß.}
 \end{column}
 \end{columns}
-\vfill
-{\small Wir programmieren auf der \textbf{Workshopwebsite}. Die Vorlage funktioniert auch in ShaderToy.\par}
-\tafelverweis{1}{Die Schnittstelle zur Pixelberechnung}
+%\vfill
+%{\small Wir programmieren auf der \textbf{Workshopwebsite}. Die Vorlage funktioniert auch in ShaderToy.\par}
+%\tafelverweis{1}{Die Schnittstelle zur Pixelberechnung}
 \end{frame}
 
 \section{Demos}
@@ -83,7 +83,8 @@ Die Position wird hier noch nicht benutzt: Alle Pixel werden weiß.}
 \begin{minipage}{.82\linewidth}\rgbfuellanzeige\end{minipage}\par
 {\small $\text{Farbe}=(R,G,B)$ mit Anteilen von 0 bis 1.\par
 $(0,0,0)$: Schwarz; $(1,1,1)$: Weiß.\par
-Ohne Positionsabhängigkeit gilt die Farbe überall.}
+%Ohne Positionsabhängigkeit gilt die Farbe überall.
+}
 \end{column}
 \begin{column}{.50\textwidth}
 {\small\textbf{Eine Schwingung als Farbanteil}\par}
@@ -97,12 +98,13 @@ Ohne Positionsabhängigkeit gilt die Farbe überall.}
 \end{tikzpicture}
 {\small
 \[\sin(t)\in[-1,1]\quad\Rightarrow\quad R(t)=\tfrac12+\tfrac12\sin(t)\in[0,1]\]
-\frag{iTime} liefert $t$ in Sekunden. Grün und Blau schwingen zeitversetzt.\par
-Weiß → Violett → Koralle → Farbwechsel.}
+%\frag{iTime} liefert $t$ in Sekunden. Grün und Blau schwingen zeitversetzt.\par
+%Weiß → Violett → Koralle → Farbwechsel.
+}
 \end{column}
 \end{columns}
-\editorauftrag{1}{00-konstante-farbe}{Setzt alle drei Anteile auf 0. Welche Farbe entsteht? Verändert danach einen Anteil.}
-\tafelverweis{2}{RGB und Sinus}
+%\editorauftrag{1}{00-konstante-farbe}{Setzt alle drei Anteile auf 0. Welche Farbe entsteht? Verändert danach einen Anteil.}
+%\tafelverweis{2}{RGB und Sinus}
 \end{frame}
 
 \begin{frame}[label=demo2]{Wie wird die Position zu einem Farbanteil?}
@@ -134,8 +136,8 @@ Weiß → Violett → Koralle → Farbwechsel.}
 {\small Diese Mischung heißt im Code \frag{mix}.}
 \end{column}
 \end{columns}
-\editorauftrag{2}{01-pixelposition-und-normalisierung}{Verwendet beim Mischen \frag{uv.y} statt \frag{uv.x}. In welche Richtung läuft der Verlauf?}
-\tafelverweis{3}{Normieren und Farben mischen}
+%\editorauftrag{2}{01-pixelposition-und-normalisierung}{Verwendet beim Mischen \frag{uv.y} statt \frag{uv.x}. In welche Richtung läuft der Verlauf?}
+%\tafelverweis{3}{Normieren und Farben mischen}
 \end{frame}
 
 \begin{frame}[label=demo3]{Wie werden aus Abständen Formen?}
@@ -150,18 +152,18 @@ Weiß → Violett → Koralle → Farbwechsel.}
 \[d^2=p_x^2+p_y^2=\operatorname{dot}(\vec p,\vec p),\quad d^2<r^2\]
 {\small\textbf{3 · Abfallende Felder addieren}}
 \[E_i=\frac{0{,}035}{d_i^2+0{,}01},\qquad E_1+E_2>1\]
-{\small $d_i$ ist der Abstand zum jeweiligen Zentrum. $0{,}01$ verhindert Division durch null. Über der Schwelle entsteht Vordergrund.}
+{\small $d_i$ ist der Abstand zum jeweiligen Zentrum. $0{,}01$ verhindert Division durch null. Über der Schwelle entsteht das Objekt.}
 \end{column}
 \begin{column}{.37\textwidth}
 \includegraphics[width=.58\linewidth]{folien/bilder/demo-ziele/03-kreis-und-quadrierter-abstand-kreis.png}\par
 {\scriptsize Ein Kreis durch den Radiusvergleich.}\par\medskip
 \includegraphics[width=.58\linewidth]{folien/bilder/demo-ziele/03-kreis-und-quadrierter-abstand.png}\par
 {\scriptsize Die Feldsumme verbindet die Formen.}\par\smallskip
-{\small ZIEL: Sinus bewegt die Zentren.}
+%{\small ZIEL: Sinus bewegt die Zentren.}
 \end{column}
 \end{columns}
-\editorauftrag{3}{03-kreis-und-quadrierter-abstand}{Ändert im Stand „Kreis“ den Radius. Was passiert beim Verbreitern der Vorschau?}
-\tafelverweis{4}{Koordinaten und Kreis}\hspace{4mm}\tafelverweis{5}{Felder und Schwelle}
+%\editorauftrag{3}{03-kreis-und-quadrierter-abstand}{Ändert im Stand „Kreis“ den Radius. Was passiert beim Verbreitern der Vorschau?}
+%\tafelverweis{4}{Koordinaten und Kreis}\hspace{4mm}\tafelverweis{5}{Felder und Schwelle}
 \end{frame}
 
 \begin{frame}[label=demo4]{Wie hält ein Punkt sanft an?}
@@ -178,7 +180,7 @@ Weiß → Violett → Koralle → Farbwechsel.}
 \node[below,font=\small] at (1,0) {1};\node[left,font=\small] at (0,1) {1};
 \end{tikzpicture}\par
 {\small $t\in[0,1]$: Fortschritt auf einer Kante.\par
-Die \textbf{Steigung} bestimmt die Geschwindigkeit. Die Bahn bleibt dieselbe.}
+Die \textbf{Steigung} bestimmt die Geschwindigkeit. Die Anfangs- und Endpunkte bleiben dieselben.}
 \end{column}
 \begin{column}{.50\textwidth}
 {\small
@@ -186,15 +188,16 @@ Die \textbf{Steigung} bestimmt die Geschwindigkeit. Die Bahn bleibt dieselbe.}
 Start und Halt sind abrupt.\par\medskip
 \textcolor{sea}{\textbf{Smoothstep:}} $s(t)=3t^2-2t^3$\par
 $s(0)=0$, $s(1)=1$ und $s'(0)=s'(1)=0$: Die Geschwindigkeit geht auf null.\par\medskip
-\textcolor{accent}{\textbf{Smootherstep:}} $s(t)=6t^5-15t^4+10t^3$\par
+\textcolor{accent}{\textbf{Smootherstep:}} $s_2(t)=6t^5-15t^4+10t^3$\par
 Zusätzlich geht die Beschleunigung an den Enden auf null.}
 \[P(t)=(1-s(t))A+s(t)B\]
 {\small Dieselbe Kurve mischt im Halt die Farbe:\par Schwarz → Eckfarbe → Schwarz.\par\smallskip
-\textbf{Vorbereitet:} Raute, Haltephasen und Kanon.}
+%\textbf{Vorbereitet:} Raute, Haltephasen und Kanon.
+}
 \end{column}
 \end{columns}
-\editorauftrag{4}{05-polynom-und-weiche-kante}{Vergleicht bei zwei Punkten LERP und Smoothstep: Bewegung und Farbwechsel.}
-\tafelverweis{6}{Interpolation, Polynome und Kanon}
+%editorauftrag{4}{05-polynom-und-weiche-kante}{Vergleicht bei zwei Punkten LERP und Smoothstep: Bewegung und Farbwechsel.}
+%\tafelverweis{6}{Interpolation, Polynome und Kanon}
 \end{frame}
 
 \begin{frame}[label=demo5]{Wie wird Zufall zu einem gestaltbaren Muster?}
@@ -229,12 +232,35 @@ N&=\operatorname{mix}(U,V,s(t_y))
 \]}
 \end{column}
 \begin{column}{.47\textwidth}
-{\small START: Positionsbild aus Demo 2. Ohne \frag{iTime} bleibt das Muster unverändert.\par\smallskip
-\textbf{Vorbereitete Basis:} Hashfunktion und Simplex. Simplex nutzt Gradienten auf einem Dreiecksgitter statt interpolierter Eckwerte. Beide liefern hier Werte in $[0,1]$.}
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+% Die Position im Schaubild entspricht den bereits geglätteten Mischgewichten.
+\fill[soft!45] (0,0) rectangle (4.5,1.6);
+\draw[muted!50] (0,0) -- (0,1.6) (4.5,0) -- (4.5,1.6);
+\draw[sea,thick,-{Stealth[length=1.7mm]}] (0,0) -- (4.5,0);
+\draw[sea,thick,-{Stealth[length=1.7mm]}] (0,1.6) -- (4.5,1.6);
+\draw[accent,thick,-{Stealth[length=1.7mm]}] (1.8,0) -- (1.8,1.6);
+\draw[muted,dashed] (1.8,.96) -- (5.25,.96);
+\foreach \x/\y/\wert/\anker in {0/0/a/east,4.5/0/b/west,0/1.6/c/east,4.5/1.6/d/west}{%
+  \fill[ink] (\x,\y) circle (1.6pt);
+  \node[anchor=\anker] at (\x,\y) {$\wert$};
+}
+\fill[sea] (1.8,0) circle (2pt) node[below right] {$U$};
+\fill[sea] (1.8,1.6) circle (2pt) node[above right] {$V$};
+\fill[accent] (1.8,.96) circle (2.4pt) node[left,text=accent] {$N$};
+\draw[muted,thin] (0,-.12) -- (0,-.55) (1.8,-.12) -- (1.8,-.55);
+\draw[muted,{Stealth[length=1.3mm]}-{Stealth[length=1.3mm]}]
+  (0,-.45) -- node[below] {$s(t_x)$} (1.8,-.45);
+\draw[muted,{Stealth[length=1.3mm]}-{Stealth[length=1.3mm]}]
+  (5.2,0) -- node[right] {$s(t_y)$} (5.2,.96);
+\end{tikzpicture}\par
+{\scriptsize Bilineare Mischung; Gewichte hier mit $s$ geglättet.}
+%{\small START: Positionsbild aus Demo 2. Ohne \frag{iTime} bleibt das Muster unverändert.\par\smallskip
+%\textbf{Vorbereitete Basis:} Hashfunktion und Simplex. Simplex nutzt Gradienten auf einem Dreiecksgitter statt interpolierter Eckwerte. Beide liefern hier Werte in $[0,1]$.}
 \end{column}
 \end{columns}
-\editorauftrag{5}{08-value-noise}{Erhöht im Rauschmuster den Koordinatenfaktor von 6 auf 12. Werden die Strukturen größer oder kleiner?}
-\tafelverweis{7}{Gitter, Interpolation und Rauschbasis}
+%\editorauftrag{5}{08-value-noise}{Erhöht im Rauschmuster den Koordinatenfaktor von 6 auf 12. Werden die Strukturen größer oder kleiner?}
+%\tafelverweis{7}{Gitter, Interpolation und Rauschbasis}
 \end{frame}
 
 \begin{frame}[label=demo6]{Wie werden aus Rauschen bewegte Wolken?}
@@ -244,7 +270,7 @@ N&=\operatorname{mix}(U,V,s(t_y))
 \begin{column}{.30\textwidth}
 {\small\bfseries 1 · Rauschen übernehmen}\par
 \includegraphics[width=\linewidth,trim=0bp 75bp 0bp 75bp,clip]{folien/bilder/demo-ziele/08-value-noise.png}\par
-{\scriptsize START = ZIEL aus Demo 5.}
+%{\scriptsize START = ZIEL aus Demo 5.}
 \end{column}
 \begin{column}{.30\textwidth}
 {\small\bfseries 2 · Feine Details ergänzen}\par
@@ -262,9 +288,10 @@ N&=\operatorname{mix}(U,V,s(t_y))
 \textbf{fBm:} Vier Oktaven: Frequenz verdoppeln, Gewicht halbieren. Die Division hält die Werte in $[0,1]$.\par
 \textbf{Wolken:} $d=\operatorname{smoothstep}(0{,}4;\,0{,}65;\,F(p))$;
 Farbe $=\operatorname{mix}(\text{Blau},\text{Weiß},d)$.\par
-\textbf{Bewegung erst im ZIEL:} $p\leftarrow p-(0{,}18;\,0{,}06)\,t$.
-Das vorhandene Muster wandert; es wird nicht pro Bild neu gewürfelt.}
-\editorauftrag{6}{09-fbm}{Ändert im ZIEL die Verschiebungsrichtung. In welche Richtung bewegen sich die Wolken?}
-\tafelverweis{8}{Maßstäbe, Wolkendichte und Animation}
+%\textbf{Bewegung erst im ZIEL:} $p\leftarrow p-(0{,}18;\,0{,}06)\,t$.
+%Das vorhandene Muster wandert; es wird nicht pro Bild neu gewürfelt.}
+}
+%\editorauftrag{6}{09-fbm}{Ändert im ZIEL die Verschiebungsrichtung. In welche Richtung bewegen sich die Wolken?}
+%\tafelverweis{8}{Maßstäbe, Wolkendichte und Animation}
 \end{frame}
 \endgroup

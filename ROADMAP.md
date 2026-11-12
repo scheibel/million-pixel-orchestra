@@ -160,6 +160,10 @@ Die Schrift auf der Titelfolie erhält mit `pdfrender` eine schwarze Kontur: 0,4
 
 **Aktuelle Folienkorrektur:** Auf „Vom Hobby zum Studium“ ist der gleichlautende rote Untertitel entfernt. Die folgende Zeitleistenfolie trägt den bisherigen roten Text „Forschung, Praxis und Lehre“ als Überschrift; auch dort entfällt der Untertitel.
 
+**Zeitachsen korrigiert (12. November 2026):** Auf beiden Zeitstrahlfolien ist 2025 statt 2027 als letzte Jahreszahl beschriftet. Die gemeinsame Zeitachse trägt rechts eine Pfeilspitze; Skala und Stationen bleiben erhalten.
+
+**Schaubild auf Folie 12 ergänzt (12. November 2026):** Die zweite untere Spalte zeigt die bilineare Mischung der vier Eckwerte über die Zwischenwerte U und V zum Wert N. Die Mischgewichte sind passend zu den Formeln als s(t_x) und s(t_y) bezeichnet; die Grafik bleibt als TikZ bearbeitbar.
+
 Die Inhaltsplanung und das Rahmenwerk haben getrennte Aufgaben. Lernziele, festgelegte Einschränkungen und die abgestimmte didaktische Progression aus `CONTEXT.md` bleiben Grundlage.
 
 Das [Vortragsskelett](docs/VORTRAGSSKELETT.md) ordnet die geplanten Folien, Demos, Tafelbilder, ShaderToy-Beispiele und QR-Codes dem Ablauf zu. Es enthält die offenen Aufgaben für persönliche Vorstellung, HPI-Studium, Übersicht, Demo-Folien und Zugangslinks. Reihenfolge und Zeitplanung bleiben Arbeitsstand.
